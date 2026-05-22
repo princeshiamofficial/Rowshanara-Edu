@@ -375,3 +375,82 @@ button {
     @apply font-sans;
   }
 }
+
+/* ==========================================
+   RESPONSIVE DESIGN OVERRIDES
+========================================== */
+
+/* Navbar responsiveness */
+@media (max-width: 991px) {
+  .hide-mobile {
+    display: none !important;
+  }
+  .desktop-nav-links {
+    display: none !important;
+  }
+  .desktop-nav-btn {
+    display: none !important;
+  }
+  .mobile-menu-toggle {
+    display: block !important;
+  }
+  .sticky-navbar {
+    padding-top: 0 !important;
+  }
+  .navbar-floating-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 0 !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-top: none !important;
+  }
+}
+
+/* Page layouts responsiveness */
+@media (max-width: 1024px) {
+  .destination-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+    gap: 3rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-responsive-title {
+    font-size: 2.25rem !important;
+  }
+  
+  /* Services responsiveness overrides */
+  .services-cta-padding {
+    padding: 3.5rem 2rem !important;
+  }
+
+  /* Destination details card split responsiveness */
+  .destination-card-split {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+    padding: 2.5rem 1.5rem !important;
+  }
+
+  /* Contact page split overrides */
+  .contact-split-layout {
+    grid-template-columns: 1fr !important;
+    gap: 2.5rem !important;
+  }
+  .contact-form-card {
+    padding: 2.5rem 1.5rem !important;
+  }
+  
+  /* About Page grid overrides */
+  .about-mission-vision {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+  .about-mission-vision > div {
+    padding: 2.5rem 1.5rem !important;
+  }
+}

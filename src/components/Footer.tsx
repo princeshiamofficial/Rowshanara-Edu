@@ -152,7 +152,7 @@ const Footer = () => {
                 fontSize: '0.9375rem',
                 fontWeight: 500
               }}>
-                <a href="#" style={{ textDecoration: 'none', color: '#fff' }}>Contact ANU</a>
+                <a href="/contact" style={{ textDecoration: 'none', color: '#fff' }}>Contact Us</a>
                 <span style={{ opacity: 0.5 }}>|</span>
                 <a href="#" style={{ textDecoration: 'none', color: '#fff' }}>Copyright</a>
                 <span style={{ opacity: 0.5 }}>|</span>
@@ -166,7 +166,7 @@ const Footer = () => {
               </div>
               
               <div style={{ fontSize: '0.9375rem', marginBottom: '0.75rem', fontWeight: 500, opacity: 1 }}>
-                +61 2 6125 5111 <span style={{ margin: '0 0.5rem', opacity: 0.5 }}>|</span> The Australian National University, Canberra
+                +880 1511-710730 <span style={{ margin: '0 0.5rem', opacity: 0.5 }}>|</span> 60, Dilkusha, Motijheel C/A, Dhaka-1000, Bangladesh
               </div>
 
               <div style={{ fontSize: '0.9375rem', fontWeight: 500, opacity: 1 }}>
