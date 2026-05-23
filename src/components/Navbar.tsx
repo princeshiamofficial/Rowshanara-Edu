@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import { FaEnvelope, FaFacebookF, FaLinkedinIn, FaYoutube, FaChevronDown, FaBars, FaXmark, FaXTwitter, FaWeixin } from 'react-icons/fa6';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,17 +15,18 @@ const Navbar = () => {
       zIndex: 2000,
       display: 'flex',
       justifyContent: 'center',
-      paddingTop: '1.5rem'
+      paddingTop: '0'
     }}>
       <div className="navbar-floating-content" style={{
         width: '95%',
         maxWidth: '1280px',
         background: 'rgba(255, 255, 255, 0.85)',
         backdropFilter: 'blur(16px)',
-        borderRadius: '24px',
+        borderRadius: '0 0 24px 24px',
         overflow: 'hidden',
         boxShadow: '0 20px 40px rgba(224, 145, 0, 0.1)',
         border: '1px solid rgba(224, 145, 0, 0.15)',
+        borderTop: 'none',
         transition: 'all 0.3s ease'
       }}>
         {/* Top Bar (Integrated) - Responsive wrap */}
@@ -45,14 +47,20 @@ const Navbar = () => {
               <a href="tel:+8801511710730" style={{ fontWeight: 600, color: 'white' }}>+880 1511-710730</a>
             </div>
             <div className="hide-mobile" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <i className="bi bi-envelope" style={{ color: 'white' }}></i>
+              <FaEnvelope style={{ color: 'white' }} />
               <a href="mailto:info@rowshanaraedu.com" style={{ fontWeight: 600, color: 'white' }}>info@rowshanaraedu.com</a>
             </div>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
             <div className="hide-mobile" style={{ display: 'flex', gap: '0.75rem', color: 'white' }}>
-              {['facebook', 'twitter-x', 'linkedin', 'youtube', 'wechat'].map((icon) => (
-                <a key={icon} href="#" style={{ 
+              {[
+                { name: 'facebook', icon: <FaFacebookF /> },
+                { name: 'twitter-x', icon: <FaXTwitter /> },
+                { name: 'linkedin', icon: <FaLinkedinIn /> },
+                { name: 'youtube', icon: <FaYoutube /> },
+                { name: 'wechat', icon: <FaWeixin /> }
+              ].map((item) => (
+                <a key={item.name} href="#" style={{ 
                   width: '22px', 
                   height: '22px', 
                   background: 'white', 
@@ -67,15 +75,9 @@ const Navbar = () => {
                 }}
                 onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.1)'}
                 onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}>
-                  <i className={`bi bi-${icon}`}></i>
+                  {item.icon}
                 </a>
               ))}
-            </div>
-            <div className="hide-mobile" style={{ height: '1rem', width: '1px', background: 'rgba(255,255,255,0.3)' }}></div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', cursor: 'pointer', color: 'white' }}>
-              <img src="https://flagcdn.com/w20/us.png" alt="US" width="16" />
-              <span>EN</span>
-              <i className="bi bi-chevron-down" style={{ fontSize: '0.75rem' }}></i>
             </div>
           </div>
         </div>
@@ -100,25 +102,25 @@ const Navbar = () => {
           <div className="desktop-nav-links" style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
             <a href="/" 
                style={{ fontWeight: 700, color: '#E09100', display: 'flex', alignItems: 'center', gap: '0.25rem', transition: 'color 0.2s' }}>
-              Home <i className="bi bi-chevron-down" style={{ fontSize: '0.75rem' }}></i>
+              Home <FaChevronDown style={{ fontSize: '0.7rem' }} />
             </a>
             <a href="/services" 
                style={{ fontWeight: 700, color: '#4a3700', opacity: 0.8, display: 'flex', alignItems: 'center', gap: '0.25rem', transition: 'all 0.2s' }}
                onMouseEnter={e => { e.currentTarget.style.color = '#E09100'; e.currentTarget.style.opacity = '1'; }}
                onMouseLeave={e => { e.currentTarget.style.color = '#4a3700'; e.currentTarget.style.opacity = '0.8'; }}>
-              Services <i className="bi bi-chevron-down" style={{ fontSize: '0.75rem' }}></i>
+              Services <FaChevronDown style={{ fontSize: '0.7rem' }} />
             </a>
             <a href="/destination" 
                style={{ fontWeight: 700, color: '#4a3700', opacity: 0.8, display: 'flex', alignItems: 'center', gap: '0.25rem', transition: 'all 0.2s' }}
                onMouseEnter={e => { e.currentTarget.style.color = '#E09100'; e.currentTarget.style.opacity = '1'; }}
                onMouseLeave={e => { e.currentTarget.style.color = '#4a3700'; e.currentTarget.style.opacity = '0.8'; }}>
-              Destination <i className="bi bi-chevron-down" style={{ fontSize: '0.75rem' }}></i>
+              Destination <FaChevronDown style={{ fontSize: '0.7rem' }} />
             </a>
             <a href="/universities" 
                style={{ fontWeight: 700, color: '#4a3700', opacity: 0.8, display: 'flex', alignItems: 'center', gap: '0.25rem', transition: 'all 0.2s' }}
                onMouseEnter={e => { e.currentTarget.style.color = '#E09100'; e.currentTarget.style.opacity = '1'; }}
                onMouseLeave={e => { e.currentTarget.style.color = '#4a3700'; e.currentTarget.style.opacity = '0.8'; }}>
-              Universities <i className="bi bi-chevron-down" style={{ fontSize: '0.75rem' }}></i>
+              Universities <FaChevronDown style={{ fontSize: '0.7rem' }} />
             </a>
             <a href="/about" 
                style={{ fontWeight: 700, color: '#4a3700', opacity: 0.8, transition: 'all 0.2s' }}
@@ -134,23 +136,36 @@ const Navbar = () => {
             </a>
           </div>
  
-          {/* Desktop Consultation Button */}
-          <div className="desktop-nav-btn" style={{ display: 'flex', alignItems: 'center' }}>
-            <a href="/contact" style={{ 
-              background: 'var(--cta)', 
-              color: 'white', 
-              padding: '0.6rem 1.4rem', 
-              borderRadius: '14px',
+          {/* Desktop Authentication Buttons */}
+          <div className="desktop-nav-btn" style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
+            <a href="/login" style={{ 
+              border: '2px solid var(--primary)', 
+              color: 'var(--primary)', 
+              padding: '0.5rem 1.2rem', 
+              borderRadius: '12px',
               fontWeight: 700,
               fontSize: '0.875rem',
-              letterSpacing: '0.05em',
-              boxShadow: '0 8px 20px rgba(34, 197, 94, 0.3)',
-              transition: 'all 0.3s ease',
-              textAlign: 'center'
+              textAlign: 'center',
+              transition: 'all 0.2s'
             }}
-            onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-2px)'}
-            onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}>
-              Book Free Consultation
+            onMouseEnter={e => { e.currentTarget.style.background = 'rgba(224, 145, 0, 0.08)'; }}
+            onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; }}>
+              Login
+            </a>
+            <a href="/register" style={{ 
+              background: 'var(--primary)', 
+              color: 'white', 
+              padding: '0.5rem 1.2rem', 
+              borderRadius: '12px',
+              fontWeight: 700,
+              fontSize: '0.875rem',
+              textAlign: 'center',
+              boxShadow: '0 4px 12px rgba(224, 145, 0, 0.2)',
+              transition: 'all 0.2s'
+            }}
+            onMouseEnter={e => { e.currentTarget.style.background = 'var(--primary-hover)'; }}
+            onMouseLeave={e => { e.currentTarget.style.background = 'var(--primary)'; }}>
+              Registration
             </a>
           </div>
 
@@ -168,7 +183,7 @@ const Navbar = () => {
             }}
             aria-label="Toggle navigation menu"
           >
-            <i className={`bi bi-${isOpen ? 'x' : 'list'}`}></i>
+            {isOpen ? <FaXmark /> : <FaBars />}
           </button>
         </nav>
 
@@ -190,18 +205,29 @@ const Navbar = () => {
             <a href="/about" onClick={() => setIsOpen(false)} style={{ fontWeight: 700, color: 'var(--text)', fontSize: '1.1rem' }}>About Us</a>
             <a href="/contact" onClick={() => setIsOpen(false)} style={{ fontWeight: 700, color: 'var(--text)', fontSize: '1.1rem' }}>Contact Us</a>
             
-            <a href="/contact" onClick={() => setIsOpen(false)} style={{ 
-              background: 'var(--cta)', 
-              color: 'white', 
-              padding: '0.8rem 1.5rem', 
+            <a href="/login" onClick={() => setIsOpen(false)} style={{ 
+              border: '2px solid var(--primary)',
+              color: 'var(--primary)', 
+              padding: '0.75rem 1.5rem', 
               borderRadius: '12px',
               fontWeight: 700,
               fontSize: '1rem',
               textAlign: 'center',
-              marginTop: '0.5rem',
-              boxShadow: '0 8px 20px rgba(34, 197, 94, 0.3)'
+              marginTop: '0.5rem'
             }}>
-              Book Free Consultation
+              Login
+            </a>
+            <a href="/register" onClick={() => setIsOpen(false)} style={{ 
+              background: 'var(--primary)', 
+              color: 'white', 
+              padding: '0.75rem 1.5rem', 
+              borderRadius: '12px',
+              fontWeight: 700,
+              fontSize: '1rem',
+              textAlign: 'center',
+              boxShadow: '0 8px 20px rgba(224, 145, 0, 0.15)'
+            }}>
+              Registration
             </a>
           </div>
         )}

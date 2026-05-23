@@ -72,7 +72,7 @@ export default function ContactPage() {
               
               <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
                 <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
-                  <div style={{ width: "45px", height: "45px", borderRadius: "10px", background: "rgba(224, 145, 0, 0.08)", display: "flex", alignItems: "center", justifyValue: "center", flexShrink: 0 }}>
+                  <div style={{ width: "45px", height: "45px", borderRadius: "10px", background: "rgba(224, 145, 0, 0.08)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                     <i className="bi bi-telephone-fill" style={{ color: "var(--primary)", fontSize: "1.1rem", margin: "0 auto" }}></i>
                   </div>
                   <div>
@@ -82,7 +82,7 @@ export default function ContactPage() {
                 </div>
 
                 <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
-                  <div style={{ width: "45px", height: "45px", borderRadius: "10px", background: "rgba(224, 145, 0, 0.08)", display: "flex", alignItems: "center", justifyValue: "center", flexShrink: 0 }}>
+                  <div style={{ width: "45px", height: "45px", borderRadius: "10px", background: "rgba(224, 145, 0, 0.08)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                     <i className="bi bi-envelope-fill" style={{ color: "var(--primary)", fontSize: "1.1rem", margin: "0 auto" }}></i>
                   </div>
                   <div>
