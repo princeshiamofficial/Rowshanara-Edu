@@ -1,195 +1,659 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 export default function AboutPage() {
-  const values = [
-    { title: "Integrity First", icon: "🤝", desc: "We provide honest, transparent assessment of profile eligibilities, university criteria, and visa requirements, putting student outcomes above all else." },
-    { title: "Student Centricity", icon: "❤️", desc: "Every student profile is unique. We customize study pathways to respect individual aspirations, financial budgets, and long-term career goals." },
-    { title: "Global Partnerships", icon: "🌐", desc: "We maintain direct, trusted relations with high-quality institutions globally, guaranteeing swift and credible application turnarounds." }
+  const bgSlides = [
+    "/sydney_opera_house.png",
+    "/canada_hero.png",
+    "/uk_hero.png"
   ];
 
+  const [currentBgIndex, setCurrentBgIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentBgIndex((prev) => (prev + 1) % bgSlides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
+
   const milestones = [
-    { year: "2018", title: "Founding Journey", desc: "Rowshanara Edu was established with a singular focus: simplifying study abroad advising with unmatched counselor professionalism." },
-    { year: "2020", title: "Virtual Expansion", desc: "Successfully launched advanced digital systems, connecting students from remote divisions to global partner universities." },
-    { year: "2022", title: "1000+ Visas Secured", desc: "Celebrated the milestone of helping over 1,000 students enroll at prestigious universities in the UK, USA, and Canada." },
-    { year: "2025", title: "Global Consultancy Leader", desc: "Voted one of the most reliable educational advisors, partnering directly with over 300+ accredited universities." }
+    { year: "2009", title: "Company Founded", desc: "Started with a vision to help Bangladeshi students study abroad" },
+    { year: "2012", title: "First 100 Students", desc: "Reached milestone of 100 successful placements" },
+    { year: "2015", title: "International Expansion", desc: "Opened offices in UK and Canada" },
+    { year: "2018", title: "Partner Network", desc: "Established partnerships with 50+ universities" },
+    { year: "2021", title: "5000+ Students", desc: "Celebrated 5000 successful student placements" },
+    { year: "2024", title: "Industry Leader", desc: "Recognized as leading education consultancy in South Asia" }
   ];
 
   return (
-    <div className="hero-gradient" style={{ minHeight: "100vh", paddingTop: "8rem", paddingBottom: "6rem" }}>
-      {/* Banner */}
-      <section className="container" style={{ textAlign: "center", marginBottom: "5rem" }}>
-        <span style={{ 
-          color: "var(--primary)", 
-          fontWeight: 800, 
-          letterSpacing: "0.2em", 
-          fontSize: "0.875rem", 
-          marginBottom: "1.5rem",
-          display: "block",
-          textTransform: "uppercase"
+    <div className="hero-gradient" style={{ minHeight: "100vh", paddingTop: "140px", paddingBottom: "6rem" }}>
+      {/* Brand Overview Section */}
+      <section className="container" style={{ marginBottom: "6rem" }}>
+        <div style={{
+          background: "linear-gradient(135deg, rgba(10, 28, 58, 0.95) 0%, rgba(6, 17, 36, 0.98) 100%)",
+          borderRadius: "28px",
+          padding: "1.75rem 2rem",
+          color: "white",
+          boxShadow: "0 15px 35px rgba(0, 0, 0, 0.12)",
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+          gap: "1.5rem",
+          alignItems: "center"
         }}>
-          About Rowshanara Edu
-        </span>
-        <h1 className="hero-responsive-title" style={{ 
-          marginBottom: "1.5rem", 
-          lineHeight: 1.2,
-          fontWeight: 800,
-          color: "var(--text)"
-        }}>
-          Empowering Minds, Shaping Futures
-        </h1>
-        <p style={{ 
-          fontSize: "1.2rem", 
-          opacity: 0.85, 
-          maxWidth: "750px", 
-          margin: "0 auto", 
-          lineHeight: 1.7,
-          color: "var(--text)"
-        }}>
-          Rowshanara Edu is a leading international educational consultancy platform. We specialize in paving seamless, reliable pathways for students seeking to pursue higher studies in the world's finest universities.
-        </p>
+          {/* Left Column */}
+          <div>
+            <h2 style={{
+              fontSize: "clamp(1.5rem, 3vw, 2rem)",
+              fontWeight: 800,
+              color: "white",
+              marginBottom: "0.75rem",
+              fontFamily: "'Baloo 2', cursive",
+              lineHeight: 1.15
+            }}>
+              About Rowshanara Edu
+            </h2>
+            <p style={{
+              fontSize: "0.95rem",
+              color: "rgba(255, 255, 255, 0.85)",
+              lineHeight: 1.5,
+              marginBottom: "1.25rem",
+              fontFamily: "'Comic Neue', cursive"
+            }}>
+              Founded in 2009, we've been helping Bangladeshi students achieve their dreams of studying abroad. With 15+ years of experience and 5000+ successful placements, we're the trusted partner for your international education journey.
+            </p>
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+              {[
+                "50+ Partner Universities",
+                "20+ Countries Covered",
+                "98% Visa Success Rate"
+              ].map((item, index) => (
+                <div key={index} style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                  <span style={{ color: "var(--primary)", fontSize: "1.2rem", fontWeight: "bold" }}>✓</span>
+                  <span style={{ fontSize: "1rem", fontWeight: 700, color: "white" }}>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right Column */}
+          <div>
+            <div style={{
+              position: "relative",
+              border: "1px solid rgba(255, 255, 255, 0.12)",
+              borderRadius: "20px",
+              padding: "2.5rem 2rem",
+              textAlign: "center",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              minHeight: "280px",
+              overflow: "hidden"
+            }}>
+              {/* Background Images with Fade & Zoom effect */}
+              {bgSlides.map((slide, index) => (
+                <div
+                  key={`bg-slide-${index}`}
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    background: `url(${slide}) no-repeat center center`,
+                    backgroundSize: "cover",
+                    opacity: currentBgIndex === index ? 0.75 : 0,
+                    transform: currentBgIndex === index ? "scale(1.08)" : "scale(1)",
+                    transition: "opacity 1s ease-in-out, transform 5s linear",
+                    zIndex: 0
+                  }}
+                />
+              ))}
+
+              {/* Red Gradient Overlay (matching home page hero section with optimized opacity) */}
+              <div style={{
+                position: "absolute",
+                inset: 0,
+                background: "linear-gradient(135deg, rgba(179, 18, 38, 0.6) 0%, rgba(10, 28, 58, 0.7) 100%)",
+                zIndex: 1
+              }} />
+
+              {/* Content Panel */}
+              <div style={{ position: "relative", zIndex: 2 }}>
+                <h3 style={{
+                  fontSize: "1.25rem",
+                  fontWeight: 800,
+                  color: "white",
+                  marginBottom: "1rem",
+                  fontFamily: "'Baloo 2', cursive",
+                  lineHeight: 1.4
+                }}>
+                  "Transforming Lives Through Global Education"
+                </h3>
+                <p style={{
+                  fontSize: "0.95rem",
+                  color: "rgba(255, 255, 255, 0.85)",
+                  fontStyle: "italic",
+                  lineHeight: 1.6,
+                  margin: 0,
+                  fontFamily: "'Comic Neue', cursive",
+                  maxWidth: "280px"
+                }}>
+                  Our commitment is to provide world-class guidance and support to every student we work with.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
-      {/* Vision & Mission Split */}
-      <section className="container" style={{ marginBottom: "6rem" }}>
-        <div className="about-mission-vision" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "3rem" }}>
-          {/* Mission Card */}
-          <div className="glass" style={{
-            padding: "4rem 3rem",
-            borderRadius: "28px",
-            background: "rgba(255, 255, 255, 0.75)",
-            border: "1px solid rgba(224, 145, 0, 0.15)",
-            boxShadow: "0 15px 35px rgba(224, 145, 0, 0.04)"
-          }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1.5rem" }}>
-              <i className="bi bi-compass" style={{ fontSize: "2rem", color: "var(--primary)" }}></i>
-              <h2 style={{ fontSize: "2rem", color: "var(--text)", margin: 0 }}>Our Mission</h2>
+      {/* Our Journey Timeline */}
+      <section className="container" style={{ marginBottom: "7rem" }}>
+        <h2 style={{ 
+          textAlign: "center", 
+          fontSize: "clamp(2rem, 4vw, 2.75rem)", 
+          color: "var(--text)", 
+          marginBottom: "4.5rem",
+          fontFamily: "'Baloo 2', cursive",
+          fontWeight: 800
+        }}>
+          Our Journey
+        </h2>
+
+        <div style={{
+          position: "relative",
+          maxWidth: "800px",
+          margin: "0 auto",
+          padding: "0 1rem"
+        }}>
+          {milestones.map((ms, index) => (
+            <div key={index} style={{
+              display: "flex",
+              alignItems: "stretch",
+              position: "relative"
+            }}>
+              {/* Year column */}
+              <div style={{
+                width: "90px",
+                textAlign: "right",
+                paddingRight: "20px",
+                fontSize: "clamp(1.25rem, 3vw, 1.75rem)",
+                fontWeight: 800,
+                color: "#2563EB",
+                fontFamily: "'Baloo 2', cursive",
+                lineHeight: "1.2",
+                paddingTop: "4px"
+              }}>
+                {ms.year}
+              </div>
+
+              {/* Dot column */}
+              <div style={{
+                width: "40px",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                position: "relative"
+              }}>
+                {/* The Dot */}
+                <div style={{
+                  width: "12px",
+                  height: "12px",
+                  borderRadius: "50%",
+                  backgroundColor: "#2563EB",
+                  border: "2px solid var(--background)",
+                  boxShadow: "0 0 0 2px #2563EB",
+                  zIndex: 2,
+                  marginTop: "8px"
+                }}></div>
+
+                {/* Line connecting to the next dot */}
+                {index !== milestones.length - 1 && (
+                  <div style={{
+                    position: "absolute",
+                    top: "18px",
+                    bottom: 0,
+                    width: "3px",
+                    background: "#2563EB",
+                    opacity: 0.4,
+                    zIndex: 1
+                  }}></div>
+                )}
+              </div>
+
+              {/* Content column */}
+              <div style={{
+                flex: 1,
+                paddingLeft: "15px",
+                paddingBottom: index === milestones.length - 1 ? 0 : "2.5rem"
+              }}>
+                <h3 style={{
+                  fontSize: "clamp(1.1rem, 2vw, 1.35rem)",
+                  fontWeight: 700,
+                  color: "var(--text)",
+                  fontFamily: "'Baloo 2', cursive",
+                  margin: "0 0 0.4rem 0",
+                  lineHeight: "1.2"
+                }}>
+                  {ms.title}
+                </h3>
+                <p style={{
+                  fontSize: "clamp(0.9rem, 1.5vw, 1.05rem)",
+                  color: "var(--text)",
+                  opacity: 0.85,
+                  margin: 0,
+                  fontFamily: "'Comic Neue', cursive",
+                  lineHeight: "1.5"
+                }}>
+                  {ms.desc}
+                </p>
+              </div>
             </div>
-            <p style={{ fontSize: "1.1rem", lineHeight: 1.7, color: "var(--text)", opacity: 0.85 }}>
-              To democratize global higher education pathways by delivering honest, professional, and personalized consulting. We aim to guide students towards institutions that cultivate their full academic potentials, equipping them for global impact and future-readiness.
+          ))}
+        </div>
+      </section>
+
+      {/* Mission, Vision & Values Section */}
+      <section className="container" style={{ marginBottom: "7rem" }}>
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+          gap: "2rem"
+        }}>
+          {/* Mission Card */}
+          <div style={{
+            background: "white",
+            border: "1px solid rgba(10, 28, 58, 0.08)",
+            borderRadius: "24px",
+            padding: "3.5rem 2.5rem",
+            textAlign: "center",
+            boxShadow: "0 10px 30px rgba(0, 0, 0, 0.02)",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center"
+          }}>
+            <div style={{
+              width: "64px",
+              height: "64px",
+              borderRadius: "50%",
+              backgroundColor: "rgba(37, 99, 235, 0.1)", // Light blue container
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              marginBottom: "1.5rem",
+              color: "#2563EB" // Blue icon
+            }}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <circle cx="12" cy="12" r="9" />
+                <circle cx="12" cy="12" r="5" />
+                <circle cx="12" cy="12" r="1" />
+              </svg>
+            </div>
+            <h3 style={{
+              fontSize: "1.5rem",
+              fontWeight: 800,
+              color: "#0F172A",
+              marginBottom: "1rem",
+              fontFamily: "'Baloo 2', cursive"
+            }}>
+              Mission
+            </h3>
+            <p style={{
+              fontSize: "1rem",
+              color: "#475569",
+              lineHeight: 1.6,
+              margin: 0,
+              fontFamily: "'Comic Neue', cursive"
+            }}>
+              To empower Bangladeshi students with world-class education opportunities and guidance for their international academic journey.
             </p>
           </div>
 
           {/* Vision Card */}
-          <div className="glass" style={{
-            padding: "4rem 3rem",
-            borderRadius: "28px",
-            background: "rgba(255, 255, 255, 0.75)",
-            border: "1px solid rgba(224, 145, 0, 0.15)",
-            boxShadow: "0 15px 35px rgba(224, 145, 0, 0.04)"
+          <div style={{
+            background: "white",
+            border: "1px solid rgba(10, 28, 58, 0.08)",
+            borderRadius: "24px",
+            padding: "3.5rem 2.5rem",
+            textAlign: "center",
+            boxShadow: "0 10px 30px rgba(0, 0, 0, 0.02)",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center"
           }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1.5rem" }}>
-              <i className="bi bi-eye" style={{ fontSize: "2rem", color: "var(--primary)" }}></i>
-              <h2 style={{ fontSize: "2rem", color: "var(--text)", margin: 0 }}>Our Vision</h2>
+            <div style={{
+              width: "64px",
+              height: "64px",
+              borderRadius: "50%",
+              backgroundColor: "rgba(37, 99, 235, 0.1)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              marginBottom: "1.5rem",
+              color: "#2563EB"
+            }}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              </svg>
             </div>
-            <p style={{ fontSize: "1.1rem", lineHeight: 1.7, color: "var(--text)", opacity: 0.85 }}>
-              To be recognized as the absolute gold-standard for ethical and transformative educational consulting. We envision a future where geographical boundaries do not limit student ambition, making world-class degrees accessible to all deserving minds.
+            <h3 style={{
+              fontSize: "1.5rem",
+              fontWeight: 800,
+              color: "#0F172A",
+              marginBottom: "1rem",
+              fontFamily: "'Baloo 2', cursive"
+            }}>
+              Vision
+            </h3>
+            <p style={{
+              fontSize: "1rem",
+              color: "#475569",
+              lineHeight: 1.6,
+              margin: 0,
+              fontFamily: "'Comic Neue', cursive"
+            }}>
+              To be the most trusted and innovative education consultancy, transforming lives through global education.
+            </p>
+          </div>
+
+          {/* Values Card */}
+          <div style={{
+            background: "white",
+            border: "1px solid rgba(10, 28, 58, 0.08)",
+            borderRadius: "24px",
+            padding: "3.5rem 2.5rem",
+            textAlign: "center",
+            boxShadow: "0 10px 30px rgba(0, 0, 0, 0.02)",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center"
+          }}>
+            <div style={{
+              width: "64px",
+              height: "64px",
+              borderRadius: "50%",
+              backgroundColor: "rgba(37, 99, 235, 0.1)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              marginBottom: "1.5rem",
+              color: "#2563EB"
+            }}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              </svg>
+            </div>
+            <h3 style={{
+              fontSize: "1.5rem",
+              fontWeight: 800,
+              color: "#0F172A",
+              marginBottom: "1rem",
+              fontFamily: "'Baloo 2', cursive"
+            }}>
+              Values
+            </h3>
+            <p style={{
+              fontSize: "1rem",
+              color: "#475569",
+              lineHeight: 1.6,
+              margin: 0,
+              fontFamily: "'Comic Neue', cursive"
+            }}>
+              Integrity, Excellence, Student-Centric Approach, and Continuous Innovation in everything we do.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Core Values */}
-      <section className="container" style={{ marginBottom: "7rem" }}>
-        <h2 style={{ textAlign: "center", fontSize: "2.5rem", color: "var(--text)", marginBottom: "3.5rem" }}>
-          Our Pillars of Excellence
+      {/* Stats Section */}
+      <section className="stats-section" style={{ marginTop: "6rem", marginBottom: "0rem" }}>
+        <div className="stats-grid">
+          <div className="stat-card">
+            <div className="stat-number">15+</div>
+            <div className="stat-label">Years of Experience</div>
+          </div>
+          <div className="stat-card">
+            <div className="stat-number">5000+</div>
+            <div className="stat-label">Students Placed</div>
+          </div>
+          <div className="stat-card">
+            <div className="stat-number">50+</div>
+            <div className="stat-label">Partner Universities</div>
+          </div>
+          <div className="stat-card">
+            <div className="stat-number">20+</div>
+            <div className="stat-label">Countries Covered</div>
+          </div>
+        </div>
+      </section>
+
+      {/* Meet Our Team Section */}
+      <section className="container" style={{ marginTop: "6rem", marginBottom: "3rem" }}>
+        <h2 style={{
+          textAlign: "center",
+          fontSize: "clamp(2rem, 4vw, 2.75rem)",
+          color: "var(--text)",
+          marginBottom: "4rem",
+          fontFamily: "'Baloo 2', cursive",
+          fontWeight: 800
+        }}>
+          Meet Our Team
         </h2>
-        
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "2.5rem" }}>
-          {values.map((val, idx) => (
-            <div key={idx} style={{
+
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+          gap: "2rem"
+        }}>
+          {[
+            { name: "Dr. Md. Karim Hassan", role: "Founder & CEO", focus: "Education Strategy", initial: "D" },
+            { name: "Fatima Ahmed Khan", role: "Head of Admissions", focus: "University Relations", initial: "F" },
+            { name: "Amir Hossain", role: "Visa Specialist", focus: "Immigration Law", initial: "A" },
+            { name: "Nadia Rahman", role: "Student Counselor", focus: "Career Guidance", initial: "N" },
+            { name: "Rajib Kumar", role: "Operations Manager", focus: "Process Excellence", initial: "R" },
+            { name: "Sophia Akter", role: "Student Support", focus: "Post-Arrival Services", initial: "S" }
+          ].map((member, index) => (
+            <div key={index} style={{
               background: "white",
-              padding: "3rem 2.5rem",
+              border: "1px solid rgba(10, 28, 58, 0.08)",
               borderRadius: "24px",
-              border: "1px solid rgba(224, 145, 0, 0.08)",
-              boxShadow: "0 10px 30px rgba(0,0,0,0.02)",
-              textAlign: "center"
+              padding: "3rem 2rem",
+              textAlign: "center",
+              boxShadow: "0 10px 30px rgba(0, 0, 0, 0.02)",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center"
             }}>
+              {/* Circular Initial Avatar */}
               <div style={{
-                fontSize: "2.5rem",
-                width: "60px",
-                height: "60px",
-                background: "rgba(224, 145, 0, 0.08)",
+                width: "70px",
+                height: "70px",
                 borderRadius: "50%",
+                backgroundColor: "#2563EB",
+                color: "white",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                margin: "0 auto 1.5rem auto"
+                fontSize: "1.75rem",
+                fontWeight: 700,
+                marginBottom: "1.5rem",
+                fontFamily: "'Baloo 2', cursive",
+                boxShadow: "0 8px 20px rgba(37, 99, 235, 0.25)"
               }}>
-                {val.icon}
+                {member.initial}
               </div>
-              <h3 style={{ fontSize: "1.35rem", marginBottom: "1rem", color: "var(--text)" }}>{val.title}</h3>
-              <p style={{ fontSize: "0.95rem", lineHeight: 1.6, color: "var(--text)", opacity: 0.75 }}>{val.desc}</p>
+
+              {/* Member Details */}
+              <h3 style={{
+                fontSize: "1.25rem",
+                fontWeight: 800,
+                color: "#0F172A",
+                marginBottom: "0.4rem",
+                fontFamily: "'Baloo 2', cursive"
+              }}>
+                {member.name}
+              </h3>
+              <p style={{
+                fontSize: "1rem",
+                color: "#2563EB",
+                fontWeight: 700,
+                margin: "0 0 0.4rem 0",
+                fontFamily: "'Comic Neue', cursive"
+              }}>
+                {member.role}
+              </p>
+              <p style={{
+                fontSize: "0.85rem",
+                color: "#64748B",
+                margin: 0,
+                fontFamily: "'Comic Neue', cursive"
+              }}>
+                {member.focus}
+              </p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Historical Milestones */}
-      <section className="container">
-        <h2 style={{ textAlign: "center", fontSize: "2.5rem", color: "var(--text)", marginBottom: "4rem" }}>
-          Our Professional Milestones
+      {/* Why Choose Us Section */}
+      <section className="container" style={{ marginTop: "6rem", marginBottom: "3rem" }}>
+        <h2 style={{
+          textAlign: "center",
+          fontSize: "clamp(2rem, 4vw, 2.75rem)",
+          color: "var(--text)",
+          marginBottom: "4rem",
+          fontFamily: "'Baloo 2', cursive",
+          fontWeight: 800
+        }}>
+          Why Choose Us
         </h2>
 
         <div style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "2rem",
-          maxWidth: "850px",
-          margin: "0 auto",
-          position: "relative"
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+          gap: "2rem"
         }}>
-          {/* Vertical central bar */}
-          <div style={{
-            position: "absolute",
-            left: "50px",
-            top: "20px",
-            bottom: "20px",
-            width: "3px",
-            background: "rgba(224, 145, 0, 0.2)"
-          }}></div>
-
-          {milestones.map((ms, index) => (
+          {[
+            {
+              title: "Expert Guidance",
+              desc: "Our team has 15+ years of experience in international education.",
+              icon: (
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              )
+            },
+            {
+              title: "Proven Track Record",
+              desc: "5000+ successful placements with 98% visa success rate.",
+              icon: (
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              )
+            },
+            {
+              title: "Personalized Service",
+              desc: "Customized guidance tailored to each student's unique profile.",
+              icon: (
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+              )
+            },
+            {
+              title: "Strong Network",
+              desc: "Partnerships with 50+ universities across 20+ countries.",
+              icon: (
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10M12 2a15.3 15.3 0 00-4 10 15.3 15.3 0 004 10M2 12h20" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              )
+            },
+            {
+              title: "Affordable Pricing",
+              desc: "Competitive rates with flexible payment options available.",
+              icon: (
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              )
+            },
+            {
+              title: "Continuous Support",
+              desc: "Support from application through post-arrival assistance.",
+              icon: (
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              )
+            }
+          ].map((item, index) => (
             <div key={index} style={{
+              background: "white",
+              border: "1px solid rgba(10, 28, 58, 0.08)",
+              borderRadius: "24px",
+              padding: "2.5rem 2rem",
+              boxShadow: "0 10px 30px rgba(0, 0, 0, 0.02)",
               display: "flex",
-              alignItems: "center",
-              gap: "2.5rem",
-              position: "relative"
+              alignItems: "flex-start",
+              gap: "1.5rem"
             }}>
-              {/* Year indicator pill */}
+              {/* Icon Container */}
               <div style={{
-                width: "100px",
-                height: "50px",
-                borderRadius: "25px",
-                background: "var(--primary)",
-                color: "white",
+                width: "56px",
+                height: "56px",
+                borderRadius: "50%",
+                backgroundColor: "rgba(37, 99, 235, 0.1)",
+                color: "#2563EB",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                fontWeight: 800,
-                fontSize: "1.1rem",
-                flexShrink: 0,
-                zIndex: 2,
-                boxShadow: "0 8px 16px rgba(224, 145, 0, 0.3)"
+                flexShrink: 0
               }}>
-                {ms.year}
+                {item.icon}
               </div>
-              
-              {/* Detail box */}
-              <div className="glass" style={{
-                padding: "2rem 2.5rem",
-                borderRadius: "20px",
-                background: "rgba(255, 255, 255, 0.8)",
-                border: "1px solid rgba(224, 145, 0, 0.1)",
-                boxShadow: "0 10px 25px rgba(0,0,0,0.02)",
-                flexGrow: 1
-              }}>
-                <h3 style={{ fontSize: "1.25rem", color: "var(--text)", marginBottom: "0.5rem" }}>{ms.title}</h3>
-                <p style={{ fontSize: "0.95rem", lineHeight: 1.6, color: "var(--text)", opacity: 0.75, margin: 0 }}>{ms.desc}</p>
+
+              {/* Text Container */}
+              <div style={{ flex: 1 }}>
+                <h3 style={{
+                  fontSize: "1.25rem",
+                  fontWeight: 800,
+                  color: "#0F172A",
+                  marginBottom: "0.5rem",
+                  fontFamily: "'Baloo 2', cursive",
+                  lineHeight: "1.2"
+                }}>
+                  {item.title}
+                </h3>
+                <p style={{
+                  fontSize: "0.95rem",
+                  color: "#475569",
+                  lineHeight: "1.5",
+                  margin: 0,
+                  fontFamily: "'Comic Neue', cursive"
+                }}>
+                  {item.desc}
+                </p>
               </div>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="cta-section" style={{ marginTop: "6rem", marginBottom: "3rem" }}>
+        <div className="cta-container">
+          <h2 className="cta-title">Ready to Study Abroad?</h2>
+          <p className="cta-description">
+            Get personalized guidance from our expert counselors. Your first consultation is completely free!
+          </p>
+          <button className="cta-button" onClick={() => window.location.href = "/contact"}>
+            Get Free Counselling Today
+          </button>
         </div>
       </section>
     </div>
