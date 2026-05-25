@@ -447,66 +447,65 @@ export default function AboutPage() {
           gap: "2rem"
         }}>
           {[
-            { name: "Dr. Md. Karim Hassan", role: "Founder & CEO", focus: "Education Strategy", image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=256&h=256&fit=crop" },
-            { name: "Fatima Ahmed Khan", role: "Head of Admissions", focus: "University Relations", image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=256&h=256&fit=crop" },
-            { name: "Amir Hossain", role: "Visa Specialist", focus: "Immigration Law", image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=256&h=256&fit=crop" },
-            { name: "Nadia Rahman", role: "Student Counselor", focus: "Career Guidance", image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=256&h=256&fit=crop" },
-            { name: "Rajib Kumar", role: "Operations Manager", focus: "Process Excellence", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=256&h=256&fit=crop" },
-            { name: "Sophia Akter", role: "Student Support", focus: "Post-Arrival Services", image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&h=256&fit=crop" }
+            { name: "Dr. Md. Karim Hassan", role: "Founder & CEO", focus: "Education Strategy", image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=400&h=300&fit=crop" },
+            { name: "Fatima Ahmed Khan", role: "Head of Admissions", focus: "University Relations", image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&h=300&fit=crop" },
+            { name: "Amir Hossain", role: "Visa Specialist", focus: "Immigration Law", image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=400&h=300&fit=crop" },
+            { name: "Nadia Rahman", role: "Student Counselor", focus: "Career Guidance", image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400&h=300&fit=crop" },
+            { name: "Rajib Kumar", role: "Operations Manager", focus: "Process Excellence", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&h=300&fit=crop" },
+            { name: "Sophia Akter", role: "Student Support", focus: "Post-Arrival Services", image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&h=300&fit=crop" }
           ].map((member, index) => (
             <div key={index} style={{
               background: "white",
               border: "1px solid rgba(10, 28, 58, 0.08)",
               borderRadius: "24px",
-              padding: "3rem 2rem",
-              textAlign: "center",
               boxShadow: "0 10px 30px rgba(0, 0, 0, 0.02)",
               display: "flex",
               flexDirection: "column",
-              alignItems: "center"
-            }}>
-              {/* Circular Avatar Image */}
-              <img
-                src={member.image}
-                alt={member.name}
-                style={{
-                  width: "80px",
-                  height: "80px",
-                  borderRadius: "50%",
-                  objectFit: "cover",
-                  marginBottom: "1.5rem",
-                  border: "3px solid white",
-                  boxShadow: "0 8px 20px rgba(0, 0, 0, 0.08)"
-                }}
-              />
+              overflow: "hidden",
+              transition: "all 0.3s ease"
+            }} className="glass-card-hover">
+              {/* Full Width Image on top */}
+              <div style={{ width: "100%", height: "240px", overflow: "hidden", position: "relative" }}>
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover"
+                  }}
+                />
+              </div>
 
-              {/* Member Details */}
-              <h3 style={{
-                fontSize: "1.25rem",
-                fontWeight: 800,
-                color: "#0F172A",
-                marginBottom: "0.4rem",
-                fontFamily: "'Baloo 2', cursive"
-              }}>
-                {member.name}
-              </h3>
-              <p style={{
-                fontSize: "1rem",
-                color: "var(--primary)",
-                fontWeight: 700,
-                margin: "0 0 0.4rem 0",
-                fontFamily: "'Comic Neue', cursive"
-              }}>
-                {member.role}
-              </p>
-              <p style={{
-                fontSize: "0.85rem",
-                color: "#64748B",
-                margin: 0,
-                fontFamily: "'Comic Neue', cursive"
-              }}>
-                {member.focus}
-              </p>
+              {/* Details Container */}
+              <div style={{ padding: "1.5rem 1.5rem 2rem 1.5rem", textAlign: "center" }}>
+                <h3 style={{
+                  fontSize: "1.25rem",
+                  fontWeight: 800,
+                  color: "#0F172A",
+                  marginBottom: "0.4rem",
+                  fontFamily: "'Baloo 2', cursive"
+                }}>
+                  {member.name}
+                </h3>
+                <p style={{
+                  fontSize: "1rem",
+                  color: "var(--primary)",
+                  fontWeight: 700,
+                  margin: "0 0 0.4rem 0",
+                  fontFamily: "'Comic Neue', cursive"
+                }}>
+                  {member.role}
+                </p>
+                <p style={{
+                  fontSize: "0.85rem",
+                  color: "#64748B",
+                  margin: 0,
+                  fontFamily: "'Comic Neue', cursive"
+                }}>
+                  {member.focus}
+                </p>
+              </div>
             </div>
           ))}
         </div>
