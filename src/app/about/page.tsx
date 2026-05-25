@@ -489,31 +489,54 @@ export default function AboutPage() {
                   }}
                 />
 
-                {/* Social Overlay */}
+                {/* Dark gradient and designation overlay on bottom of image */}
                 <div style={{
                   position: "absolute",
                   bottom: 0,
                   left: 0,
                   right: 0,
-                  height: "50px",
-                  background: "linear-gradient(to top, rgba(10, 28, 58, 0.9) 0%, rgba(10, 28, 58, 0.5) 100%)",
+                  padding: "1.5rem 1rem 0.75rem 1rem",
+                  background: "linear-gradient(to top, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0) 100%)",
+                  color: "white",
+                  textAlign: "center",
+                  zIndex: 1,
+                  opacity: hoveredCardIndex === index ? 0 : 1,
+                  transition: "opacity 0.3s ease"
+                }}>
+                  <span style={{
+                    fontSize: "0.95rem",
+                    fontWeight: 700,
+                    fontFamily: "'Comic Neue', cursive",
+                    letterSpacing: "0.5px",
+                    textShadow: "0 2px 4px rgba(0, 0, 0, 0.5)"
+                  }}>
+                    {member.role}
+                  </span>
+                </div>
+
+                {/* Social Overlay */}
+                <div style={{
+                  position: "absolute",
+                  inset: 0,
+                  background: "rgba(10, 28, 58, 0.65)",
                   backdropFilter: "blur(2px)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                   gap: "1.25rem",
-                  transform: hoveredCardIndex === index ? "translateY(0)" : "translateY(100%)",
-                  transition: "transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                  opacity: hoveredCardIndex === index ? 1 : 0,
+                  pointerEvents: hoveredCardIndex === index ? "auto" : "none",
+                  transition: "opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
                   zIndex: 2
                 }}>
                   <a href="#" onClick={(e) => e.preventDefault()} style={{ color: "white", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "var(--primary)"} onMouseLeave={(e) => e.currentTarget.style.color = "white"}>
-                    <FaFacebook style={{ fontSize: "1.1rem" }} />
+                    <FaFacebook style={{ fontSize: "1.25rem" }} />
                   </a>
                   <a href="#" onClick={(e) => e.preventDefault()} style={{ color: "white", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "var(--primary)"} onMouseLeave={(e) => e.currentTarget.style.color = "white"}>
-                    <FaLinkedin style={{ fontSize: "1.1rem" }} />
+                    <FaLinkedin style={{ fontSize: "1.25rem" }} />
                   </a>
                   <a href="#" onClick={(e) => e.preventDefault()} style={{ color: "white", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "var(--primary)"} onMouseLeave={(e) => e.currentTarget.style.color = "white"}>
-                    <FaXTwitter style={{ fontSize: "1.1rem" }} />
+                    <FaXTwitter style={{ fontSize: "1.25rem" }} />
                   </a>
                 </div>
               </div>
@@ -529,15 +552,6 @@ export default function AboutPage() {
                 }}>
                   {member.name}
                 </h3>
-                <p style={{
-                  fontSize: "1rem",
-                  color: "var(--primary)",
-                  fontWeight: 700,
-                  margin: "0 0 0.4rem 0",
-                  fontFamily: "'Comic Neue', cursive"
-                }}>
-                  {member.role}
-                </p>
                 <p style={{
                   fontSize: "0.85rem",
                   color: "#64748B",
