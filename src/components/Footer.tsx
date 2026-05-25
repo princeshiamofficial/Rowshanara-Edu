@@ -122,7 +122,7 @@ const Footer = () => {
 
               <div style={{ display: 'flex', gap: '3rem', alignItems: 'center', flexWrap: 'wrap' }}>
                 <a href="#"><img src="/icef_logo.svg" alt="ICEF" style={{ height: '40px', width: 'auto' }} /></a>
-                <a href="#"><img src="https://d1blp3aor2iuhp.cloudfront.net/images/logos/logo-IARU.svg" alt="IARU" style={{ height: '40px', width: 'auto' }} /></a>
+                <a href="#"><img src="/facdcab_logo.svg" alt="FACDCAB" style={{ height: '40px', width: 'auto' }} /></a>
                 <a href="#"><img src="https://d1blp3aor2iuhp.cloudfront.net/images/logos/logo-GroupOfEight.svg" alt="Group of Eight" style={{ height: '45px', width: 'auto' }} /></a>
               </div>
             </div>
