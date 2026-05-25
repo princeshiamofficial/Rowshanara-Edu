@@ -121,8 +121,8 @@ const Footer = () => {
               </div>
 
               <div style={{ display: 'flex', gap: '3rem', alignItems: 'center', flexWrap: 'wrap' }}>
-                <a href="#"><img src="/icef_logo.svg" alt="ICEF" style={{ height: '40px', width: 'auto' }} /></a>
-                <a href="#"><img src="/facdcab_logo.svg" alt="FACDCAB" style={{ height: '40px', width: 'auto' }} /></a>
+                <a href="#"><img src="/icef_logo.svg" alt="ICEF" style={{ height: '40px', width: 'auto', filter: 'brightness(0) invert(1)' }} /></a>
+                <a href="#"><img src="/facdcab_logo.svg" alt="FACDCAB" style={{ height: '40px', width: 'auto', filter: 'brightness(0) invert(1)' }} /></a>
                 <a href="#"><img src="/nafsa_logo.svg" alt="NAFSA" style={{ height: '45px', width: 'auto', filter: 'brightness(0) invert(1)' }} /></a>
               </div>
             </div>
