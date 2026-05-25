@@ -517,7 +517,7 @@ export default function AboutPage() {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="container" style={{ marginTop: "1.5rem", marginBottom: "0.75rem" }}>
+      <section className="container" style={{ marginTop: "3.5rem", marginBottom: "0.75rem" }}>
         <h2 style={{
           textAlign: "center",
           fontSize: "clamp(2rem, 4vw, 2.75rem)",
