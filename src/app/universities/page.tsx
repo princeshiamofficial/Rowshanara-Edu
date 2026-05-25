@@ -14,6 +14,7 @@ interface University {
   rank: number;
   subjectAreas: string[];
   isOfficialPartner: boolean;
+  image: string;
 }
 
 export default function UniversitiesPage() {
@@ -34,6 +35,7 @@ export default function UniversitiesPage() {
       rank: 1,
       subjectAreas: ["Arts", "Science", "Business", "Engineering", "Medicine"],
       isOfficialPartner: true,
+      image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=600&auto=format&fit=crop"
     },
     {
       name: "University of Cambridge",
@@ -46,6 +48,7 @@ export default function UniversitiesPage() {
       rank: 2,
       subjectAreas: ["Arts", "Science", "Business", "Engineering", "Medicine"],
       isOfficialPartner: true,
+      image: "https://images.unsplash.com/photo-1588072432836-e10032774350?q=80&w=600&auto=format&fit=crop"
     },
     {
       name: "MIT",
@@ -58,6 +61,7 @@ export default function UniversitiesPage() {
       rank: 3,
       subjectAreas: ["Science", "Engineering", "Business"],
       isOfficialPartner: true,
+      image: "https://images.unsplash.com/photo-1517842645767-c639042777db?q=80&w=600&auto=format&fit=crop"
     },
     {
       name: "Stanford University",
@@ -70,6 +74,7 @@ export default function UniversitiesPage() {
       rank: 4,
       subjectAreas: ["Science", "Engineering", "Business", "Arts", "Medicine"],
       isOfficialPartner: true,
+      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=600&auto=format&fit=crop"
     },
     {
       name: "Harvard University",
@@ -82,6 +87,7 @@ export default function UniversitiesPage() {
       rank: 5,
       subjectAreas: ["Arts", "Science", "Business", "Medicine"],
       isOfficialPartner: false,
+      image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=600&auto=format&fit=crop"
     },
     {
       name: "University of Toronto",
@@ -94,6 +100,7 @@ export default function UniversitiesPage() {
       rank: 21,
       subjectAreas: ["Arts", "Science", "Business", "Engineering", "Medicine"],
       isOfficialPartner: true,
+      image: "https://images.unsplash.com/photo-1564981797816-1043664bf78d?q=80&w=600&auto=format&fit=crop"
     },
     {
       name: "University of Melbourne",
@@ -106,6 +113,7 @@ export default function UniversitiesPage() {
       rank: 33,
       subjectAreas: ["Arts", "Science", "Business", "Engineering", "Medicine"],
       isOfficialPartner: true,
+      image: "https://images.unsplash.com/photo-1527891751199-7225231a68dd?q=80&w=600&auto=format&fit=crop"
     },
     {
       name: "Technical University of Munich",
@@ -118,6 +126,7 @@ export default function UniversitiesPage() {
       rank: 37,
       subjectAreas: ["Science", "Engineering", "Business"],
       isOfficialPartner: true,
+      image: "https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=600&auto=format&fit=crop"
     },
     {
       name: "Universiti Malaya",
@@ -130,6 +139,7 @@ export default function UniversitiesPage() {
       rank: 65,
       subjectAreas: ["Arts", "Science", "Business", "Engineering", "Medicine"],
       isOfficialPartner: true,
+      image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=600&auto=format&fit=crop"
     },
     {
       name: "Imperial College London",
@@ -142,6 +152,7 @@ export default function UniversitiesPage() {
       rank: 6,
       subjectAreas: ["Science", "Engineering", "Medicine", "Business"],
       isOfficialPartner: false,
+      image: "https://images.unsplash.com/photo-1507537297725-24a1c029d3ca?q=80&w=600&auto=format&fit=crop"
     },
     {
       name: "Caltech",
@@ -154,6 +165,7 @@ export default function UniversitiesPage() {
       rank: 7,
       subjectAreas: ["Science", "Engineering"],
       isOfficialPartner: false,
+      image: "https://images.unsplash.com/photo-1507537297725-24a1c029d3ca?q=80&w=600&auto=format&fit=crop"
     },
     {
       name: "Universiti Kebangsaan Malaysia",
@@ -166,6 +178,7 @@ export default function UniversitiesPage() {
       rank: 129,
       subjectAreas: ["Science", "Engineering", "Business", "Arts"],
       isOfficialPartner: true,
+      image: "https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=600&auto=format&fit=crop"
     }
   ];
 
@@ -253,10 +266,12 @@ export default function UniversitiesPage() {
     label,
     checked,
     onChange,
+    code,
   }: {
     label: string;
     checked: boolean;
     onChange: () => void;
+    code?: string;
   }) => {
     return (
       <label style={{
@@ -281,18 +296,29 @@ export default function UniversitiesPage() {
             cursor: "pointer"
           }}
         />
+        {code && (
+          <img 
+            src={`https://flagcdn.com/w40/${code.toLowerCase()}.png`} 
+            alt={`${label} flag`} 
+            style={{ 
+              height: "12px", 
+              borderRadius: "2px",
+              boxShadow: "0 1px 3px rgba(0, 0, 0, 0.1)"
+            }} 
+          />
+        )}
         {label}
       </label>
     );
   };
 
   return (
-    <div className="hero-gradient" style={{ minHeight: "100vh", paddingTop: "140px", paddingBottom: "6rem" }}>
+    <div className="hero-gradient" style={{ minHeight: "100vh", paddingTop: "140px", paddingBottom: "1.5rem" }}>
       {/* Header Banner */}
       <section style={{
         width: "95%",
         maxWidth: "1280px",
-        margin: "0 auto 2.5rem auto",
+        margin: "0 auto 0.6rem auto",
         background: "linear-gradient(135deg, rgba(10, 28, 58, 0.88) 0%, rgba(6, 17, 36, 0.94) 100%), url('/hero-bg.png') no-repeat center center",
         backgroundSize: "cover",
         padding: "3.5rem 2rem",
@@ -378,7 +404,7 @@ export default function UniversitiesPage() {
         flexDirection: "row",
         flexWrap: "wrap",
         alignItems: "flex-start",
-        marginTop: "2.5rem"
+        marginTop: "0.6rem"
       }}>
         {/* Left Column - Filter Sidebar */}
         <div style={{
@@ -415,7 +441,7 @@ export default function UniversitiesPage() {
           </div>
 
           {/* Country Filters */}
-          <div style={{ marginBottom: "2rem" }}>
+          <div style={{ marginBottom: "1rem" }}>
             <h4 style={{
               fontSize: "1rem",
               fontWeight: 800,
@@ -427,17 +453,17 @@ export default function UniversitiesPage() {
             </h4>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
               <CheckboxItem label="All Countries" checked={selectedCountries.includes("All")} onChange={() => handleFilterChange("country", "All")} />
-              <CheckboxItem label="UK" checked={selectedCountries.includes("UK")} onChange={() => handleFilterChange("country", "UK")} />
-              <CheckboxItem label="USA" checked={selectedCountries.includes("USA")} onChange={() => handleFilterChange("country", "USA")} />
-              <CheckboxItem label="Canada" checked={selectedCountries.includes("Canada")} onChange={() => handleFilterChange("country", "Canada")} />
-              <CheckboxItem label="Australia" checked={selectedCountries.includes("Australia")} onChange={() => handleFilterChange("country", "Australia")} />
-              <CheckboxItem label="Germany" checked={selectedCountries.includes("Germany")} onChange={() => handleFilterChange("country", "Germany")} />
-              <CheckboxItem label="Malaysia" checked={selectedCountries.includes("Malaysia")} onChange={() => handleFilterChange("country", "Malaysia")} />
+              <CheckboxItem label="UK" code="gb" checked={selectedCountries.includes("UK")} onChange={() => handleFilterChange("country", "UK")} />
+              <CheckboxItem label="USA" code="us" checked={selectedCountries.includes("USA")} onChange={() => handleFilterChange("country", "USA")} />
+              <CheckboxItem label="Canada" code="ca" checked={selectedCountries.includes("Canada")} onChange={() => handleFilterChange("country", "Canada")} />
+              <CheckboxItem label="Australia" code="au" checked={selectedCountries.includes("Australia")} onChange={() => handleFilterChange("country", "Australia")} />
+              <CheckboxItem label="Germany" code="de" checked={selectedCountries.includes("Germany")} onChange={() => handleFilterChange("country", "Germany")} />
+              <CheckboxItem label="Malaysia" code="my" checked={selectedCountries.includes("Malaysia")} onChange={() => handleFilterChange("country", "Malaysia")} />
             </div>
           </div>
 
           {/* World Ranking Filters */}
-          <div style={{ marginBottom: "2rem" }}>
+          <div style={{ marginBottom: "1rem" }}>
             <h4 style={{
               fontSize: "1rem",
               fontWeight: 800,
@@ -508,53 +534,64 @@ export default function UniversitiesPage() {
                 style={{
                   background: "white",
                   borderRadius: "24px",
-                  padding: "2rem",
                   boxShadow: "0 10px 30px rgba(0, 0, 0, 0.02)",
                   border: "1px solid rgba(10, 28, 58, 0.05)",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "space-between",
-                  transition: "all 0.3s ease"
+                  transition: "all 0.3s ease",
+                  overflow: "hidden"
                 }}
                 className="glass-card-hover"
               >
-                <div>
-                  {/* Top line row */}
+                {/* Image on top with badges overlay */}
+                <div style={{ width: "100%", height: "200px", overflow: "hidden", position: "relative" }}>
+                  <img 
+                    src={uni.image} 
+                    alt={uni.name} 
+                    style={{ 
+                      width: "100%", 
+                      height: "100%", 
+                      objectFit: "cover"
+                    }} 
+                  />
+                  {/* Bottom dark gradient for text readability */}
                   <div style={{
+                    position: "absolute",
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    height: "60px",
+                    background: "linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%)",
+                    zIndex: 1
+                  }} />
+
+                  {/* Overlay Top Badges */}
+                  <div style={{
+                    position: "absolute",
+                    top: "0.75rem",
+                    left: "0.75rem",
+                    right: "0.75rem",
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
-                    marginBottom: "1.25rem"
+                    zIndex: 2
                   }}>
-                    {/* Left: letter logo & partner label */}
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                      <div style={{
-                        width: "40px",
-                        height: "40px",
-                        borderRadius: "10px",
-                        background: "#1971c2",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        color: "white",
-                        fontWeight: 800,
-                        fontSize: "1.2rem",
-                        fontFamily: "'Baloo 2', cursive"
-                      }}>
-                        {uni.name[0]}
-                      </div>
+                    {/* Left: partner label */}
+                    <div>
                       {uni.isOfficialPartner && (
                         <span style={{
                           display: "inline-flex",
                           alignItems: "center",
                           gap: "0.25rem",
-                          background: "#e6fcf5",
+                          background: "rgba(230, 252, 245, 0.95)",
                           color: "#0ca678",
                           fontSize: "0.75rem",
                           fontWeight: 700,
                           padding: "0.3rem 0.6rem",
                           borderRadius: "8px",
-                          marginLeft: "0.75rem"
+                          boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15)",
+                          backdropFilter: "blur(4px)"
                         }}>
                           <FaCheck style={{ fontSize: "0.7rem", strokeWidth: 3 }} /> Official Partner
                         </span>
@@ -565,134 +602,163 @@ export default function UniversitiesPage() {
                       display: "flex",
                       alignItems: "center",
                       gap: "0.25rem",
+                      background: "rgba(255, 255, 255, 0.95)",
                       color: "#fab005",
                       fontSize: "0.9rem",
-                      fontWeight: 800
+                      fontWeight: 800,
+                      padding: "0.3rem 0.6rem",
+                      borderRadius: "8px",
+                      boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15)",
+                      backdropFilter: "blur(4px)"
                     }}>
                       <FaArrowTrendUp />
                       <span>#{uni.rank}</span>
                     </div>
                   </div>
 
-                  {/* Title */}
-                  <h3 style={{
-                    fontSize: "1.35rem",
-                    fontWeight: 800,
-                    color: "var(--text)",
-                    marginBottom: "0.75rem",
-                    fontFamily: "'Baloo 2', cursive",
-                    lineHeight: 1.25
-                  }}>
-                    {uni.name}
-                  </h3>
-
-                  {/* Location detail */}
+                  {/* Overlay Bottom Location Info */}
                   <div style={{
+                    position: "absolute",
+                    bottom: "0.75rem",
+                    left: "0.75rem",
+                    right: "0.75rem",
                     display: "flex",
                     alignItems: "center",
                     gap: "0.5rem",
-                    color: "var(--text)",
-                    opacity: 0.65,
+                    color: "white",
                     fontSize: "0.9rem",
-                    marginBottom: "0.5rem"
-                  }}>
-                    <FaLocationDot style={{ color: "#adb5bd" }} />
-                    <span>{uni.location}</span>
-                  </div>
-
-                  {/* Courses count */}
-                  <div style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.5rem",
-                    color: "var(--text)",
-                    opacity: 0.65,
-                    fontSize: "0.9rem",
-                    marginBottom: "0.75rem"
-                  }}>
-                    <FaBookOpen style={{ color: "#adb5bd" }} />
-                    <span>{uni.courses} courses available</span>
-                  </div>
-
-                  {/* Tuition info */}
-                  <div style={{
-                    fontSize: "0.95rem",
                     fontWeight: 700,
-                    color: "var(--text)",
-                    opacity: 0.85,
-                    marginBottom: "0.5rem"
+                    zIndex: 2
                   }}>
-                    Tuition: ${uni.tuitionMin.toLocaleString()} - ${uni.tuitionMax.toLocaleString()}
-                  </div>
-
-                  {/* Progress bar */}
-                  <div style={{
-                    width: "100%",
-                    height: "6px",
-                    background: "#e9ecef",
-                    borderRadius: "10px",
-                    overflow: "hidden",
-                    marginBottom: "0.75rem"
-                  }}>
-                    <div style={{
-                      width: `${Math.min(100, Math.max(10, (uni.tuitionMax / 65000) * 100))}%`,
-                      height: "100%",
-                      background: "#1c7ed6",
-                      borderRadius: "10px"
-                    }}></div>
-                  </div>
-
-                  {/* Acceptance rate */}
-                  <div style={{
-                    fontSize: "0.8rem",
-                    color: "var(--text)",
-                    opacity: 0.5,
-                    marginBottom: "1.5rem"
-                  }}>
-                    Acceptance rate: {uni.acceptanceRate}
+                    <FaLocationDot style={{ color: "#ffffff", opacity: 0.85 }} />
+                    <img 
+                      src={`https://flagcdn.com/w40/${
+                        uni.country.toLowerCase() === "uk" ? "gb" :
+                        uni.country.toLowerCase() === "usa" ? "us" :
+                        uni.country.toLowerCase() === "canada" ? "ca" :
+                        uni.country.toLowerCase() === "australia" ? "au" :
+                        uni.country.toLowerCase() === "germany" ? "de" :
+                        uni.country.toLowerCase() === "malaysia" ? "my" : "un"
+                      }.png`} 
+                      alt={`${uni.country} flag`} 
+                      style={{ 
+                        height: "11px", 
+                        borderRadius: "2px",
+                        boxShadow: "0 1px 2px rgba(0,0,0,0.2)" 
+                      }} 
+                    />
+                    <span style={{ textShadow: "0 1px 2px rgba(0,0,0,0.6)" }}>{uni.location}</span>
                   </div>
                 </div>
 
-                {/* Footer Action Buttons */}
-                <div style={{ display: "flex", gap: "0.75rem" }}>
-                  <button
-                    onClick={() => alert(`Showing details for ${uni.name}`)}
-                    style={{
-                      flex: 1,
-                      padding: "0.75rem",
-                      borderRadius: "12px",
-                      border: "none",
-                      background: "#f1f3f5",
+                <div style={{ padding: "1.25rem", display: "flex", flexDirection: "column", justifyContent: "space-between", flex: 1 }}>
+                  <div>
+                    {/* Title */}
+                    <h3 style={{
+                      fontSize: "1.35rem",
+                      fontWeight: 800,
                       color: "var(--text)",
-                      fontWeight: 700,
+                      marginBottom: "0.5rem",
+                      fontFamily: "'Baloo 2', cursive",
+                      lineHeight: 1.25
+                    }}>
+                      {uni.name}
+                    </h3>
+
+                    {/* Courses count */}
+                    <div style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.5rem",
+                      color: "var(--text)",
+                      opacity: 0.65,
                       fontSize: "0.9rem",
-                      cursor: "pointer",
-                      transition: "all 0.2s"
-                    }}
-                    onMouseEnter={e => e.currentTarget.style.background = "#e9ecef"}
-                    onMouseLeave={e => e.currentTarget.style.background = "#f1f3f5"}
-                  >
-                    View Details
-                  </button>
-                  <button
-                    onClick={() => alert(`Starting application process for ${uni.name}`)}
-                    style={{
-                      flex: 1,
-                      padding: "0.75rem",
-                      borderRadius: "12px",
-                      border: "none",
-                      background: "#1c7ed6",
-                      color: "white",
+                      marginBottom: "0.5rem"
+                    }}>
+                      <FaBookOpen style={{ color: "#adb5bd" }} />
+                      <span>{uni.courses} courses available</span>
+                    </div>
+
+                    {/* Tuition info */}
+                    <div style={{
+                      fontSize: "0.95rem",
                       fontWeight: 700,
-                      fontSize: "0.9rem",
-                      cursor: "pointer",
-                      transition: "all 0.2s"
-                    }}
-                    onMouseEnter={e => e.currentTarget.style.background = "#1971c2"}
-                    onMouseLeave={e => e.currentTarget.style.background = "#1c7ed6"}
-                  >
-                    Apply Now
-                  </button>
+                      color: "var(--text)",
+                      opacity: 0.85,
+                      marginBottom: "0.4rem"
+                    }}>
+                      Tuition: ${uni.tuitionMin.toLocaleString()} - ${uni.tuitionMax.toLocaleString()}
+                    </div>
+
+                    {/* Progress bar */}
+                    <div style={{
+                      width: "100%",
+                      height: "6px",
+                      background: "#e9ecef",
+                      borderRadius: "10px",
+                      overflow: "hidden",
+                      marginBottom: "0.5rem"
+                    }}>
+                      <div style={{
+                        width: `${Math.min(100, Math.max(10, (uni.tuitionMax / 65000) * 100))}%`,
+                        height: "100%",
+                        background: "var(--primary)",
+                        borderRadius: "10px"
+                      }}></div>
+                    </div>
+
+                    {/* Acceptance rate */}
+                    <div style={{
+                      fontSize: "0.8rem",
+                      color: "var(--text)",
+                      opacity: 0.5,
+                      marginBottom: "1rem"
+                    }}>
+                      Acceptance rate: {uni.acceptanceRate}
+                    </div>
+                  </div>
+
+                  {/* Footer Action Buttons */}
+                  <div style={{ display: "flex", gap: "0.75rem" }}>
+                    <button
+                      onClick={() => alert(`Showing details for ${uni.name}`)}
+                      style={{
+                        flex: 1,
+                        padding: "0.75rem",
+                        borderRadius: "12px",
+                        border: "none",
+                        background: "#f1f3f5",
+                        color: "var(--text)",
+                        fontWeight: 700,
+                        fontSize: "0.9rem",
+                        cursor: "pointer",
+                        transition: "all 0.2s"
+                      }}
+                      onMouseEnter={e => e.currentTarget.style.background = "#e9ecef"}
+                      onMouseLeave={e => e.currentTarget.style.background = "#f1f3f5"}
+                    >
+                      View Details
+                    </button>
+                    <button
+                      onClick={() => alert(`Starting application process for ${uni.name}`)}
+                      style={{
+                        flex: 1,
+                        padding: "0.75rem",
+                        borderRadius: "12px",
+                        border: "none",
+                        background: "var(--primary)",
+                        color: "white",
+                        fontWeight: 700,
+                        fontSize: "0.9rem",
+                        cursor: "pointer",
+                        transition: "all 0.2s"
+                      }}
+                      onMouseEnter={e => e.currentTarget.style.background = "var(--primary-hover)"}
+                      onMouseLeave={e => e.currentTarget.style.background = "var(--primary)"}
+                    >
+                      Apply Now
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
@@ -718,7 +784,7 @@ export default function UniversitiesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="cta-section" style={{ marginTop: "6rem", marginBottom: "4rem" }}>
+      <section className="cta-section" style={{ marginTop: "1.5rem", marginBottom: "1rem" }}>
         <div className="cta-container">
           <h2 className="cta-title">Ready to Study Abroad?</h2>
           <p className="cta-description">

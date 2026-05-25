@@ -54,7 +54,7 @@ export default function ContactPage() {
   ];
 
   return (
-    <div className="hero-gradient" style={{ minHeight: "100vh", paddingTop: "140px", paddingBottom: "6rem" }}>
+    <div className="hero-gradient" style={{ minHeight: "100vh", paddingTop: "140px", paddingBottom: "1.5rem" }}>
       {/* Header Banner */}
       <section style={{
         width: "95%",
@@ -648,7 +648,7 @@ export default function ContactPage() {
       </section>
 
       {/* Map Location Section */}
-      <section className="container" style={{ marginTop: "4rem", marginBottom: "4rem" }}>
+      <section className="container" style={{ marginTop: "2rem", marginBottom: "1.5rem" }}>
         <div style={{ textAlign: "center", marginBottom: "2rem" }}>
           <h2 style={{
             fontSize: "2rem",

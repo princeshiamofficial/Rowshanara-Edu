@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { FaBookOpen, FaFileLines, FaBriefcase, FaUsers, FaPlane, FaLocationDot, FaRegCircleCheck, FaMagnifyingGlass } from 'react-icons/fa6';
+import { FaBookOpen, FaFileLines, FaBriefcase, FaUsers, FaPlane, FaLocationDot, FaRegCircleCheck, FaMagnifyingGlass, FaChevronDown } from 'react-icons/fa6';
 
 export default function ServicesPage() {
   const services = [
@@ -182,7 +182,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Services Grid */}
-      <section className="container" style={{ padding: "2rem 2rem 6rem 2rem" }}>
+      <section className="container" style={{ padding: "2rem 2rem 1.8rem 2rem" }}>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "2rem" }}>
           {services.map((service, index) => (
             <div key={index} style={{
@@ -199,8 +199,8 @@ export default function ServicesPage() {
             }}
             onMouseEnter={e => {
               e.currentTarget.style.transform = "translateY(-6px)";
-              e.currentTarget.style.boxShadow = "0 20px 40px rgba(37, 99, 235, 0.08)";
-              e.currentTarget.style.borderColor = "#2563eb";
+              e.currentTarget.style.boxShadow = "0 20px 40px rgba(224, 145, 0, 0.08)";
+              e.currentTarget.style.borderColor = "var(--primary)";
             }}
             onMouseLeave={e => {
               e.currentTarget.style.transform = "translateY(0)";
@@ -212,7 +212,7 @@ export default function ServicesPage() {
                 width: "48px",
                 height: "48px",
                 borderRadius: "10px",
-                background: "#2563eb",
+                background: "var(--primary)",
                 color: "#ffffff",
                 display: "flex",
                 alignItems: "center",
@@ -265,7 +265,7 @@ export default function ServicesPage() {
                     color: "#334155",
                     fontFamily: "'Comic Neue', cursive"
                   }}>
-                    <FaRegCircleCheck style={{ color: "#2563eb", fontSize: "1.1rem", flexShrink: 0 }} />
+                    <FaRegCircleCheck style={{ color: "var(--primary)", fontSize: "1.1rem", flexShrink: 0 }} />
                     {highlight}
                   </li>
                 ))}
@@ -277,7 +277,7 @@ export default function ServicesPage() {
                 style={{
                   width: "100%",
                   padding: "0.8rem 1.5rem",
-                  background: "#2563eb",
+                  background: "var(--primary)",
                   color: "#ffffff",
                   borderRadius: "10px",
                   fontWeight: 700,
@@ -288,11 +288,11 @@ export default function ServicesPage() {
                   transition: "all 0.2s ease"
                 }}
                 onMouseEnter={e => {
-                  e.currentTarget.style.background = "#1d4ed8";
+                  e.currentTarget.style.background = "var(--primary-hover)";
                   e.currentTarget.style.transform = "scale(1.02)";
                 }}
                 onMouseLeave={e => {
-                  e.currentTarget.style.background = "#2563eb";
+                  e.currentTarget.style.background = "var(--primary)";
                   e.currentTarget.style.transform = "scale(1)";
                 }}
               >
@@ -304,7 +304,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Our Process Timeline */}
-      <section className="container" style={{ marginTop: "6rem", marginBottom: "6rem" }}>
+      <section className="container" style={{ marginTop: "1.8rem", marginBottom: "6rem" }}>
         <h2 style={{
           textAlign: "center",
           fontSize: "2.5rem",
@@ -328,7 +328,7 @@ export default function ServicesPage() {
             top: "20px",
             bottom: "20px",
             width: "2px",
-            background: "#3b82f6",
+            background: "var(--primary)",
             opacity: 0.4,
             zIndex: 1
           }}></div>
@@ -347,14 +347,14 @@ export default function ServicesPage() {
                   width: "40px",
                   height: "40px",
                   borderRadius: "50%",
-                  background: "#2563eb",
+                  background: "var(--primary)",
                   color: "#ffffff",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                   fontWeight: 700,
                   fontSize: "1rem",
-                  boxShadow: "0 4px 10px rgba(37, 99, 235, 0.25)",
+                  boxShadow: "0 4px 10px rgba(224, 145, 0, 0.25)",
                   zIndex: 2,
                   position: "relative",
                   flexShrink: 0
@@ -433,7 +433,7 @@ export default function ServicesPage() {
               boxShadow: "0 2px 8px rgba(0, 0, 0, 0.02)",
               transition: "border-color 0.2s"
             }}
-            onFocus={e => e.currentTarget.style.borderColor = "#2563eb"}
+            onFocus={e => e.currentTarget.style.borderColor = "var(--primary)"}
             onBlur={e => e.currentTarget.style.borderColor = "#cbd5e1"}
           />
         </div>
@@ -481,14 +481,15 @@ export default function ServicesPage() {
                       {faq.q}
                     </span>
                     <span style={{
-                      color: "#2563eb",
+                      color: "var(--primary)",
                       fontSize: "0.85rem",
                       marginLeft: "1rem",
                       display: "flex",
                       alignItems: "center",
-                      transition: "transform 0.2s"
+                      transition: "transform 0.2s ease",
+                      transform: isOpen ? "rotate(180deg)" : "rotate(0deg)"
                     }}>
-                      {isOpen ? "▲" : "▼"}
+                      <FaChevronDown />
                     </span>
                   </button>
 
@@ -528,7 +529,7 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="cta-section" style={{ marginTop: "6rem", marginBottom: "4rem" }}>
+      <section className="cta-section" style={{ marginTop: "3rem", marginBottom: "2rem" }}>
         <div className="cta-container">
           <h2 className="cta-title">Ready to Study Abroad?</h2>
           <p className="cta-description">

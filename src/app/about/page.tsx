@@ -29,9 +29,9 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="hero-gradient" style={{ minHeight: "100vh", paddingTop: "140px", paddingBottom: "6rem" }}>
+    <div className="hero-gradient" style={{ minHeight: "100vh", paddingTop: "140px", paddingBottom: "1.5rem" }}>
       {/* Brand Overview Section */}
-      <section className="container" style={{ marginBottom: "6rem" }}>
+      <section className="container" style={{ marginBottom: "1.5rem" }}>
         <div style={{
           background: "linear-gradient(135deg, rgba(10, 28, 58, 0.95) 0%, rgba(6, 17, 36, 0.98) 100%)",
           borderRadius: "28px",
@@ -148,12 +148,12 @@ export default function AboutPage() {
       </section>
 
       {/* Our Journey Timeline */}
-      <section className="container" style={{ marginBottom: "7rem" }}>
+      <section className="container" style={{ marginBottom: "1.75rem" }}>
         <h2 style={{ 
           textAlign: "center", 
           fontSize: "clamp(2rem, 4vw, 2.75rem)", 
           color: "var(--text)", 
-          marginBottom: "4.5rem",
+          marginBottom: "1.15rem",
           fontFamily: "'Baloo 2', cursive",
           fontWeight: 800
         }}>
@@ -179,7 +179,7 @@ export default function AboutPage() {
                 paddingRight: "20px",
                 fontSize: "clamp(1.25rem, 3vw, 1.75rem)",
                 fontWeight: 800,
-                color: "#2563EB",
+                color: "var(--primary)",
                 fontFamily: "'Baloo 2', cursive",
                 lineHeight: "1.2",
                 paddingTop: "4px"
@@ -200,9 +200,9 @@ export default function AboutPage() {
                   width: "12px",
                   height: "12px",
                   borderRadius: "50%",
-                  backgroundColor: "#2563EB",
+                  backgroundColor: "var(--primary)",
                   border: "2px solid var(--background)",
-                  boxShadow: "0 0 0 2px #2563EB",
+                  boxShadow: "0 0 0 2px var(--primary)",
                   zIndex: 2,
                   marginTop: "8px"
                 }}></div>
@@ -214,7 +214,7 @@ export default function AboutPage() {
                     top: "18px",
                     bottom: 0,
                     width: "3px",
-                    background: "#2563EB",
+                    background: "var(--primary)",
                     opacity: 0.4,
                     zIndex: 1
                   }}></div>
@@ -225,7 +225,7 @@ export default function AboutPage() {
               <div style={{
                 flex: 1,
                 paddingLeft: "15px",
-                paddingBottom: index === milestones.length - 1 ? 0 : "2.5rem"
+                paddingBottom: index === milestones.length - 1 ? 0 : "1.8rem"
               }}>
                 <h3 style={{
                   fontSize: "clamp(1.1rem, 2vw, 1.35rem)",
@@ -254,7 +254,7 @@ export default function AboutPage() {
       </section>
 
       {/* Mission, Vision & Values Section */}
-      <section className="container" style={{ marginBottom: "7rem" }}>
+      <section className="container" style={{ marginBottom: "1.75rem" }}>
         <div style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
@@ -276,12 +276,12 @@ export default function AboutPage() {
               width: "64px",
               height: "64px",
               borderRadius: "50%",
-              backgroundColor: "rgba(37, 99, 235, 0.1)", // Light blue container
+              backgroundColor: "rgba(224, 145, 0, 0.1)", // Light brand container
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               marginBottom: "1.5rem",
-              color: "#2563EB" // Blue icon
+              color: "var(--primary)" // Brand primary icon
             }}>
               <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                 <circle cx="12" cy="12" r="9" />
@@ -325,12 +325,12 @@ export default function AboutPage() {
               width: "64px",
               height: "64px",
               borderRadius: "50%",
-              backgroundColor: "rgba(37, 99, 235, 0.1)",
+              backgroundColor: "rgba(224, 145, 0, 0.1)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               marginBottom: "1.5rem",
-              color: "#2563EB"
+              color: "var(--primary)"
             }}>
               <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -373,12 +373,12 @@ export default function AboutPage() {
               width: "64px",
               height: "64px",
               borderRadius: "50%",
-              backgroundColor: "rgba(37, 99, 235, 0.1)",
+              backgroundColor: "rgba(224, 145, 0, 0.1)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               marginBottom: "1.5rem",
-              color: "#2563EB"
+              color: "var(--primary)"
             }}>
               <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
@@ -407,7 +407,7 @@ export default function AboutPage() {
       </section>
 
       {/* Stats Section */}
-      <section className="stats-section" style={{ marginTop: "6rem", marginBottom: "0rem" }}>
+      <section className="stats-section" style={{ marginTop: "1.5rem", marginBottom: "0rem" }}>
         <div className="stats-grid">
           <div className="stat-card">
             <div className="stat-number">15+</div>
@@ -429,12 +429,12 @@ export default function AboutPage() {
       </section>
 
       {/* Meet Our Team Section */}
-      <section className="container" style={{ marginTop: "6rem", marginBottom: "3rem" }}>
+      <section className="container" style={{ marginTop: "1.5rem", marginBottom: "0.75rem" }}>
         <h2 style={{
           textAlign: "center",
           fontSize: "clamp(2rem, 4vw, 2.75rem)",
           color: "var(--text)",
-          marginBottom: "4rem",
+          marginBottom: "1rem",
           fontFamily: "'Baloo 2', cursive",
           fontWeight: 800
         }}>
@@ -470,7 +470,7 @@ export default function AboutPage() {
                 width: "70px",
                 height: "70px",
                 borderRadius: "50%",
-                backgroundColor: "#2563EB",
+                backgroundColor: "var(--primary)",
                 color: "white",
                 display: "flex",
                 alignItems: "center",
@@ -479,7 +479,7 @@ export default function AboutPage() {
                 fontWeight: 700,
                 marginBottom: "1.5rem",
                 fontFamily: "'Baloo 2', cursive",
-                boxShadow: "0 8px 20px rgba(37, 99, 235, 0.25)"
+                boxShadow: "0 8px 20px rgba(224, 145, 0, 0.25)"
               }}>
                 {member.initial}
               </div>
@@ -496,7 +496,7 @@ export default function AboutPage() {
               </h3>
               <p style={{
                 fontSize: "1rem",
-                color: "#2563EB",
+                color: "var(--primary)",
                 fontWeight: 700,
                 margin: "0 0 0.4rem 0",
                 fontFamily: "'Comic Neue', cursive"
@@ -517,12 +517,12 @@ export default function AboutPage() {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="container" style={{ marginTop: "6rem", marginBottom: "3rem" }}>
+      <section className="container" style={{ marginTop: "1.5rem", marginBottom: "0.75rem" }}>
         <h2 style={{
           textAlign: "center",
           fontSize: "clamp(2rem, 4vw, 2.75rem)",
           color: "var(--text)",
-          marginBottom: "4rem",
+          marginBottom: "1rem",
           fontFamily: "'Baloo 2', cursive",
           fontWeight: 800
         }}>
@@ -607,8 +607,8 @@ export default function AboutPage() {
                 width: "56px",
                 height: "56px",
                 borderRadius: "50%",
-                backgroundColor: "rgba(37, 99, 235, 0.1)",
-                color: "#2563EB",
+                backgroundColor: "rgba(224, 145, 0, 0.1)",
+                color: "var(--primary)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -645,7 +645,7 @@ export default function AboutPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="cta-section" style={{ marginTop: "6rem", marginBottom: "3rem" }}>
+      <section className="cta-section" style={{ marginTop: "1.5rem", marginBottom: "1rem" }}>
         <div className="cta-container">
           <h2 className="cta-title">Ready to Study Abroad?</h2>
           <p className="cta-description">

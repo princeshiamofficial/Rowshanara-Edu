@@ -918,10 +918,10 @@ button {
   right: 12.5%;
   height: 2px;
   background: linear-gradient(90deg, 
-    rgba(37, 99, 235, 0.05) 0%, 
-    rgba(37, 99, 235, 0.4) 20%, 
-    rgba(37, 99, 235, 0.4) 80%, 
-    rgba(37, 99, 235, 0.05) 100%
+    rgba(224, 145, 0, 0.05) 0%, 
+    rgba(224, 145, 0, 0.4) 20%, 
+    rgba(224, 145, 0, 0.4) 80%, 
+    rgba(224, 145, 0, 0.05) 100%
   );
   z-index: 0;
 }
@@ -944,21 +944,21 @@ button {
 .how-it-works-step:hover {
   transform: translateY(-5px);
   background: #ffffff;
-  border-color: rgba(37, 99, 235, 0.2);
-  box-shadow: 0 20px 40px rgba(37, 99, 235, 0.06);
+  border-color: rgba(224, 145, 0, 0.2);
+  box-shadow: 0 20px 40px rgba(224, 145, 0, 0.06);
 }
 
 .step-icon-circle {
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.4rem;
-  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+  box-shadow: 0 8px 20px rgba(224, 145, 0, 0.25);
   position: absolute;
   top: -28px;
   left: 50%;
@@ -970,8 +970,8 @@ button {
 
 .how-it-works-step:hover .step-icon-circle {
   transform: translateX(-50%) scale(1.1);
-  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-  box-shadow: 0 12px 25px rgba(37, 99, 235, 0.35);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+  box-shadow: 0 12px 25px rgba(224, 145, 0, 0.35);
 }
 
 .step-badge-number {
@@ -1008,7 +1008,7 @@ button {
 }
 
 .how-it-works-step:hover .step-watermark {
-  color: rgba(37, 99, 235, 0.07);
+  color: rgba(224, 145, 0, 0.07);
   transform: scale(1.05);
 }
 
@@ -1023,7 +1023,7 @@ button {
 }
 
 .how-it-works-step:hover .step-title {
-  color: #2563eb;
+  color: var(--primary);
 }
 
 .step-description {
@@ -1076,9 +1076,9 @@ button {
   max-width: 1280px;
   margin: 0 auto 2.5rem auto;
   padding: 3.5rem 2rem;
-  background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #1d4ed8 100%);
+  background: linear-gradient(135deg, #b07200 0%, var(--primary) 50%, var(--primary-hover) 100%);
   border-radius: 32px;
-  box-shadow: 0 20px 40px rgba(37, 99, 235, 0.12);
+  box-shadow: 0 20px 40px rgba(224, 145, 0, 0.12);
   position: relative;
   overflow: hidden;
 }
@@ -1340,8 +1340,8 @@ button {
 .service-icon-wrapper {
   width: 50px;
   height: 50px;
-  background-color: #ebf4ff; /* Light blue */
-  color: #2563eb; /* Primary blue */
+  background-color: rgba(224, 145, 0, 0.1); /* Light warm brand bg */
+  color: var(--primary); /* Brand primary */
   border-radius: 12px;
   display: flex;
   align-items: center;
@@ -1447,7 +1447,7 @@ button {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: #3b82f6; /* Blue background */
+  background-color: var(--primary); /* Brand primary bg */
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -1500,8 +1500,8 @@ button {
 
 .testimonial-university {
   font-size: 0.85rem;
-  color: #2563eb; /* Deeper blue text */
-  background-color: #eff6ff; /* Light blue badge background */
+  color: var(--primary); /* Brand primary text */
+  background-color: rgba(224, 145, 0, 0.08); /* Light brand badge background */
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-weight: 600;
   padding: 0.4rem 0.8rem;
@@ -1604,4 +1604,14 @@ button {
   .cta-description {
     font-size: 1rem;
   }
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalSlideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
