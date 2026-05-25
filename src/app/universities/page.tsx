@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import { FaMagnifyingGlass, FaFilter, FaLocationDot, FaBookOpen, FaArrowTrendUp, FaCheck } from "react-icons/fa6";
+import { FaMagnifyingGlass, FaFilter, FaLocationDot, FaBookOpen, FaArrowTrendUp, FaCheck, FaStar } from "react-icons/fa6";
 import { BsPatchCheckFill } from "react-icons/bs";
 
 interface University {
@@ -606,15 +606,16 @@ export default function UniversitiesPage() {
                       gap: "0.25rem",
                       background: "rgba(255, 255, 255, 0.95)",
                       color: "#fab005",
-                      fontSize: "0.9rem",
+                      fontSize: "0.85rem",
                       fontWeight: 800,
                       padding: "0.3rem 0.6rem",
-                      borderRadius: "8px",
-                      boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15)",
-                      backdropFilter: "blur(4px)"
+                      borderRadius: "20px",
+                      boxShadow: "0 2px 8px rgba(0, 0, 0, 0.12)",
+                      backdropFilter: "blur(4px)",
+                      border: "1px solid rgba(250, 176, 5, 0.2)"
                     }}>
-                      <FaArrowTrendUp />
-                      <span>#{uni.rank}</span>
+                      <FaStar style={{ fontSize: "0.8rem" }} />
+                      <span>Rank {uni.rank}</span>
                     </div>
                   </div>
 
