@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { FaEnvelope, FaFacebookF, FaLinkedinIn, FaYoutube, FaChevronDown, FaBars, FaXmark, FaXTwitter, FaWeixin } from 'react-icons/fa6';
+import { FaEnvelope, FaFacebookF, FaLinkedinIn, FaYoutube, FaBars, FaXmark, FaXTwitter, FaWeixin } from 'react-icons/fa6';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -101,26 +101,26 @@ const Navbar = () => {
           {/* Desktop Navigation Links */}
           <div className="desktop-nav-links" style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
             <a href="/" 
-               style={{ fontWeight: 700, color: '#E09100', display: 'flex', alignItems: 'center', gap: '0.25rem', transition: 'color 0.2s' }}>
-              Home <FaChevronDown style={{ fontSize: '0.7rem' }} />
+               style={{ fontWeight: 700, color: '#E09100', transition: 'color 0.2s' }}>
+              Home
             </a>
             <a href="/services" 
-               style={{ fontWeight: 700, color: '#4a3700', opacity: 0.8, display: 'flex', alignItems: 'center', gap: '0.25rem', transition: 'all 0.2s' }}
+               style={{ fontWeight: 700, color: '#4a3700', opacity: 0.8, transition: 'all 0.2s' }}
                onMouseEnter={e => { e.currentTarget.style.color = '#E09100'; e.currentTarget.style.opacity = '1'; }}
                onMouseLeave={e => { e.currentTarget.style.color = '#4a3700'; e.currentTarget.style.opacity = '0.8'; }}>
-              Services <FaChevronDown style={{ fontSize: '0.7rem' }} />
+              Services
             </a>
             <a href="/destination" 
-               style={{ fontWeight: 700, color: '#4a3700', opacity: 0.8, display: 'flex', alignItems: 'center', gap: '0.25rem', transition: 'all 0.2s' }}
+               style={{ fontWeight: 700, color: '#4a3700', opacity: 0.8, transition: 'all 0.2s' }}
                onMouseEnter={e => { e.currentTarget.style.color = '#E09100'; e.currentTarget.style.opacity = '1'; }}
                onMouseLeave={e => { e.currentTarget.style.color = '#4a3700'; e.currentTarget.style.opacity = '0.8'; }}>
-              Destination <FaChevronDown style={{ fontSize: '0.7rem' }} />
+              Destination
             </a>
             <a href="/universities" 
-               style={{ fontWeight: 700, color: '#4a3700', opacity: 0.8, display: 'flex', alignItems: 'center', gap: '0.25rem', transition: 'all 0.2s' }}
+               style={{ fontWeight: 700, color: '#4a3700', opacity: 0.8, transition: 'all 0.2s' }}
                onMouseEnter={e => { e.currentTarget.style.color = '#E09100'; e.currentTarget.style.opacity = '1'; }}
                onMouseLeave={e => { e.currentTarget.style.color = '#4a3700'; e.currentTarget.style.opacity = '0.8'; }}>
-              Universities <FaChevronDown style={{ fontSize: '0.7rem' }} />
+              Universities
             </a>
             <a href="/about" 
                style={{ fontWeight: 700, color: '#4a3700', opacity: 0.8, transition: 'all 0.2s' }}
