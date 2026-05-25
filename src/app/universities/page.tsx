@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo } from "react";
 import { FaMagnifyingGlass, FaFilter, FaLocationDot, FaBookOpen, FaArrowTrendUp, FaCheck } from "react-icons/fa6";
+import { BsPatchCheckFill } from "react-icons/bs";
 
 interface University {
   name: string;
@@ -583,17 +584,18 @@ export default function UniversitiesPage() {
                         <span style={{
                           display: "inline-flex",
                           alignItems: "center",
-                          gap: "0.25rem",
-                          background: "rgba(230, 252, 245, 0.95)",
-                          color: "#0ca678",
+                          gap: "0.35rem",
+                          background: "rgba(255, 255, 255, 0.95)",
+                          color: "#1E293B",
                           fontSize: "0.75rem",
-                          fontWeight: 700,
+                          fontWeight: 800,
                           padding: "0.3rem 0.6rem",
-                          borderRadius: "8px",
-                          boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15)",
-                          backdropFilter: "blur(4px)"
+                          borderRadius: "20px",
+                          boxShadow: "0 2px 8px rgba(0, 0, 0, 0.12)",
+                          backdropFilter: "blur(4px)",
+                          border: "1px solid rgba(24, 119, 242, 0.15)"
                         }}>
-                          <FaCheck style={{ fontSize: "0.7rem", strokeWidth: 3 }} /> Official Partner
+                          <BsPatchCheckFill style={{ color: "#1877F2", fontSize: "0.9rem", flexShrink: 0 }} /> Official Partner
                         </span>
                       )}
                     </div>
