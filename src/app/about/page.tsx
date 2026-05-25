@@ -256,7 +256,7 @@ export default function AboutPage() {
       </section>
 
       {/* Mission, Vision & Values Section */}
-      <section className="container" style={{ marginTop: "3.5rem", marginBottom: "1.75rem" }}>
+      <section className="container" style={{ marginTop: "5rem", marginBottom: "1.75rem" }}>
         <div style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
@@ -278,12 +278,17 @@ export default function AboutPage() {
               width: "64px",
               height: "64px",
               borderRadius: "50%",
-              backgroundColor: "rgba(224, 145, 0, 0.1)", // Light brand container
+              backgroundColor: "white",
+              border: "1px solid rgba(10, 28, 58, 0.08)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               marginBottom: "1.5rem",
-              color: "var(--primary)" // Brand primary icon
+              color: "var(--primary)",
+              boxShadow: "0 8px 20px rgba(224, 145, 0, 0.15)",
+              marginTop: "-3.5rem",
+              zIndex: 2,
+              position: "relative"
             }}>
               <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                 <circle cx="12" cy="12" r="9" />
@@ -327,12 +332,17 @@ export default function AboutPage() {
               width: "64px",
               height: "64px",
               borderRadius: "50%",
-              backgroundColor: "rgba(224, 145, 0, 0.1)",
+              backgroundColor: "white",
+              border: "1px solid rgba(10, 28, 58, 0.08)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               marginBottom: "1.5rem",
-              color: "var(--primary)"
+              color: "var(--primary)",
+              boxShadow: "0 8px 20px rgba(224, 145, 0, 0.15)",
+              marginTop: "-3.5rem",
+              zIndex: 2,
+              position: "relative"
             }}>
               <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -375,12 +385,17 @@ export default function AboutPage() {
               width: "64px",
               height: "64px",
               borderRadius: "50%",
-              backgroundColor: "rgba(224, 145, 0, 0.1)",
+              backgroundColor: "white",
+              border: "1px solid rgba(10, 28, 58, 0.08)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               marginBottom: "1.5rem",
-              color: "var(--primary)"
+              color: "var(--primary)",
+              boxShadow: "0 8px 20px rgba(224, 145, 0, 0.15)",
+              marginTop: "-3.5rem",
+              zIndex: 2,
+              position: "relative"
             }}>
               <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
