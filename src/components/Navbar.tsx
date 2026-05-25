@@ -1,10 +1,12 @@
 "use client";
 
 import React, { useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { FaEnvelope, FaFacebookF, FaLinkedinIn, FaYoutube, FaBars, FaXmark, FaXTwitter, FaWeixin } from 'react-icons/fa6';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname() || '';
 
   return (
     <div className="sticky-navbar" style={{
@@ -100,38 +102,22 @@ const Navbar = () => {
  
           {/* Desktop Navigation Links */}
           <div className="desktop-nav-links" style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
-            <a href="/" 
-               style={{ fontWeight: 700, color: '#E09100', transition: 'color 0.2s' }}>
+            <a href="/" className={`nav-item-custom ${pathname === '/' ? 'active' : ''}`}>
               Home
             </a>
-            <a href="/services" 
-               style={{ fontWeight: 700, color: '#4a3700', opacity: 0.8, transition: 'all 0.2s' }}
-               onMouseEnter={e => { e.currentTarget.style.color = '#E09100'; e.currentTarget.style.opacity = '1'; }}
-               onMouseLeave={e => { e.currentTarget.style.color = '#4a3700'; e.currentTarget.style.opacity = '0.8'; }}>
+            <a href="/services" className={`nav-item-custom ${pathname === '/services' ? 'active' : ''}`}>
               Services
             </a>
-            <a href="/destination" 
-               style={{ fontWeight: 700, color: '#4a3700', opacity: 0.8, transition: 'all 0.2s' }}
-               onMouseEnter={e => { e.currentTarget.style.color = '#E09100'; e.currentTarget.style.opacity = '1'; }}
-               onMouseLeave={e => { e.currentTarget.style.color = '#4a3700'; e.currentTarget.style.opacity = '0.8'; }}>
+            <a href="/destination" className={`nav-item-custom ${pathname.startsWith('/destination') ? 'active' : ''}`}>
               Destination
             </a>
-            <a href="/universities" 
-               style={{ fontWeight: 700, color: '#4a3700', opacity: 0.8, transition: 'all 0.2s' }}
-               onMouseEnter={e => { e.currentTarget.style.color = '#E09100'; e.currentTarget.style.opacity = '1'; }}
-               onMouseLeave={e => { e.currentTarget.style.color = '#4a3700'; e.currentTarget.style.opacity = '0.8'; }}>
+            <a href="/universities" className={`nav-item-custom ${pathname.startsWith('/universities') ? 'active' : ''}`}>
               Universities
             </a>
-            <a href="/about" 
-               style={{ fontWeight: 700, color: '#4a3700', opacity: 0.8, transition: 'all 0.2s' }}
-               onMouseEnter={e => { e.currentTarget.style.color = '#E09100'; e.currentTarget.style.opacity = '1'; }}
-               onMouseLeave={e => { e.currentTarget.style.color = '#4a3700'; e.currentTarget.style.opacity = '0.8'; }}>
+            <a href="/about" className={`nav-item-custom ${pathname.startsWith('/about') ? 'active' : ''}`}>
               About Us
             </a>
-            <a href="/contact" 
-               style={{ fontWeight: 700, color: '#4a3700', opacity: 0.8, transition: 'all 0.2s' }}
-               onMouseEnter={e => { e.currentTarget.style.color = '#E09100'; e.currentTarget.style.opacity = '1'; }}
-               onMouseLeave={e => { e.currentTarget.style.color = '#4a3700'; e.currentTarget.style.opacity = '0.8'; }}>
+            <a href="/contact" className={`nav-item-custom ${pathname.startsWith('/contact') ? 'active' : ''}`}>
               Contact Us
             </a>
           </div>
@@ -198,12 +184,12 @@ const Navbar = () => {
             gap: '1.25rem',
             boxShadow: '0 10px 20px rgba(0,0,0,0.05)'
           }}>
-            <a href="/" onClick={() => setIsOpen(false)} style={{ fontWeight: 700, color: '#E09100', fontSize: '1.1rem' }}>Home</a>
-            <a href="/services" onClick={() => setIsOpen(false)} style={{ fontWeight: 700, color: 'var(--text)', fontSize: '1.1rem' }}>Services</a>
-            <a href="/destination" onClick={() => setIsOpen(false)} style={{ fontWeight: 700, color: 'var(--text)', fontSize: '1.1rem' }}>Destination</a>
-            <a href="/universities" onClick={() => setIsOpen(false)} style={{ fontWeight: 700, color: 'var(--text)', fontSize: '1.1rem' }}>Universities</a>
-            <a href="/about" onClick={() => setIsOpen(false)} style={{ fontWeight: 700, color: 'var(--text)', fontSize: '1.1rem' }}>About Us</a>
-            <a href="/contact" onClick={() => setIsOpen(false)} style={{ fontWeight: 700, color: 'var(--text)', fontSize: '1.1rem' }}>Contact Us</a>
+            <a href="/" onClick={() => setIsOpen(false)} style={{ fontWeight: 700, color: pathname === '/' ? '#E09100' : 'var(--text)', fontSize: '1.1rem' }}>Home</a>
+            <a href="/services" onClick={() => setIsOpen(false)} style={{ fontWeight: 700, color: pathname === '/services' ? '#E09100' : 'var(--text)', fontSize: '1.1rem' }}>Services</a>
+            <a href="/destination" onClick={() => setIsOpen(false)} style={{ fontWeight: 700, color: pathname.startsWith('/destination') ? '#E09100' : 'var(--text)', fontSize: '1.1rem' }}>Destination</a>
+            <a href="/universities" onClick={() => setIsOpen(false)} style={{ fontWeight: 700, color: pathname.startsWith('/universities') ? '#E09100' : 'var(--text)', fontSize: '1.1rem' }}>Universities</a>
+            <a href="/about" onClick={() => setIsOpen(false)} style={{ fontWeight: 700, color: pathname.startsWith('/about') ? '#E09100' : 'var(--text)', fontSize: '1.1rem' }}>About Us</a>
+            <a href="/contact" onClick={() => setIsOpen(false)} style={{ fontWeight: 700, color: pathname.startsWith('/contact') ? '#E09100' : 'var(--text)', fontSize: '1.1rem' }}>Contact Us</a>
             
             <a href="/login" onClick={() => setIsOpen(false)} style={{ 
               border: '2px solid var(--primary)',
