@@ -447,12 +447,12 @@ export default function AboutPage() {
           gap: "2rem"
         }}>
           {[
-            { name: "Dr. Md. Karim Hassan", role: "Founder & CEO", focus: "Education Strategy", initial: "D" },
-            { name: "Fatima Ahmed Khan", role: "Head of Admissions", focus: "University Relations", initial: "F" },
-            { name: "Amir Hossain", role: "Visa Specialist", focus: "Immigration Law", initial: "A" },
-            { name: "Nadia Rahman", role: "Student Counselor", focus: "Career Guidance", initial: "N" },
-            { name: "Rajib Kumar", role: "Operations Manager", focus: "Process Excellence", initial: "R" },
-            { name: "Sophia Akter", role: "Student Support", focus: "Post-Arrival Services", initial: "S" }
+            { name: "Dr. Md. Karim Hassan", role: "Founder & CEO", focus: "Education Strategy", image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=256&h=256&fit=crop" },
+            { name: "Fatima Ahmed Khan", role: "Head of Admissions", focus: "University Relations", image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=256&h=256&fit=crop" },
+            { name: "Amir Hossain", role: "Visa Specialist", focus: "Immigration Law", image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=256&h=256&fit=crop" },
+            { name: "Nadia Rahman", role: "Student Counselor", focus: "Career Guidance", image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=256&h=256&fit=crop" },
+            { name: "Rajib Kumar", role: "Operations Manager", focus: "Process Excellence", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=256&h=256&fit=crop" },
+            { name: "Sophia Akter", role: "Student Support", focus: "Post-Arrival Services", image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&h=256&fit=crop" }
           ].map((member, index) => (
             <div key={index} style={{
               background: "white",
@@ -465,24 +465,20 @@ export default function AboutPage() {
               flexDirection: "column",
               alignItems: "center"
             }}>
-              {/* Circular Initial Avatar */}
-              <div style={{
-                width: "70px",
-                height: "70px",
-                borderRadius: "50%",
-                backgroundColor: "var(--primary)",
-                color: "white",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: "1.75rem",
-                fontWeight: 700,
-                marginBottom: "1.5rem",
-                fontFamily: "'Baloo 2', cursive",
-                boxShadow: "0 8px 20px rgba(224, 145, 0, 0.25)"
-              }}>
-                {member.initial}
-              </div>
+              {/* Circular Avatar Image */}
+              <img
+                src={member.image}
+                alt={member.name}
+                style={{
+                  width: "80px",
+                  height: "80px",
+                  borderRadius: "50%",
+                  objectFit: "cover",
+                  marginBottom: "1.5rem",
+                  border: "3px solid white",
+                  boxShadow: "0 8px 20px rgba(0, 0, 0, 0.08)"
+                }}
+              />
 
               {/* Member Details */}
               <h3 style={{
@@ -596,7 +592,7 @@ export default function AboutPage() {
               background: "white",
               border: "1px solid rgba(10, 28, 58, 0.08)",
               borderRadius: "24px",
-              padding: "2.5rem 2rem",
+              padding: "1.5rem 1.5rem",
               boxShadow: "0 10px 30px rgba(0, 0, 0, 0.02)",
               display: "flex",
               alignItems: "flex-start",
