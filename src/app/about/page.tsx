@@ -491,7 +491,7 @@ export default function AboutPage() {
               </div>
 
               {/* Details Container */}
-              <div style={{ padding: "1rem 1.25rem 1.25rem 1.25rem", textAlign: "center" }}>
+              <div style={{ padding: "1rem 1.25rem 1.25rem 1.25rem", textAlign: "center", backgroundColor: "#F8FAFC", borderTop: "1px solid rgba(10, 28, 58, 0.05)" }}>
                 <h3 style={{
                   fontSize: "1.25rem",
                   fontWeight: 800,
