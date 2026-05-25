@@ -279,21 +279,20 @@ export default function AboutPage() {
               height: "64px",
               borderRadius: "50%",
               backgroundColor: "white",
-              border: "1px solid rgba(10, 28, 58, 0.08)",
+              border: "1px solid rgba(255, 78, 80, 0.15)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               marginBottom: "1.5rem",
-              color: "var(--primary)",
-              boxShadow: "0 8px 20px rgba(224, 145, 0, 0.15)",
+              boxShadow: "0 8px 20px rgba(255, 78, 80, 0.18)",
               marginTop: "-3.5rem",
               zIndex: 2,
               position: "relative"
             }}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                <circle cx="12" cy="12" r="9" />
-                <circle cx="12" cy="12" r="5" />
-                <circle cx="12" cy="12" r="1" />
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FF4E50" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10" stroke="#FF4E50" fill="rgba(255, 78, 80, 0.05)" />
+                <circle cx="12" cy="12" r="6" stroke="#FF8C00" fill="rgba(255, 140, 0, 0.1)" />
+                <circle cx="12" cy="12" r="2" stroke="#FF4E50" fill="#FF4E50" />
               </svg>
             </div>
             <h3 style={{
@@ -333,20 +332,19 @@ export default function AboutPage() {
               height: "64px",
               borderRadius: "50%",
               backgroundColor: "white",
-              border: "1px solid rgba(10, 28, 58, 0.08)",
+              border: "1px solid rgba(0, 114, 255, 0.15)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               marginBottom: "1.5rem",
-              color: "var(--primary)",
-              boxShadow: "0 8px 20px rgba(224, 145, 0, 0.15)",
+              boxShadow: "0 8px 20px rgba(0, 114, 255, 0.18)",
               marginTop: "-3.5rem",
               zIndex: 2,
               position: "relative"
             }}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0072FF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="#0072FF" fill="rgba(0, 114, 255, 0.05)" />
+                <circle cx="12" cy="12" r="3" stroke="#00C6FF" fill="#0072FF" />
               </svg>
             </div>
             <h3 style={{
@@ -386,19 +384,18 @@ export default function AboutPage() {
               height: "64px",
               borderRadius: "50%",
               backgroundColor: "white",
-              border: "1px solid rgba(10, 28, 58, 0.08)",
+              border: "1px solid rgba(255, 8, 68, 0.15)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               marginBottom: "1.5rem",
-              color: "var(--primary)",
-              boxShadow: "0 8px 20px rgba(224, 145, 0, 0.15)",
+              boxShadow: "0 8px 20px rgba(255, 8, 68, 0.18)",
               marginTop: "-3.5rem",
               zIndex: 2,
               position: "relative"
             }}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FF0844" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="#FF0844" fill="#FF4E50" style={{ fillOpacity: 0.15 }} />
               </svg>
             </div>
             <h3 style={{
