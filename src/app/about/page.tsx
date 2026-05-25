@@ -489,29 +489,28 @@ export default function AboutPage() {
                   }}
                 />
 
-                {/* Dark gradient and designation overlay on bottom of image */}
+                {/* Designation Pill Badge floating on bottom center of image */}
                 <div style={{
                   position: "absolute",
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  padding: "1.5rem 1rem 0.75rem 1rem",
-                  background: "linear-gradient(to top, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0) 100%)",
-                  color: "white",
-                  textAlign: "center",
+                  bottom: "0.75rem",
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  background: "rgba(255, 255, 255, 0.95)",
+                  backdropFilter: "blur(4px)",
+                  border: "1px solid rgba(224, 145, 0, 0.25)",
+                  color: "var(--primary)",
+                  padding: "0.3rem 0.85rem",
+                  borderRadius: "20px",
+                  fontSize: "0.75rem",
+                  fontWeight: 800,
+                  fontFamily: "'Comic Neue', cursive",
+                  whiteSpace: "nowrap",
+                  boxShadow: "0 4px 12px rgba(0, 0, 0, 0.08)",
                   zIndex: 1,
                   opacity: hoveredCardIndex === index ? 0 : 1,
                   transition: "opacity 0.3s ease"
                 }}>
-                  <span style={{
-                    fontSize: "0.95rem",
-                    fontWeight: 700,
-                    fontFamily: "'Comic Neue', cursive",
-                    letterSpacing: "0.5px",
-                    textShadow: "0 2px 4px rgba(0, 0, 0, 0.5)"
-                  }}>
-                    {member.role}
-                  </span>
+                  {member.role}
                 </div>
 
                 {/* Social Overlay */}
