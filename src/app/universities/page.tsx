@@ -318,7 +318,7 @@ export default function UniversitiesPage() {
       <section style={{
         width: "95%",
         maxWidth: "1280px",
-        margin: "0 auto 0.6rem auto",
+        margin: "0 auto 3rem auto",
         background: "linear-gradient(135deg, rgba(10, 28, 58, 0.88) 0%, rgba(6, 17, 36, 0.94) 100%), url('/hero-bg.png') no-repeat center center",
         backgroundSize: "cover",
         padding: "3.5rem 2rem",
@@ -404,7 +404,7 @@ export default function UniversitiesPage() {
         flexDirection: "row",
         flexWrap: "wrap",
         alignItems: "flex-start",
-        marginTop: "0.6rem"
+        marginTop: "0.5rem"
       }}>
         {/* Left Column - Filter Sidebar */}
         <div style={{
