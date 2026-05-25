@@ -148,7 +148,7 @@ export default function AboutPage() {
       </section>
 
       {/* Our Journey Timeline */}
-      <section className="container" style={{ marginBottom: "1.75rem" }}>
+      <section className="container" style={{ marginTop: "3.5rem", marginBottom: "1.75rem" }}>
         <h2 style={{ 
           textAlign: "center", 
           fontSize: "clamp(2rem, 4vw, 2.75rem)", 
@@ -254,7 +254,7 @@ export default function AboutPage() {
       </section>
 
       {/* Mission, Vision & Values Section */}
-      <section className="container" style={{ marginBottom: "1.75rem" }}>
+      <section className="container" style={{ marginTop: "3.5rem", marginBottom: "1.75rem" }}>
         <div style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
@@ -407,7 +407,7 @@ export default function AboutPage() {
       </section>
 
       {/* Stats Section */}
-      <section className="stats-section" style={{ marginTop: "1.5rem", marginBottom: "0rem" }}>
+      <section className="stats-section" style={{ marginTop: "3.5rem", marginBottom: "0rem" }}>
         <div className="stats-grid">
           <div className="stat-card">
             <div className="stat-number">15+</div>
@@ -429,7 +429,7 @@ export default function AboutPage() {
       </section>
 
       {/* Meet Our Team Section */}
-      <section className="container" style={{ marginTop: "1.5rem", marginBottom: "0.75rem" }}>
+      <section className="container" style={{ marginTop: "3.5rem", marginBottom: "0.75rem" }}>
         <h2 style={{
           textAlign: "center",
           fontSize: "clamp(2rem, 4vw, 2.75rem)",
