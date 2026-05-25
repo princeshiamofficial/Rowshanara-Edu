@@ -491,7 +491,7 @@ export default function AboutPage() {
               </div>
 
               {/* Details Container */}
-              <div style={{ padding: "1.5rem 1.5rem 2rem 1.5rem", textAlign: "center" }}>
+              <div style={{ padding: "1.5rem", textAlign: "center" }}>
                 <h3 style={{
                   fontSize: "1.25rem",
                   fontWeight: 800,
@@ -525,9 +525,10 @@ export default function AboutPage() {
                   alignItems: "center",
                   justifyContent: "center",
                   gap: "1.25rem",
-                  marginTop: "1rem",
+                  maxHeight: hoveredCardIndex === index ? "40px" : "0px",
+                  marginTop: hoveredCardIndex === index ? "1rem" : "0px",
                   opacity: hoveredCardIndex === index ? 1 : 0,
-                  transform: hoveredCardIndex === index ? "translateY(0)" : "translateY(8px)",
+                  overflow: "hidden",
                   transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
                 }}>
                   <a href="#" onClick={(e) => e.preventDefault()} style={{ color: "#64748B", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "var(--primary)"} onMouseLeave={(e) => e.currentTarget.style.color = "#64748B"}>
