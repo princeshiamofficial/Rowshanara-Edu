@@ -488,36 +488,76 @@ export default function AboutPage() {
                     transition: "transform 0.4s ease"
                   }}
                 />
+
+                {/* Bottom dark gradient for badge readability */}
+                <div style={{
+                  position: "absolute",
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  height: "60px",
+                  background: "linear-gradient(to top, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0) 100%)",
+                  zIndex: 1
+                }} />
+
+                {/* Role & Focus Badges Overlayed Side by Side */}
+                <div style={{
+                  position: "absolute",
+                  bottom: "0.75rem",
+                  left: "0.5rem",
+                  right: "0.5rem",
+                  display: "flex",
+                  justifyContent: "center",
+                  gap: "0.4rem",
+                  zIndex: 2
+                }}>
+                  {/* Role Badge */}
+                  <span style={{
+                    background: "rgba(255, 255, 255, 0.95)",
+                    border: "1px solid rgba(224, 145, 0, 0.2)",
+                    borderRadius: "10px",
+                    padding: "0.25rem 0.5rem",
+                    color: "var(--primary)",
+                    fontSize: "0.72rem",
+                    fontWeight: 800,
+                    fontFamily: "'Comic Neue', cursive",
+                    boxShadow: "0 2px 6px rgba(0, 0, 0, 0.1)",
+                    backdropFilter: "blur(4px)",
+                    whiteSpace: "nowrap"
+                  }}>
+                    {member.role}
+                  </span>
+                  {/* Focus Badge */}
+                  <span style={{
+                    background: "rgba(10, 28, 58, 0.9)",
+                    border: "1px solid rgba(255, 255, 255, 0.1)",
+                    borderRadius: "10px",
+                    padding: "0.25rem 0.5rem",
+                    color: "white",
+                    fontSize: "0.72rem",
+                    fontWeight: 700,
+                    fontFamily: "'Comic Neue', cursive",
+                    boxShadow: "0 2px 6px rgba(0, 0, 0, 0.1)",
+                    backdropFilter: "blur(4px)",
+                    whiteSpace: "nowrap"
+                  }}>
+                    {member.focus}
+                  </span>
+                </div>
               </div>
 
               {/* Details Container */}
-              <div style={{ padding: "1.5rem", textAlign: "center" }}>
+              <div style={{ padding: "1.25rem 1rem", textAlign: "center" }}>
                 <h3 style={{
                   fontSize: "1.25rem",
                   fontWeight: 800,
                   color: "#0F172A",
-                  marginBottom: "0.4rem",
-                  fontFamily: "'Baloo 2', cursive"
+                  margin: 0,
+                  fontFamily: "'Baloo 2', cursive",
+                  lineHeight: "1.2"
                 }}>
                   {member.name}
                 </h3>
-                <p style={{
-                  fontSize: "1rem",
-                  color: "var(--primary)",
-                  fontWeight: 700,
-                  margin: "0 0 0.4rem 0",
-                  fontFamily: "'Comic Neue', cursive"
-                }}>
-                  {member.role}
-                </p>
-                <p style={{
-                  fontSize: "0.85rem",
-                  color: "#64748B",
-                  margin: 0,
-                  fontFamily: "'Comic Neue', cursive"
-                }}>
-                  {member.focus}
-                </p>
 
                 {/* Social Icons at the bottom */}
                 <div style={{
@@ -526,7 +566,7 @@ export default function AboutPage() {
                   justifyContent: "center",
                   gap: "1.25rem",
                   maxHeight: hoveredCardIndex === index ? "40px" : "0px",
-                  marginTop: hoveredCardIndex === index ? "1rem" : "0px",
+                  marginTop: hoveredCardIndex === index ? "0.75rem" : "0px",
                   opacity: hoveredCardIndex === index ? 1 : 0,
                   overflow: "hidden",
                   transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
