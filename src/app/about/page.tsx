@@ -491,40 +491,33 @@ export default function AboutPage() {
               </div>
 
               {/* Details Container */}
-              <div style={{ padding: "1.5rem", textAlign: "center" }}>
+              <div style={{ padding: "1rem 1.25rem 1.25rem 1.25rem", textAlign: "center" }}>
                 <h3 style={{
                   fontSize: "1.25rem",
                   fontWeight: 800,
                   color: "#0F172A",
-                  marginBottom: "0.4rem",
+                  margin: "0 0 0.25rem 0",
                   fontFamily: "'Baloo 2', cursive"
                 }}>
                   {member.name}
                 </h3>
-                <div style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: "0.5rem",
-                  flexWrap: "wrap",
-                  fontSize: "0.95rem",
-                  fontFamily: "'Comic Neue', cursive",
-                  marginBottom: "0.4rem"
+                <p style={{
+                  fontSize: "1rem",
+                  color: "var(--primary)",
+                  fontWeight: 700,
+                  margin: "0 0 0.25rem 0",
+                  fontFamily: "'Comic Neue', cursive"
                 }}>
-                  <span style={{
-                    color: "var(--primary)",
-                    fontWeight: 700
-                  }}>
-                    {member.role}
-                  </span>
-                  <span style={{ color: "#CBD5E1" }}>•</span>
-                  <span style={{
-                    color: "#64748B",
-                    fontWeight: 600
-                  }}>
-                    {member.focus}
-                  </span>
-                </div>
+                  {member.role}
+                </p>
+                <p style={{
+                  fontSize: "0.85rem",
+                  color: "#64748B",
+                  margin: 0,
+                  fontFamily: "'Comic Neue', cursive"
+                }}>
+                  {member.focus}
+                </p>
 
                 {/* Social Icons at the bottom */}
                 <div style={{
