@@ -475,7 +475,7 @@ export default function AboutPage() {
               className="glass-card-hover"
             >
               {/* Full Width Image on top */}
-              <div style={{ width: "100%", height: "200px", overflow: "hidden", position: "relative" }}>
+              <div style={{ width: "100%", height: "230px", overflow: "hidden", position: "relative" }}>
                 <img
                   src={member.image}
                   alt={member.name}
