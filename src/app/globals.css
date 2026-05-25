@@ -314,7 +314,6 @@ button {
 .nav-item-custom.active::after {
   transform: scaleX(1);
   transform-origin: bottom left;
-  animation: wave-flow 0.8s linear infinite;
 }
 
 .nav-actions {
