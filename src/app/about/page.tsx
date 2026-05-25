@@ -488,56 +488,6 @@ export default function AboutPage() {
                     transition: "transform 0.4s ease"
                   }}
                 />
-
-                {/* Designation Pill Badge floating on bottom center of image */}
-                <div style={{
-                  position: "absolute",
-                  bottom: "0.75rem",
-                  left: "50%",
-                  transform: "translateX(-50%)",
-                  background: "rgba(255, 255, 255, 0.95)",
-                  backdropFilter: "blur(4px)",
-                  border: "1px solid rgba(224, 145, 0, 0.25)",
-                  color: "var(--primary)",
-                  padding: "0.3rem 0.85rem",
-                  borderRadius: "20px",
-                  fontSize: "0.75rem",
-                  fontWeight: 800,
-                  fontFamily: "'Comic Neue', cursive",
-                  whiteSpace: "nowrap",
-                  boxShadow: "0 4px 12px rgba(0, 0, 0, 0.08)",
-                  zIndex: 1,
-                  opacity: hoveredCardIndex === index ? 0 : 1,
-                  transition: "opacity 0.3s ease"
-                }}>
-                  {member.role}
-                </div>
-
-                {/* Social Overlay */}
-                <div style={{
-                  position: "absolute",
-                  inset: 0,
-                  background: "rgba(10, 28, 58, 0.65)",
-                  backdropFilter: "blur(2px)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: "1.25rem",
-                  opacity: hoveredCardIndex === index ? 1 : 0,
-                  pointerEvents: hoveredCardIndex === index ? "auto" : "none",
-                  transition: "opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-                  zIndex: 2
-                }}>
-                  <a href="#" onClick={(e) => e.preventDefault()} style={{ color: "white", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "var(--primary)"} onMouseLeave={(e) => e.currentTarget.style.color = "white"}>
-                    <FaFacebook style={{ fontSize: "1.25rem" }} />
-                  </a>
-                  <a href="#" onClick={(e) => e.preventDefault()} style={{ color: "white", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "var(--primary)"} onMouseLeave={(e) => e.currentTarget.style.color = "white"}>
-                    <FaLinkedin style={{ fontSize: "1.25rem" }} />
-                  </a>
-                  <a href="#" onClick={(e) => e.preventDefault()} style={{ color: "white", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "var(--primary)"} onMouseLeave={(e) => e.currentTarget.style.color = "white"}>
-                    <FaXTwitter style={{ fontSize: "1.25rem" }} />
-                  </a>
-                </div>
               </div>
 
               {/* Details Container */}
@@ -552,6 +502,15 @@ export default function AboutPage() {
                   {member.name}
                 </h3>
                 <p style={{
+                  fontSize: "1rem",
+                  color: "var(--primary)",
+                  fontWeight: 700,
+                  margin: "0 0 0.4rem 0",
+                  fontFamily: "'Comic Neue', cursive"
+                }}>
+                  {member.role}
+                </p>
+                <p style={{
                   fontSize: "0.85rem",
                   color: "#64748B",
                   margin: 0,
@@ -559,6 +518,28 @@ export default function AboutPage() {
                 }}>
                   {member.focus}
                 </p>
+
+                {/* Social Icons at the bottom */}
+                <div style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "1.25rem",
+                  marginTop: "1rem",
+                  opacity: hoveredCardIndex === index ? 1 : 0,
+                  transform: hoveredCardIndex === index ? "translateY(0)" : "translateY(8px)",
+                  transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+                }}>
+                  <a href="#" onClick={(e) => e.preventDefault()} style={{ color: "#64748B", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "var(--primary)"} onMouseLeave={(e) => e.currentTarget.style.color = "#64748B"}>
+                    <FaFacebook style={{ fontSize: "1.1rem" }} />
+                  </a>
+                  <a href="#" onClick={(e) => e.preventDefault()} style={{ color: "#64748B", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "var(--primary)"} onMouseLeave={(e) => e.currentTarget.style.color = "#64748B"}>
+                    <FaLinkedin style={{ fontSize: "1.1rem" }} />
+                  </a>
+                  <a href="#" onClick={(e) => e.preventDefault()} style={{ color: "#64748B", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "var(--primary)"} onMouseLeave={(e) => e.currentTarget.style.color = "#64748B"}>
+                    <FaXTwitter style={{ fontSize: "1.1rem" }} />
+                  </a>
+                </div>
               </div>
             </div>
           ))}
