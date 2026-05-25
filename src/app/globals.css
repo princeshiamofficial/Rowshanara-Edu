@@ -316,6 +316,16 @@ button {
   transform-origin: bottom left;
 }
 
+/* Hide active underline when hovering over other nav items */
+.desktop-nav-links:hover .nav-item-custom.active::after {
+  transform: scaleX(0);
+  transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.desktop-nav-links .nav-item-custom.active:hover::after {
+  transform: scaleX(1);
+}
+
 .nav-actions {
   display: flex;
   align-items: center;
