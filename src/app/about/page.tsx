@@ -645,7 +645,7 @@ export default function AboutPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="cta-section" style={{ marginTop: "1.5rem", marginBottom: "1rem" }}>
+      <section className="cta-section" style={{ marginTop: "3.5rem", marginBottom: "1.5rem" }}>
         <div className="cta-container">
           <h2 className="cta-title">Ready to Study Abroad?</h2>
           <p className="cta-description">
