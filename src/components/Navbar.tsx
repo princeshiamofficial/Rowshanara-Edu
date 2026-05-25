@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { FaEnvelope, FaFacebookF, FaLinkedinIn, FaYoutube, FaBars, FaXmark, FaXTwitter, FaWeixin } from 'react-icons/fa6';
 
@@ -87,7 +88,7 @@ const Navbar = () => {
         {/* Main Navigation */}
         <nav style={{ padding: '0.75rem 2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'relative' }}>
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            <a href="/">
+            <Link href="/">
               <img 
                 src="/logo.png" 
                 alt="Rowshanara Edu" 
@@ -97,34 +98,34 @@ const Navbar = () => {
                   display: 'block'
                 }} 
               />
-            </a>
+            </Link>
           </div>
  
           {/* Desktop Navigation Links */}
           <div className="desktop-nav-links" style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
-            <a href="/" className={`nav-item-custom ${pathname === '/' ? 'active' : ''}`}>
+            <Link href="/" className={`nav-item-custom ${pathname === '/' ? 'active' : ''}`}>
               Home
-            </a>
-            <a href="/services" className={`nav-item-custom ${pathname === '/services' ? 'active' : ''}`}>
+            </Link>
+            <Link href="/services" className={`nav-item-custom ${pathname === '/services' ? 'active' : ''}`}>
               Services
-            </a>
-            <a href="/destination" className={`nav-item-custom ${pathname.startsWith('/destination') ? 'active' : ''}`}>
+            </Link>
+            <Link href="/destination" className={`nav-item-custom ${pathname.startsWith('/destination') ? 'active' : ''}`}>
               Destination
-            </a>
-            <a href="/universities" className={`nav-item-custom ${pathname.startsWith('/universities') ? 'active' : ''}`}>
+            </Link>
+            <Link href="/universities" className={`nav-item-custom ${pathname.startsWith('/universities') ? 'active' : ''}`}>
               Universities
-            </a>
-            <a href="/about" className={`nav-item-custom ${pathname.startsWith('/about') ? 'active' : ''}`}>
+            </Link>
+            <Link href="/about" className={`nav-item-custom ${pathname.startsWith('/about') ? 'active' : ''}`}>
               About Us
-            </a>
-            <a href="/contact" className={`nav-item-custom ${pathname.startsWith('/contact') ? 'active' : ''}`}>
+            </Link>
+            <Link href="/contact" className={`nav-item-custom ${pathname.startsWith('/contact') ? 'active' : ''}`}>
               Contact Us
-            </a>
+            </Link>
           </div>
  
           {/* Desktop Authentication Buttons */}
           <div className="desktop-nav-btn" style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
-            <a href="/login" style={{ 
+            <Link href="/login" style={{ 
               border: '2px solid var(--primary)', 
               color: 'var(--primary)', 
               padding: '0.5rem 1.2rem', 
@@ -137,8 +138,8 @@ const Navbar = () => {
             onMouseEnter={e => { e.currentTarget.style.background = 'rgba(224, 145, 0, 0.08)'; }}
             onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; }}>
               Login
-            </a>
-            <a href="/register" style={{ 
+            </Link>
+            <Link href="/register" style={{ 
               background: 'var(--primary)', 
               color: 'white', 
               padding: '0.5rem 1.2rem', 
@@ -152,7 +153,7 @@ const Navbar = () => {
             onMouseEnter={e => { e.currentTarget.style.background = 'var(--primary-hover)'; }}
             onMouseLeave={e => { e.currentTarget.style.background = 'var(--primary)'; }}>
               Registration
-            </a>
+            </Link>
           </div>
 
           {/* Hamburger Menu Toggle Icon */}
@@ -184,14 +185,14 @@ const Navbar = () => {
             gap: '1.25rem',
             boxShadow: '0 10px 20px rgba(0,0,0,0.05)'
           }}>
-            <a href="/" onClick={() => setIsOpen(false)} style={{ fontWeight: 700, color: pathname === '/' ? '#E09100' : 'var(--text)', fontSize: '1.1rem' }}>Home</a>
-            <a href="/services" onClick={() => setIsOpen(false)} style={{ fontWeight: 700, color: pathname === '/services' ? '#E09100' : 'var(--text)', fontSize: '1.1rem' }}>Services</a>
-            <a href="/destination" onClick={() => setIsOpen(false)} style={{ fontWeight: 700, color: pathname.startsWith('/destination') ? '#E09100' : 'var(--text)', fontSize: '1.1rem' }}>Destination</a>
-            <a href="/universities" onClick={() => setIsOpen(false)} style={{ fontWeight: 700, color: pathname.startsWith('/universities') ? '#E09100' : 'var(--text)', fontSize: '1.1rem' }}>Universities</a>
-            <a href="/about" onClick={() => setIsOpen(false)} style={{ fontWeight: 700, color: pathname.startsWith('/about') ? '#E09100' : 'var(--text)', fontSize: '1.1rem' }}>About Us</a>
-            <a href="/contact" onClick={() => setIsOpen(false)} style={{ fontWeight: 700, color: pathname.startsWith('/contact') ? '#E09100' : 'var(--text)', fontSize: '1.1rem' }}>Contact Us</a>
+            <Link href="/" onClick={() => setIsOpen(false)} style={{ fontWeight: 700, color: pathname === '/' ? '#E09100' : 'var(--text)', fontSize: '1.1rem' }}>Home</Link>
+            <Link href="/services" onClick={() => setIsOpen(false)} style={{ fontWeight: 700, color: pathname === '/services' ? '#E09100' : 'var(--text)', fontSize: '1.1rem' }}>Services</Link>
+            <Link href="/destination" onClick={() => setIsOpen(false)} style={{ fontWeight: 700, color: pathname.startsWith('/destination') ? '#E09100' : 'var(--text)', fontSize: '1.1rem' }}>Destination</Link>
+            <Link href="/universities" onClick={() => setIsOpen(false)} style={{ fontWeight: 700, color: pathname.startsWith('/universities') ? '#E09100' : 'var(--text)', fontSize: '1.1rem' }}>Universities</Link>
+            <Link href="/about" onClick={() => setIsOpen(false)} style={{ fontWeight: 700, color: pathname.startsWith('/about') ? '#E09100' : 'var(--text)', fontSize: '1.1rem' }}>About Us</Link>
+            <Link href="/contact" onClick={() => setIsOpen(false)} style={{ fontWeight: 700, color: pathname.startsWith('/contact') ? '#E09100' : 'var(--text)', fontSize: '1.1rem' }}>Contact Us</Link>
             
-            <a href="/login" onClick={() => setIsOpen(false)} style={{ 
+            <Link href="/login" onClick={() => setIsOpen(false)} style={{ 
               border: '2px solid var(--primary)',
               color: 'var(--primary)', 
               padding: '0.75rem 1.5rem', 
@@ -202,8 +203,8 @@ const Navbar = () => {
               marginTop: '0.5rem'
             }}>
               Login
-            </a>
-            <a href="/register" onClick={() => setIsOpen(false)} style={{ 
+            </Link>
+            <Link href="/register" onClick={() => setIsOpen(false)} style={{ 
               background: 'var(--primary)', 
               color: 'white', 
               padding: '0.75rem 1.5rem', 
@@ -214,7 +215,7 @@ const Navbar = () => {
               boxShadow: '0 8px 20px rgba(224, 145, 0, 0.15)'
             }}>
               Registration
-            </a>
+            </Link>
           </div>
         )}
       </div>
