@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { FaFacebook, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 
 export default function AboutPage() {
   const bgSlides = [
@@ -10,6 +11,7 @@ export default function AboutPage() {
   ];
 
   const [currentBgIndex, setCurrentBgIndex] = useState(0);
+  const [hoveredCardIndex, setHoveredCardIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -454,16 +456,24 @@ export default function AboutPage() {
             { name: "Rajib Kumar", role: "Operations Manager", focus: "Process Excellence", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&h=300&fit=crop" },
             { name: "Sophia Akter", role: "Student Support", focus: "Post-Arrival Services", image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&h=300&fit=crop" }
           ].map((member, index) => (
-            <div key={index} style={{
-              background: "white",
-              border: "1px solid rgba(10, 28, 58, 0.08)",
-              borderRadius: "24px",
-              boxShadow: "0 10px 30px rgba(0, 0, 0, 0.02)",
-              display: "flex",
-              flexDirection: "column",
-              overflow: "hidden",
-              transition: "all 0.3s ease"
-            }} className="glass-card-hover">
+            <div key={index}
+              onMouseEnter={() => setHoveredCardIndex(index)}
+              onMouseLeave={() => setHoveredCardIndex(null)}
+              style={{
+                background: "white",
+                border: "1px solid rgba(10, 28, 58, 0.08)",
+                borderRadius: "24px",
+                boxShadow: hoveredCardIndex === index 
+                  ? "0 20px 40px rgba(0, 0, 0, 0.06)" 
+                  : "0 10px 30px rgba(0, 0, 0, 0.02)",
+                display: "flex",
+                flexDirection: "column",
+                overflow: "hidden",
+                transform: hoveredCardIndex === index ? "translateY(-4px)" : "none",
+                transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+              }}
+              className="glass-card-hover"
+            >
               {/* Full Width Image on top */}
               <div style={{ width: "100%", height: "200px", overflow: "hidden", position: "relative" }}>
                 <img
@@ -473,9 +483,39 @@ export default function AboutPage() {
                     width: "100%",
                     height: "100%",
                     objectFit: "cover",
-                    objectPosition: "top"
+                    objectPosition: "top",
+                    transform: hoveredCardIndex === index ? "scale(1.05)" : "scale(1)",
+                    transition: "transform 0.4s ease"
                   }}
                 />
+
+                {/* Social Overlay */}
+                <div style={{
+                  position: "absolute",
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  height: "50px",
+                  background: "linear-gradient(to top, rgba(10, 28, 58, 0.9) 0%, rgba(10, 28, 58, 0.5) 100%)",
+                  backdropFilter: "blur(2px)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "1.25rem",
+                  transform: hoveredCardIndex === index ? "translateY(0)" : "translateY(100%)",
+                  transition: "transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                  zIndex: 2
+                }}>
+                  <a href="#" onClick={(e) => e.preventDefault()} style={{ color: "white", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "var(--primary)"} onMouseLeave={(e) => e.currentTarget.style.color = "white"}>
+                    <FaFacebook style={{ fontSize: "1.1rem" }} />
+                  </a>
+                  <a href="#" onClick={(e) => e.preventDefault()} style={{ color: "white", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "var(--primary)"} onMouseLeave={(e) => e.currentTarget.style.color = "white"}>
+                    <FaLinkedin style={{ fontSize: "1.1rem" }} />
+                  </a>
+                  <a href="#" onClick={(e) => e.preventDefault()} style={{ color: "white", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "var(--primary)"} onMouseLeave={(e) => e.currentTarget.style.color = "white"}>
+                    <FaXTwitter style={{ fontSize: "1.1rem" }} />
+                  </a>
+                </div>
               </div>
 
               {/* Details Container */}
