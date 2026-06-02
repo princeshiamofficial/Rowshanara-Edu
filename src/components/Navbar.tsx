@@ -55,7 +55,7 @@ const Navbar = () => {
             </div>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-            <div className="hide-mobile" style={{ display: 'flex', gap: '0.75rem', color: 'white' }}>
+            <div style={{ display: 'flex', gap: '0.75rem', color: 'white' }}>
               {[
                 { name: 'facebook', icon: <FaFacebookF /> },
                 { name: 'twitter-x', icon: <FaXTwitter /> },

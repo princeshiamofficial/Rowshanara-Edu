@@ -623,7 +623,7 @@ button {
 /* Responsiveness overrides for the hero section */
 @media (max-width: 991px) {
   .hero-section-wrapper {
-    padding-top: 100px;
+    padding-top: 125px;
     padding-bottom: 1.25rem;
   }
   
@@ -655,13 +655,13 @@ button {
 
 @media (max-width: 768px) {
   .hero-section-wrapper {
-    padding-top: 80px;
+    padding-top: 120px;
     padding-bottom: 1rem;
   }
 
   .hero-card {
     width: 95%;
-    min-height: 380px;
+    min-height: 230px;
     border-radius: 20px;
     background-position: 70% center;
   }
@@ -675,7 +675,7 @@ button {
   }
 
   .hero-content {
-    padding: 2.5rem 2rem;
+    padding: 1.5rem 1.5rem;
     max-width: 100%;
     align-items: center;
     text-align: center;
@@ -685,7 +685,7 @@ button {
   }
 
   .hero-title {
-    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    font-size: clamp(1.6rem, 6.8vw, 2.8rem);
     margin-bottom: 1rem;
   }
 
@@ -696,7 +696,7 @@ button {
 
 @media (max-width: 480px) {
   .hero-title {
-    font-size: clamp(1.25rem, 6vw, 1.75rem);
+    font-size: clamp(1.35rem, 6.8vw, 1.8rem);
   }
 }
 
@@ -893,18 +893,32 @@ button {
   }
 }
 
-/* Responsiveness overrides for the Trusted By section card width */
+
+
+/* Responsiveness overrides for Trusted By section spacing */
 @media (max-width: 991px) {
   .trusted-by-section {
-    width: 92%;
-    border-radius: 24px;
+    padding: 2rem 0;
+  }
+  .trusted-by-badge {
+    margin-bottom: 1.5rem;
   }
 }
 
 @media (max-width: 768px) {
   .trusted-by-section {
-    width: 95%;
-    border-radius: 20px;
+    padding: 1.75rem 0;
+  }
+  .trusted-by-badge {
+    margin-bottom: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .trusted-by-section {
+    padding: 1.5rem 0;
+  }
+  .trusted-by-badge {
     margin-bottom: 1rem;
   }
 }
@@ -1059,6 +1073,55 @@ button {
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
+/* Step-specific multi-color gradients and styles */
+.how-it-works-step.step-1 .step-icon-circle {
+  background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+  box-shadow: 0 8px 20px rgba(14, 165, 233, 0.25);
+}
+.how-it-works-step.step-1:hover .step-icon-circle {
+  background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+  box-shadow: 0 12px 25px rgba(14, 165, 233, 0.35);
+}
+.how-it-works-step.step-1 .step-badge-number {
+  background: #0284c7;
+}
+
+.how-it-works-step.step-2 .step-icon-circle {
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.25);
+}
+.how-it-works-step.step-2:hover .step-icon-circle {
+  background: linear-gradient(135deg, #818cf8 0%, #4f46e5 100%);
+  box-shadow: 0 12px 25px rgba(99, 102, 241, 0.35);
+}
+.how-it-works-step.step-2 .step-badge-number {
+  background: #4f46e5;
+}
+
+.how-it-works-step.step-3 .step-icon-circle {
+  background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+  box-shadow: 0 8px 20px rgba(236, 72, 153, 0.25);
+}
+.how-it-works-step.step-3:hover .step-icon-circle {
+  background: linear-gradient(135deg, #f472b6 0%, #db2777 100%);
+  box-shadow: 0 12px 25px rgba(236, 72, 153, 0.35);
+}
+.how-it-works-step.step-3 .step-badge-number {
+  background: #db2777;
+}
+
+.how-it-works-step.step-4 .step-icon-circle {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.25);
+}
+.how-it-works-step.step-4:hover .step-icon-circle {
+  background: linear-gradient(135deg, #34d399 0%, #059669 100%);
+  box-shadow: 0 12px 25px rgba(16, 185, 129, 0.35);
+}
+.how-it-works-step.step-4 .step-badge-number {
+  background: #059669;
+}
+
 .step-watermark {
   position: absolute;
   top: 1.5rem;
@@ -1119,14 +1182,18 @@ button {
 
 @media (max-width: 640px) {
   .how-it-works-steps {
-    grid-template-columns: 1fr;
-    gap: 4rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3.5rem 1rem;
+  }
+  
+  .how-it-works-step {
+    padding: 3rem 0.75rem 2rem 0.75rem;
   }
   
   .how-it-works-section {
     width: 95%;
     border-radius: 24px;
-    padding: 2rem 1.25rem;
+    padding: 2rem 1rem;
   }
   
   .how-it-works-title {
@@ -1223,35 +1290,45 @@ button {
 /* Responsiveness */
 @media (max-width: 991px) {
   .stats-section {
-    width: 92%;
-    padding: 1rem 1.5rem;
+    width: 95%;
+    padding: 1rem 1rem;
   }
   .stat-number {
-    font-size: 2.8rem;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
   }
   .stat-label {
-    font-size: 0.95rem;
+    font-size: clamp(0.75rem, 1.5vw, 0.95rem);
   }
 }
 
 @media (max-width: 768px) {
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 2.5rem 1.5rem;
+    gap: 2rem 1.5rem;
   }
   .stats-section {
     width: 95%;
-    border-radius: 24px;
+    border-radius: 28px;
+    padding: 1.5rem 1rem;
+  }
+  .stat-card {
+    padding: 0.5rem;
   }
 }
 
 @media (max-width: 480px) {
   .stats-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem 1rem;
   }
   .stat-number {
-    font-size: 2.5rem;
+    font-size: clamp(1.6rem, 5vw, 2.2rem);
+  }
+  .stat-label {
+    font-size: clamp(0.8rem, 3.5vw, 0.95rem);
+  }
+  .stats-section {
+    padding: 1.5rem 0.75rem;
   }
 }
 
@@ -1350,7 +1427,15 @@ button {
 
 @media (max-width: 640px) {
   .destinations-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  .destination-card {
+    padding: 1.75rem 1rem;
+    min-height: 160px;
+  }
+  .destination-name {
+    font-size: clamp(1.1rem, 4vw, 1.35rem);
   }
 }
 
@@ -1612,7 +1697,7 @@ button {
   max-width: 1280px;
   background: #1e2b45; /* Dark, muted slate/navy blue */
   padding: 3.5rem 1.5rem;
-  margin: 2rem auto 2rem auto;
+  margin: 2rem auto 0 auto;
   border-radius: 24px;
   display: flex;
   justify-content: center;
