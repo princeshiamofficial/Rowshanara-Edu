@@ -96,7 +96,7 @@ const Footer = () => {
             zIndex: 1
           }}></div>
 
-          <div style={{ paddingLeft: '2.5rem', position: 'relative', zIndex: 2 }}> {/* Higher z-index for content */}
+          <div className="footer-content-wrapper" style={{ position: 'relative', zIndex: 2 }}> {/* Higher z-index for content */}
             {/* Top Divider (Line 1 - Matched with Line 2) */}
             {/* Top Divider (Line 1 - Matched with Line 2) */}
             <div style={{ 
@@ -108,19 +108,12 @@ const Footer = () => {
             }}></div>
             
             {/* Logo and Partners Grid */}
-            <div style={{ 
-              display: 'flex', 
-              justifyContent: 'space-between', 
-              alignItems: 'center',
-              flexWrap: 'wrap',
-              gap: '4rem', 
-              marginBottom: '3rem'
-            }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', position: 'relative', left: '-4.5rem' }}> {/* Moved further left to overlap more */}
+            <div className="footer-logo-partners-row">
+              <div className="footer-logo-container">
                 <img src="/logo.png" alt="Logo" style={{ height: '75px', filter: 'brightness(0) invert(1)' }} />
               </div>
 
-              <div style={{ display: 'flex', gap: '3rem', alignItems: 'center', flexWrap: 'wrap' }}>
+              <div className="footer-partners-container" style={{ display: 'flex', gap: '3rem', alignItems: 'center', flexWrap: 'wrap' }}>
                 <a href="#"><img src="/icef_logo.svg" alt="ICEF" style={{ height: '40px', width: 'auto' }} /></a>
                 <a href="#"><img src="/facdcab_logo.svg" alt="FACDCAB" style={{ height: '40px', width: 'auto' }} /></a>
                 <a href="#"><img src="/nafsa_logo.svg" alt="NAFSA" style={{ height: '45px', width: 'auto', filter: 'brightness(0) invert(1)' }} /></a>
@@ -128,7 +121,7 @@ const Footer = () => {
             </div>
 
             {/* Acknowledgement Text */}
-            <div style={{ marginBottom: '3rem', maxWidth: '850px' }}>
+            <div style={{ marginBottom: '1.5rem', maxWidth: '850px' }}>
               <h3 style={{ fontSize: '1.5rem', marginBottom: '1.25rem', fontWeight: 600 }}>Acknowledgement of Country</h3>
               <p style={{ 
                 fontSize: '1.0625rem', 
@@ -140,37 +133,43 @@ const Footer = () => {
             </div>
 
             {/* Sub-footer Divider Line */}
-            <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.8)', marginBottom: '2.5rem' }}></div>
+            <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.8)', marginBottom: '1.25rem' }}></div>
 
             {/* Bottom Metadata & Legal Links */}
             <div>
-              <div style={{ 
+              <div className="footer-links-container" style={{ 
                 display: 'flex', 
-                gap: '0.75rem', 
+                gap: '0.5rem 1.25rem', 
                 flexWrap: 'wrap', 
                 marginBottom: '1.25rem', 
                 fontSize: '0.9375rem',
                 fontWeight: 500
               }}>
                 <a href="/contact" style={{ textDecoration: 'none', color: '#fff' }}>Contact Us</a>
-                <span style={{ opacity: 0.5 }}>|</span>
+                <span className="footer-pipe">|</span>
                 <a href="#" style={{ textDecoration: 'none', color: '#fff' }}>Copyright</a>
-                <span style={{ opacity: 0.5 }}>|</span>
+                <span className="footer-pipe">|</span>
                 <a href="#" style={{ textDecoration: 'none', color: '#fff' }}>Disclaimer</a>
-                <span style={{ opacity: 0.5 }}>|</span>
+                <span className="footer-pipe">|</span>
                 <a href="#" style={{ textDecoration: 'none', color: '#fff' }}>Privacy</a>
-                <span style={{ opacity: 0.5 }}>|</span>
+                <span className="footer-pipe">|</span>
                 <a href="#" style={{ textDecoration: 'none', color: '#fff' }}>Freedom of Information</a>
-                <span style={{ opacity: 0.5 }}>|</span>
+                <span className="footer-pipe">|</span>
                 <a href="#" style={{ textDecoration: 'none', color: '#fff' }}>Accessibility</a>
               </div>
               
-              <div style={{ fontSize: '0.9375rem', marginBottom: '0.75rem', fontWeight: 500, opacity: 1 }}>
-                +880 1511-710730 <span style={{ margin: '0 0.5rem', opacity: 0.5 }}>|</span> 60, Dilkusha, Motijheel C/A, Dhaka-1000, Bangladesh
+              <div className="footer-meta-line" style={{ fontSize: '0.9375rem', marginBottom: '0.75rem', fontWeight: 500, opacity: 1 }}>
+                <span>+880 1511-710730</span>
+                <span className="footer-pipe">|</span>
+                <span>60, Dilkusha, Motijheel C/A, Dhaka-1000, Bangladesh</span>
               </div>
 
-              <div style={{ fontSize: '0.9375rem', fontWeight: 500, opacity: 1 }}>
-                TEQSA Provider ID: PRV12002 (Australian University) <span style={{ margin: '0 0.5rem', opacity: 0.5 }}>|</span> CRICOS Provider Code: 00120C <span style={{ margin: '0 0.5rem', opacity: 0.5 }}>|</span> ABN: 52 234 063 906
+              <div className="footer-meta-line" style={{ fontSize: '0.9375rem', fontWeight: 500, opacity: 1 }}>
+                <span>TEQSA Provider ID: PRV12002 (Australian University)</span>
+                <span className="footer-pipe">|</span>
+                <span>CRICOS Provider Code: 00120C</span>
+                <span className="footer-pipe">|</span>
+                <span>ABN: 52 234 063 906</span>
               </div>
             </div>
           </div>

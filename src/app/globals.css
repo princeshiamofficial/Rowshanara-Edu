@@ -656,14 +656,16 @@ button {
 @media (max-width: 768px) {
   .hero-section-wrapper {
     padding-top: 120px;
-    padding-bottom: 1rem;
+    padding-bottom: 0;
   }
 
   .hero-card {
-    width: 95%;
+    width: 96%;
     min-height: 230px;
-    border-radius: 20px;
+    border-radius: 16px 16px 0 0;
     background-position: 70% center;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .hero-gradient-overlay {
@@ -777,6 +779,15 @@ button {
   flex-direction: column;
   align-items: center;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 768px) {
+  .trusted-by-section {
+    width: 96%;
+    border-radius: 0 0 16px 16px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 .trusted-by-badge {
@@ -1191,9 +1202,11 @@ button {
   }
   
   .how-it-works-section {
-    width: 95%;
-    border-radius: 24px;
+    width: 96%;
+    border-radius: 16px;
     padding: 2rem 1rem;
+    margin-left: auto;
+    margin-right: auto;
   }
   
   .how-it-works-title {
@@ -1307,9 +1320,11 @@ button {
     gap: 2rem 1.5rem;
   }
   .stats-section {
-    width: 95%;
-    border-radius: 28px;
+    width: 96%;
+    border-radius: 16px;
     padding: 1.5rem 1rem;
+    margin-left: auto;
+    margin-right: auto;
   }
   .stat-card {
     padding: 0.5rem;
@@ -1428,7 +1443,7 @@ button {
 @media (max-width: 640px) {
   .destinations-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    gap: 1rem 2%;
   }
   .destination-card {
     padding: 1.75rem 1rem;
@@ -1683,9 +1698,65 @@ button {
   }
 }
 
-@media (max-width: 640px) {
+/* Success Stories Carousel and Display Overrides */
+.testimonials-mobile-carousel {
+  display: none;
+  width: 100%;
+  position: relative;
+}
+
+.testimonial-card-wrapper {
+  display: none;
+}
+
+.testimonial-card-wrapper.active {
+  display: block;
+  animation: fadeInTestimonial 0.35s ease-out forwards;
+}
+
+@keyframes fadeInTestimonial {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.testimonials-carousel-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.testimonials-carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  background: rgba(15, 23, 42, 0.2);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.testimonials-carousel-dot.active {
+  width: 24px;
+  background: var(--primary);
+}
+
+@media (max-width: 768px) {
   .testimonials-grid {
-    grid-template-columns: 1fr;
+    display: none !important;
+  }
+  .testimonials-mobile-carousel {
+    display: block !important;
+  }
+  .testimonials-section {
+    padding: 0 1rem;
   }
 }
 
@@ -1750,7 +1821,8 @@ button {
 
 @media (max-width: 640px) {
   .cta-title {
-    font-size: 2.25rem;
+    font-size: clamp(1.35rem, 6.8vw, 2.25rem);
+    white-space: nowrap;
   }
   .cta-description {
     font-size: 1rem;
@@ -1765,4 +1837,76 @@ button {
 @keyframes modalSlideUp {
   from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .services-section {
+    width: 96%;
+    border-radius: 16px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cta-section {
+    width: 96%;
+    border-radius: 16px;
+    padding: 1.75rem 1rem;
+    margin: 1rem auto 0 auto;
+  }
+}
+
+.footer-logo-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+  left: -4.5rem;
+}
+
+.footer-content-wrapper {
+  padding-left: 2.5rem;
+}
+
+.footer-logo-partners-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4rem;
+  margin-bottom: 3rem;
+}
+
+.footer-pipe {
+  opacity: 0.5;
+  margin: 0 0.5rem;
+}
+
+.footer-meta-line {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .footer-content-wrapper {
+    padding-left: 1.5rem;
+  }
+  .footer-logo-partners-row {
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .footer-logo-container {
+    left: -15%;
+  }
+  .footer-meta-line {
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .footer-pipe {
+    display: none !important;
+  }
+  .footer-partners-container {
+    gap: 1.5rem !important;
+  }
+  .footer-partners-container img {
+    height: 30px !important;
+  }
 }

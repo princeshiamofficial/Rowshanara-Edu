@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaDollarSign, FaBriefcase, FaPassport, FaXmark } from "react-icons/fa6";
 
 const destinationList = [
@@ -137,6 +137,25 @@ const destinationList = [
 export default function DestinationsGrid() {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const countryParam = params.get("country");
+      if (countryParam) {
+        const idx = destinationList.findIndex(
+          (dest) => dest.name.toLowerCase() === countryParam.toLowerCase() || dest.code.toLowerCase() === countryParam.toLowerCase()
+        );
+        if (idx !== -1) {
+          setExpandedIndex(idx);
+          setTimeout(() => {
+            const el = document.getElementById(`dest-card-${idx}`);
+            if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+          }, 200);
+        }
+      }
+    }
+  }, []);
+
   return (
     <section className="container" style={{ marginTop: "4rem", marginBottom: "3rem" }}>
       <div style={{
@@ -148,7 +167,7 @@ export default function DestinationsGrid() {
           const isExpanded = expandedIndex === index;
           if (isExpanded) {
             return (
-              <div key={index} style={{
+              <div key={index} id={`dest-card-${index}`} style={{
                 background: "#f0f7ff",
                 color: "#1e293b",
                 padding: "2.25rem 2rem",
@@ -325,7 +344,7 @@ export default function DestinationsGrid() {
           }
 
           return (
-            <div key={index} style={{
+            <div key={index} id={`dest-card-${index}`} style={{
               background: dest.gradient,
               color: "#ffffff",
               padding: "2.25rem 2rem",

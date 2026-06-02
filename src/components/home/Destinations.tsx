@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 const destinations = [
   { name: "United Kingdom", universities: 12, gradient: "linear-gradient(135deg, #5fa8ff 0%, #3e84ff 100%)", image: "/uk_hero.png" },
@@ -15,8 +16,9 @@ export default function Destinations() {
       <h2 className="destinations-title">Popular Destinations</h2>
       <div className="destinations-grid">
         {destinations.map((dest, index) => (
-          <div 
+          <Link 
             key={index} 
+            href={`/destination?country=${encodeURIComponent(dest.name)}`}
             className="destination-card"
             style={{ background: dest.gradient }}
           >
@@ -25,7 +27,7 @@ export default function Destinations() {
               <h3 className="destination-name">{dest.name}</h3>
               <p className="destination-unis">{dest.universities} Partner Universities</p>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </section>
