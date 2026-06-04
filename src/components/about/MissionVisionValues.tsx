@@ -26,54 +26,27 @@ export default function MissionVisionValues() {
             height: "72px",
             borderRadius: "50%",
             backgroundColor: "white",
-            border: "1px solid rgba(255, 78, 80, 0.25)",
+            border: "1px solid rgba(255, 78, 80, 0.15)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             marginBottom: "1.5rem",
-            boxShadow: "0 10px 22px rgba(255, 78, 80, 0.2)",
+            boxShadow: "0 8px 20px rgba(255, 78, 80, 0.18)",
             marginTop: "-3.75rem",
             zIndex: 2,
-            position: "relative"
+            position: "relative",
+            overflow: "hidden",
+            padding: "8px"
           }}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 64 64" fill="none">
-              <defs>
-                <linearGradient id="targetRed" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#FF5E62" />
-                  <stop offset="100%" stopColor="#FF1E27" />
-                </linearGradient>
-                <linearGradient id="targetOrange" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#FFD97D" />
-                  <stop offset="100%" stopColor="#FF8C00" />
-                </linearGradient>
-                <linearGradient id="targetGold" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#FFF066" />
-                  <stop offset="100%" stopColor="#E09100" />
-                </linearGradient>
-                <linearGradient id="glossHighlight" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.6" />
-                  <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0" />
-                </linearGradient>
-                <linearGradient id="arrowWood" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#E2E8F0" />
-                  <stop offset="100%" stopColor="#94A3B8" />
-                </linearGradient>
-                <filter id="shadowFilter1" x="-10%" y="-10%" width="120%" height="120%">
-                  <feDropShadow dx="1" dy="2" stdDeviation="1.5" floodColor="#000000" floodOpacity="0.18" />
-                </filter>
-              </defs>
-              <circle cx="32" cy="32" r="24" fill="url(#targetRed)" filter="url(#shadowFilter1)" />
-              <circle cx="32" cy="32" r="24" fill="url(#glossHighlight)" />
-              <circle cx="32" cy="32" r="16" fill="#FFFFFF" filter="url(#shadowFilter1)" />
-              <circle cx="32" cy="32" r="11" fill="url(#targetOrange)" />
-              <circle cx="32" cy="32" r="6" fill="url(#targetGold)" filter="url(#shadowFilter1)" />
-              <g filter="url(#shadowFilter1)">
-                <path d="M48 16 L34 30" stroke="url(#arrowWood)" strokeWidth="3" strokeLinecap="round" />
-                <path d="M44 14 L49 13 L47 18 Z" fill="#FF1E27" />
-                <path d="M46 12 L50 15 L45 17 Z" fill="#FF8C00" />
-                <path d="M34 30 L32 32 L30 30" stroke="#E09100" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              </g>
-            </svg>
+            <img 
+              src="/images/about/mission.png" 
+              alt="Mission" 
+              style={{ 
+                width: "100%", 
+                height: "100%", 
+                objectFit: "contain" 
+              }} 
+            />
           </div>
           <h3 style={{
             fontSize: "1.5rem",
@@ -113,38 +86,27 @@ export default function MissionVisionValues() {
             height: "72px",
             borderRadius: "50%",
             backgroundColor: "white",
-            border: "1px solid rgba(0, 114, 255, 0.25)",
+            border: "1px solid rgba(0, 114, 255, 0.15)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             marginBottom: "1.5rem",
-            boxShadow: "0 10px 22px rgba(0, 114, 255, 0.2)",
+            boxShadow: "0 8px 20px rgba(0, 114, 255, 0.18)",
             marginTop: "-3.75rem",
             zIndex: 2,
-            position: "relative"
+            position: "relative",
+            overflow: "hidden",
+            padding: "8px"
           }}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 64 64" fill="none">
-              <defs>
-                <linearGradient id="eyeBlue" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#00C6FF" />
-                  <stop offset="100%" stopColor="#0072FF" />
-                </linearGradient>
-                <linearGradient id="irisCyan" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#00F2FE" />
-                  <stop offset="100%" stopColor="#4FACFE" />
-                </linearGradient>
-                <filter id="shadowFilter2" x="-10%" y="-10%" width="120%" height="120%">
-                  <feDropShadow dx="1" dy="2" stdDeviation="1.5" floodColor="#000000" floodOpacity="0.18" />
-                </filter>
-              </defs>
-              <path d="M8 32 C16 18, 48 18, 56 32 C48 46, 16 46, 8 32 Z" fill="#FFFFFF" filter="url(#shadowFilter2)" />
-              <path d="M8 32 C16 18, 48 18, 56 32" stroke="url(#eyeBlue)" strokeWidth="3" strokeLinecap="round" />
-              <path d="M8 32 C16 46, 48 46, 56 32" stroke="url(#eyeBlue)" strokeWidth="2" strokeLinecap="round" />
-              <circle cx="32" cy="32" r="11" fill="url(#irisCyan)" filter="url(#shadowFilter2)" />
-              <circle cx="32" cy="32" r="5" fill="#0F172A" />
-              <path d="M28 25 A 5 5 0 0 1 36 25" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" opacity="0.8" />
-              <circle cx="35" cy="29" r="1.5" fill="#FFFFFF" opacity="0.9" />
-            </svg>
+            <img 
+              src="/images/about/vision.png" 
+              alt="Vision" 
+              style={{ 
+                width: "100%", 
+                height: "100%", 
+                objectFit: "contain" 
+              }} 
+            />
           </div>
           <h3 style={{
             fontSize: "1.5rem",
@@ -184,40 +146,27 @@ export default function MissionVisionValues() {
             height: "72px",
             borderRadius: "50%",
             backgroundColor: "white",
-            border: "1px solid rgba(255, 8, 68, 0.25)",
+            border: "1px solid rgba(255, 8, 68, 0.15)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             marginBottom: "1.5rem",
-            boxShadow: "0 10px 22px rgba(255, 8, 68, 0.2)",
+            boxShadow: "0 8px 20px rgba(255, 8, 68, 0.18)",
             marginTop: "-3.75rem",
             zIndex: 2,
-            position: "relative"
+            position: "relative",
+            overflow: "hidden",
+            padding: "8px"
           }}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 64 64" fill="none">
-              <defs>
-                <linearGradient id="heartRed" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#FF0844" />
-                  <stop offset="100%" stopColor="#FF4E50" />
-                </linearGradient>
-                <linearGradient id="heartGloss" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.6" />
-                  <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0" />
-                </linearGradient>
-                <filter id="shadowFilter3" x="-10%" y="-10%" width="120%" height="120%">
-                  <feDropShadow dx="1" dy="2.5" stdDeviation="2" floodColor="#FF0844" floodOpacity="0.3" />
-                </filter>
-              </defs>
-              <path d="M32 54 C32 54, 52 38, 52 24 C52 14, 44 6, 35 6 C30 6, 26 10, 24 14 C22 10, 18 6, 13 6 C4 6, -4 14, -4 24 C-4 38, 16 54, 32 54 Z" 
-                    fill="url(#heartRed)" 
-                    filter="url(#shadowFilter3)"
-                    transform="scale(0.8) translate(8, 6)" />
-              <path d="M32 54 C32 54, 52 38, 52 24 C52 14, 44 6, 35 6 C30 6, 26 10, 24 14 C22 10, 18 6, 13 6 C4 6, -4 14, -4 24 C-4 38, 16 54, 32 54 Z" 
-                    fill="url(#heartGloss)" 
-                    transform="scale(0.8) translate(8, 6)"
-                    opacity="0.45" />
-              <ellipse cx="20" cy="18" rx="4" ry="2.5" transform="rotate(-30, 20, 18)" fill="#FFFFFF" opacity="0.75" />
-            </svg>
+            <img 
+              src="/images/about/values.png" 
+              alt="Values" 
+              style={{ 
+                width: "100%", 
+                height: "100%", 
+                objectFit: "contain" 
+              }} 
+            />
           </div>
           <h3 style={{
             fontSize: "1.5rem",
