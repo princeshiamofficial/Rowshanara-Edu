@@ -55,12 +55,12 @@ export default function ContactForm() {
   ];
 
   const countriesList = [
-    "United Kingdom",
-    "United States",
-    "Canada",
-    "Australia",
-    "Germany",
-    "Malaysia"
+    { name: "United Kingdom", code: "gb" },
+    { name: "United States", code: "us" },
+    { name: "Canada", code: "ca" },
+    { name: "Australia", code: "au" },
+    { name: "Germany", code: "de" },
+    { name: "Malaysia", code: "my" }
   ];
 
   const inputStyle: React.CSSProperties = {
@@ -87,6 +87,8 @@ export default function ContactForm() {
     e.currentTarget.style.background = "#fdfcf9";
     e.currentTarget.style.boxShadow = "none";
   };
+
+  const selectedCountry = countriesList.find(c => c.name === formData.country);
 
   return (
     <div style={{
@@ -191,9 +193,18 @@ export default function ContactForm() {
                   boxShadow: isDropdownOpen ? "0 0 0 4px rgba(224, 145, 0, 0.12)" : "none"
                 }}
               >
-                <span style={{ color: formData.country ? "var(--text)" : "#9ca3af" }}>
-                  {formData.country || "Select a country"}
-                </span>
+                <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
+                  {selectedCountry && (
+                    <img 
+                      src={`https://flagcdn.com/w40/${selectedCountry.code}.png`} 
+                      alt="" 
+                      style={{ height: "16px", borderRadius: "3px", boxShadow: "0 1px 3px rgba(0,0,0,0.15)" }}
+                    />
+                  )}
+                  <span style={{ color: formData.country ? "var(--text)" : "#9ca3af" }}>
+                    {formData.country || "Select a country"}
+                  </span>
+                </div>
                 <i className="bi bi-chevron-down" style={{
                   fontSize: "0.85rem",
                   transition: "transform 0.3s ease",
@@ -245,12 +256,12 @@ export default function ContactForm() {
                       Select a country
                     </div>
                     {countriesList.map((country, cIdx) => {
-                      const isSelected = formData.country === country;
+                      const isSelected = formData.country === country.name;
                       return (
                         <div
                           key={cIdx}
                           onClick={() => {
-                            setFormData({ ...formData, country: country });
+                            setFormData({ ...formData, country: country.name });
                             setIsDropdownOpen(false);
                           }}
                           style={{
@@ -272,7 +283,14 @@ export default function ContactForm() {
                             if (!isSelected) e.currentTarget.style.background = "transparent";
                           }}
                         >
-                          <span>{country}</span>
+                          <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
+                            <img 
+                              src={`https://flagcdn.com/w40/${country.code}.png`} 
+                              alt="" 
+                              style={{ height: "16px", borderRadius: "3px", boxShadow: "0 1px 3px rgba(0,0,0,0.15)" }}
+                            />
+                            <span>{country.name}</span>
+                          </div>
                           {isSelected && <FaCheck style={{ fontSize: "0.8rem", color: "var(--primary)" }} />}
                         </div>
                       );
