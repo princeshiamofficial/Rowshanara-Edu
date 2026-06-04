@@ -35,8 +35,7 @@ export default function MissionVisionValues() {
             marginTop: "-3.75rem",
             zIndex: 2,
             position: "relative",
-            overflow: "hidden",
-            padding: "8px"
+            overflow: "hidden"
           }}>
             <img 
               src="/images/about/mission.png" 
@@ -44,7 +43,7 @@ export default function MissionVisionValues() {
               style={{ 
                 width: "100%", 
                 height: "100%", 
-                objectFit: "contain" 
+                objectFit: "cover" 
               }} 
             />
           </div>
@@ -95,8 +94,7 @@ export default function MissionVisionValues() {
             marginTop: "-3.75rem",
             zIndex: 2,
             position: "relative",
-            overflow: "hidden",
-            padding: "8px"
+            overflow: "hidden"
           }}>
             <img 
               src="/images/about/vision.png" 
@@ -104,7 +102,7 @@ export default function MissionVisionValues() {
               style={{ 
                 width: "100%", 
                 height: "100%", 
-                objectFit: "contain" 
+                objectFit: "cover" 
               }} 
             />
           </div>
@@ -155,8 +153,7 @@ export default function MissionVisionValues() {
             marginTop: "-3.75rem",
             zIndex: 2,
             position: "relative",
-            overflow: "hidden",
-            padding: "8px"
+            overflow: "hidden"
           }}>
             <img 
               src="/images/about/values.png" 
@@ -164,7 +161,7 @@ export default function MissionVisionValues() {
               style={{ 
                 width: "100%", 
                 height: "100%", 
-                objectFit: "contain" 
+                objectFit: "cover" 
               }} 
             />
           </div>
