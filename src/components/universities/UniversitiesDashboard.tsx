@@ -1573,8 +1573,8 @@ export default function UniversitiesDashboard({ searchQuery }: UniversitiesDashb
             padding: 0 !important;
           }
           .modal-container {
-            height: 85vh !important;
-            max-height: 85vh !important;
+            height: 95vh !important;
+            max-height: 95vh !important;
             border-radius: 28px 28px 0 0 !important;
             width: 100% !important;
             max-width: 100% !important;
