@@ -6,17 +6,7 @@ import { FaFacebookF, FaXTwitter, FaLinkedinIn, FaYoutube, FaWeixin } from "reac
 export default function SocialBar() {
   return (
     <section className="container" style={{ marginTop: "4rem" }}>
-      <div style={{
-        background: "black",
-        borderRadius: "20px",
-        padding: "1.25rem 2.5rem",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        border: "1px solid rgba(255, 255, 255, 0.15)",
-        flexWrap: "wrap",
-        gap: "1.5rem"
-      }}>
+      <div className="social-bar-card">
         <span style={{
           fontSize: "1.15rem",
           fontWeight: 700,

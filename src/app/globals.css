@@ -2330,6 +2330,15 @@ button {
   .map-iframe-wrapper {
     height: 225px !important;
   }
+
+  .social-bar-card {
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    padding: 1.5rem 1.25rem !important;
+    gap: 1rem !important;
+  }
 }
 
 .map-iframe-wrapper {
@@ -2340,4 +2349,16 @@ button {
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
   border: 1px solid rgba(10, 28, 58, 0.06);
   transition: height 0.3s ease;
+}
+
+.social-bar-card {
+  background: black;
+  border-radius: 20px;
+  padding: 1.25rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  flex-wrap: wrap;
+  gap: 1.5rem;
 }
