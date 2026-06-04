@@ -2228,6 +2228,6 @@ button {
 
 @media (max-width: 991px) {
   .mission-vision-grid {
-    row-gap: 4.5rem !important;
+    row-gap: 3.5rem !important;
   }
 }
