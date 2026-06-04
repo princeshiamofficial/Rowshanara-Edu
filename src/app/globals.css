@@ -2228,6 +2228,30 @@ button {
 
 @media (max-width: 991px) {
   .mission-vision-grid {
-    row-gap: 3.5rem !important;
+    row-gap: 4rem !important;
+  }
+}
+
+.mission-vision-badge {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 991px) {
+  .mission-vision-badge {
+    width: 92px !important;
+    height: 92px !important;
   }
 }

@@ -22,22 +22,9 @@ export default function MissionVisionValues() {
           alignItems: "center",
           position: "relative"
         }}>
-          <div style={{
-            width: "76px",
-            height: "76px",
-            borderRadius: "50%",
-            backgroundColor: "white",
+          <div className="mission-vision-badge" style={{
             border: "1px solid rgba(255, 78, 80, 0.15)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            boxShadow: "0 10px 25px rgba(255, 78, 80, 0.2)",
-            zIndex: 2,
-            position: "absolute",
-            top: "0",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            overflow: "hidden"
+            boxShadow: "0 10px 25px rgba(255, 78, 80, 0.2)"
           }}>
             <img 
               src="/images/about/mission.png" 
@@ -79,22 +66,9 @@ export default function MissionVisionValues() {
           alignItems: "center",
           position: "relative"
         }}>
-          <div style={{
-            width: "76px",
-            height: "76px",
-            borderRadius: "50%",
-            backgroundColor: "white",
+          <div className="mission-vision-badge" style={{
             border: "1px solid rgba(0, 114, 255, 0.15)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            boxShadow: "0 10px 25px rgba(0, 114, 255, 0.2)",
-            zIndex: 2,
-            position: "absolute",
-            top: "0",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            overflow: "hidden"
+            boxShadow: "0 10px 25px rgba(0, 114, 255, 0.2)"
           }}>
             <img 
               src="/images/about/vision.png" 
@@ -136,22 +110,9 @@ export default function MissionVisionValues() {
           alignItems: "center",
           position: "relative"
         }}>
-          <div style={{
-            width: "76px",
-            height: "76px",
-            borderRadius: "50%",
-            backgroundColor: "white",
+          <div className="mission-vision-badge" style={{
             border: "1px solid rgba(255, 8, 68, 0.15)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            boxShadow: "0 10px 25px rgba(255, 8, 68, 0.2)",
-            zIndex: 2,
-            position: "absolute",
-            top: "0",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            overflow: "hidden"
+            boxShadow: "0 10px 25px rgba(255, 8, 68, 0.2)"
           }}>
             <img 
               src="/images/about/values.png" 
