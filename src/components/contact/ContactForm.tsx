@@ -13,6 +13,7 @@ export default function ContactForm() {
     message: ""
   });
   const [submitted, setSubmitted] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -52,6 +53,40 @@ export default function ContactForm() {
     "Pre-Departure Briefing",
     "Post-Arrival Support"
   ];
+
+  const countriesList = [
+    "United Kingdom",
+    "United States",
+    "Canada",
+    "Australia",
+    "Germany",
+    "Malaysia"
+  ];
+
+  const inputStyle: React.CSSProperties = {
+    width: "100%",
+    padding: "0.9rem 1.25rem",
+    borderRadius: "14px",
+    border: "1px solid rgba(10, 28, 58, 0.12)",
+    background: "#fdfcf9",
+    fontSize: "0.95rem",
+    color: "var(--text)",
+    outline: "none",
+    transition: "all 0.3s ease",
+    fontFamily: "inherit"
+  };
+
+  const handleFocus = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    e.currentTarget.style.borderColor = "var(--primary)";
+    e.currentTarget.style.background = "white";
+    e.currentTarget.style.boxShadow = "0 0 0 4px rgba(224, 145, 0, 0.12)";
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    e.currentTarget.style.borderColor = "rgba(10, 28, 58, 0.12)";
+    e.currentTarget.style.background = "#fdfcf9";
+    e.currentTarget.style.boxShadow = "none";
+  };
 
   return (
     <div style={{
@@ -102,16 +137,9 @@ export default function ContactForm() {
                 placeholder="Your name"
                 value={formData.name}
                 onChange={e => setFormData({ ...formData, name: e.target.value })}
-                style={{
-                  padding: "0.85rem 1.1rem",
-                  borderRadius: "10px",
-                  border: "1px solid rgba(10, 28, 58, 0.15)",
-                  fontSize: "0.95rem",
-                  outline: "none",
-                  transition: "all 0.3s"
-                }}
-                onFocus={e => e.currentTarget.style.borderColor = "var(--primary)"}
-                onBlur={e => e.currentTarget.style.borderColor = "rgba(10, 28, 58, 0.15)"}
+                style={inputStyle}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
               />
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
@@ -122,16 +150,9 @@ export default function ContactForm() {
                 placeholder="your@email.com"
                 value={formData.email}
                 onChange={e => setFormData({ ...formData, email: e.target.value })}
-                style={{
-                  padding: "0.85rem 1.1rem",
-                  borderRadius: "10px",
-                  border: "1px solid rgba(10, 28, 58, 0.15)",
-                  fontSize: "0.95rem",
-                  outline: "none",
-                  transition: "all 0.3s"
-                }}
-                onFocus={e => e.currentTarget.style.borderColor = "var(--primary)"}
-                onBlur={e => e.currentTarget.style.borderColor = "rgba(10, 28, 58, 0.15)"}
+                style={inputStyle}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
               />
             </div>
           </div>
@@ -150,90 +171,164 @@ export default function ContactForm() {
                 placeholder="+880 1XXX XXXXXX"
                 value={formData.phone}
                 onChange={e => setFormData({ ...formData, phone: e.target.value })}
-                style={{
-                  padding: "0.85rem 1.1rem",
-                  borderRadius: "10px",
-                  border: "1px solid rgba(10, 28, 58, 0.15)",
-                  fontSize: "0.95rem",
-                  outline: "none",
-                  transition: "all 0.3s"
-                }}
-                onFocus={e => e.currentTarget.style.borderColor = "var(--primary)"}
-                onBlur={e => e.currentTarget.style.borderColor = "rgba(10, 28, 58, 0.15)"}
+                style={inputStyle}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
               />
             </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", position: "relative" }}>
               <label style={{ fontSize: "0.85rem", fontWeight: 700, color: "var(--text)" }}>Destination Country</label>
-              <select
-                value={formData.country}
-                onChange={e => setFormData({ ...formData, country: e.target.value })}
+              <div
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 style={{
-                  padding: "0.85rem 1.1rem",
-                  borderRadius: "10px",
-                  border: "1px solid rgba(10, 28, 58, 0.15)",
-                  fontSize: "0.95rem",
-                  outline: "none",
-                  background: "white",
-                  cursor: "pointer"
+                  ...inputStyle,
+                  cursor: "pointer",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  borderColor: isDropdownOpen ? "var(--primary)" : "rgba(10, 28, 58, 0.12)",
+                  background: isDropdownOpen ? "white" : "#fdfcf9",
+                  boxShadow: isDropdownOpen ? "0 0 0 4px rgba(224, 145, 0, 0.12)" : "none"
                 }}
               >
-                <option value="">Select a country</option>
-                <option value="United Kingdom">United Kingdom</option>
-                <option value="United States">United States</option>
-                <option value="Canada">Canada</option>
-                <option value="Australia">Australia</option>
-                <option value="Germany">Germany</option>
-                <option value="Malaysia">Malaysia</option>
-              </select>
+                <span style={{ color: formData.country ? "var(--text)" : "#9ca3af" }}>
+                  {formData.country || "Select a country"}
+                </span>
+                <i className="bi bi-chevron-down" style={{
+                  fontSize: "0.85rem",
+                  transition: "transform 0.3s ease",
+                  transform: isDropdownOpen ? "rotate(180deg)" : "rotate(0deg)",
+                  color: "var(--text)",
+                  opacity: 0.6
+                }}></i>
+              </div>
+
+              {isDropdownOpen && (
+                <>
+                  <div 
+                    onClick={() => setIsDropdownOpen(false)}
+                    style={{
+                      position: "fixed",
+                      inset: 0,
+                      zIndex: 999
+                    }}
+                  />
+                  <div style={{
+                    position: "absolute",
+                    top: "100%",
+                    left: 0,
+                    right: 0,
+                    marginTop: "0.5rem",
+                    background: "white",
+                    borderRadius: "14px",
+                    border: "1px solid rgba(10, 28, 58, 0.08)",
+                    boxShadow: "0 10px 30px rgba(0, 0, 0, 0.08)",
+                    zIndex: 1000,
+                    overflow: "hidden",
+                    padding: "0.4rem 0"
+                  }}>
+                    <div
+                      onClick={() => {
+                        setFormData({ ...formData, country: "" });
+                        setIsDropdownOpen(false);
+                      }}
+                      style={{
+                        padding: "0.75rem 1.25rem",
+                        fontSize: "0.95rem",
+                        cursor: "pointer",
+                        color: "#9ca3af",
+                        transition: "all 0.2s"
+                      }}
+                      onMouseEnter={e => e.currentTarget.style.background = "#fdfcf9"}
+                      onMouseLeave={e => e.currentTarget.style.background = "transparent"}
+                    >
+                      Select a country
+                    </div>
+                    {countriesList.map((country, cIdx) => {
+                      const isSelected = formData.country === country;
+                      return (
+                        <div
+                          key={cIdx}
+                          onClick={() => {
+                            setFormData({ ...formData, country: country });
+                            setIsDropdownOpen(false);
+                          }}
+                          style={{
+                            padding: "0.75rem 1.25rem",
+                            fontSize: "0.95rem",
+                            cursor: "pointer",
+                            fontWeight: isSelected ? 700 : 500,
+                            color: isSelected ? "var(--primary)" : "var(--text)",
+                            background: isSelected ? "rgba(224, 145, 0, 0.06)" : "transparent",
+                            display: "flex",
+                            justifyContent: "space-between",
+                            alignItems: "center",
+                            transition: "all 0.2s"
+                          }}
+                          onMouseEnter={e => {
+                            if (!isSelected) e.currentTarget.style.background = "#fdfcf9";
+                          }}
+                          onMouseLeave={e => {
+                            if (!isSelected) e.currentTarget.style.background = "transparent";
+                          }}
+                        >
+                          <span>{country}</span>
+                          {isSelected && <FaCheck style={{ fontSize: "0.8rem", color: "var(--primary)" }} />}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </>
+              )}
             </div>
           </div>
 
-          {/* Services Checkboxes */}
+          {/* Services Pill Tags */}
           <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
             <span style={{ fontSize: "0.85rem", fontWeight: 700, color: "var(--text)" }}>Services Interested In</span>
             <div style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "0.75rem"
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "0.6rem"
             }}>
               {servicesList.map((service, idx) => {
                 const isChecked = formData.services.includes(service);
                 return (
-                  <label key={idx} style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.5rem",
-                    fontSize: "0.9rem",
-                    color: "var(--text)",
-                    cursor: "pointer"
-                  }}>
-                    <input
-                      type="checkbox"
-                      checked={isChecked}
-                      onChange={() => handleServiceChange(service)}
-                      style={{
-                        position: "absolute",
-                        opacity: 0,
-                        width: 0,
-                        height: 0
-                      }}
-                    />
-                    <div style={{
-                      width: "16px",
-                      height: "16px",
-                      borderRadius: "4px",
-                      border: isChecked ? "1px solid var(--primary)" : "2px solid #cbd5e1",
-                      backgroundColor: isChecked ? "var(--primary)" : "transparent",
-                      display: "flex",
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => handleServiceChange(service)}
+                    style={{
+                      padding: "0.55rem 1.1rem",
+                      borderRadius: "100px",
+                      border: isChecked ? "1.5px solid var(--primary)" : "1.5px solid rgba(10, 28, 58, 0.1)",
+                      backgroundColor: isChecked ? "rgba(224, 145, 0, 0.08)" : "#fdfcf9",
+                      color: isChecked ? "var(--primary)" : "var(--text)",
+                      fontSize: "0.85rem",
+                      fontWeight: 700,
+                      cursor: "pointer",
+                      transition: "all 0.2s ease",
+                      fontFamily: "inherit",
+                      display: "inline-flex",
                       alignItems: "center",
-                      justifyContent: "center",
-                      flexShrink: 0,
-                      transition: "all 0.2s"
-                    }}>
-                      {isChecked && <FaCheck style={{ fontSize: "0.6rem", color: "white" }} />}
-                    </div>
+                      gap: "0.4rem"
+                    }}
+                    onMouseEnter={e => {
+                      if (!isChecked) {
+                        e.currentTarget.style.borderColor = "var(--primary)";
+                        e.currentTarget.style.background = "rgba(224, 145, 0, 0.03)";
+                      }
+                    }}
+                    onMouseLeave={e => {
+                      if (!isChecked) {
+                        e.currentTarget.style.borderColor = "rgba(10, 28, 58, 0.1)";
+                        e.currentTarget.style.background = "#fdfcf9";
+                      }
+                    }}
+                  >
+                    {isChecked && <FaCheck style={{ fontSize: "0.75rem" }} />}
                     {service}
-                  </label>
+                  </button>
                 );
               })}
             </div>
@@ -249,26 +344,20 @@ export default function ContactForm() {
               value={formData.message}
               onChange={e => setFormData({ ...formData, message: e.target.value })}
               style={{
-                padding: "0.85rem 1.1rem",
-                borderRadius: "10px",
-                border: "1px solid rgba(10, 28, 58, 0.15)",
-                fontSize: "0.95rem",
-                outline: "none",
-                resize: "none",
-                fontFamily: "inherit",
-                transition: "all 0.3s"
+                ...inputStyle,
+                resize: "none"
               }}
-              onFocus={e => e.currentTarget.style.borderColor = "var(--primary)"}
-              onBlur={e => e.currentTarget.style.borderColor = "rgba(10, 28, 58, 0.15)"}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
             />
           </div>
 
           {/* Submit Button */}
           <button type="submit" style={{
-            background: "#1c7ed6",
+            background: "linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%)",
             color: "white",
-            padding: "0.9rem",
-            borderRadius: "12px",
+            padding: "0.95rem",
+            borderRadius: "14px",
             border: "none",
             fontWeight: 700,
             fontSize: "1rem",
@@ -276,11 +365,19 @@ export default function ContactForm() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            gap: "0.5rem",
-            transition: "all 0.2s"
+            gap: "0.6rem",
+            boxShadow: "0 8px 20px rgba(224, 145, 0, 0.18)",
+            transition: "all 0.3s ease",
+            fontFamily: "inherit"
           }}
-          onMouseEnter={e => e.currentTarget.style.background = "#1971c2"}
-          onMouseLeave={e => e.currentTarget.style.background = "#1c7ed6"}>
+          onMouseEnter={e => {
+            e.currentTarget.style.transform = "translateY(-2px)";
+            e.currentTarget.style.boxShadow = "0 12px 25px rgba(224, 145, 0, 0.28)";
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.transform = "translateY(0)";
+            e.currentTarget.style.boxShadow = "0 8px 20px rgba(224, 145, 0, 0.18)";
+          }}>
             <FaPaperPlane /> Send Message
           </button>
         </form>
