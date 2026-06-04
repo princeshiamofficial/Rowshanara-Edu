@@ -1055,34 +1055,39 @@ export default function UniversitiesDashboard({ searchQuery }: UniversitiesDashb
                 <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.5rem" }}>
                   {activeUniversity.isOfficialPartner && (
                     <span style={{
-                      background: "rgba(24, 119, 242, 0.95)",
-                      color: "white",
-                      fontSize: "0.75rem",
-                      fontWeight: 800,
-                      padding: "0.25rem 0.6rem",
-                      borderRadius: "20px",
                       display: "inline-flex",
                       alignItems: "center",
-                      gap: "0.3rem",
-                      border: "1px solid rgba(255, 255, 255, 0.2)"
+                      gap: "0.35rem",
+                      background: "rgba(255, 255, 255, 0.95)",
+                      color: "#1E293B",
+                      fontSize: "0.75rem",
+                      fontWeight: 800,
+                      padding: "0.3rem 0.6rem",
+                      borderRadius: "20px",
+                      boxShadow: "0 2px 8px rgba(0, 0, 0, 0.12)",
+                      backdropFilter: "blur(4px)",
+                      border: "1px solid rgba(24, 119, 242, 0.15)"
                     }}>
-                      <BsPatchCheckFill style={{ fontSize: "0.85rem" }} /> Partner
+                      <BsPatchCheckFill style={{ color: "#1877F2", fontSize: "0.9rem", flexShrink: 0 }} /> Official Partner
                     </span>
                   )}
-                  <span style={{
-                    background: "rgba(250, 176, 5, 0.95)",
-                    color: "white",
-                    fontSize: "0.75rem",
-                    fontWeight: 800,
-                    padding: "0.25rem 0.6rem",
-                    borderRadius: "20px",
-                    display: "inline-flex",
+                  <div style={{
+                    display: "flex",
                     alignItems: "center",
-                    gap: "0.3rem",
-                    border: "1px solid rgba(255, 255, 255, 0.2)"
+                    gap: "0.25rem",
+                    background: "rgba(255, 255, 255, 0.95)",
+                    color: "#fab005",
+                    fontSize: "0.85rem",
+                    fontWeight: 800,
+                    padding: "0.3rem 0.6rem",
+                    borderRadius: "20px",
+                    boxShadow: "0 2px 8px rgba(0, 0, 0, 0.12)",
+                    backdropFilter: "blur(4px)",
+                    border: "1px solid rgba(250, 176, 5, 0.2)"
                   }}>
-                    <FaStar style={{ fontSize: "0.75rem" }} /> Rank #{activeUniversity.rank}
-                  </span>
+                    <FaStar style={{ fontSize: "0.8rem" }} />
+                    <span>Rank {activeUniversity.rank}</span>
+                  </div>
                 </div>
                 <h2 className="modal-banner-title" style={{
                   fontSize: "1.85rem",
@@ -1094,8 +1099,17 @@ export default function UniversitiesDashboard({ searchQuery }: UniversitiesDashb
                 }}>
                   {activeUniversity.name}
                 </h2>
-                <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginTop: "0.5rem", opacity: 0.9 }}>
-                  <FaLocationDot style={{ color: "var(--primary)" }} />
+                <div style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.5rem",
+                  color: "white",
+                  fontSize: "0.9rem",
+                  fontWeight: 700,
+                  marginTop: "0.5rem",
+                  opacity: 0.9
+                }}>
+                  <FaLocationDot style={{ color: "#ffffff", opacity: 0.85 }} />
                   <img
                     src={`https://flagcdn.com/w40/${
                       activeUniversity.country.toLowerCase() === "uk" ? "gb" :
@@ -1106,9 +1120,13 @@ export default function UniversitiesDashboard({ searchQuery }: UniversitiesDashb
                       activeUniversity.country.toLowerCase() === "malaysia" ? "my" : "un"
                     }.png`}
                     alt={`${activeUniversity.country} flag`}
-                    style={{ height: "11px", borderRadius: "1px" }}
+                    style={{
+                      height: "11px",
+                      borderRadius: "2px",
+                      boxShadow: "0 1px 2px rgba(0,0,0,0.2)"
+                    }}
                   />
-                  <span style={{ fontSize: "0.95rem", fontWeight: 600 }}>{activeUniversity.location}</span>
+                  <span style={{ textShadow: "0 1px 2px rgba(0,0,0,0.6)" }}>{activeUniversity.location}</span>
                 </div>
               </div>
             </div>
