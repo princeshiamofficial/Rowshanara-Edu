@@ -15,7 +15,7 @@ export default function Journey() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section className="container" style={{ marginTop: "4.5rem", marginBottom: "2.5rem" }}>
+    <section className="container" style={{ marginTop: "1.5rem", marginBottom: "2.5rem" }}>
       <h2 style={{ 
         textAlign: "center", 
         fontSize: "clamp(2rem, 4vw, 2.75rem)", 
