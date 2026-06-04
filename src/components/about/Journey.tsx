@@ -29,7 +29,7 @@ export default function Journey() {
 
       <div style={{
         position: "relative",
-        maxWidth: "800px",
+        maxWidth: "700px", // slightly narrower container for a more focused minimal look
         margin: "0 auto",
         padding: "0 1rem"
       }}>
@@ -48,15 +48,15 @@ export default function Journey() {
             >
               {/* Year column */}
               <div style={{
-                width: "90px",
+                width: "80px", // reduced from 90px for cleaner spacing
                 textAlign: "right",
-                paddingRight: "24px",
-                fontSize: "1.5rem",
+                paddingRight: "20px",
+                fontSize: "1.4rem",
                 fontWeight: 800,
-                color: isHovered ? "#c78100" : "var(--primary)",
+                color: isHovered ? "var(--primary)" : "#64748b",
                 fontFamily: "'Baloo 2', cursive",
                 lineHeight: "1.2",
-                paddingTop: "12px",
+                paddingTop: "6px",
                 transition: "color 0.25s ease"
               }}>
                 {ms.year}
@@ -72,27 +72,27 @@ export default function Journey() {
               }}>
                 {/* The Dot Ring */}
                 <div style={{
-                  width: "20px",
-                  height: "20px",
+                  width: "18px",
+                  height: "18px",
                   borderRadius: "50%",
                   backgroundColor: "white",
-                  border: isHovered ? "2px solid var(--primary)" : "2px solid rgba(224, 145, 0, 0.3)",
+                  border: isHovered ? "2px solid var(--primary)" : "2px solid rgba(224, 145, 0, 0.25)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                   zIndex: 2,
-                  marginTop: "16px",
+                  marginTop: "10px",
                   transition: "all 0.25s ease",
                   transform: isHovered ? "scale(1.2)" : "scale(1)",
-                  boxShadow: isHovered ? "0 0 10px rgba(224, 145, 0, 0.15)" : "none"
+                  boxShadow: isHovered ? "0 0 8px rgba(224, 145, 0, 0.12)" : "none"
                 }}>
                   {/* Inner Dot */}
                   <div style={{
-                    width: "8px",
-                    height: "8px",
+                    width: "6px",
+                    height: "6px",
                     borderRadius: "50%",
                     backgroundColor: "var(--primary)",
-                    boxShadow: isHovered ? "0 0 6px var(--primary)" : "none",
+                    opacity: isHovered ? 1 : 0.6,
                     transition: "all 0.25s ease"
                   }}></div>
                 </div>
@@ -101,12 +101,12 @@ export default function Journey() {
                 {index !== milestones.length - 1 && (
                   <div style={{
                     position: "absolute",
-                    top: "36px",
+                    top: "28px",
                     bottom: "-2rem",
-                    width: "3px",
+                    width: "2px", // reduced from 3px for extra minimalism
                     background: isHovered 
-                      ? "linear-gradient(to bottom, var(--primary) 0%, rgba(224, 145, 0, 0.4) 100%)" 
-                      : "linear-gradient(to bottom, rgba(224, 145, 0, 0.35) 0%, rgba(224, 145, 0, 0.15) 100%)",
+                      ? "var(--primary)" 
+                      : "rgba(224, 145, 0, 0.15)",
                     zIndex: 1,
                     transition: "background 0.25s ease"
                   }}></div>
@@ -116,33 +116,28 @@ export default function Journey() {
               {/* Content Card column */}
               <div style={{
                 flex: 1,
-                paddingLeft: "12px",
-                transform: isHovered ? "translateX(6px)" : "none",
+                paddingLeft: "10px",
+                transform: isHovered ? "translateX(4px)" : "none",
                 transition: "transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)"
               }}>
                 <div style={{
-                  background: "#ffffff",
-                  border: isHovered ? "1px solid rgba(224, 145, 0, 0.2)" : "1px solid rgba(224, 145, 0, 0.07)",
-                  borderRadius: "16px",
-                  padding: "1rem 1.4rem",
-                  boxShadow: isHovered 
-                    ? "0 12px 30px rgba(224, 145, 0, 0.04)" 
-                    : "0 6px 20px rgba(0, 0, 0, 0.015)",
-                  transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)"
+                  padding: "6px 0",
+                  transition: "all 0.3s ease"
                 }}>
                   <h3 style={{
-                    fontSize: "1.2rem",
+                    fontSize: "1.15rem",
                     fontWeight: 750,
-                    color: "#1e293b",
+                    color: isHovered ? "var(--primary)" : "#1e293b",
                     fontFamily: "'Baloo 2', cursive",
-                    margin: "0 0 0.35rem 0",
-                    lineHeight: "1.3"
+                    margin: "0 0 0.3rem 0",
+                    lineHeight: "1.3",
+                    transition: "color 0.25s ease"
                   }}>
                     {ms.title}
                   </h3>
                   <p style={{
-                    fontSize: "0.925rem",
-                    color: "#475569",
+                    fontSize: "0.9rem",
+                    color: "#64748b",
                     margin: 0,
                     fontFamily: "'Comic Neue', cursive",
                     lineHeight: "1.5"
