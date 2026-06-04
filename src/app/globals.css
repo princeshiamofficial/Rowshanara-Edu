@@ -2232,6 +2232,11 @@ button {
   }
 }
 
+.mvv-card {
+  text-align: center;
+  align-items: center;
+}
+
 .mission-vision-badge {
   width: 76px;
   height: 76px;
@@ -2253,5 +2258,26 @@ button {
   .mission-vision-badge {
     width: 92px !important;
     height: 92px !important;
+  }
+  
+  .mvv-card-left {
+    text-align: left !important;
+    align-items: flex-start !important;
+  }
+  
+  .mvv-card-right {
+    text-align: right !important;
+    align-items: flex-end !important;
+  }
+  
+  .mvv-badge-left {
+    left: 2.25rem !important;
+    transform: translateY(-50%) !important;
+  }
+  
+  .mvv-badge-right {
+    left: auto !important;
+    right: 2.25rem !important;
+    transform: translateY(-50%) !important;
   }
 }
