@@ -15,14 +15,7 @@ export default function MapLocation() {
           Our Location
         </h2>
       </div>
-      <div style={{
-        width: "100%",
-        height: "450px",
-        borderRadius: "24px",
-        overflow: "hidden",
-        boxShadow: "0 15px 35px rgba(0, 0, 0, 0.08)",
-        border: "1px solid rgba(10, 28, 58, 0.06)"
-      }}>
+      <div className="map-iframe-wrapper">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3653.1574144561273!2d90.4401676855508!3d23.706072035573392!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b74097c9ee29%3A0x4ed71eb5b2894d99!2sColor%20Hut!5e0!3m2!1sen!2sbd!4v1779648925770!5m2!1sen!2sbd"
           width="100%"
