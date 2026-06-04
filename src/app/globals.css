@@ -1481,14 +1481,16 @@ button {
 .services-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  gap: 4rem 2rem;
   width: 100%;
+  margin-top: 3.5rem;
 }
 
 .service-card {
+  position: relative;
   background: #ffffff;
   border-radius: 16px;
-  padding: 2.5rem 2rem;
+  padding: 3.5rem 2rem 2rem 2rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -1504,16 +1506,20 @@ button {
 }
 
 .service-icon-wrapper {
-  width: 50px;
-  height: 50px;
-  background-color: rgba(224, 145, 0, 0.1); /* Light warm brand bg */
-  color: var(--primary); /* Brand primary */
-  border-radius: 12px;
+  position: absolute;
+  top: -42px;
+  left: 0;
+  width: 84px;
+  height: 84px;
+  background-color: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
-  margin-bottom: 1.5rem;
+  z-index: 10;
+}
+
+.service-icon-wrapper img {
+  border-radius: 80% 80% 0 0;
 }
 
 .service-name {
@@ -1531,6 +1537,17 @@ button {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
+@media (min-width: 992px) {
+  .services-grid > .service-card:nth-child(3n+2) .service-icon-wrapper {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .services-grid > .service-card:nth-child(3n) .service-icon-wrapper {
+    left: auto;
+    right: 0;
+  }
+}
+
 @media (max-width: 991px) {
   .services-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -1539,7 +1556,34 @@ button {
 
 @media (max-width: 640px) {
   .services-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3.5rem 0.75rem; /* increase row gap to leave room above the overlapping icons */
+    margin-top: 2.5rem;
+  }
+  .services-section {
+    padding: 2.5rem 0.75rem 2rem 0.75rem;
+  }
+  .service-card {
+    padding: 3rem 1rem 1.25rem 1rem;
+    border-radius: 12px;
+  }
+  .service-icon-wrapper {
+    top: -36px;
+    left: 0;
+    width: 72px;
+    height: 72px;
+  }
+  .services-grid > .service-card:nth-child(2n) .service-icon-wrapper {
+    left: auto;
+    right: 0;
+  }
+  .service-name {
+    font-size: 1.05rem;
+    margin-bottom: 0.5rem;
+  }
+  .service-desc {
+    font-size: 0.825rem;
+    line-height: 1.4;
   }
 }
 
