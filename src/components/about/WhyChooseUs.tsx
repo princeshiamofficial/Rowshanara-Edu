@@ -79,47 +79,28 @@ export default function WhyChooseUs() {
         gap: "2rem"
       }}>
         {whyChooseUsList.map((item, index) => (
-          <div key={index} style={{
-            background: "white",
-            border: "1px solid rgba(10, 28, 58, 0.08)",
-            borderRadius: "24px",
-            padding: "1.5rem 1.5rem",
-            boxShadow: "0 10px 30px rgba(0, 0, 0, 0.02)",
-            display: "flex",
-            alignItems: "flex-start",
-            gap: "1.5rem"
-          }}>
+          <div key={index} className="choose-us-card">
             {/* Icon Container */}
-            <div style={{
-              width: "56px",
-              height: "56px",
-              borderRadius: "50%",
-              backgroundColor: "rgba(224, 145, 0, 0.1)",
-              color: "var(--primary)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              flexShrink: 0
-            }}>
+            <div className="choose-us-icon-wrapper">
               {item.icon}
             </div>
 
             {/* Text Container */}
             <div style={{ flex: 1 }}>
               <h3 style={{
-                fontSize: "1.25rem",
+                fontSize: "1.225rem",
                 fontWeight: 800,
                 color: "#0F172A",
-                marginBottom: "0.5rem",
+                marginBottom: "0.45rem",
                 fontFamily: "'Baloo 2', cursive",
-                lineHeight: "1.2"
+                lineHeight: "1.25"
               }}>
                 {item.title}
               </h3>
               <p style={{
-                fontSize: "0.95rem",
+                fontSize: "0.925rem",
                 color: "#475569",
-                lineHeight: "1.5",
+                lineHeight: "1.55",
                 margin: 0,
                 fontFamily: "'Comic Neue', cursive"
               }}>
