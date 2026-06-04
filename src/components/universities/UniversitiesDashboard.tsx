@@ -959,6 +959,7 @@ export default function UniversitiesDashboard({ searchQuery }: UniversitiesDashb
       {/* University Details Modal Overlay */}
       {activeUniversity && (
         <div
+          className="modal-backdrop"
           onClick={() => setActiveUniversity(null)}
           style={{
             position: "fixed",
@@ -996,6 +997,23 @@ export default function UniversitiesDashboard({ searchQuery }: UniversitiesDashb
               animation: "slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1)"
             }}
           >
+            {/* Bottom Sheet Drag Handle for Mobile */}
+            <div 
+              className="bottom-sheet-drag-handle" 
+              style={{
+                width: "40px",
+                height: "5px",
+                borderRadius: "3px",
+                background: "rgba(255, 255, 255, 0.4)",
+                position: "absolute",
+                top: "10px",
+                left: "50%",
+                transform: "translateX(-50%)",
+                zIndex: 11,
+                display: "none"
+              }}
+            />
+
             {/* Close Button */}
             <button
               onClick={() => setActiveUniversity(null)}
@@ -1550,11 +1568,23 @@ export default function UniversitiesDashboard({ searchQuery }: UniversitiesDashb
         }
 
         @media (max-width: 768px) {
+          .modal-backdrop {
+            align-items: flex-end !important;
+            padding: 0 !important;
+          }
           .modal-container {
-            max-height: 92vh !important;
-            border-radius: 24px 24px 0 0 !important;
-            margin-top: auto !important;
-            animation: slideUpMobile 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+            height: 85vh !important;
+            max-height: 85vh !important;
+            border-radius: 28px 28px 0 0 !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            border-left: none !important;
+            border-right: none !important;
+            border-bottom: none !important;
+            animation: slideUpMobile 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+          }
+          .bottom-sheet-drag-handle {
+            display: block !important;
           }
           .modal-banner {
             height: 180px !important;
