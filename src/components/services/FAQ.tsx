@@ -41,6 +41,7 @@ const faqs = [
 export default function FAQ() {
   const [searchQuery, setSearchQuery] = useState("");
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
 
   const filteredFaqs = faqs.filter(faq =>
     faq.q.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -48,79 +49,86 @@ export default function FAQ() {
   );
 
   return (
-    <section className="container" style={{ marginTop: "6rem", marginBottom: "6rem" }}>
+    <section className="container" style={{ marginTop: "4rem", marginBottom: "3rem" }}>
       <h2 style={{
         textAlign: "center",
-        fontSize: "2.5rem",
+        fontSize: "clamp(1.2rem, 5.5vw, 2.5rem)",
         fontWeight: 800,
         color: "#0f172a",
-        marginBottom: "3.5rem",
-        fontFamily: "'Baloo 2', cursive"
+        marginBottom: "2rem",
+        fontFamily: "'Baloo 2', cursive",
+        whiteSpace: "nowrap"
       }}>
         Frequently Asked Questions
       </h2>
 
-      {/* Search Bar */}
+      {/* Minimal Search Bar */}
       <div style={{
-        maxWidth: "800px",
-        margin: "0 auto 2.5rem auto",
-        position: "relative"
+        maxWidth: "700px",
+        margin: "0 auto 1.75rem auto",
+        position: "relative",
+        borderRadius: "12px",
+        border: isSearchFocused ? "1px solid var(--primary)" : "1px solid #cbd5e1",
+        boxShadow: isSearchFocused ? "0 4px 12px rgba(224, 145, 0, 0.08)" : "none",
+        transition: "all 0.2s ease",
+        background: "#ffffff",
+        display: "flex",
+        alignItems: "center"
       }}>
         <FaMagnifyingGlass style={{
           position: "absolute",
           left: "1rem",
-          top: "50%",
-          transform: "translateY(-50%)",
-          color: "#94a3b8",
-          fontSize: "1.1rem"
+          color: isSearchFocused ? "var(--primary)" : "#94a3b8",
+          fontSize: "1rem",
+          transition: "color 0.2s"
         }} />
         <input
           type="text"
           placeholder="Search FAQs..."
           value={searchQuery}
           onChange={e => setSearchQuery(e.target.value)}
+          onFocus={() => setIsSearchFocused(true)}
+          onBlur={() => setIsSearchFocused(false)}
           style={{
             width: "100%",
-            padding: "1rem 1rem 1rem 3rem",
+            padding: "0.85rem 1rem 0.85rem 2.75rem",
             borderRadius: "12px",
-            border: "1px solid #cbd5e1",
-            fontSize: "1rem",
+            border: "none",
+            fontSize: "0.95rem",
             outline: "none",
             color: "#334155",
+            background: "transparent",
             fontFamily: "'Comic Neue', cursive",
-            boxShadow: "0 2px 8px rgba(0, 0, 0, 0.02)",
-            transition: "border-color 0.2s"
+            fontWeight: 700
           }}
-          onFocus={e => e.currentTarget.style.borderColor = "var(--primary)"}
-          onBlur={e => e.currentTarget.style.borderColor = "#cbd5e1"}
         />
       </div>
 
-      {/* FAQ list */}
+      {/* Minimal Accordion FAQ List */}
       <div style={{
-        maxWidth: "800px",
+        maxWidth: "700px",
         margin: "0 auto",
         display: "flex",
-        flexDirection: "column",
-        gap: "1rem"
+        flexDirection: "column"
       }}>
         {filteredFaqs.length > 0 ? (
           filteredFaqs.map((faq, index) => {
             const isOpen = openIndex === index;
             return (
-              <div key={index} style={{
-                borderRadius: "12px",
-                border: "1px solid #e2e8f0",
-                background: isOpen ? "#f8fafc" : "#ffffff",
-                overflow: "hidden",
-                transition: "all 0.2s ease"
-              }}>
+              <div 
+                key={index} 
+                style={{
+                  borderBottom: "1px solid #e2e8f0",
+                  background: "transparent",
+                  transition: "all 0.2s ease"
+                }}
+              >
                 {/* Question header */}
                 <button
                   onClick={() => setOpenIndex(isOpen ? null : index)}
                   style={{
                     width: "100%",
-                    padding: "1.25rem 1.5rem",
+                    padding: "1.25rem 0",
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
@@ -132,16 +140,21 @@ export default function FAQ() {
                 >
                   <span style={{
                     fontWeight: 700,
-                    fontSize: "1.05rem",
-                    color: "#1e293b",
-                    fontFamily: "'Baloo 2', cursive"
+                    fontSize: "1.1rem",
+                    color: isOpen ? "var(--primary)" : "#1e293b",
+                    fontFamily: "'Baloo 2', cursive",
+                    lineHeight: 1.4,
+                    transition: "color 0.2s"
                   }}>
                     {faq.q}
                   </span>
+                  
+                  {/* Minimal Chevron */}
                   <span style={{
-                    color: "var(--primary)",
-                    fontSize: "0.85rem",
-                    marginLeft: "1rem",
+                    color: isOpen ? "var(--primary)" : "#64748b",
+                    fontSize: "0.95rem",
+                    marginLeft: "1.5rem",
+                    flexShrink: 0,
                     display: "flex",
                     alignItems: "center",
                     transition: "transform 0.2s ease",
@@ -151,16 +164,15 @@ export default function FAQ() {
                   </span>
                 </button>
 
-                {/* Answer content with transition */}
+                {/* Answer content */}
                 <div style={{
-                  maxHeight: isOpen ? "200px" : "0",
+                  maxHeight: isOpen ? "250px" : "0",
                   overflow: "hidden",
-                  transition: "max-height 0.2s cubic-bezier(0, 1, 0, 1)",
-                  background: "#ffffff",
-                  borderTop: isOpen ? "1px solid #e2e8f0" : "none"
+                  transition: "max-height 0.25s ease-out",
+                  background: "transparent"
                 }}>
                   <p style={{
-                    padding: "1.25rem 1.5rem",
+                    padding: "0 0 1.25rem 0",
                     margin: 0,
                     fontSize: "0.95rem",
                     color: "#475569",

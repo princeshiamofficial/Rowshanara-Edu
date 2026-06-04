@@ -38,11 +38,12 @@ export default function Timeline() {
     <section className="container" style={{ marginTop: "1.8rem", marginBottom: "6rem" }}>
       <h2 style={{
         textAlign: "center",
-        fontSize: "2.5rem",
+        fontSize: "clamp(1.35rem, 5.5vw, 2.5rem)",
         fontWeight: 800,
         color: "#0f172a",
         marginBottom: "4rem",
-        fontFamily: "'Baloo 2', cursive"
+        fontFamily: "'Baloo 2', cursive",
+        whiteSpace: "nowrap"
       }}>
         Our Process Timeline
       </h2>
