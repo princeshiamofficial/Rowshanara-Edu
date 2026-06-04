@@ -447,13 +447,32 @@ export default function UniversitiesDashboard({ searchQuery }: UniversitiesDashb
       }}>
         {/* Top Counter Header */}
         <div style={{
-          fontSize: "1.1rem",
-          fontWeight: 700,
-          color: "var(--text)",
-          fontFamily: "'Comic Neue', cursive",
-          opacity: 0.85
+          display: "flex",
+          alignItems: "center",
+          paddingBottom: "0.75rem",
+          borderBottom: "1px solid rgba(224, 145, 0, 0.08)",
+          marginBottom: "0.25rem"
         }}>
-          Showing {filteredUniversities.length} universities
+          <div style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "0.6rem",
+            fontSize: "1.05rem",
+            fontWeight: 700,
+            color: "#475569",
+            fontFamily: "'Baloo 2', cursive"
+          }}>
+            <span>Showing</span>
+            <span style={{
+              background: "rgba(224, 145, 0, 0.08)",
+              color: "var(--primary)",
+              padding: "0.2rem 0.65rem",
+              borderRadius: "8px",
+              fontWeight: 800,
+              fontSize: "0.95rem"
+            }}>{filteredUniversities.length}</span>
+            <span>partner universities</span>
+          </div>
         </div>
 
         {/* Grid list of cards */}
