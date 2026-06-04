@@ -2,175 +2,151 @@ import React from "react";
 
 export default function MissionVisionValues() {
   return (
-    <section className="container" style={{ marginTop: "5rem", marginBottom: "1.75rem" }}>
+    <section className="container" style={{ marginTop: "3rem", marginBottom: "4rem" }}>
       <div style={{
         display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-        gap: "2rem"
+        gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+        gap: "2.25rem"
       }}>
         {/* Mission Card */}
         <div style={{
-          background: "linear-gradient(135deg, rgba(10, 28, 58, 0.93) 0%, rgba(6, 17, 36, 0.96) 100%), url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=600&auto=format&fit=crop') no-repeat center center",
-          backgroundSize: "cover",
-          border: "1px solid rgba(255, 255, 255, 0.08)",
+          background: "#ffffff",
+          border: "1px solid rgba(224, 145, 0, 0.08)",
           borderRadius: "24px",
-          padding: "2.25rem 2rem",
-          textAlign: "center",
-          boxShadow: "0 15px 35px rgba(0, 0, 0, 0.12)",
+          overflow: "hidden",
+          boxShadow: "0 10px 30px rgba(0, 0, 0, 0.015)",
           display: "flex",
           flexDirection: "column",
-          alignItems: "center"
-        }}>
-          <div style={{
-            width: "76px",
-            height: "76px",
-            borderRadius: "50%",
-            backgroundColor: "white",
-            border: "1px solid rgba(255, 78, 80, 0.15)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginBottom: "1.5rem",
-            boxShadow: "0 10px 25px rgba(255, 78, 80, 0.2)",
-            marginTop: "-4rem",
-            zIndex: 2,
-            position: "relative",
-            overflow: "hidden"
-          }}>
+          transition: "all 0.3s ease"
+        }} className="glass-card-hover">
+          {/* Header Illustration */}
+          <div style={{ width: "100%", height: "160px", overflow: "hidden", position: "relative", background: "#fcf9f2" }}>
             <img 
               src="/images/about/mission.png" 
               alt="Mission Illustration" 
-              style={{ width: "50px", height: "50px", objectFit: "contain" }} 
+              style={{ 
+                width: "100%", 
+                height: "100%", 
+                objectFit: "cover",
+                opacity: 0.95
+              }} 
             />
           </div>
-          <h3 style={{
-            fontSize: "1.5rem",
-            fontWeight: 800,
-            color: "white",
-            marginBottom: "1rem",
-            fontFamily: "'Baloo 2', cursive"
-          }}>
-            Mission
-          </h3>
-          <p style={{
-            fontSize: "1rem",
-            color: "rgba(255, 255, 255, 0.85)",
-            lineHeight: 1.6,
-            margin: 0,
-            fontFamily: "'Comic Neue', cursive"
-          }}>
-            To empower Bangladeshi students with world-class education opportunities and guidance for their international academic journey.
-          </p>
+          {/* Body Content */}
+          <div style={{ padding: "1.75rem", display: "flex", flexDirection: "column", flex: 1, textAlign: "left" }}>
+            <h3 style={{
+              fontSize: "1.4rem",
+              fontWeight: 800,
+              color: "#0F172A",
+              marginBottom: "0.75rem",
+              fontFamily: "'Baloo 2', cursive"
+            }}>
+              Mission
+            </h3>
+            <p style={{
+              fontSize: "0.95rem",
+              color: "#475569",
+              lineHeight: 1.55,
+              margin: 0,
+              fontFamily: "'Comic Neue', cursive"
+            }}>
+              To empower Bangladeshi students with world-class education opportunities and guidance for their international academic journey.
+            </p>
+          </div>
         </div>
 
         {/* Vision Card */}
         <div style={{
-          background: "linear-gradient(135deg, rgba(10, 28, 58, 0.93) 0%, rgba(6, 17, 36, 0.96) 100%), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=600&auto=format&fit=crop') no-repeat center center",
-          backgroundSize: "cover",
-          border: "1px solid rgba(255, 255, 255, 0.08)",
+          background: "#ffffff",
+          border: "1px solid rgba(224, 145, 0, 0.08)",
           borderRadius: "24px",
-          padding: "2.25rem 2rem",
-          textAlign: "center",
-          boxShadow: "0 15px 35px rgba(0, 0, 0, 0.12)",
+          overflow: "hidden",
+          boxShadow: "0 10px 30px rgba(0, 0, 0, 0.015)",
           display: "flex",
           flexDirection: "column",
-          alignItems: "center"
-        }}>
-          <div style={{
-            width: "76px",
-            height: "76px",
-            borderRadius: "50%",
-            backgroundColor: "white",
-            border: "1px solid rgba(0, 114, 255, 0.15)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginBottom: "1.5rem",
-            boxShadow: "0 10px 25px rgba(0, 114, 255, 0.2)",
-            marginTop: "-4rem",
-            zIndex: 2,
-            position: "relative",
-            overflow: "hidden"
-          }}>
+          transition: "all 0.3s ease"
+        }} className="glass-card-hover">
+          {/* Header Illustration */}
+          <div style={{ width: "100%", height: "160px", overflow: "hidden", position: "relative", background: "#f5f9ff" }}>
             <img 
               src="/images/about/vision.png" 
               alt="Vision Illustration" 
-              style={{ width: "50px", height: "50px", objectFit: "contain" }} 
+              style={{ 
+                width: "100%", 
+                height: "100%", 
+                objectFit: "cover",
+                opacity: 0.95
+              }} 
             />
           </div>
-          <h3 style={{
-            fontSize: "1.5rem",
-            fontWeight: 800,
-            color: "white",
-            marginBottom: "1rem",
-            fontFamily: "'Baloo 2', cursive"
-          }}>
-            Vision
-          </h3>
-          <p style={{
-            fontSize: "1rem",
-            color: "rgba(255, 255, 255, 0.85)",
-            lineHeight: 1.6,
-            margin: 0,
-            fontFamily: "'Comic Neue', cursive"
-          }}>
-            To be the most trusted and innovative education consultancy, transforming lives through global education.
-          </p>
+          {/* Body Content */}
+          <div style={{ padding: "1.75rem", display: "flex", flexDirection: "column", flex: 1, textAlign: "left" }}>
+            <h3 style={{
+              fontSize: "1.4rem",
+              fontWeight: 800,
+              color: "#0F172A",
+              marginBottom: "0.75rem",
+              fontFamily: "'Baloo 2', cursive"
+            }}>
+              Vision
+            </h3>
+            <p style={{
+              fontSize: "0.95rem",
+              color: "#475569",
+              lineHeight: 1.55,
+              margin: 0,
+              fontFamily: "'Comic Neue', cursive"
+            }}>
+              To be the most trusted and innovative education consultancy, transforming lives through global education.
+            </p>
+          </div>
         </div>
 
         {/* Values Card */}
         <div style={{
-          background: "linear-gradient(135deg, rgba(10, 28, 58, 0.93) 0%, rgba(6, 17, 36, 0.96) 100%), url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=600&auto=format&fit=crop') no-repeat center center",
-          backgroundSize: "cover",
-          border: "1px solid rgba(255, 255, 255, 0.08)",
+          background: "#ffffff",
+          border: "1px solid rgba(224, 145, 0, 0.08)",
           borderRadius: "24px",
-          padding: "2.25rem 2rem",
-          textAlign: "center",
-          boxShadow: "0 15px 35px rgba(0, 0, 0, 0.12)",
+          overflow: "hidden",
+          boxShadow: "0 10px 30px rgba(0, 0, 0, 0.015)",
           display: "flex",
           flexDirection: "column",
-          alignItems: "center"
-        }}>
-          <div style={{
-            width: "76px",
-            height: "76px",
-            borderRadius: "50%",
-            backgroundColor: "white",
-            border: "1px solid rgba(255, 8, 68, 0.15)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginBottom: "1.5rem",
-            boxShadow: "0 10px 25px rgba(255, 8, 68, 0.2)",
-            marginTop: "-4rem",
-            zIndex: 2,
-            position: "relative",
-            overflow: "hidden"
-          }}>
+          transition: "all 0.3s ease"
+        }} className="glass-card-hover">
+          {/* Header Illustration */}
+          <div style={{ width: "100%", height: "160px", overflow: "hidden", position: "relative", background: "#fff5f5" }}>
             <img 
               src="/images/about/values.png" 
               alt="Values Illustration" 
-              style={{ width: "50px", height: "50px", objectFit: "contain" }} 
+              style={{ 
+                width: "100%", 
+                height: "100%", 
+                objectFit: "cover",
+                opacity: 0.95
+              }} 
             />
           </div>
-          <h3 style={{
-            fontSize: "1.5rem",
-            fontWeight: 800,
-            color: "white",
-            marginBottom: "1rem",
-            fontFamily: "'Baloo 2', cursive"
-          }}>
-            Values
-          </h3>
-          <p style={{
-            fontSize: "1rem",
-            color: "rgba(255, 255, 255, 0.85)",
-            lineHeight: 1.6,
-            margin: 0,
-            fontFamily: "'Comic Neue', cursive"
-          }}>
-            Integrity, Excellence, Student-Centric Approach, and Continuous Innovation in everything we do.
-          </p>
+          {/* Body Content */}
+          <div style={{ padding: "1.75rem", display: "flex", flexDirection: "column", flex: 1, textAlign: "left" }}>
+            <h3 style={{
+              fontSize: "1.4rem",
+              fontWeight: 800,
+              color: "#0F172A",
+              marginBottom: "0.75rem",
+              fontFamily: "'Baloo 2', cursive"
+            }}>
+              Values
+            </h3>
+            <p style={{
+              fontSize: "0.95rem",
+              color: "#475569",
+              lineHeight: 1.55,
+              margin: 0,
+              fontFamily: "'Comic Neue', cursive"
+            }}>
+              Integrity, Excellence, Student-Centric Approach, and Continuous Innovation in everything we do.
+            </p>
+          </div>
         </div>
       </div>
     </section>
