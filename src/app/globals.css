@@ -2271,13 +2271,13 @@ button {
   }
   
   .mvv-badge-left {
-    left: 0 !important;
-    transform: translate(-50%, -50%) !important;
+    left: 1.25rem !important;
+    transform: translateY(-50%) !important;
   }
   
   .mvv-badge-right {
     left: auto !important;
-    right: 0 !important;
-    transform: translate(50%, -50%) !important;
+    right: 1.25rem !important;
+    transform: translateY(-50%) !important;
   }
 }
