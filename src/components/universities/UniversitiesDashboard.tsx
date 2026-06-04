@@ -340,18 +340,19 @@ export default function UniversitiesDashboard({ searchQuery }: UniversitiesDashb
       marginTop: "0.5rem"
     }}>
       {/* Left Column - Filter Sidebar */}
-      <div style={{
-        flex: "1 1 280px",
-        maxWidth: "320px",
-        width: "100%",
-        background: "white",
-        borderRadius: "24px",
-        padding: "2rem",
-        boxShadow: "0 10px 30px rgba(0, 0, 0, 0.02)",
-        border: "1px solid rgba(10, 28, 58, 0.06)",
-        position: "sticky",
-        top: "110px"
-      }}>
+      <div 
+        className="filter-sidebar"
+        style={{
+          flex: "1 1 280px",
+          maxWidth: "320px",
+          width: "100%",
+          background: "white",
+          borderRadius: "24px",
+          padding: "2rem",
+          boxShadow: "0 10px 30px rgba(0, 0, 0, 0.02)",
+          border: "1px solid rgba(10, 28, 58, 0.06)"
+        }}
+      >
         {/* Header */}
         <div style={{
           display: "flex",
