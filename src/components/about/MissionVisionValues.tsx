@@ -22,8 +22,8 @@ export default function MissionVisionValues() {
           alignItems: "center"
         }}>
           <div style={{
-            width: "72px",
-            height: "72px",
+            width: "76px",
+            height: "76px",
             borderRadius: "50%",
             backgroundColor: "white",
             border: "1px solid rgba(255, 78, 80, 0.15)",
@@ -31,20 +31,16 @@ export default function MissionVisionValues() {
             alignItems: "center",
             justifyContent: "center",
             marginBottom: "1.5rem",
-            boxShadow: "0 8px 20px rgba(255, 78, 80, 0.18)",
-            marginTop: "-3.75rem",
+            boxShadow: "0 10px 25px rgba(255, 78, 80, 0.2)",
+            marginTop: "-4rem",
             zIndex: 2,
             position: "relative",
             overflow: "hidden"
           }}>
             <img 
               src="/images/about/mission.png" 
-              alt="Mission" 
-              style={{ 
-                width: "100%", 
-                height: "100%", 
-                objectFit: "cover" 
-              }} 
+              alt="Mission Illustration" 
+              style={{ width: "50px", height: "50px", objectFit: "contain" }} 
             />
           </div>
           <h3 style={{
@@ -81,8 +77,8 @@ export default function MissionVisionValues() {
           alignItems: "center"
         }}>
           <div style={{
-            width: "72px",
-            height: "72px",
+            width: "76px",
+            height: "76px",
             borderRadius: "50%",
             backgroundColor: "white",
             border: "1px solid rgba(0, 114, 255, 0.15)",
@@ -90,20 +86,16 @@ export default function MissionVisionValues() {
             alignItems: "center",
             justifyContent: "center",
             marginBottom: "1.5rem",
-            boxShadow: "0 8px 20px rgba(0, 114, 255, 0.18)",
-            marginTop: "-3.75rem",
+            boxShadow: "0 10px 25px rgba(0, 114, 255, 0.2)",
+            marginTop: "-4rem",
             zIndex: 2,
             position: "relative",
             overflow: "hidden"
           }}>
             <img 
               src="/images/about/vision.png" 
-              alt="Vision" 
-              style={{ 
-                width: "100%", 
-                height: "100%", 
-                objectFit: "cover" 
-              }} 
+              alt="Vision Illustration" 
+              style={{ width: "50px", height: "50px", objectFit: "contain" }} 
             />
           </div>
           <h3 style={{
@@ -140,8 +132,8 @@ export default function MissionVisionValues() {
           alignItems: "center"
         }}>
           <div style={{
-            width: "72px",
-            height: "72px",
+            width: "76px",
+            height: "76px",
             borderRadius: "50%",
             backgroundColor: "white",
             border: "1px solid rgba(255, 8, 68, 0.15)",
@@ -149,20 +141,16 @@ export default function MissionVisionValues() {
             alignItems: "center",
             justifyContent: "center",
             marginBottom: "1.5rem",
-            boxShadow: "0 8px 20px rgba(255, 8, 68, 0.18)",
-            marginTop: "-3.75rem",
+            boxShadow: "0 10px 25px rgba(255, 8, 68, 0.2)",
+            marginTop: "-4rem",
             zIndex: 2,
             position: "relative",
             overflow: "hidden"
           }}>
             <img 
               src="/images/about/values.png" 
-              alt="Values" 
-              style={{ 
-                width: "100%", 
-                height: "100%", 
-                objectFit: "cover" 
-              }} 
+              alt="Values Illustration" 
+              style={{ width: "50px", height: "50px", objectFit: "contain" }} 
             />
           </div>
           <h3 style={{
