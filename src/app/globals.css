@@ -2225,3 +2225,9 @@ button {
     line-height: 1.4 !important;
   }
 }
+
+@media (max-width: 991px) {
+  .mission-vision-grid {
+    row-gap: 4.5rem !important;
+  }
+}

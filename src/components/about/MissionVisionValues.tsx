@@ -3,10 +3,10 @@ import React from "react";
 export default function MissionVisionValues() {
   return (
     <section className="container" style={{ marginTop: "5rem", marginBottom: "1.75rem" }}>
-      <div style={{
+      <div className="mission-vision-grid" style={{
         display: "grid",
         gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-        gap: "2rem"
+        gap: "2.5rem 2rem"
       }}>
         {/* Mission Card */}
         <div style={{
