@@ -36,7 +36,6 @@ body {
   color: var(--text);
   scroll-behavior: smooth;
   line-height: 1.6;
-  overflow-x: clip;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -2017,5 +2016,6 @@ button {
     position: sticky !important;
     top: 140px !important; /* adjusted to clear the floating navbar nicely */
     z-index: 10;
+    align-self: flex-start;
   }
 }
