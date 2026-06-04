@@ -2293,6 +2293,10 @@ button {
   padding: 1.75rem 2rem;
 }
 
+.about-page-wrapper {
+  padding-top: 140px;
+}
+
 @media (max-width: 768px) {
   .brand-overview-section {
     padding: 0 !important;
@@ -2302,14 +2306,8 @@ button {
     border-radius: 0 !important;
     padding: 2rem 1.25rem !important;
   }
-}
-
-.page-wrapper {
-  padding-top: 140px;
-}
-
-@media (max-width: 991px) {
-  .page-wrapper {
-    padding-top: 100px !important;
+  
+  .about-page-wrapper {
+    padding-top: 105px !important;
   }
 }
