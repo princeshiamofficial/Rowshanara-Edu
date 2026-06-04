@@ -1555,6 +1555,9 @@ button {
 }
 
 @media (max-width: 640px) {
+  .container {
+    padding: 0 0.75rem;
+  }
   .services-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 3.5rem 0.75rem; /* increase row gap to leave room above the overlapping icons */
