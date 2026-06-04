@@ -21,7 +21,7 @@ export default function ContactPage() {
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
           gap: "4rem",
-          alignItems: "start"
+          alignItems: "stretch"
         }} className="contact-grid">
           <ContactForm />
           <OfficeDetails />
