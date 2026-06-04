@@ -14,12 +14,13 @@ export default function MissionVisionValues() {
           backgroundSize: "cover",
           border: "1px solid rgba(255, 255, 255, 0.08)",
           borderRadius: "24px",
-          padding: "2.25rem 2rem",
+          padding: "3.5rem 2rem 2.25rem 2rem",
           textAlign: "center",
           boxShadow: "0 15px 35px rgba(0, 0, 0, 0.12)",
           display: "flex",
           flexDirection: "column",
-          alignItems: "center"
+          alignItems: "center",
+          position: "relative"
         }}>
           <div style={{
             width: "76px",
@@ -30,11 +31,12 @@ export default function MissionVisionValues() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            marginBottom: "1.5rem",
             boxShadow: "0 10px 25px rgba(255, 78, 80, 0.2)",
-            marginTop: "-4rem",
             zIndex: 2,
-            position: "relative",
+            position: "absolute",
+            top: "0",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
             overflow: "hidden"
           }}>
             <img 
@@ -69,12 +71,13 @@ export default function MissionVisionValues() {
           backgroundSize: "cover",
           border: "1px solid rgba(255, 255, 255, 0.08)",
           borderRadius: "24px",
-          padding: "2.25rem 2rem",
+          padding: "3.5rem 2rem 2.25rem 2rem",
           textAlign: "center",
           boxShadow: "0 15px 35px rgba(0, 0, 0, 0.12)",
           display: "flex",
           flexDirection: "column",
-          alignItems: "center"
+          alignItems: "center",
+          position: "relative"
         }}>
           <div style={{
             width: "76px",
@@ -85,11 +88,12 @@ export default function MissionVisionValues() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            marginBottom: "1.5rem",
             boxShadow: "0 10px 25px rgba(0, 114, 255, 0.2)",
-            marginTop: "-4rem",
             zIndex: 2,
-            position: "relative",
+            position: "absolute",
+            top: "0",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
             overflow: "hidden"
           }}>
             <img 
@@ -124,12 +128,13 @@ export default function MissionVisionValues() {
           backgroundSize: "cover",
           border: "1px solid rgba(255, 255, 255, 0.08)",
           borderRadius: "24px",
-          padding: "2.25rem 2rem",
+          padding: "3.5rem 2rem 2.25rem 2rem",
           textAlign: "center",
           boxShadow: "0 15px 35px rgba(0, 0, 0, 0.12)",
           display: "flex",
           flexDirection: "column",
-          alignItems: "center"
+          alignItems: "center",
+          position: "relative"
         }}>
           <div style={{
             width: "76px",
@@ -140,11 +145,12 @@ export default function MissionVisionValues() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            marginBottom: "1.5rem",
             boxShadow: "0 10px 25px rgba(255, 8, 68, 0.2)",
-            marginTop: "-4rem",
             zIndex: 2,
-            position: "relative",
+            position: "absolute",
+            top: "0",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
             overflow: "hidden"
           }}>
             <img 
