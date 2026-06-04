@@ -1961,3 +1961,49 @@ button {
     height: 30px !important;
   }
 }
+
+.timeline-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--primary) !important;
+  box-shadow: 0 12px 30px rgba(224, 145, 0, 0.06) !important;
+}
+
+.faq-card {
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid rgba(224, 145, 0, 0.06);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+  margin-bottom: 0.85rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.faq-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(224, 145, 0, 0.18) !important;
+  box-shadow: 0 12px 30px rgba(224, 145, 0, 0.04) !important;
+}
+
+.faq-card.open {
+  border-color: rgba(224, 145, 0, 0.25) !important;
+  background: linear-gradient(135deg, #ffffff 0%, #fffbf2 100%) !important;
+  box-shadow: 0 12px 32px rgba(224, 145, 0, 0.04) !important;
+}
+
+.faq-chevron-wrapper {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(224, 145, 0, 0.05);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.faq-card.open .faq-chevron-wrapper {
+  background: var(--primary);
+  color: #ffffff;
+  transform: rotate(180deg);
+}

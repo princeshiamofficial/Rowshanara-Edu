@@ -65,19 +65,19 @@ export default function FAQ() {
       {/* Minimal Search Bar */}
       <div style={{
         maxWidth: "700px",
-        margin: "0 auto 1.75rem auto",
+        margin: "0 auto 2rem auto",
         position: "relative",
-        borderRadius: "12px",
-        border: isSearchFocused ? "1px solid var(--primary)" : "1px solid #cbd5e1",
-        boxShadow: isSearchFocused ? "0 4px 12px rgba(224, 145, 0, 0.08)" : "none",
-        transition: "all 0.2s ease",
+        borderRadius: "16px",
+        border: isSearchFocused ? "1.5px solid var(--primary)" : "1px solid rgba(224, 145, 0, 0.12)",
+        boxShadow: isSearchFocused ? "0 12px 30px rgba(224, 145, 0, 0.08)" : "0 4px 15px rgba(0, 0, 0, 0.015)",
+        transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
         background: "#ffffff",
         display: "flex",
         alignItems: "center"
       }}>
         <FaMagnifyingGlass style={{
           position: "absolute",
-          left: "1rem",
+          left: "1.1rem",
           color: isSearchFocused ? "var(--primary)" : "#94a3b8",
           fontSize: "1rem",
           transition: "color 0.2s"
@@ -91,8 +91,8 @@ export default function FAQ() {
           onBlur={() => setIsSearchFocused(false)}
           style={{
             width: "100%",
-            padding: "0.85rem 1rem 0.85rem 2.75rem",
-            borderRadius: "12px",
+            padding: "0.95rem 1rem 0.95rem 2.85rem",
+            borderRadius: "16px",
             border: "none",
             fontSize: "0.95rem",
             outline: "none",
@@ -117,18 +117,14 @@ export default function FAQ() {
             return (
               <div 
                 key={index} 
-                style={{
-                  borderBottom: "1px solid #e2e8f0",
-                  background: "transparent",
-                  transition: "all 0.2s ease"
-                }}
+                className={`faq-card ${isOpen ? "open" : ""}`}
               >
                 {/* Question header */}
                 <button
                   onClick={() => setOpenIndex(isOpen ? null : index)}
                   style={{
                     width: "100%",
-                    padding: "1.25rem 0",
+                    padding: "1.25rem 1.5rem",
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
@@ -140,7 +136,7 @@ export default function FAQ() {
                 >
                   <span style={{
                     fontWeight: 700,
-                    fontSize: "1.1rem",
+                    fontSize: "1.05rem",
                     color: isOpen ? "var(--primary)" : "#1e293b",
                     fontFamily: "'Baloo 2', cursive",
                     lineHeight: 1.4,
@@ -149,19 +145,10 @@ export default function FAQ() {
                     {faq.q}
                   </span>
                   
-                  {/* Minimal Chevron */}
-                  <span style={{
-                    color: isOpen ? "var(--primary)" : "#64748b",
-                    fontSize: "0.95rem",
-                    marginLeft: "1.5rem",
-                    flexShrink: 0,
-                    display: "flex",
-                    alignItems: "center",
-                    transition: "transform 0.2s ease",
-                    transform: isOpen ? "rotate(180deg)" : "rotate(0deg)"
-                  }}>
-                    <FaChevronDown />
-                  </span>
+                  {/* Chevron in wrapper */}
+                  <div className="faq-chevron-wrapper">
+                    <FaChevronDown style={{ fontSize: "0.8rem" }} />
+                  </div>
                 </button>
 
                 {/* Answer content */}
@@ -172,9 +159,9 @@ export default function FAQ() {
                   background: "transparent"
                 }}>
                   <p style={{
-                    padding: "0 0 1.25rem 0",
+                    padding: "0 1.5rem 1.25rem 1.5rem",
                     margin: 0,
-                    fontSize: "0.95rem",
+                    fontSize: "0.925rem",
                     color: "#475569",
                     lineHeight: 1.6,
                     fontFamily: "'Comic Neue', cursive"
