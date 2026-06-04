@@ -16,7 +16,7 @@ export default function DestinationPage() {
 
       <DestinationsGrid />
       <ComparisonTable />
-      <CTA style={{ marginTop: "3rem", marginBottom: "2rem" }} />
+      <CTA style={{ marginTop: "1.5rem", marginBottom: "2rem" }} />
     </div>
   );
 }

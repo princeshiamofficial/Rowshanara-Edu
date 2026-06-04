@@ -27,7 +27,7 @@ export default function BrandOverview() {
         color: "white",
         boxShadow: "0 15px 35px rgba(0, 0, 0, 0.12)",
         display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+        gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))",
         gap: "1.5rem",
         alignItems: "center"
       }}>

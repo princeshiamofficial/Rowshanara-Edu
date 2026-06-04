@@ -157,10 +157,10 @@ export default function DestinationsGrid() {
   }, []);
 
   return (
-    <section className="container" style={{ marginTop: "4rem", marginBottom: "3rem" }}>
+    <section className="container" style={{ marginTop: "2rem", marginBottom: "3rem" }}>
       <div style={{
         display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+        gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))",
         gap: "2rem"
       }}>
         {destinationList.map((dest, index) => {

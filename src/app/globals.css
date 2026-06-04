@@ -36,7 +36,7 @@ body {
   color: var(--text);
   scroll-behavior: smooth;
   line-height: 1.6;
-  overflow: visible !important;
+  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -96,6 +96,12 @@ button {
   padding: 0 2rem;
 }
 
+@media (max-width: 640px) {
+  .container {
+    padding: 0 1rem;
+  }
+}
+
 .section {
   padding: 6rem 0;
 }
@@ -106,7 +112,7 @@ button {
 }
 
 .grid-3 {
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
 }
 
 /* Button Styles */
@@ -488,7 +494,8 @@ button {
 
 @media (max-width: 768px) {
   .hero-responsive-title {
-    font-size: 2.25rem !important;
+    font-size: clamp(1.4rem, 6.5vw, 2.25rem) !important;
+    white-space: nowrap;
   }
   
   /* Services responsiveness overrides */
@@ -1555,9 +1562,6 @@ button {
 }
 
 @media (max-width: 640px) {
-  .container {
-    padding: 0 0.75rem;
-  }
   .services-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 3.5rem 0.75rem; /* increase row gap to leave room above the overlapping icons */

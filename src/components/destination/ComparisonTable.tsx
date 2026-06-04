@@ -2,10 +2,10 @@ import React from "react";
 
 export default function ComparisonTable() {
   return (
-    <section className="container" style={{ marginTop: "2rem", marginBottom: "3rem" }}>
+    <section className="container" style={{ marginTop: "2rem", marginBottom: "1.5rem" }}>
       <h2 style={{
         textAlign: "center",
-        fontSize: "2.5rem",
+        fontSize: "clamp(1.35rem, 5.5vw, 2.5rem)",
         fontWeight: 800,
         color: "#0f172a",
         marginBottom: "1.75rem",
