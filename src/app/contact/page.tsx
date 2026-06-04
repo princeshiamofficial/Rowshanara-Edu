@@ -7,7 +7,7 @@ import MapLocation from "@/components/contact/MapLocation";
 
 export default function ContactPage() {
   return (
-    <div className="hero-gradient" style={{ minHeight: "100vh", paddingTop: "140px", paddingBottom: "1.5rem" }}>
+    <div className="hero-gradient contact-page-wrapper" style={{ minHeight: "100vh", paddingBottom: "1.5rem" }}>
       {/* Header Banner */}
       <HeaderBanner 
         title="Contact Us" 

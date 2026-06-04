@@ -2339,6 +2339,27 @@ button {
     padding: 1.5rem 1.25rem !important;
     gap: 1rem !important;
   }
+
+  .contact-page-wrapper {
+    padding-top: 105px !important;
+  }
+  
+  .contact-page-wrapper .container {
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .contact-page-wrapper .contact-grid {
+    gap: 1.5rem !important;
+  }
+
+  .contact-page-wrapper .contact-grid > div {
+    border-radius: 0 !important;
+    border-left: none !important;
+    border-right: none !important;
+    padding: 2rem 1.25rem !important;
+  }
 }
 
 .map-iframe-wrapper {
@@ -2361,4 +2382,8 @@ button {
   border: 1px solid rgba(255, 255, 255, 0.15);
   flex-wrap: wrap;
   gap: 1.5rem;
+}
+
+.contact-page-wrapper {
+  padding-top: 140px;
 }
