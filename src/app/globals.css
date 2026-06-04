@@ -2316,8 +2316,10 @@ button {
     border-radius: 0 !important;
     border-left: none !important;
     border-right: none !important;
+    border-bottom: none !important;
     margin-left: -1.25rem !important;
     margin-right: -1.25rem !important;
+    margin-bottom: -2rem !important;
     padding: 2.5rem 1.25rem !important;
   }
   
