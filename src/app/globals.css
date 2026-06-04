@@ -2303,3 +2303,13 @@ button {
     padding: 2rem 1.25rem !important;
   }
 }
+
+.page-wrapper {
+  padding-top: 140px;
+}
+
+@media (max-width: 991px) {
+  .page-wrapper {
+    padding-top: 100px !important;
+  }
+}

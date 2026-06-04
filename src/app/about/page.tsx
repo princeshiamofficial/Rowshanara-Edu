@@ -9,7 +9,7 @@ import CTA from "@/components/CTA";
 
 export default function AboutPage() {
   return (
-    <div className="hero-gradient" style={{ minHeight: "100vh", paddingTop: "140px", paddingBottom: "1.5rem" }}>
+    <div className="hero-gradient page-wrapper" style={{ minHeight: "100vh", paddingBottom: "1.5rem" }}>
       <BrandOverview />
       <Journey />
       <MissionVisionValues />
