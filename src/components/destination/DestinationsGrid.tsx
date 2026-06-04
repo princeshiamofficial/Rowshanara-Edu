@@ -377,11 +377,12 @@ export default function DestinationsGrid() {
                     }} 
                   />
                   <h3 style={{
-                    fontSize: "1.85rem",
+                    fontSize: "clamp(1.35rem, 5.2vw, 1.85rem)",
                     fontWeight: 800,
                     lineHeight: 1.2,
                     fontFamily: "'Baloo 2', cursive",
-                    margin: 0
+                    margin: 0,
+                    whiteSpace: "nowrap"
                   }}>
                     {dest.name}
                   </h3>
