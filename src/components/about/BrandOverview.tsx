@@ -19,11 +19,9 @@ export default function BrandOverview() {
   }, []);
 
   return (
-    <section className="container" style={{ marginBottom: "1.5rem" }}>
-      <div style={{
+    <section className="brand-overview-section" style={{ marginBottom: "1.5rem" }}>
+      <div className="brand-overview-card" style={{
         background: "linear-gradient(135deg, rgba(10, 28, 58, 0.95) 0%, rgba(6, 17, 36, 0.98) 100%)",
-        borderRadius: "28px",
-        padding: "1.75rem 2rem",
         color: "white",
         boxShadow: "0 15px 35px rgba(0, 0, 0, 0.12)",
         display: "grid",
