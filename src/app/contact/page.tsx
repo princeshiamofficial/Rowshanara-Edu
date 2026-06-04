@@ -16,7 +16,7 @@ export default function ContactPage() {
       />
 
       {/* Main Content Layout */}
-      <section className="container" style={{ marginTop: "3.5rem" }}>
+      <section className="container contact-page-container" style={{ marginTop: "3.5rem" }}>
         <div style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",

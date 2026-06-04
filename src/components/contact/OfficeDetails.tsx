@@ -5,7 +5,7 @@ import { FaLocationDot, FaPhone, FaEnvelope, FaClock, FaWhatsapp } from "react-i
 
 export default function OfficeDetails() {
   return (
-    <div style={{
+    <div className="contact-card" style={{
       background: "white",
       borderRadius: "24px",
       padding: "2.5rem",

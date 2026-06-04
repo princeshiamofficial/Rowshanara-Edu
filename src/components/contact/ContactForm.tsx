@@ -91,7 +91,7 @@ export default function ContactForm() {
   const selectedCountry = countriesList.find(c => c.name === formData.country);
 
   return (
-    <div style={{
+    <div className="contact-card" style={{
       background: "white",
       borderRadius: "24px",
       padding: "2.5rem",

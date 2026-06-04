@@ -2340,25 +2340,19 @@ button {
     gap: 1rem !important;
   }
 
-  .contact-page-wrapper {
-    padding-top: 105px !important;
-  }
-  
-  .contact-page-wrapper .container {
+  .contact-page-container {
     padding: 0 !important;
-    width: 100% !important;
-    max-width: 100% !important;
   }
 
-  .contact-page-wrapper .contact-grid {
-    gap: 1.5rem !important;
-  }
-
-  .contact-page-wrapper .contact-grid > div {
+  .contact-card {
     border-radius: 0 !important;
     border-left: none !important;
     border-right: none !important;
     padding: 2rem 1.25rem !important;
+  }
+
+  .contact-page-wrapper {
+    padding-top: 105px !important;
   }
 }
 
