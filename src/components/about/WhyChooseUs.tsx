@@ -1,35 +1,43 @@
 import React from "react";
+import { 
+  FaGraduationCap, 
+  FaAward, 
+  FaUserCheck, 
+  FaGlobe, 
+  FaHandHoldingDollar, 
+  FaHeadphones 
+} from "react-icons/fa6";
 
 const whyChooseUsList = [
   {
     title: "Expert Guidance",
     desc: "Our team has 15+ years of experience in international education.",
-    image: "/icons/guidance.png"
+    icon: <FaGraduationCap style={{ fontSize: "1.6rem" }} />
   },
   {
     title: "Proven Track Record",
     desc: "5000+ successful placements with 98% visa success rate.",
-    image: "/icons/track_record.png"
+    icon: <FaAward style={{ fontSize: "1.6rem" }} />
   },
   {
     title: "Personalized Service",
     desc: "Customized guidance tailored to each student's unique profile.",
-    image: "/icons/personalized.png"
+    icon: <FaUserCheck style={{ fontSize: "1.6rem" }} />
   },
   {
     title: "Strong Network",
     desc: "Partnerships with 50+ universities across 20+ countries.",
-    image: "/icons/network.png"
+    icon: <FaGlobe style={{ fontSize: "1.6rem" }} />
   },
   {
     title: "Affordable Pricing",
     desc: "Competitive rates with flexible payment options available.",
-    image: "/icons/pricing.png"
+    icon: <FaHandHoldingDollar style={{ fontSize: "1.6rem" }} />
   },
   {
     title: "Continuous Support",
     desc: "Support from application through post-arrival assistance.",
-    image: "/icons/support.png"
+    icon: <FaHeadphones style={{ fontSize: "1.6rem" }} />
   }
 ];
 
@@ -56,17 +64,7 @@ export default function WhyChooseUs() {
           <div key={index} className="choose-us-card">
             {/* Icon Container */}
             <div className="choose-us-icon-wrapper">
-              <img 
-                src={item.image} 
-                alt={item.title} 
-                style={{ 
-                  width: "36px", 
-                  height: "36px", 
-                  objectFit: "contain",
-                  transition: "all 0.3s ease" 
-                }} 
-                className="choose-us-icon-img"
-              />
+              {item.icon}
             </div>
 
             {/* Text Container */}
