@@ -24,7 +24,7 @@ export default function MissionVisionValues() {
           <div style={{
             width: "76px",
             height: "76px",
-            borderRadius: "20px",
+            borderRadius: "50%",
             backgroundColor: "white",
             border: "1px solid rgba(255, 78, 80, 0.15)",
             display: "flex",
@@ -79,7 +79,7 @@ export default function MissionVisionValues() {
           <div style={{
             width: "76px",
             height: "76px",
-            borderRadius: "20px",
+            borderRadius: "50%",
             backgroundColor: "white",
             border: "1px solid rgba(0, 114, 255, 0.15)",
             display: "flex",
@@ -134,7 +134,7 @@ export default function MissionVisionValues() {
           <div style={{
             width: "76px",
             height: "76px",
-            borderRadius: "20px",
+            borderRadius: "50%",
             backgroundColor: "white",
             border: "1px solid rgba(255, 8, 68, 0.15)",
             display: "flex",
