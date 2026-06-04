@@ -2228,7 +2228,7 @@ button {
 
 @media (max-width: 991px) {
   .mission-vision-grid {
-    row-gap: 4rem !important;
+    row-gap: 3.25rem !important;
   }
 }
 
@@ -2256,8 +2256,8 @@ button {
 
 @media (max-width: 991px) {
   .mission-vision-badge {
-    width: 92px !important;
-    height: 92px !important;
+    width: 68px !important;
+    height: 68px !important;
   }
   
   .mvv-card-left {
@@ -2271,13 +2271,13 @@ button {
   }
   
   .mvv-badge-left {
-    left: 2.25rem !important;
+    left: 1.25rem !important;
     transform: translateY(-50%) !important;
   }
   
   .mvv-badge-right {
     left: auto !important;
-    right: 2.25rem !important;
+    right: 1.25rem !important;
     transform: translateY(-50%) !important;
   }
 }
