@@ -66,11 +66,9 @@ export default function BrandOverview() {
 
         {/* Right Column */}
         <div>
-          <div style={{
+          <div className="brand-overview-quote-card" style={{
             position: "relative",
             border: "1px solid rgba(255, 255, 255, 0.12)",
-            borderRadius: "20px",
-            padding: "2.5rem 2rem",
             textAlign: "center",
             display: "flex",
             flexDirection: "column",
