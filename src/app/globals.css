@@ -2159,3 +2159,69 @@ button {
   border-color: rgba(224, 145, 0, 0.25) !important;
   box-shadow: 0 8px 20px rgba(224, 145, 0, 0.12);
 }
+
+.choose-us-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.choose-us-text-container {
+  flex: 1;
+}
+
+.choose-us-card-title {
+  font-size: 1.225rem;
+  font-weight: 800;
+  color: #0F172A;
+  margin-bottom: 0.45rem;
+  font-family: 'Baloo 2', cursive;
+  line-height: 1.25;
+}
+
+.choose-us-card-desc {
+  font-size: 0.925rem;
+  color: #475569;
+  line-height: 1.55;
+  margin: 0;
+  font-family: 'Comic Neue', cursive;
+}
+
+.choose-us-icon {
+  font-size: 1.6rem;
+  transition: all 0.2s ease;
+}
+
+@media (max-width: 640px) {
+  .choose-us-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.75rem !important;
+  }
+  .choose-us-card {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    padding: 1.25rem 1rem !important;
+    gap: 0.75rem !important;
+    border-radius: 16px !important;
+  }
+  .choose-us-icon-wrapper {
+    width: 48px !important;
+    height: 48px !important;
+    border-radius: 12px !important;
+  }
+  .choose-us-icon {
+    font-size: 1.35rem !important;
+  }
+  .choose-us-text-container {
+    width: 100% !important;
+  }
+  .choose-us-card-title {
+    font-size: 1.05rem !important;
+    margin-bottom: 0.25rem !important;
+  }
+  .choose-us-card-desc {
+    font-size: 0.8rem !important;
+    line-height: 1.4 !important;
+  }
+}
