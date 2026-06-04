@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import { FaFilter, FaLocationDot, FaBookOpen, FaStar, FaCheck } from "react-icons/fa6";
+import { FaFilter, FaLocationDot, FaBookOpen, FaStar, FaCheck, FaXmark } from "react-icons/fa6";
 import { BsPatchCheckFill } from "react-icons/bs";
 
 interface University {
@@ -185,6 +185,15 @@ export default function UniversitiesDashboard({ searchQuery }: UniversitiesDashb
   const [selectedCountries, setSelectedCountries] = useState<string[]>(["All"]);
   const [selectedRankings, setSelectedRankings] = useState<string[]>(["All"]);
   const [selectedSubjects, setSelectedSubjects] = useState<string[]>(["All"]);
+  const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
+
+  const activeFiltersCount = useMemo(() => {
+    let count = 0;
+    if (!selectedCountries.includes("All")) count += selectedCountries.length;
+    if (!selectedRankings.includes("All")) count += selectedRankings.length;
+    if (!selectedSubjects.includes("All")) count += selectedSubjects.length;
+    return count;
+  }, [selectedCountries, selectedRankings, selectedSubjects]);
 
   const handleFilterChange = (
     type: "country" | "ranking" | "subject",
@@ -735,6 +744,122 @@ export default function UniversitiesDashboard({ searchQuery }: UniversitiesDashb
             </p>
           </div>
         )}
+      </div>
+
+      {/* Mobile Sticky Filters Trigger Button */}
+      <button 
+        className="mobile-filter-fab"
+        onClick={() => setIsMobileFilterOpen(true)}
+      >
+        <FaFilter style={{ fontSize: "0.85rem" }} />
+        <span>Filters</span>
+        {activeFiltersCount > 0 && (
+          <span style={{
+            background: "white",
+            color: "var(--primary)",
+            borderRadius: "50%",
+            width: "18px",
+            height: "18px",
+            fontSize: "0.75rem",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            marginLeft: "0.25rem",
+            fontWeight: 800
+          }}>
+            {activeFiltersCount}
+          </span>
+        )}
+      </button>
+
+      {/* Mobile slide-up Bottom Sheet */}
+      {isMobileFilterOpen && (
+        <div 
+          className="bottom-sheet-backdrop"
+          onClick={() => setIsMobileFilterOpen(false)}
+        />
+      )}
+      <div className={`bottom-sheet-container ${isMobileFilterOpen ? "open" : ""}`}>
+        <div className="bottom-sheet-drag-handle" />
+        <div className="bottom-sheet-header">
+          <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+            <FaFilter style={{ color: "var(--primary)", fontSize: "0.95rem" }} />
+            <h3 style={{ fontSize: "1.15rem", fontWeight: 800, margin: 0, fontFamily: "'Baloo 2', cursive" }}>Filters</h3>
+          </div>
+          <button 
+            onClick={() => setIsMobileFilterOpen(false)}
+            style={{ background: "none", border: "none", fontSize: "1.25rem", cursor: "pointer", color: "#64748b", display: "flex", alignItems: "center", justifyContent: "center" }}
+          >
+            <FaXmark />
+          </button>
+        </div>
+        <div className="bottom-sheet-content">
+          <div style={{ display: "flex", flexDirection: "column", gap: "1.75rem" }}>
+            {/* Country Filters */}
+            <div>
+              <h4 style={{ fontSize: "0.95rem", fontWeight: 800, color: "var(--text)", marginBottom: "0.75rem", fontFamily: "'Baloo 2', cursive" }}>
+                Country
+              </h4>
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                <CheckboxItem label="All Countries" checked={selectedCountries.includes("All")} onChange={() => handleFilterChange("country", "All")} />
+                <CheckboxItem label="UK" code="gb" checked={selectedCountries.includes("UK")} onChange={() => handleFilterChange("country", "UK")} />
+                <CheckboxItem label="USA" code="us" checked={selectedCountries.includes("USA")} onChange={() => handleFilterChange("country", "USA")} />
+                <CheckboxItem label="Canada" code="ca" checked={selectedCountries.includes("Canada")} onChange={() => handleFilterChange("country", "Canada")} />
+                <CheckboxItem label="Australia" code="au" checked={selectedCountries.includes("Australia")} onChange={() => handleFilterChange("country", "Australia")} />
+                <CheckboxItem label="Germany" code="de" checked={selectedCountries.includes("Germany")} onChange={() => handleFilterChange("country", "Germany")} />
+                <CheckboxItem label="Malaysia" code="my" checked={selectedCountries.includes("Malaysia")} onChange={() => handleFilterChange("country", "Malaysia")} />
+              </div>
+            </div>
+
+            {/* World Ranking Filters */}
+            <div>
+              <h4 style={{ fontSize: "0.95rem", fontWeight: 800, color: "var(--text)", marginBottom: "0.75rem", fontFamily: "'Baloo 2', cursive" }}>
+                World Ranking
+              </h4>
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                <CheckboxItem label="All Rankings" checked={selectedRankings.includes("All")} onChange={() => handleFilterChange("ranking", "All")} />
+                <CheckboxItem label="Rank 1-10" checked={selectedRankings.includes("1-10")} onChange={() => handleFilterChange("ranking", "1-10")} />
+                <CheckboxItem label="Rank 11-50" checked={selectedRankings.includes("11-50")} onChange={() => handleFilterChange("ranking", "11-50")} />
+                <CheckboxItem label="Rank 51-100" checked={selectedRankings.includes("51-100")} onChange={() => handleFilterChange("ranking", "51-100")} />
+                <CheckboxItem label="Rank 100+" checked={selectedRankings.includes("100+")} onChange={() => handleFilterChange("ranking", "100+")} />
+              </div>
+            </div>
+
+            {/* Subject Area Filters */}
+            <div>
+              <h4 style={{ fontSize: "0.95rem", fontWeight: 800, color: "var(--text)", marginBottom: "0.75rem", fontFamily: "'Baloo 2', cursive" }}>
+                Subject Area
+              </h4>
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                <CheckboxItem label="All Subjects" checked={selectedSubjects.includes("All")} onChange={() => handleFilterChange("subject", "All")} />
+                <CheckboxItem label="Engineering" checked={selectedSubjects.includes("Engineering")} onChange={() => handleFilterChange("subject", "Engineering")} />
+                <CheckboxItem label="Business" checked={selectedSubjects.includes("Business")} onChange={() => handleFilterChange("subject", "Business")} />
+                <CheckboxItem label="Medicine" checked={selectedSubjects.includes("Medicine")} onChange={() => handleFilterChange("subject", "Medicine")} />
+                <CheckboxItem label="Arts" checked={selectedSubjects.includes("Arts")} onChange={() => handleFilterChange("subject", "Arts")} />
+                <CheckboxItem label="Science" checked={selectedSubjects.includes("Science")} onChange={() => handleFilterChange("subject", "Science")} />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="bottom-sheet-footer">
+          <button 
+            onClick={() => setIsMobileFilterOpen(false)}
+            style={{
+              width: "100%",
+              padding: "0.85rem",
+              background: "var(--primary)",
+              color: "white",
+              fontWeight: 800,
+              fontSize: "0.95rem",
+              border: "none",
+              borderRadius: "14px",
+              cursor: "pointer",
+              fontFamily: "'Outfit', sans-serif"
+            }}
+          >
+            Apply & Show {filteredUniversities.length} Universities
+          </button>
+        </div>
       </div>
     </section>
   );
