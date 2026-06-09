@@ -34,7 +34,7 @@ export default function ForgotPasswordPage() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundImage: "url('/sky_clouds_bg.png')",
+        backgroundImage: "url('/sky_clouds_bg2.gif')",
         backgroundSize: 'cover',
         backgroundPosition: 'center bottom',
         backgroundRepeat: 'no-repeat',
