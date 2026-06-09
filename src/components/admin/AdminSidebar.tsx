@@ -43,6 +43,7 @@ export default function AdminSidebar({ activeTab, setActiveTab, onLogout }: Admi
   const router = useRouter();
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+  const [isEmblemHovered, setIsEmblemHovered] = useState(false);
   
   // Track open state for dropdown menus. Settings is open by default matching reference.
   const [openMenus, setOpenMenus] = useState<Record<string, boolean>>({
@@ -104,7 +105,7 @@ export default function AdminSidebar({ activeTab, setActiveTab, onLogout }: Admi
           display: 'flex',
           alignItems: 'center',
           gap: '0.75rem',
-          padding: isCollapsed ? '0.5rem 0.5rem' : '0.625rem 1rem',
+          padding: isCollapsed ? '0.5rem 0.5rem' : '0.625rem 0.75rem',
           backgroundColor: '#000000',
           margin: isCollapsed ? '-0.75rem -0.75rem 1rem -0.75rem' : '-0.75rem -1rem 1rem -1rem',
           width: 'auto',
@@ -113,7 +114,7 @@ export default function AdminSidebar({ activeTab, setActiveTab, onLogout }: Admi
         }}
       >
         {isCollapsed ? (
-          /* Collapsed State: Gold brand circle emblem */
+          /* Collapsed State: Gold brand circle emblem (hover to reveal expand icon) */
           <div
             style={{
               width: '48px',
@@ -127,37 +128,60 @@ export default function AdminSidebar({ activeTab, setActiveTab, onLogout }: Admi
               color: 'white',
               flexShrink: 0,
               cursor: 'pointer',
+              position: 'relative'
             }}
-            onClick={() => setIsCollapsed(false)}
+            onClick={() => {
+              setIsCollapsed(false);
+              setIsEmblemHovered(false);
+            }}
+            onMouseEnter={() => setIsEmblemHovered(true)}
+            onMouseLeave={() => setIsEmblemHovered(false)}
+            title="Expand sidebar"
           >
             <div
+              className="emblem-logo"
               style={{
                 width: '24px',
                 height: '24px',
                 borderRadius: '50%',
                 border: '5.5px solid rgba(255,255,255,0.9)',
                 boxSizing: 'border-box',
+                transition: 'opacity 0.2s',
+                position: 'absolute',
+                opacity: isEmblemHovered ? 0 : 1
               }}
             ></div>
+            <div
+              className="expand-icon"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                opacity: isEmblemHovered ? 1 : 0,
+                transition: 'opacity 0.2s',
+                position: 'absolute'
+              }}
+            >
+              <PanelLeftOpen size={20} />
+            </div>
           </div>
         ) : (
-          /* Expanded State: Official Rowshanara Edu logo */
+          /* Expanded State: Official Rowshanara Edu logo with collapse button */
           <div
-            onClick={() => setIsCollapsed(true)}
             style={{
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center',
+              justifyContent: 'space-between',
               width: '100%',
-              cursor: 'pointer',
+              gap: '0.5rem',
             }}
           >
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', flex: 1, paddingLeft: '1.25rem' }}>
               <img
                 src="/logo.png"
                 alt="Rowshanara Edu"
                 style={{
-                  height: '50px',
+                  height: '44px',
                   width: 'auto',
                   display: 'block',
                   maxWidth: '100%',
@@ -165,6 +189,36 @@ export default function AdminSidebar({ activeTab, setActiveTab, onLogout }: Admi
                 }}
               />
             </div>
+            <button
+              onClick={() => {
+                setIsCollapsed(true);
+                setIsEmblemHovered(false);
+              }}
+              style={{
+                background: 'transparent',
+                border: 'none',
+                color: 'rgba(255,255,255,0.7)',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '0.35rem',
+                borderRadius: '6px',
+                transition: 'all 0.2s',
+                marginRight: '0.25rem',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.color = '#ffb74d';
+                e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.1)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.color = 'rgba(255,255,255,0.7)';
+                e.currentTarget.style.backgroundColor = 'transparent';
+              }}
+              title="Collapse sidebar"
+            >
+              <PanelLeftClose size={18} />
+            </button>
           </div>
         )}
       </div>
