@@ -81,7 +81,7 @@ const AVATAR_COLORS: Record<string, string> = {
   TI: '#84cc16', KU: '#a855f7', FB: '#ec4899',
 };
 
-const PAGE_SIZE = 8;
+const PAGE_SIZE = 12;
 
 // ─── Component ───────────────────────────────────────────────────────────────
 export default function ApplicationsPage() {
@@ -129,13 +129,13 @@ export default function ApplicationsPage() {
   };
 
   return (
-    <div style={{ display: 'flex', height: '100vh', overflow: 'hidden', width: '100vw', backgroundColor: '#f8fafc', fontFamily: 'var(--font-sans), system-ui, -apple-system, sans-serif', color: '#0f172a' }}>
+    <div style={{ display: 'flex', minHeight: '100vh', width: '100vw', backgroundColor: '#f8fafc', fontFamily: 'var(--font-sans), system-ui, -apple-system, sans-serif', color: '#0f172a' }}>
 
       {/* Sidebar */}
       <AdminSidebar activeTab={activeTab} setActiveTab={(tab) => { setActiveTab(tab); if (tab === 'Dashboard') router.push('/admin/dashboard'); }} onLogout={() => router.push('/admin')} />
 
       {/* Main Panel */}
-      <main style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', overflowY: 'auto', padding: '2.5rem 3rem', gap: '1.75rem' }}>
+      <main style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', padding: '2.5rem 3rem', gap: '1.75rem' }}>
 
         {/* ── Header ── */}
         <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>

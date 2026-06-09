@@ -80,25 +80,36 @@ export default function AdminSidebar({ activeTab, setActiveTab, onLogout }: Admi
   ];
 
   return (
-    <aside
-      style={{
-        width: isCollapsed ? '80px' : '14%',
-        backgroundColor: '#ffffff',
-        borderRight: '1px solid #F2F4F7',
-        display: 'flex',
-        flexDirection: 'column',
-        padding: isCollapsed ? '0.75rem 0.75rem 1.5rem' : '0.75rem 1rem 1.5rem',
-        flexShrink: 0,
-        height: '100vh',
-        position: 'sticky',
-        top: 0,
-        transition: 'width 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
-        fontFamily: 'var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-        boxSizing: 'border-box',
-        overflowX: 'hidden',
-        zIndex: 50,
-      }}
-    >
+    <>
+      {/* Layout Spacer to prevent content overlap */}
+      <div
+        style={{
+          width: isCollapsed ? '80px' : '14%',
+          flexShrink: 0,
+          transition: 'width 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
+        }}
+      />
+
+      <aside
+        style={{
+          width: isCollapsed ? '80px' : '14%',
+          backgroundColor: '#ffffff',
+          borderRight: '1px solid #F2F4F7',
+          display: 'flex',
+          flexDirection: 'column',
+          padding: isCollapsed ? '0.75rem 0.75rem 1.5rem' : '0.75rem 1rem 1.5rem',
+          flexShrink: 0,
+          height: '100vh',
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          transition: 'width 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
+          fontFamily: 'var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+          boxSizing: 'border-box',
+          overflowX: 'hidden',
+          zIndex: 50,
+        }}
+      >
       {/* Brand Selector Header */}
       <div
         style={{
@@ -538,5 +549,6 @@ export default function AdminSidebar({ activeTab, setActiveTab, onLogout }: Admi
         </div>
       </div>
     </aside>
+    </>
   );
 }

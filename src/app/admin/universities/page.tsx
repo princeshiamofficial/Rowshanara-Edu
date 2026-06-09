@@ -17,6 +17,7 @@ import {
   Users,
   TrendingUp,
   CheckCircle2,
+  BadgeCheck,
   Clock,
   XCircle,
   LayoutGrid,
@@ -91,9 +92,17 @@ const STATUS_CFG: Record<PartnerStatus, { bg: string; text: string; border: stri
   Inactive: { bg: '#f1f5f9', text: '#475569', border: '#cbd5e1', icon: <XCircle size={12} /> },
 };
 
+const FILTER_CFG: Record<'All' | PartnerStatus | 'Official', { bg: string; text: string; border: string; icon: React.ReactNode; label: string }> = {
+  All:      { bg: '#fff',    text: '#0f172a', border: '#cbd5e1', icon: null, label: 'All Partners' },
+  Active:   { bg: '#ecfdf5', text: '#065f46', border: '#a7f3d0', icon: <CheckCircle2 size={12} />, label: 'Active Partners' },
+  Pending:  { bg: '#fffbeb', text: '#92400e', border: '#fcd34d', icon: <Clock size={12} />, label: 'Pending Partners' },
+  Inactive: { bg: '#f1f5f9', text: '#475569', border: '#cbd5e1', icon: <XCircle size={12} />, label: 'Inactive Partners' },
+  Official: { bg: '#eff6ff', text: '#1e40af', border: '#bfdbfe', icon: <BadgeCheck size={12} />, label: 'Official Partners' },
+};
+
 const COUNTRIES = ['All', 'United Kingdom', 'United States', 'Canada', 'Australia', 'Germany', 'Malaysia'];
-const PAGE_SIZE_GRID = 8;
-const PAGE_SIZE_LIST = 8;
+const PAGE_SIZE_GRID = 12;
+const PAGE_SIZE_LIST = 12;
 
 // ─── Main Component ───────────────────────────────────────────────────────────
 export default function UniversitiesPage() {
@@ -101,7 +110,7 @@ export default function UniversitiesPage() {
   const [activeTab, setActiveTab]         = useState('Universities');
   const [searchQuery, setSearchQuery]     = useState('');
   const [countryFilter, setCountryFilter] = useState('All');
-  const [statusFilter, setStatusFilter]   = useState<'All' | PartnerStatus>('All');
+  const [statusFilter, setStatusFilter]   = useState<'All' | PartnerStatus | 'Official'>('All');
   const [viewMode, setViewMode]           = useState<'grid' | 'list'>('grid');
   const [currentPage, setCurrentPage]     = useState(1);
   const [selectedUni, setSelectedUni]     = useState<University | null>(null);
@@ -112,6 +121,7 @@ export default function UniversitiesPage() {
     Active:   universities.filter(u => u.status === 'Active').length,
     Pending:  universities.filter(u => u.status === 'Pending').length,
     Inactive: universities.filter(u => u.status === 'Inactive').length,
+    Official: universities.filter(u => u.isOfficialPartner).length,
   }), [universities]);
 
   const filtered = useMemo(() => {
@@ -119,7 +129,7 @@ export default function UniversitiesPage() {
     return universities.filter(u => {
       const matchSearch  = !q || u.name.toLowerCase().includes(q) || u.country.toLowerCase().includes(q) || u.city.toLowerCase().includes(q) || u.specializations.some(s => s.toLowerCase().includes(q));
       const matchCountry = countryFilter === 'All' || u.country === countryFilter;
-      const matchStatus  = statusFilter  === 'All' || u.status  === statusFilter;
+      const matchStatus  = statusFilter  === 'All' || (statusFilter === 'Official' ? u.isOfficialPartner : u.status === statusFilter);
       return matchSearch && matchCountry && matchStatus;
     });
   }, [universities, searchQuery, countryFilter, statusFilter]);
@@ -133,8 +143,15 @@ export default function UniversitiesPage() {
     if (selectedUni?.id === id) setSelectedUni(prev => prev ? { ...prev, status: newStatus } : null);
   };
 
+  const toggleOfficialPartner = (id: string) => {
+    setUniversities(prev => prev.map(u => u.id === id ? { ...u, isOfficialPartner: !u.isOfficialPartner } : u));
+    if (selectedUni?.id === id) {
+      setSelectedUni(prev => prev ? { ...prev, isOfficialPartner: !prev.isOfficialPartner } : null);
+    }
+  };
+
   return (
-    <div style={{ display: 'flex', height: '100vh', overflow: 'hidden', width: '100vw', backgroundColor: '#f8fafc', fontFamily: 'var(--font-sans), system-ui, -apple-system, sans-serif', color: '#0f172a' }}>
+    <div style={{ display: 'flex', minHeight: '100vh', width: '100vw', backgroundColor: '#f8fafc', fontFamily: 'var(--font-sans), system-ui, -apple-system, sans-serif', color: '#0f172a' }}>
 
       {/* Sidebar */}
       <AdminSidebar
@@ -149,7 +166,7 @@ export default function UniversitiesPage() {
       />
 
       {/* Main */}
-      <main style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', overflowY: 'auto', padding: '2.5rem 3rem', gap: '1.75rem' }}>
+      <main style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', padding: '2.5rem 3rem', gap: '1.75rem' }}>
 
         {/* ── Header ── */}
         <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -182,18 +199,32 @@ export default function UniversitiesPage() {
 
         {/* ── Status Pills ── */}
         <div style={{ display: 'flex', gap: '0.65rem', flexWrap: 'wrap' }}>
-          {(['All', 'Active', 'Pending', 'Inactive'] as const).map(s => {
+          {(['All', 'Active', 'Pending', 'Inactive', 'Official'] as const).map(s => {
             const isActive = statusFilter === s;
-            const cfg = s !== 'All' ? STATUS_CFG[s] : null;
+            const cfg = FILTER_CFG[s];
             return (
               <button
                 key={s}
                 onClick={() => { setStatusFilter(s); setCurrentPage(1); }}
-                style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', padding: '0.38rem 0.9rem', borderRadius: '9999px', fontSize: '0.78rem', fontWeight: 600, cursor: 'pointer', border: '1.5px solid', borderColor: isActive ? (cfg?.border ?? '#cbd5e1') : '#e2e8f0', backgroundColor: isActive ? (cfg?.bg ?? '#fff') : '#fff', color: isActive ? (cfg?.text ?? '#0f172a') : '#64748b', transition: 'all 0.15s' }}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.4rem',
+                  padding: '0.38rem 0.9rem',
+                  borderRadius: '9999px',
+                  fontSize: '0.78rem',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  border: '1.5px solid',
+                  borderColor: isActive ? cfg.border : '#e2e8f0',
+                  backgroundColor: isActive ? cfg.bg : '#fff',
+                  color: isActive ? cfg.text : '#64748b',
+                  transition: 'all 0.15s'
+                }}
               >
-                {cfg && <span>{cfg.icon}</span>}
-                {s} Partners
-                <span style={{ backgroundColor: isActive ? (cfg?.text ?? '#0f172a') : '#e2e8f0', color: isActive ? '#fff' : '#475569', borderRadius: '9999px', padding: '1px 6px', fontSize: '0.68rem', fontWeight: 700 }}>
+                {cfg.icon && <span>{cfg.icon}</span>}
+                {cfg.label}
+                <span style={{ backgroundColor: isActive ? cfg.text : '#e2e8f0', color: isActive ? '#fff' : '#475569', borderRadius: '9999px', padding: '1px 6px', fontSize: '0.68rem', fontWeight: 700 }}>
                   {counts[s]}
                 </span>
               </button>
@@ -317,8 +348,8 @@ export default function UniversitiesPage() {
 
         {/* ── LIST VIEW ── */}
         {viewMode === 'list' && (
-          <div style={{ backgroundColor: '#fff', border: '1px solid #e2e8f0', borderRadius: '16px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)', overflow: 'hidden' }}>
-            <div style={{ overflowX: 'auto' }}>
+          <div style={{ backgroundColor: '#fff', border: '1px solid #e2e8f0', borderRadius: '16px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)', overflow: 'hidden', height: 'auto' }}>
+            <div style={{ overflowX: 'auto', height: 'auto' }}>
               <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.825rem', textAlign: 'left' }}>
                 <thead>
                   <tr style={{ backgroundColor: '#f8fafc', borderBottom: '1px solid #e2e8f0' }}>
@@ -404,8 +435,41 @@ export default function UniversitiesPage() {
             style={{ width: '520px', height: '100vh', backgroundColor: '#fff', boxShadow: '-4px 0 40px rgba(0,0,0,0.15)', overflowY: 'auto', display: 'flex', flexDirection: 'column' }}
             onClick={e => e.stopPropagation()}
           >
-            {/* Hero Image Banner with overlaying title and details */}
-            <div style={{ width: '100%', height: '200px', overflow: 'hidden', flexShrink: 0, position: 'relative' }}>
+            {/* Close Button on Slide-over (Fixed at top-right of popup view) */}
+            <button
+              onClick={() => setSelectedUni(null)}
+              style={{
+                position: 'fixed',
+                top: '1rem',
+                right: '1.5rem',
+                width: '32px',
+                height: '32px',
+                borderRadius: '50%',
+                background: 'rgba(255, 255, 255, 0.9)',
+                border: 'none',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#1e293b',
+                cursor: 'pointer',
+                zIndex: 20,
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
+                transition: 'all 0.2s'
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.transform = 'scale(1.05)';
+                e.currentTarget.style.background = '#ffffff';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.transform = 'none';
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)';
+              }}
+            >
+              <X size={16} />
+            </button>
+
+            {/* Hero Image Banner with overlaying title and details (Sticky Header) */}
+            <div style={{ width: '100%', height: '200px', overflow: 'hidden', flexShrink: 0, position: 'sticky', top: '-80px', zIndex: 10 }}>
               <img
                 src={`https://picsum.photos/seed/${selectedUni.id}/520/200`}
                 alt={selectedUni.name}
@@ -413,45 +477,36 @@ export default function UniversitiesPage() {
               />
               <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.25) 100%)', zIndex: 1 }} />
               
-              {/* Close Button on Image */}
-              <button
-                onClick={() => setSelectedUni(null)}
-                style={{
+              {/* Official Partner Badge on Top-Left of Image */}
+              {selectedUni.isOfficialPartner && (
+                <span style={{
                   position: 'absolute',
                   top: '1rem',
-                  right: '1rem',
-                  width: '32px',
-                  height: '32px',
-                  borderRadius: '50%',
-                  background: 'rgba(255, 255, 255, 0.9)',
-                  border: 'none',
-                  display: 'flex',
+                  left: '1.25rem',
+                  display: 'inline-flex',
                   alignItems: 'center',
-                  justifyContent: 'center',
-                  color: '#1e293b',
-                  cursor: 'pointer',
-                  zIndex: 10,
-                  boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
-                  transition: 'all 0.2s'
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.transform = 'scale(1.05)';
-                  e.currentTarget.style.background = '#ffffff';
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.transform = 'none';
-                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)';
-                }}
-              >
-                <X size={16} />
-              </button>
+                  gap: '0.3rem',
+                  background: 'rgba(255, 255, 255, 0.95)',
+                  color: '#1E293B',
+                  fontSize: '0.72rem',
+                  fontWeight: 800,
+                  padding: '0.25rem 0.55rem',
+                  borderRadius: '20px',
+                  boxShadow: '0 2px 8px rgba(0, 0, 0, 0.12)',
+                  backdropFilter: 'blur(4px)',
+                  border: '1px solid rgba(24, 119, 242, 0.15)',
+                  zIndex: 2
+                }}>
+                  <BadgeCheck size={13} style={{ color: '#1877F2', fill: '#1877F2', stroke: '#fff', flexShrink: 0 }} /> Official Partner
+                </span>
+              )}
 
               {/* Title & Details overlay */}
               <div style={{
                 position: 'absolute',
                 bottom: '1.25rem',
                 left: '1.5rem',
-                right: '1.5rem',
+                right: '4.5rem',
                 zIndex: 2,
                 color: '#fff'
               }}>
@@ -462,9 +517,14 @@ export default function UniversitiesPage() {
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.8rem', fontWeight: 600 }}>
                     <MapPin size={13} style={{ color: '#fff', opacity: 0.85 }} /> {selectedUni.city}, {selectedUni.country}
                   </div>
-                  <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', backgroundColor: STATUS_CFG[selectedUni.status].bg, color: STATUS_CFG[selectedUni.status].text, border: `1px solid ${STATUS_CFG[selectedUni.status].border}`, padding: '3px 10px', borderRadius: '9999px', fontSize: '0.72rem', fontWeight: 800, boxShadow: '0 2px 6px rgba(0,0,0,0.1)' }}>
-                    {STATUS_CFG[selectedUni.status].icon} {selectedUni.status}
-                  </span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                    <button style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', backgroundColor: 'rgba(255, 255, 255, 0.95)', color: '#475569', border: '1px solid #e2e8f0', padding: '3px 9px', borderRadius: '9999px', fontSize: '0.7rem', fontWeight: 700, cursor: 'pointer', boxShadow: '0 2px 6px rgba(0,0,0,0.1)', transition: 'all 0.15s' }}>
+                      <Pencil size={11} /> Edit
+                    </button>
+                    <button style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', backgroundColor: '#E09100', color: '#fff', border: 'none', padding: '3px 9px', borderRadius: '9999px', fontSize: '0.7rem', fontWeight: 700, cursor: 'pointer', boxShadow: '0 2px 6px rgba(0,0,0,0.1)', transition: 'all 0.15s' }}>
+                      <ExternalLink size={11} /> View Website
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -559,32 +619,65 @@ export default function UniversitiesPage() {
                 </div>
               </Section>
 
-              {/* Status Update */}
-              <Section title="Partnership Status">
-                <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-                  {(['Active', 'Pending', 'Inactive'] as PartnerStatus[]).map(s => {
-                    const sc = STATUS_CFG[s];
-                    const isActive = selectedUni.status === s;
-                    return (
-                      <button key={s} onClick={() => updateStatus(selectedUni.id, s)}
-                        style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', padding: '0.4rem 0.9rem', borderRadius: '9999px', fontSize: '0.78rem', fontWeight: 700, cursor: 'pointer', border: `1.5px solid ${isActive ? sc.border : '#e2e8f0'}`, backgroundColor: isActive ? sc.bg : '#fff', color: isActive ? sc.text : '#94a3b8', transition: 'all 0.15s' }}
-                      >
-                        {sc.icon} {s}
-                      </button>
-                    );
-                  })}
+              {/* Partnership Details */}
+              <Section title="Partnership Details">
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                  {/* Status Pills */}
+                  <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+                    {(['Active', 'Pending', 'Inactive'] as PartnerStatus[]).map(s => {
+                      const sc = STATUS_CFG[s];
+                      const isActive = selectedUni.status === s;
+                      return (
+                        <button key={s} onClick={() => updateStatus(selectedUni.id, s)}
+                          style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', padding: '0.4rem 0.9rem', borderRadius: '9999px', fontSize: '0.78rem', fontWeight: 700, cursor: 'pointer', border: `1.5px solid ${isActive ? sc.border : '#e2e8f0'}`, backgroundColor: isActive ? sc.bg : '#fff', color: isActive ? sc.text : '#94a3b8', transition: 'all 0.15s' }}
+                        >
+                          {sc.icon} {s}
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  {/* Official Partner Toggle */}
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.75rem 1rem', backgroundColor: '#f8fafc', borderRadius: '10px', border: '1px solid #e2e8f0', marginTop: '0.25rem' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <BadgeCheck size={18} style={{ color: selectedUni.isOfficialPartner ? '#E09100' : '#94a3b8', transition: 'color 0.2s' }} />
+                      <div>
+                        <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#0f172a' }}>Official Partner Badge</div>
+                        <div style={{ fontSize: '0.7rem', color: '#64748b' }}>Show verified official partner checkmark</div>
+                      </div>
+                    </div>
+                    {/* Switch Toggle */}
+                    <button
+                      onClick={() => toggleOfficialPartner(selectedUni.id)}
+                      style={{
+                        width: '42px',
+                        height: '24px',
+                        borderRadius: '9999px',
+                        backgroundColor: selectedUni.isOfficialPartner ? '#E09100' : '#cbd5e1',
+                        border: 'none',
+                        cursor: 'pointer',
+                        position: 'relative',
+                        transition: 'background-color 0.2s',
+                        padding: 0,
+                        display: 'flex',
+                        alignItems: 'center'
+                      }}
+                    >
+                      <span style={{
+                        width: '18px',
+                        height: '18px',
+                        borderRadius: '50%',
+                        backgroundColor: '#fff',
+                        position: 'absolute',
+                        left: selectedUni.isOfficialPartner ? '21px' : '3px',
+                        transition: 'left 0.2s',
+                        boxShadow: '0 1px 3px rgba(0,0,0,0.15)'
+                      }} />
+                    </button>
+                  </div>
                 </div>
               </Section>
 
-              {/* Actions */}
-              <div style={{ display: 'flex', gap: '0.75rem', paddingTop: '0.5rem', borderTop: '1px solid #f1f5f9', marginTop: 'auto' }}>
-                <button style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem', padding: '0.6rem', borderRadius: '10px', border: '1px solid #e2e8f0', backgroundColor: '#fff', fontSize: '0.825rem', fontWeight: 600, color: '#475569', cursor: 'pointer' }}>
-                  <Pencil size={14} /> Edit Details
-                </button>
-                <button style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem', padding: '0.6rem', borderRadius: '10px', border: 'none', backgroundColor: '#E09100', fontSize: '0.825rem', fontWeight: 600, color: '#fff', cursor: 'pointer' }}>
-                  <ExternalLink size={14} /> Visit Website
-                </button>
-              </div>
             </div>
           </div>
         </div>

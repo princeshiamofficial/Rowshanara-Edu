@@ -96,7 +96,7 @@ const AVATAR_COLORS: Record<string, string> = {
 };
 
 const CONSULTANTS = ['All', 'Anika Sultana', 'Rafiq Ahmed', 'Tariq Hassan'];
-const PAGE_SIZE = 8;
+const PAGE_SIZE = 12;
 
 // ─── Main Component ───────────────────────────────────────────────────────────
 export default function ConsultationsPage() {
@@ -141,7 +141,7 @@ export default function ConsultationsPage() {
   };
 
   return (
-    <div style={{ display: 'flex', height: '100vh', overflow: 'hidden', width: '100vw', backgroundColor: '#f8fafc', fontFamily: 'var(--font-sans), system-ui, -apple-system, sans-serif', color: '#0f172a' }}>
+    <div style={{ display: 'flex', minHeight: '100vh', width: '100vw', backgroundColor: '#f8fafc', fontFamily: 'var(--font-sans), system-ui, -apple-system, sans-serif', color: '#0f172a' }}>
 
       {/* Sidebar */}
       <AdminSidebar
@@ -151,7 +151,7 @@ export default function ConsultationsPage() {
       />
 
       {/* Main Panel */}
-      <main style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', overflowY: 'auto', padding: '2.5rem 3rem', gap: '1.75rem' }}>
+      <main style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', padding: '2.5rem 3rem', gap: '1.75rem' }}>
 
         {/* ── Header ── */}
         <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>

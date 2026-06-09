@@ -66,8 +66,7 @@ export default function AdminDashboardPage() {
     <div
       style={{
         display: 'flex',
-        height: '100vh',
-        overflow: 'hidden',
+        minHeight: '100vh',
         width: '100vw',
         backgroundColor: '#f8fafc',
         fontFamily: 'var(--font-sans), system-ui, -apple-system, sans-serif',
@@ -82,7 +81,7 @@ export default function AdminDashboardPage() {
       />
 
       {/* Main Content Dashboard Panel */}
-      <main style={{ flexGrow: 1, padding: '2.5rem 3rem', display: 'flex', flexDirection: 'column', gap: '2rem', overflowY: 'auto' }}>
+      <main style={{ flexGrow: 1, padding: '2.5rem 3rem', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
         
         {/* Header Bar */}
         <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
