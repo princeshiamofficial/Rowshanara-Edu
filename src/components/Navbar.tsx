@@ -9,6 +9,10 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname() || '';
 
+  if (pathname.startsWith('/admin')) {
+    return null;
+  }
+
   return (
     <div className="sticky-navbar" style={{
       position: 'fixed',

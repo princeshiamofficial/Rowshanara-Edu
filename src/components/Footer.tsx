@@ -1,9 +1,15 @@
 "use client";
 
 import React from 'react';
+import { usePathname } from 'next/navigation';
 
 const Footer = () => {
   const brandColor = '#E09100';
+  const pathname = usePathname() || '';
+
+  if (pathname.startsWith('/admin')) {
+    return null;
+  }
 
   return (
     <footer role="contentinfo" style={{ 
