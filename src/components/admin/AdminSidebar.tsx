@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import {
   BarChart3,
   Activity,
@@ -30,7 +31,16 @@ interface AdminSidebarProps {
   onLogout: () => void;
 }
 
+// Route map: sidebar item name → URL path
+const NAV_ROUTES: Record<string, string> = {
+  Dashboard:     '/admin/dashboard',
+  Applications:  '/admin/applications',
+  Consultations: '/admin/consultations',
+  Universities:  '/admin/universities',
+};
+
 export default function AdminSidebar({ activeTab, setActiveTab, onLogout }: AdminSidebarProps) {
+  const router = useRouter();
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   
@@ -55,6 +65,8 @@ export default function AdminSidebar({ activeTab, setActiveTab, onLogout }: Admi
       toggleMenu(itemName);
     } else {
       setActiveTab(itemName);
+      const route = NAV_ROUTES[itemName];
+      if (route) router.push(route);
     }
   };
 
