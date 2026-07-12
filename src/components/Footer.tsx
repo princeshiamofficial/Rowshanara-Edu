@@ -124,9 +124,11 @@ const Footer = () => {
             
             {/* Logo and Address */}
             <div className="footer-logo-partners-row">
-              <div className="footer-logo-container" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'flex-start' }}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/logo.png" alt="Logo" style={{ height: '75px', filter: 'brightness(0) invert(1)' }} />
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', alignItems: 'flex-start' }}>
+                <div className="footer-logo-container">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/logo.png" alt="Logo" style={{ height: '75px', filter: 'brightness(0) invert(1)' }} />
+                </div>
                 <div style={{ fontSize: '0.9375rem', fontWeight: 500, color: '#fff' }}>
                   <span>+880 1511-710730</span>
                   <span className="footer-pipe" style={{ margin: '0 0.5rem' }}>|</span>
