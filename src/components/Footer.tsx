@@ -124,16 +124,9 @@ const Footer = () => {
             
             {/* Logo and Partners Grid */}
             <div className="footer-logo-partners-row">
-              <div className="footer-logo-container" style={{ flexDirection: 'column', alignItems: 'flex-start', gap: '1rem' }}>
+              <div className="footer-logo-container">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/logo.png" alt="Logo" style={{ height: '75px', filter: 'brightness(0) invert(1)' }} />
-                
-                {/* Phone & Address */}
-                <div className="footer-meta-line" style={{ fontSize: '0.9375rem', fontWeight: 500, opacity: 1 }}>
-                  <span>+880 1511-710730</span>
-                  <span className="footer-pipe">|</span>
-                  <span>60, Dilkusha, Motijheel C/A, Dhaka-1000, Bangladesh</span>
-                </div>
               </div>
 
               <div className="footer-partners-container" style={{ display: 'flex', gap: '3rem', alignItems: 'center', flexWrap: 'wrap' }}>
@@ -184,7 +177,14 @@ const Footer = () => {
                 <a href="#" style={{ textDecoration: 'none', color: '#fff' }}>Accessibility</a>
               </div>
               
-              {/* Address block moved to logo container */}
+              <div className="footer-meta-line" style={{ fontSize: '0.9375rem', marginBottom: '1.25rem', fontWeight: 500, opacity: 1 }}>
+                <span>+880 1511-710730</span>
+                <span className="footer-pipe">|</span>
+                <span>60, Dilkusha, Motijheel C/A, Dhaka-1000, Bangladesh</span>
+              </div>
+
+              {/* Added bottom divider */}
+              <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.8)', marginBottom: '1.25rem', marginLeft: '-1.5rem', width: 'calc(100% + 1.5rem)' }}></div>
 
               <div className="footer-meta-line" style={{ display: 'none', fontSize: '0.9375rem', fontWeight: 500, opacity: 1 }}>
                 <span>TEQSA Provider ID: PRV12002 (Australian University)</span>
