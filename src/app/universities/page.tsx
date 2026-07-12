@@ -10,7 +10,7 @@ export default function UniversitiesPage() {
   const [searchQuery, setSearchQuery] = useState("");
 
   return (
-    <div className="hero-gradient" style={{ minHeight: "100vh", paddingTop: "140px", paddingBottom: "1.5rem" }}>
+    <div className="hero-gradient" style={{ minHeight: "100vh", paddingTop: "100px", paddingBottom: "1.5rem" }}>
       {/* Header Banner */}
       <HeaderBanner 
         title="Partner Universities" 

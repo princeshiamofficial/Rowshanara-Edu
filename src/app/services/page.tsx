@@ -7,7 +7,7 @@ import HeaderBanner from "@/components/HeaderBanner";
 
 export default function ServicesPage() {
   return (
-    <div style={{ minHeight: "100vh", background: "var(--background)", paddingTop: "140px" }}>
+    <div style={{ minHeight: "100vh", background: "var(--background)", paddingTop: "100px" }}>
       <HeaderBanner 
         title="Our Services" 
         subtitle="Comprehensive support for every step of your study abroad journey"

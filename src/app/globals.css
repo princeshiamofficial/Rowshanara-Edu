@@ -532,7 +532,7 @@ button {
    HERO CARD REFERENCE STYLES (PIXEL-PERFECT)
    ========================================== */
 .hero-section-wrapper {
-  padding-top: 140px;
+  padding-top: 100px;
   padding-bottom: 2rem;
   display: flex;
   justify-content: center;
@@ -2299,7 +2299,7 @@ button {
 }
 
 .about-page-wrapper {
-  padding-top: 140px;
+  padding-top: 100px;
 }
 
 @media (max-width: 768px) {
@@ -2379,14 +2379,26 @@ button {
 }
 
 .contact-page-wrapper {
-  padding-top: 140px;
+  padding-top: 100px;
 }
 
 /* ==========================================
    CLIENT PAGE FULL WIDTH LAYOUT OVERRIDES
    ========================================== */
+/* Navbar and Hero remain edge-to-edge without extra wrapper padding */
 body.client-page-layout .navbar-floating-content,
 body.client-page-layout .hero-card,
+body.client-page-layout .header-banner-section {
+  width: 100% !important;
+  max-width: 100% !important;
+  border-radius: 0 !important;
+  border-left: none !important;
+  border-right: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* Other sections become full width but get horizontal padding so content doesn't touch edges */
 body.client-page-layout .trusted-by-section,
 body.client-page-layout .how-it-works-section,
 body.client-page-layout .stats-section,
@@ -2403,4 +2415,25 @@ body.client-page-layout .container {
   border-right: none !important;
   margin-left: 0 !important;
   margin-right: 0 !important;
+  padding-left: 2.5% !important;
+  padding-right: 2.5% !important;
+}
+
+/* Eliminate all vertical gaps between edge-to-edge sections */
+body.client-page-layout .trusted-by-section,
+body.client-page-layout .how-it-works-section,
+body.client-page-layout .stats-section,
+body.client-page-layout .destinations-section,
+body.client-page-layout .services-section,
+body.client-page-layout .testimonials-section,
+body.client-page-layout .cta-section,
+body.client-page-layout .brand-overview-section {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Add vertical spacing for testimonials while maintaining full width background */
+body.client-page-layout .testimonials-section {
+  padding-top: 3.5rem !important;
+  padding-bottom: 3.5rem !important;
 }

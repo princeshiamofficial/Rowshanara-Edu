@@ -11,7 +11,7 @@ import CTA from "@/components/CTA";
 
 export default function Home() {
   return (
-    <div style={{ paddingBottom: "2.5rem" }}>
+    <div>
       <Hero />
       <TrustedBy />
       <HowItWorks />

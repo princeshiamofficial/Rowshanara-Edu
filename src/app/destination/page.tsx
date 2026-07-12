@@ -6,7 +6,7 @@ import CTA from "@/components/CTA";
 
 export default function DestinationPage() {
   return (
-    <div style={{ minHeight: "100vh", background: "var(--background)", paddingTop: "140px" }}>
+    <div style={{ minHeight: "100vh", background: "var(--background)", paddingTop: "100px" }}>
       {/* Header Banner */}
       <HeaderBanner 
         title="Study Destinations" 

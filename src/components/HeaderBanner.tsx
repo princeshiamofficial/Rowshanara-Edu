@@ -17,7 +17,7 @@ interface HeaderBannerProps {
 
 export default function HeaderBanner({ title, subtitle, breadcrumbs, children, style }: HeaderBannerProps) {
   return (
-    <section style={{
+    <section className="header-banner-section" style={{
       width: "95%",
       maxWidth: "1280px",
       margin: "0 auto 0 auto",
