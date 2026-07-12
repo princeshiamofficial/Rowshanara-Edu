@@ -2381,3 +2381,26 @@ button {
 .contact-page-wrapper {
   padding-top: 140px;
 }
+
+/* ==========================================
+   CLIENT PAGE FULL WIDTH LAYOUT OVERRIDES
+   ========================================== */
+body.client-page-layout .navbar-floating-content,
+body.client-page-layout .hero-card,
+body.client-page-layout .trusted-by-section,
+body.client-page-layout .how-it-works-section,
+body.client-page-layout .stats-section,
+body.client-page-layout .destinations-section,
+body.client-page-layout .services-section,
+body.client-page-layout .testimonials-section,
+body.client-page-layout .cta-section,
+body.client-page-layout .brand-overview-section,
+body.client-page-layout .container {
+  width: 100% !important;
+  max-width: 100% !important;
+  border-radius: 0 !important;
+  border-left: none !important;
+  border-right: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}

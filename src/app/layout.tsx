@@ -14,6 +14,7 @@ export const metadata: Metadata = {
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ClientLayoutModifier from "@/components/ClientLayoutModifier";
 
 export default function RootLayout({
   children,
@@ -23,6 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={cn("font-sans", geist.variable)} suppressHydrationWarning>
       <body>
+        <ClientLayoutModifier />
         <Navbar />
         <main>{children}</main>
         <Footer />
