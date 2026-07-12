@@ -157,7 +157,7 @@ const Footer = () => {
             {/* Bottom Metadata & Legal Links */}
             <div>
               <div className="footer-links-container" style={{ 
-                display: 'flex', 
+                display: 'none', 
                 gap: '0.5rem 1.25rem', 
                 flexWrap: 'wrap', 
                 marginBottom: '1.25rem', 
