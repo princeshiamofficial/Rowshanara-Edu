@@ -61,7 +61,7 @@ export default function Team() {
 
       <div style={{
         display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+        gridTemplateColumns: "repeat(3, 1fr)",
         gap: "3.5rem 2rem"
       }}>
         {teamMembers.map((member, index) => (
