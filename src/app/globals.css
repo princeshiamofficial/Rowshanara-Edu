@@ -2408,8 +2408,7 @@ body.client-page-layout .destinations-section,
 body.client-page-layout .services-section,
 body.client-page-layout .testimonials-section,
 body.client-page-layout .cta-section,
-body.client-page-layout .brand-overview-section,
-body.client-page-layout .container {
+body.client-page-layout .brand-overview-section {
   width: 100% !important;
   max-width: 100% !important;
   border-radius: 0 !important;
