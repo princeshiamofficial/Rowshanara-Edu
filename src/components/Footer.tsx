@@ -122,27 +122,17 @@ const Footer = () => {
               zIndex: 5
             }}></div>
             
-            {/* Logo and Partners Grid */}
+            {/* Logo and Address */}
             <div className="footer-logo-partners-row">
-              <div className="footer-logo-container">
+              <div className="footer-logo-container" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'flex-start' }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/logo.png" alt="Logo" style={{ height: '75px', filter: 'brightness(0) invert(1)' }} />
+                <div style={{ fontSize: '0.9375rem', fontWeight: 500, color: '#fff' }}>
+                  <span>+880 1511-710730</span>
+                  <span className="footer-pipe" style={{ margin: '0 0.5rem' }}>|</span>
+                  <span>60, Dilkusha, Motijheel C/A, Dhaka-1000, Bangladesh</span>
+                </div>
               </div>
-
-              <div className="footer-partners-container" style={{ display: 'flex', gap: '3rem', alignItems: 'center', flexWrap: 'wrap' }}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <a href="#"><img src="/icef_logo.svg" alt="ICEF" style={{ height: '40px', width: 'auto' }} /></a>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <a href="#"><img src="/facdcab_logo.svg" alt="FACDCAB" style={{ height: '40px', width: 'auto' }} /></a>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <a href="#"><img src="/nafsa_logo.svg" alt="NAFSA" style={{ height: '45px', width: 'auto', filter: 'brightness(0) invert(1)' }} /></a>
-              </div>
-            </div>
-
-            <div className="footer-meta-line" style={{ fontSize: '0.9375rem', marginTop: '1.25rem', marginBottom: '1.25rem', fontWeight: 500, opacity: 1 }}>
-              <span>+880 1511-710730</span>
-              <span className="footer-pipe">|</span>
-              <span>60, Dilkusha, Motijheel C/A, Dhaka-1000, Bangladesh</span>
             </div>
 
             {/* Acknowledgement Text */}
@@ -183,6 +173,19 @@ const Footer = () => {
                 <a href="#" style={{ textDecoration: 'none', color: '#fff' }}>Accessibility</a>
               </div>
               
+              {/* Partner Logos moved here */}
+              <div className="footer-partners-container" style={{ display: 'flex', gap: '3rem', alignItems: 'center', flexWrap: 'wrap', marginBottom: '1.25rem' }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <a href="#"><img src="/icef_logo.svg" alt="ICEF" style={{ height: '40px', width: 'auto' }} /></a>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <a href="#"><img src="/facdcab_logo.svg" alt="FACDCAB" style={{ height: '40px', width: 'auto' }} /></a>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <a href="#"><img src="/nafsa_logo.svg" alt="NAFSA" style={{ height: '45px', width: 'auto', filter: 'brightness(0) invert(1)' }} /></a>
+              </div>
+
+              {/* Added bottom divider */}
+              <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.8)', marginBottom: '1.25rem', marginLeft: '-1.5rem', width: 'calc(100% + 1.5rem)' }}></div>
+
               {/* Copyright and Privacy Policy */}
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.8125rem', fontWeight: 400, color: '#fff', opacity: 0.8 }}>
                 <span>&copy; {new Date().getFullYear()} Rowshanara Edu. All Rights Reserved.</span>
