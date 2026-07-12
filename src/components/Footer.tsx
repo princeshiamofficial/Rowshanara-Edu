@@ -111,6 +111,17 @@ const Footer = () => {
           }}></div>
 
           <div className="footer-content-wrapper" style={{ position: 'relative', zIndex: 2 }}> {/* Higher z-index for content */}
+            {/* Far Right Full Vertical Line */}
+            <div style={{ 
+              position: 'absolute', 
+              right: 0, 
+              top: '-4.0rem', 
+              bottom: '42px', 
+              width: '1px', 
+              background: 'rgba(255, 255, 255, 0.8)',
+              zIndex: 1
+            }}></div>
+
             {/* Top Divider (Line 1 - Matched with Line 2) */}
             {/* Top Divider (Line 1 - Matched with Line 2) */}
             <div style={{ 
@@ -176,7 +187,7 @@ const Footer = () => {
               </div>
               
               {/* Partner Logos moved here */}
-              <div style={{ width: '100%', borderRight: '1px solid rgba(255, 255, 255, 0.8)', position: 'relative', marginTop: '-1.25rem', paddingTop: '1.25rem', paddingBottom: '1.25rem' }}>
+              <div style={{ width: '100%', position: 'relative', marginTop: '-1.25rem', paddingTop: '1.25rem', paddingBottom: '1.25rem' }}>
                 {/* Center Vertical Line */}
                 <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '50%', borderRight: '1px solid rgba(255, 255, 255, 0.8)', pointerEvents: 'none' }}></div>
                 <div className="footer-partners-container" style={{ display: 'flex', gap: '3rem', alignItems: 'center', flexWrap: 'wrap', position: 'relative', zIndex: 1 }}>
