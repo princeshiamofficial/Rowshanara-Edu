@@ -183,7 +183,7 @@ const Footer = () => {
                 <span>60, Dilkusha, Motijheel C/A, Dhaka-1000, Bangladesh</span>
               </div>
 
-              <div className="footer-meta-line" style={{ fontSize: '0.9375rem', fontWeight: 500, opacity: 1 }}>
+              <div className="footer-meta-line" style={{ display: 'none', fontSize: '0.9375rem', fontWeight: 500, opacity: 1 }}>
                 <span>TEQSA Provider ID: PRV12002 (Australian University)</span>
                 <span className="footer-pipe">|</span>
                 <span>CRICOS Provider Code: 00120C</span>
