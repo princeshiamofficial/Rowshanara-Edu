@@ -69,7 +69,7 @@ const Footer = () => {
             gap: '1rem',
             zIndex: 20
           }}>
-            <span style={{ color: '#fff', fontSize: '1rem', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase' }}>Contact Us</span>
+            <span style={{ color: '#fff', fontSize: '1rem', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase' }}>Follow Us</span>
             <a id="btn-back-to-top" href="#" style={{ 
               background: brandColor, 
               width: '44px', 
