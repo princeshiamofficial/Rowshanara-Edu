@@ -176,13 +176,15 @@ const Footer = () => {
               </div>
               
               {/* Partner Logos moved here */}
-              <div className="footer-partners-container" style={{ display: 'flex', gap: '3rem', alignItems: 'center', flexWrap: 'wrap', marginBottom: '1.25rem' }}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <a href="#"><img src="/icef_logo.svg" alt="ICEF" style={{ height: '40px', width: 'auto' }} /></a>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <a href="#"><img src="/facdcab_logo.svg" alt="FACDCAB" style={{ height: '40px', width: 'auto' }} /></a>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <a href="#"><img src="/nafsa_logo.svg" alt="NAFSA" style={{ height: '45px', width: 'auto', filter: 'brightness(0) invert(1)' }} /></a>
+              <div style={{ borderRight: '1px solid rgba(255, 255, 255, 0.8)', paddingRight: '3rem', width: 'fit-content', position: 'relative', marginTop: '-1.25rem', paddingTop: '1.25rem', paddingBottom: '1.25rem' }}>
+                <div className="footer-partners-container" style={{ display: 'flex', gap: '3rem', alignItems: 'center', flexWrap: 'wrap' }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <a href="#"><img src="/icef_logo.svg" alt="ICEF" style={{ height: '40px', width: 'auto' }} /></a>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <a href="#"><img src="/facdcab_logo.svg" alt="FACDCAB" style={{ height: '40px', width: 'auto' }} /></a>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <a href="#"><img src="/nafsa_logo.svg" alt="NAFSA" style={{ height: '45px', width: 'auto', filter: 'brightness(0) invert(1)' }} /></a>
+                </div>
               </div>
 
               {/* Added bottom divider */}
