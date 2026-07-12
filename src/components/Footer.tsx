@@ -103,7 +103,7 @@ const Footer = () => {
             position: 'absolute', 
             left: '3rem', 
             top: '80px', 
-            bottom: '3rem', 
+            bottom: '42px', 
             width: '2px', // Increased thickness
             background: brandColor,
             opacity: 0.6,
