@@ -139,6 +139,12 @@ const Footer = () => {
               </div>
             </div>
 
+            <div className="footer-meta-line" style={{ fontSize: '0.9375rem', marginTop: '1.25rem', marginBottom: '1.25rem', fontWeight: 500, opacity: 1 }}>
+              <span>+880 1511-710730</span>
+              <span className="footer-pipe">|</span>
+              <span>60, Dilkusha, Motijheel C/A, Dhaka-1000, Bangladesh</span>
+            </div>
+
             {/* Acknowledgement Text */}
             <div style={{ display: 'none', marginBottom: '1.5rem', maxWidth: '850px' }}>
               <h3 style={{ fontSize: '1.5rem', marginBottom: '1.25rem', fontWeight: 600 }}>Acknowledgement of Country</h3>
@@ -177,15 +183,6 @@ const Footer = () => {
                 <a href="#" style={{ textDecoration: 'none', color: '#fff' }}>Accessibility</a>
               </div>
               
-              <div className="footer-meta-line" style={{ fontSize: '0.9375rem', marginBottom: '1.25rem', fontWeight: 500, opacity: 1 }}>
-                <span>+880 1511-710730</span>
-                <span className="footer-pipe">|</span>
-                <span>60, Dilkusha, Motijheel C/A, Dhaka-1000, Bangladesh</span>
-              </div>
-
-              {/* Added bottom divider */}
-              <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.8)', marginBottom: '1.25rem', marginLeft: '-1.5rem', width: 'calc(100% + 1.5rem)' }}></div>
-
               {/* Copyright and Privacy Policy */}
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.8125rem', fontWeight: 400, color: '#fff', opacity: 0.8 }}>
                 <span>&copy; {new Date().getFullYear()} Rowshanara Edu. All Rights Reserved.</span>
