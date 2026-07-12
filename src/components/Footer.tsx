@@ -51,7 +51,7 @@ const Footer = () => {
       </div>
 
       {/* 2. Middle & Bottom Layer Container */}
-      <div style={{ padding: '1rem 0 3rem 0', position: 'relative' }}>
+      <div style={{ padding: '1rem 0 1rem 0', position: 'relative' }}>
         <div className="container" style={{ 
           maxWidth: '1200px', 
           margin: '0 auto', 
