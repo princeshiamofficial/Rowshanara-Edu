@@ -186,6 +186,12 @@ const Footer = () => {
               {/* Added bottom divider */}
               <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.8)', marginBottom: '1.25rem', marginLeft: '-1.5rem', width: 'calc(100% + 1.5rem)' }}></div>
 
+              {/* Copyright and Privacy Policy */}
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.9375rem', fontWeight: 500, color: '#fff' }}>
+                <span>&copy; {new Date().getFullYear()} Rowshanara Edu. All Rights Reserved.</span>
+                <a href="/privacy-policy" style={{ textDecoration: 'none', color: '#fff' }}>Privacy Policy</a>
+              </div>
+
               <div className="footer-meta-line" style={{ display: 'none', fontSize: '0.9375rem', fontWeight: 500, opacity: 1 }}>
                 <span>TEQSA Provider ID: PRV12002 (Australian University)</span>
                 <span className="footer-pipe">|</span>
