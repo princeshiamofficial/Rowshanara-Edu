@@ -19,7 +19,7 @@ export default function Home() {
       <Destinations />
       <Services />
       <Testimonials />
-      <CTA />
+      <CTA style={{ marginTop: 0, marginBottom: 0 }} />
     </div>
   );
 }
