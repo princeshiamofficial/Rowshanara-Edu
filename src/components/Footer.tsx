@@ -195,7 +195,7 @@ const Footer = () => {
                 <div style={{ width: '50%', paddingRight: '2rem', position: 'relative', zIndex: 1 }}>
                   <h4 style={{ 
                     position: 'absolute', 
-                    top: 0, 
+                    top: '-1.25rem', 
                     left: 0, 
                     transform: 'translateY(-50%)', 
                     background: '#000', 
@@ -221,7 +221,7 @@ const Footer = () => {
                 <div style={{ width: '50%', paddingLeft: '2rem', position: 'relative', zIndex: 1 }}>
                   <h4 style={{ 
                     position: 'absolute', 
-                    top: 0, 
+                    top: '-1.25rem', 
                     left: '2rem', 
                     transform: 'translateY(-50%)', 
                     background: '#000', 
