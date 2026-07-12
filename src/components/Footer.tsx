@@ -187,16 +187,26 @@ const Footer = () => {
               </div>
               
               {/* Partner Logos moved here */}
-              <div style={{ width: '100%', position: 'relative', marginTop: '-1.25rem', paddingTop: '1.25rem', paddingBottom: '1.25rem' }}>
+              <div style={{ display: 'flex', width: '100%', position: 'relative', marginTop: '-1.25rem', paddingTop: '1.25rem', paddingBottom: '1.25rem' }}>
                 {/* Center Vertical Line */}
                 <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '50%', borderRight: '1px solid rgba(255, 255, 255, 0.8)', pointerEvents: 'none' }}></div>
-                <div className="footer-partners-container" style={{ display: 'flex', gap: '3rem', alignItems: 'center', flexWrap: 'wrap', position: 'relative', zIndex: 1 }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <a href="#"><img src="/icef_logo.svg" alt="ICEF" style={{ height: '40px', width: 'auto' }} /></a>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <a href="#"><img src="/facdcab_logo.svg" alt="FACDCAB" style={{ height: '40px', width: 'auto' }} /></a>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <a href="#"><img src="/nafsa_logo.svg" alt="NAFSA" style={{ height: '45px', width: 'auto', filter: 'brightness(0) invert(1)' }} /></a>
+                
+                {/* Left Box: Accreditation */}
+                <div style={{ width: '50%', paddingRight: '2rem', position: 'relative', zIndex: 1 }}>
+                  <h4 style={{ color: '#fff', fontSize: '1rem', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase', marginBottom: '1.5rem', marginTop: '0.5rem' }}>Accreditation</h4>
+                  <div className="footer-partners-container" style={{ display: 'flex', gap: '3rem', alignItems: 'center', flexWrap: 'wrap' }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <a href="#"><img src="/icef_logo.svg" alt="ICEF" style={{ height: '40px', width: 'auto' }} /></a>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <a href="#"><img src="/facdcab_logo.svg" alt="FACDCAB" style={{ height: '40px', width: 'auto' }} /></a>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <a href="#"><img src="/nafsa_logo.svg" alt="NAFSA" style={{ height: '45px', width: 'auto', filter: 'brightness(0) invert(1)' }} /></a>
+                  </div>
+                </div>
+
+                {/* Right Box: Membership */}
+                <div style={{ width: '50%', paddingLeft: '2rem', position: 'relative', zIndex: 1 }}>
+                  <h4 style={{ color: '#fff', fontSize: '1rem', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase', marginBottom: '1.5rem', marginTop: '0.5rem' }}>Membership</h4>
                 </div>
               </div>
 
