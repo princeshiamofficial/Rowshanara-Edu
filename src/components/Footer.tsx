@@ -75,6 +75,7 @@ const Footer = () => {
             fontSize: '1.25rem',
             zIndex: 20 // Higher than the line's zIndex
           }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="https://d1blp3aor2iuhp.cloudfront.net/images/icons/icon-arrow-up-solid.svg" alt="Arrow Up" style={{ width: '16px' }} />
           </a>
 
@@ -116,12 +117,16 @@ const Footer = () => {
             {/* Logo and Partners Grid */}
             <div className="footer-logo-partners-row">
               <div className="footer-logo-container">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/logo.png" alt="Logo" style={{ height: '75px', filter: 'brightness(0) invert(1)' }} />
               </div>
 
               <div className="footer-partners-container" style={{ display: 'flex', gap: '3rem', alignItems: 'center', flexWrap: 'wrap' }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <a href="#"><img src="/icef_logo.svg" alt="ICEF" style={{ height: '40px', width: 'auto' }} /></a>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <a href="#"><img src="/facdcab_logo.svg" alt="FACDCAB" style={{ height: '40px', width: 'auto' }} /></a>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <a href="#"><img src="/nafsa_logo.svg" alt="NAFSA" style={{ height: '45px', width: 'auto', filter: 'brightness(0) invert(1)' }} /></a>
               </div>
             </div>
