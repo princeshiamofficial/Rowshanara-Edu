@@ -176,8 +176,10 @@ const Footer = () => {
               </div>
               
               {/* Partner Logos moved here */}
-              <div style={{ borderRight: '1px solid rgba(255, 255, 255, 0.8)', width: '50%', position: 'relative', marginTop: '-1.25rem', paddingTop: '1.25rem', paddingBottom: '1.25rem' }}>
-                <div className="footer-partners-container" style={{ display: 'flex', gap: '3rem', alignItems: 'center', flexWrap: 'wrap' }}>
+              <div style={{ width: '100%', borderRight: '1px solid rgba(255, 255, 255, 0.8)', position: 'relative', marginTop: '-1.25rem', paddingTop: '1.25rem', paddingBottom: '1.25rem' }}>
+                {/* Center Vertical Line */}
+                <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '50%', borderRight: '1px solid rgba(255, 255, 255, 0.8)', pointerEvents: 'none' }}></div>
+                <div className="footer-partners-container" style={{ display: 'flex', gap: '3rem', alignItems: 'center', flexWrap: 'wrap', position: 'relative', zIndex: 1 }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <a href="#"><img src="/icef_logo.svg" alt="ICEF" style={{ height: '40px', width: 'auto' }} /></a>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
