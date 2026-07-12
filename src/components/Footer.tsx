@@ -81,7 +81,7 @@ const Footer = () => {
           {/* Vertical Gold Line Accent (Above Logo) */}
           <div style={{ 
             position: 'absolute', 
-            left: '2rem', 
+            left: '3rem', 
             top: '-4rem', 
             height: '80px', 
             width: '2px', // Increased thickness
@@ -93,7 +93,7 @@ const Footer = () => {
           {/* Vertical Gold Line Accent (Below Logo) */}
           <div style={{ 
             position: 'absolute', 
-            left: '2rem', 
+            left: '3rem', 
             top: '80px', 
             bottom: '-3rem', 
             width: '2px', // Increased thickness
