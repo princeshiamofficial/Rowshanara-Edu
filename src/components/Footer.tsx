@@ -134,7 +134,7 @@ const Footer = () => {
             }}></div>
             
             {/* Logo and Address */}
-            <div className="footer-logo-partners-row">
+            <div className="footer-logo-partners-row" style={{ alignItems: 'flex-start' }}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', alignItems: 'flex-start' }}>
                 <div className="footer-logo-container">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -144,6 +144,19 @@ const Footer = () => {
                   <span>+880 1511-710730</span>
                   <span className="footer-pipe" style={{ margin: '0 0.5rem' }}>|</span>
                   <span>60, Dilkusha, Motijheel C/A, Dhaka-1000, Bangladesh</span>
+                </div>
+              </div>
+              
+              {/* Quick Links */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', minWidth: '350px' }}>
+                <h4 style={{ color: brandColor, fontSize: '1.125rem', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase', margin: 0 }}>Quick Links</h4>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem 2rem' }}>
+                  <a href="/about" style={{ color: '#fff', textDecoration: 'none', fontSize: '0.9375rem', opacity: 0.85, transition: 'opacity 0.2s', display: 'block' }}>About Us</a>
+                  <a href="/services" style={{ color: '#fff', textDecoration: 'none', fontSize: '0.9375rem', opacity: 0.85, transition: 'opacity 0.2s', display: 'block' }}>Our Services</a>
+                  <a href="/universities" style={{ color: '#fff', textDecoration: 'none', fontSize: '0.9375rem', opacity: 0.85, transition: 'opacity 0.2s', display: 'block' }}>Universities</a>
+                  <a href="/contact" style={{ color: '#fff', textDecoration: 'none', fontSize: '0.9375rem', opacity: 0.85, transition: 'opacity 0.2s', display: 'block' }}>Contact Us</a>
+                  <a href="/apply" style={{ color: '#fff', textDecoration: 'none', fontSize: '0.9375rem', opacity: 0.85, transition: 'opacity 0.2s', display: 'block' }}>Apply Now</a>
+                  <a href="/faq" style={{ color: '#fff', textDecoration: 'none', fontSize: '0.9375rem', opacity: 0.85, transition: 'opacity 0.2s', display: 'block' }}>FAQ</a>
                 </div>
               </div>
             </div>
