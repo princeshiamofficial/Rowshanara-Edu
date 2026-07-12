@@ -193,8 +193,21 @@ const Footer = () => {
                 
                 {/* Left Box: Accreditation */}
                 <div style={{ width: '50%', paddingRight: '2rem', position: 'relative', zIndex: 1 }}>
-                  <h4 style={{ color: '#fff', fontSize: '1rem', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase', marginBottom: '1.5rem', marginTop: '0.5rem' }}>Accreditation</h4>
-                  <div className="footer-partners-container" style={{ display: 'flex', gap: '3rem', alignItems: 'center', flexWrap: 'wrap' }}>
+                  <h4 style={{ 
+                    position: 'absolute', 
+                    top: 0, 
+                    left: 0, 
+                    transform: 'translateY(-50%)', 
+                    background: '#000', 
+                    paddingRight: '1rem', 
+                    color: '#fff', 
+                    fontSize: '1rem', 
+                    fontWeight: 600, 
+                    letterSpacing: '0.05em', 
+                    textTransform: 'uppercase', 
+                    margin: 0 
+                  }}>Accreditation</h4>
+                  <div className="footer-partners-container" style={{ display: 'flex', gap: '3rem', alignItems: 'center', flexWrap: 'wrap', paddingTop: '0.5rem' }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <a href="#"><img src="/icef_logo.svg" alt="ICEF" style={{ height: '40px', width: 'auto' }} /></a>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -206,7 +219,20 @@ const Footer = () => {
 
                 {/* Right Box: Membership */}
                 <div style={{ width: '50%', paddingLeft: '2rem', position: 'relative', zIndex: 1 }}>
-                  <h4 style={{ color: '#fff', fontSize: '1rem', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase', marginBottom: '1.5rem', marginTop: '0.5rem' }}>Membership</h4>
+                  <h4 style={{ 
+                    position: 'absolute', 
+                    top: 0, 
+                    left: '2rem', 
+                    transform: 'translateY(-50%)', 
+                    background: '#000', 
+                    paddingRight: '1rem', 
+                    color: '#fff', 
+                    fontSize: '1rem', 
+                    fontWeight: 600, 
+                    letterSpacing: '0.05em', 
+                    textTransform: 'uppercase', 
+                    margin: 0 
+                  }}>Membership</h4>
                 </div>
               </div>
 
