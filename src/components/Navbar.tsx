@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { FaEnvelope, FaFacebookF, FaLinkedinIn, FaYoutube, FaBars, FaXmark, FaXTwitter, FaWeixin } from 'react-icons/fa6';
 
@@ -50,7 +51,7 @@ const Navbar = () => {
         }}>
           <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <img src="https://flagcdn.com/w20/bd.png" alt="BD Flag" width="20" style={{ borderRadius: '2px' }} />
+              <Image src="https://flagcdn.com/w20/bd.png" alt="BD Flag" width={20} height={14} style={{ borderRadius: '2px' }} />
               <a href="tel:+8801511710730" style={{ fontWeight: 600, color: 'white' }}>+880 1511-710730</a>
             </div>
             <div className="hide-mobile" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
@@ -93,15 +94,17 @@ const Navbar = () => {
         <nav style={{ padding: '0.75rem 2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'relative' }}>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <Link href="/">
-              <img 
-                src="/logo.png" 
-                alt="Rowshanara Edu" 
-                style={{ 
-                  height: '45px', 
-                  width: 'auto',
-                  display: 'block'
-                }} 
-              />
+              <Image 
+                  src="/logo.png" 
+                  alt="Rowshanara Edu" 
+                  width={150}
+                  height={45}
+                  style={{ 
+                    height: '45px', 
+                    width: 'auto',
+                    display: 'block'
+                  }} 
+                />
             </Link>
           </div>
  

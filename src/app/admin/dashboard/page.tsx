@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import Link from 'next/link';
+
 import { useRouter } from 'next/navigation';
 import {
   School,
@@ -21,7 +21,7 @@ export default function AdminDashboardPage() {
   const [searchQuery, setSearchQuery] = useState('');
 
   // Mock student applications data
-  const [applications, setApplications] = useState([
+  const [applications] = useState([
     { id: 'APP-0941', name: 'Tanvir Rahman', university: 'University of Oxford', country: 'United Kingdom', course: 'MSc Computer Science', date: '2026-06-08', status: 'Approved' },
     { id: 'APP-0940', name: 'Nusrat Jahan', university: 'University of Toronto', country: 'Canada', course: 'BBA Finance', date: '2026-06-07', status: 'Pending' },
     { id: 'APP-0939', name: 'Fahim Shakil', university: 'Monash University', country: 'Australia', course: 'BSc Software Engineering', date: '2026-06-06', status: 'Reviewing' },

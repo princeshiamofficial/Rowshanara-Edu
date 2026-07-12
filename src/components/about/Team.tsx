@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { FaFacebook, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 
 const teamMembers = [
@@ -123,9 +124,11 @@ export default function Team() {
               backgroundColor: "#f1f5f9",
               transition: "all 0.3s ease"
             }}>
-              <img
+              <Image
                 src={member.image}
                 alt={member.name}
+                width={96}
+                height={96}
                 style={{
                   width: "100%",
                   height: "100%",
