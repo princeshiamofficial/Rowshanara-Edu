@@ -9,21 +9,21 @@ const slides = [
     image: "/sydney_opera_house.png",
     buttonText: "BOOK FREE CONSULTATION",
     link: "/contact",
-    gradient: "linear-gradient(90deg, rgba(179, 18, 38, 0.85) 0%, rgba(179, 18, 38, 0.6) 24%, rgba(179, 18, 38, 0.2) 48%, rgba(179, 18, 38, 0) 66.6%)"
+    gradient: "linear-gradient(90deg, rgba(224, 145, 0, 0.85) 0%, rgba(224, 145, 0, 0.6) 24%, rgba(224, 145, 0, 0.2) 48%, rgba(224, 145, 0, 0) 66.6%)"
   },
   {
     title: "Study in Canada",
     image: "/canada_hero.png",
     buttonText: "BOOK FREE CONSULTATION",
     link: "/contact",
-    gradient: "linear-gradient(90deg, rgba(179, 18, 38, 0.85) 0%, rgba(179, 18, 38, 0.6) 24%, rgba(179, 18, 38, 0.2) 48%, rgba(179, 18, 38, 0) 66.6%)"
+    gradient: "linear-gradient(90deg, rgba(224, 145, 0, 0.85) 0%, rgba(224, 145, 0, 0.6) 24%, rgba(224, 145, 0, 0.2) 48%, rgba(224, 145, 0, 0) 66.6%)"
   },
   {
     title: "Study in United Kingdom",
     image: "/uk_hero.png",
     buttonText: "BOOK FREE CONSULTATION",
     link: "/contact",
-    gradient: "linear-gradient(90deg, rgba(179, 18, 38, 0.85) 0%, rgba(179, 18, 38, 0.6) 24%, rgba(179, 18, 38, 0.2) 48%, rgba(179, 18, 38, 0) 66.6%)"
+    gradient: "linear-gradient(90deg, rgba(224, 145, 0, 0.85) 0%, rgba(224, 145, 0, 0.6) 24%, rgba(224, 145, 0, 0.2) 48%, rgba(224, 145, 0, 0) 66.6%)"
   }
 ];
 
