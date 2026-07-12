@@ -2432,8 +2432,9 @@ body.client-page-layout .brand-overview-section {
   margin-bottom: 0 !important;
 }
 
-/* Add vertical spacing for testimonials while maintaining full width background */
-body.client-page-layout .testimonials-section {
+/* Add vertical spacing for sections that lost their margins while maintaining full width background */
+body.client-page-layout .testimonials-section,
+body.client-page-layout .destinations-section {
   padding-top: 3.5rem !important;
   padding-bottom: 3.5rem !important;
 }
