@@ -133,7 +133,7 @@ const Footer = () => {
             </div>
 
             {/* Acknowledgement Text */}
-            <div style={{ marginBottom: '1.5rem', maxWidth: '850px' }}>
+            <div style={{ display: 'none', marginBottom: '1.5rem', maxWidth: '850px' }}>
               <h3 style={{ fontSize: '1.5rem', marginBottom: '1.25rem', fontWeight: 600 }}>Acknowledgement of Country</h3>
               <p style={{ 
                 fontSize: '1.0625rem', 
