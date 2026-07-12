@@ -233,6 +233,13 @@ const Footer = () => {
                     textTransform: 'uppercase', 
                     margin: 0 
                   }}>Membership</h4>
+                  <div className="footer-partners-container" style={{ display: 'flex', gap: '3rem', alignItems: 'center', flexWrap: 'wrap', paddingTop: '0.5rem' }}>
+                    {/* Demo Logos */}
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <a href="#"><img src="/icef_logo.svg" alt="Demo Logo 1" style={{ height: '40px', width: 'auto', opacity: 0.7 }} /></a>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <a href="#"><img src="/facdcab_logo.svg" alt="Demo Logo 2" style={{ height: '40px', width: 'auto', opacity: 0.7 }} /></a>
+                  </div>
                 </div>
               </div>
 
