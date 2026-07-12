@@ -110,7 +110,8 @@ const Footer = () => {
               borderTop: '1px solid rgba(255, 255, 255, 0.8)', 
               position: 'relative', 
               top: '-4.0rem', // Adjusted up by another 2px
-              width: '100%',
+              width: 'calc(100% + 1.5rem)',
+              marginLeft: '-1.5rem',
               zIndex: 5
             }}></div>
             
@@ -144,7 +145,7 @@ const Footer = () => {
             </div>
 
             {/* Sub-footer Divider Line */}
-            <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.8)', marginBottom: '1.25rem' }}></div>
+            <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.8)', marginBottom: '1.25rem', marginLeft: '-1.5rem', width: 'calc(100% + 1.5rem)' }}></div>
 
             {/* Bottom Metadata & Legal Links */}
             <div>
