@@ -2162,7 +2162,7 @@ button {
 
 .choose-us-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
 }
 
@@ -2406,7 +2406,8 @@ body.client-page-layout .destinations-section,
 body.client-page-layout .services-section,
 body.client-page-layout .testimonials-section,
 body.client-page-layout .cta-section,
-body.client-page-layout .brand-overview-section {
+body.client-page-layout .brand-overview-section,
+body.client-page-layout .container {
   width: 100% !important;
   max-width: 100% !important;
   border-radius: 0 !important;
