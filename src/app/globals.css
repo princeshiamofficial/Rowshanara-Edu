@@ -548,7 +548,7 @@ button {
   overflow: hidden;
   position: relative;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   background: url('/sydney_opera_house.png') no-repeat center center;
   background-size: cover;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
