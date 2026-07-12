@@ -51,7 +51,7 @@ const Footer = () => {
       </div>
 
       {/* 2. Middle & Bottom Layer Container */}
-      <div style={{ padding: '1rem 0 1rem 0', position: 'relative' }}>
+      <div style={{ padding: '1rem 0 3rem 0', position: 'relative' }}>
         <div className="container" style={{ 
           maxWidth: '1200px', 
           margin: '0 auto', 
@@ -187,7 +187,7 @@ const Footer = () => {
               <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.8)', marginBottom: '1.25rem', marginLeft: '-1.5rem', width: 'calc(100% + 1.5rem)' }}></div>
 
               {/* Copyright and Privacy Policy */}
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.9375rem', fontWeight: 500, color: '#fff' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.8125rem', fontWeight: 400, color: '#fff', opacity: 0.8 }}>
                 <span>&copy; {new Date().getFullYear()} Rowshanara Edu. All Rights Reserved.</span>
                 <a href="/privacy-policy" style={{ textDecoration: 'none', color: '#fff' }}>Privacy Policy</a>
               </div>
