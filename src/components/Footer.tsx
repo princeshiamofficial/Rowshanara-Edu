@@ -59,25 +59,32 @@ const Footer = () => {
           position: 'relative'
         }}>
 
-          {/* Back to top arrow (Adjusted position for ANU fidelity) */}
-          <a id="btn-back-to-top" href="#" style={{ 
+          {/* Back to top arrow with Contact Us text */}
+          <div style={{
             position: 'absolute', 
-            top: '-5.0rem', // Elevated above the line
-            right: '2rem', 
-            background: brandColor, 
-            width: '44px', 
-            height: '44px', 
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'center',
-            textDecoration: 'none',
-            color: '#000',
-            fontSize: '1.25rem',
-            zIndex: 20 // Higher than the line's zIndex
+            top: '-5.1rem', // Centered with line
+            right: '2rem',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '1rem',
+            zIndex: 20
           }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="https://d1blp3aor2iuhp.cloudfront.net/images/icons/icon-arrow-up-solid.svg" alt="Arrow Up" style={{ width: '16px' }} />
-          </a>
+            <span style={{ color: '#fff', fontSize: '1rem', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase' }}>Contact Us</span>
+            <a id="btn-back-to-top" href="#" style={{ 
+              background: brandColor, 
+              width: '44px', 
+              height: '44px', 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'center',
+              textDecoration: 'none',
+              color: '#000',
+              fontSize: '1.25rem'
+            }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="https://d1blp3aor2iuhp.cloudfront.net/images/icons/icon-arrow-up-solid.svg" alt="Arrow Up" style={{ width: '16px' }} />
+            </a>
+          </div>
 
           {/* Vertical Gold Line Accent (Above Logo) */}
           <div style={{ 
@@ -110,7 +117,7 @@ const Footer = () => {
               borderTop: '1px solid rgba(255, 255, 255, 0.8)', 
               position: 'relative', 
               top: '-4.0rem', // Adjusted up by another 2px
-              width: 'calc(100% + 1.5rem)',
+              width: 'calc(100% + 1.5rem - 180px)', // Shortened to avoid text and arrow
               marginLeft: '-1.5rem',
               zIndex: 5
             }}></div>
