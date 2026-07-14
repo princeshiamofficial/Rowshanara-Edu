@@ -75,7 +75,7 @@ export default function ServicesGrid() {
 
   return (
     <section className="container" style={{ paddingTop: "2.5rem", paddingBottom: "1.8rem" }}>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 320px), 1fr))", gap: "2.5rem 2rem" }}>
+      <div className="services-grid-4col">
         <AnimatePresence mode="popLayout">
           {services.map((service, index) => (
             <motion.div 
