@@ -27,7 +27,6 @@ export default function AdminTimelinePage() {
   const [newStep, setNewStep] = useState({
     title: '',
     body: '',
-    value: '',
     sortOrder: 1
   });
 
@@ -65,7 +64,7 @@ export default function AdminTimelinePage() {
         itemKey,
         title: newStep.title,
         body: newStep.body,
-        value: newStep.value || String(newStep.sortOrder),
+        value: String(newStep.sortOrder),
         sortOrder: Number(newStep.sortOrder),
         isActive: true
       };
@@ -85,7 +84,6 @@ export default function AdminTimelinePage() {
         setNewStep({
           title: '',
           body: '',
-          value: '',
           sortOrder: steps.length + 1
         });
         toast.success(editingId ? 'Step updated successfully!' : 'Step added successfully!');
@@ -104,7 +102,6 @@ export default function AdminTimelinePage() {
     setNewStep({
       title: step.title,
       body: step.body,
-      value: step.value,
       sortOrder: step.sortOrder
     });
     setIsModalOpen(true);
@@ -116,7 +113,6 @@ export default function AdminTimelinePage() {
     setNewStep({
       title: '',
       body: '',
-      value: '',
       sortOrder: steps.length + 1
     });
   };
@@ -275,28 +271,15 @@ export default function AdminTimelinePage() {
             </div>
 
             <form onSubmit={handleAddOrEditStep} style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                <div>
-                  <label style={{ display: 'block', fontSize: '0.775rem', fontWeight: 600, color: '#475569', marginBottom: '0.4rem' }}>Step Number badge (e.g. 1)</label>
-                  <input
-                    required
-                    type="text"
-                    placeholder="e.g. 1"
-                    value={newStep.value}
-                    onChange={e => setNewStep({ ...newStep, value: e.target.value })}
-                    style={{ width: '100%', padding: '0.6rem 0.8rem', border: '1px solid #cbd5e1', borderRadius: '8px', outline: 'none' }}
-                  />
-                </div>
-                <div>
-                  <label style={{ display: 'block', fontSize: '0.775rem', fontWeight: 600, color: '#475569', marginBottom: '0.4rem' }}>Sort Order</label>
-                  <input
-                    required
-                    type="number"
-                    value={newStep.sortOrder}
-                    onChange={e => setNewStep({ ...newStep, sortOrder: Number(e.target.value) })}
-                    style={{ width: '100%', padding: '0.6rem 0.8rem', border: '1px solid #cbd5e1', borderRadius: '8px', outline: 'none' }}
-                  />
-                </div>
+              <div>
+                <label style={{ display: 'block', fontSize: '0.775rem', fontWeight: 600, color: '#475569', marginBottom: '0.4rem' }}>Sort Order</label>
+                <input
+                  required
+                  type="number"
+                  value={newStep.sortOrder}
+                  onChange={e => setNewStep({ ...newStep, sortOrder: Number(e.target.value) })}
+                  style={{ width: '100%', padding: '0.6rem 0.8rem', border: '1px solid #cbd5e1', borderRadius: '8px', outline: 'none' }}
+                />
               </div>
 
               <div>
