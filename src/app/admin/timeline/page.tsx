@@ -26,8 +26,7 @@ export default function AdminTimelinePage() {
   
   const [newStep, setNewStep] = useState({
     title: '',
-    body: '',
-    sortOrder: 1
+    body: ''
   });
 
   const fetchSteps = () => {
@@ -58,14 +57,22 @@ export default function AdminTimelinePage() {
         ? steps.find(s => s.id === editingId)?.itemKey || `step_${Date.now()}`
         : `step_${newStep.title.toLowerCase().replace(/[^a-z0-9]+/g, '_')}_${Date.now()}`;
 
+      let sortOrder = steps.length + 1;
+      if (editingId) {
+        const found = steps.find(s => s.id === editingId);
+        if (found) sortOrder = found.sortOrder;
+      } else {
+        sortOrder = Math.max(...steps.map(s => s.sortOrder), 0) + 1;
+      }
+
       const payload = {
         id: editingId || undefined,
         section: "service_process",
         itemKey,
         title: newStep.title,
         body: newStep.body,
-        value: String(newStep.sortOrder),
-        sortOrder: Number(newStep.sortOrder),
+        value: String(sortOrder),
+        sortOrder: sortOrder,
         isActive: true
       };
 
@@ -83,8 +90,7 @@ export default function AdminTimelinePage() {
         setEditingId(null);
         setNewStep({
           title: '',
-          body: '',
-          sortOrder: steps.length + 1
+          body: ''
         });
         toast.success(editingId ? 'Step updated successfully!' : 'Step added successfully!');
         fetchSteps();
@@ -101,8 +107,7 @@ export default function AdminTimelinePage() {
     setEditingId(step.id || null);
     setNewStep({
       title: step.title,
-      body: step.body,
-      sortOrder: step.sortOrder
+      body: step.body
     });
     setIsModalOpen(true);
   };
@@ -112,8 +117,7 @@ export default function AdminTimelinePage() {
     setEditingId(null);
     setNewStep({
       title: '',
-      body: '',
-      sortOrder: steps.length + 1
+      body: ''
     });
   };
 
@@ -211,14 +215,13 @@ export default function AdminTimelinePage() {
                   <th style={{ padding: '1rem 0.5rem', width: '80px' }}>Step No.</th>
                   <th style={{ padding: '1rem 0.5rem' }}>Step Title</th>
                   <th style={{ padding: '1rem 0.5rem' }}>Description</th>
-                  <th style={{ padding: '1rem 0.5rem', width: '100px' }}>Sort Order</th>
                   <th style={{ padding: '1rem 0.5rem', textAlign: 'center', width: '120px' }}>Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {steps.length === 0 ? (
                   <tr>
-                    <td colSpan={5} style={{ textAlign: 'center', padding: '3rem 1rem', color: '#94a3b8' }}>
+                    <td colSpan={4} style={{ textAlign: 'center', padding: '3rem 1rem', color: '#94a3b8' }}>
                       <Clock size={40} style={{ margin: '0 auto 1rem auto', opacity: 0.5 }} />
                       <div>No timeline steps loaded or database is offline.</div>
                     </td>
@@ -226,10 +229,9 @@ export default function AdminTimelinePage() {
                 ) : (
                   steps.map((step) => (
                     <tr key={step.id} style={{ borderBottom: '1px solid #f1f5f9' }}>
-                      <td style={{ padding: '1rem 0.5rem', fontWeight: 700, color: '#E09100' }}>#{step.value}</td>
+                      <td style={{ padding: '1rem 0.5rem', fontWeight: 700, color: '#E09100' }}>#{step.sortOrder}</td>
                       <td style={{ padding: '1rem 0.5rem', fontWeight: 600, color: '#0f172a' }}>{step.title}</td>
                       <td style={{ padding: '1rem 0.5rem', color: '#475569' }}>{step.body}</td>
-                      <td style={{ padding: '1rem 0.5rem', color: '#64748b' }}>{step.sortOrder}</td>
                       <td style={{ padding: '1rem 0.5rem', textAlign: 'center' }}>
                         <div style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem' }}>
                           <button
@@ -271,16 +273,6 @@ export default function AdminTimelinePage() {
             </div>
 
             <form onSubmit={handleAddOrEditStep} style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-              <div>
-                <label style={{ display: 'block', fontSize: '0.775rem', fontWeight: 600, color: '#475569', marginBottom: '0.4rem' }}>Sort Order</label>
-                <input
-                  required
-                  type="number"
-                  value={newStep.sortOrder}
-                  onChange={e => setNewStep({ ...newStep, sortOrder: Number(e.target.value) })}
-                  style={{ width: '100%', padding: '0.6rem 0.8rem', border: '1px solid #cbd5e1', borderRadius: '8px', outline: 'none' }}
-                />
-              </div>
 
               <div>
                 <label style={{ display: 'block', fontSize: '0.775rem', fontWeight: 600, color: '#475569', marginBottom: '0.4rem' }}>Step Title</label>
