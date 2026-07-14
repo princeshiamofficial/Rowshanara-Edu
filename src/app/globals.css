@@ -2788,9 +2788,13 @@ body.client-page-layout .destinations-section {
     padding: 4rem 0 2rem 0;
   }
   .premium-footer-grid {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem 1.5rem;
     margin-bottom: 3rem;
+  }
+  .premium-footer-grid > .premium-footer-col:nth-child(1),
+  .premium-footer-grid > .premium-footer-col:nth-child(4) {
+    grid-column: span 2;
   }
   .premium-footer-bottom {
     flex-direction: column;
