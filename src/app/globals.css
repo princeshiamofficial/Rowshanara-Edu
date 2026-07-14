@@ -874,13 +874,11 @@ button {
   align-items: center;
   gap: 3rem;
   width: max-content;
-  animation: scrollMarquee 25s linear infinite;
+  animation: scrollMarquee 30s linear infinite;
   padding: 0.75rem 0;
   will-change: transform;
-}
-
-.marquee-track:hover {
-  animation-play-state: paused;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .university-logo-card {
