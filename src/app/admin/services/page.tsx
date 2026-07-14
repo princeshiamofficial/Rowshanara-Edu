@@ -24,8 +24,7 @@ interface Service {
 
 export default function AdminServicesPage() {
   const router = useRouter();
-  const [activeTab, setActiveTab] = useState('Settings');
-  const [activeSubTab, setActiveSubTab] = useState('Services');
+  const [activeTab, setActiveTab] = useState('Services');
 
   // Dynamic services state
   const [dbServices, setDbServices] = useState<Service[]>([]);
@@ -181,11 +180,6 @@ export default function AdminServicesPage() {
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         onLogout={handleLogout}
-        activeSubTab={activeSubTab}
-        setActiveSubTab={(sub) => {
-          setActiveTab('Settings');
-          setActiveSubTab(sub);
-        }}
       />
 
       {/* Main Content Panel */}

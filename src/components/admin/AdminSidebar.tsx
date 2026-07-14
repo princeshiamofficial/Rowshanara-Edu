@@ -13,7 +13,9 @@ import {
   School,
   Users,
   LayoutDashboard,
-  GraduationCap
+  GraduationCap,
+  Globe,
+  FileText
 } from 'lucide-react';
 
 interface AdminSidebarProps {
@@ -79,7 +81,8 @@ export default function AdminSidebar({
     { name: 'Applications', icon: <GraduationCap size={20} />, badge: 10, hasSubMenu: false },
     { name: 'Consultations', icon: <Users size={20} />, badge: 8, hasSubMenu: false },
     { name: 'Universities', icon: <School size={20} />, badge: null, hasSubMenu: false },
-    { name: 'Settings', icon: <Settings size={20} />, badge: null, hasSubMenu: true, key: 'Settings', subMenu: ['General', 'Destinations', 'Services', 'Billing', 'Consultants'] },
+    { name: 'Destinations', icon: <Globe size={20} />, badge: null, hasSubMenu: false },
+    { name: 'Services', icon: <FileText size={20} />, badge: null, hasSubMenu: false },
   ];
 
   return (

@@ -29,8 +29,7 @@ interface Destination {
 
 export default function AdminDestinationsPage() {
   const router = useRouter();
-  const [activeTab, setActiveTab] = useState('Settings');
-  const [activeSubTab, setActiveSubTab] = useState('Destinations');
+  const [activeTab, setActiveTab] = useState('Destinations');
 
   // Dynamic destinations state
   const [dbDestinations, setDbDestinations] = useState<Destination[]>([]);
@@ -206,11 +205,6 @@ export default function AdminDestinationsPage() {
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         onLogout={handleLogout}
-        activeSubTab={activeSubTab}
-        setActiveSubTab={(sub) => {
-          setActiveTab('Settings');
-          setActiveSubTab(sub);
-        }}
       />
 
       {/* Main Content Dashboard Panel */}
