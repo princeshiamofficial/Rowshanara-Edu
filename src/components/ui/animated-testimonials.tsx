@@ -71,7 +71,7 @@ export const AnimatedTestimonials = ({
 
         {/* Image Column */}
         <div>
-          <div className="relative mx-auto h-[280px] w-full max-w-[280px] md:h-[360px] md:max-w-[360px]">
+          <div className="relative mx-auto h-[320px] w-[320px] md:h-[360px] md:w-[360px]">
             <AnimatePresence>
               {testimonials.map((testimonial, index) => (
                 <motion.div
