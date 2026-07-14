@@ -17,6 +17,7 @@ import {
   X
 } from 'lucide-react';
 import AdminSidebar from '@/components/admin/AdminSidebar';
+import { toast } from 'sonner';
 
 export default function AdminDashboardPage() {
   const router = useRouter();
@@ -87,12 +88,13 @@ export default function AdminDashboardPage() {
           cities: '',
           visaInfo: ''
         });
+        toast.success('Destination added successfully!');
         fetchDestinations();
       } else {
-        alert(data.message || 'Failed to add destination');
+        toast.error(data.message || 'Failed to add destination');
       }
     } catch (err: any) {
-      alert(err.message || 'An error occurred');
+      toast.error(err.message || 'An error occurred');
     }
   };
 
@@ -104,12 +106,13 @@ export default function AdminDashboardPage() {
       });
       const data = await res.json();
       if (data.status === 'success') {
+        toast.success('Destination deleted successfully!');
         fetchDestinations();
       } else {
-        alert(data.message || 'Failed to delete');
+        toast.error(data.message || 'Failed to delete');
       }
     } catch (err: any) {
-      alert(err.message || 'An error occurred');
+      toast.error(err.message || 'An error occurred');
     }
   };
 
