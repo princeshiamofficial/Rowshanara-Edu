@@ -112,9 +112,9 @@ export const AnimatedTestimonials = ({
                       src={testimonial.src}
                       alt={testimonial.name}
                       fill
-                      sizes="(max-width: 768px) 100vw, 360px"
+                      sizes="(max-width: 768px) 320px, 360px"
                       draggable={false}
-                      className="rounded-3xl object-cover object-top"
+                      className="rounded-3xl object-cover object-center"
                       onError={() => handleImgError(index)}
                     />
                   )}
