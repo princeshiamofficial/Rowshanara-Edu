@@ -902,10 +902,6 @@ button {
   opacity: 1;
 }
 
-.university-logo-card:hover img {
-  filter: none;
-}
-
 @keyframes scrollMarquee {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
