@@ -1,13 +1,38 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
 import { FaGraduationCap } from "react-icons/fa6";
-import { useContentSection } from "@/lib/useContentSection";
 
-const universities = ["University of Sydney", "University of Toronto", "Oxford University", "University of Melbourne", "Harvard University"];
+interface PartnerUniversity {
+  id: number;
+  name: string;
+  logo: string;
+  sortOrder: number;
+  isActive: boolean;
+}
+
+const fallbackUniversities: PartnerUniversity[] = [
+  { id: 1, name: "University of Sydney", logo: "", sortOrder: 1, isActive: true },
+  { id: 2, name: "University of Toronto", logo: "", sortOrder: 2, isActive: true },
+  { id: 3, name: "Oxford University", logo: "", sortOrder: 3, isActive: true },
+  { id: 4, name: "University of Melbourne", logo: "", sortOrder: 4, isActive: true },
+  { id: 5, name: "Harvard University", logo: "", sortOrder: 5, isActive: true },
+];
 
 export default function TrustedBy() {
-  const items = useContentSection("trusted_universities", universities.map((title, index) => ({ title, itemKey: String(index) })) as any);
+  const [universities, setUniversities] = useState<PartnerUniversity[]>(fallbackUniversities);
+
+  useEffect(() => {
+    fetch("/api/partner-universities")
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === "success" && Array.isArray(res.data) && res.data.length > 0) {
+          setUniversities(res.data.filter((u: PartnerUniversity) => u.isActive));
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   return (
     <section className="trusted-by-section">
@@ -17,10 +42,21 @@ export default function TrustedBy() {
       </div>
       <div className="marquee-container">
         <div className="marquee-track">
-          {[...items, ...items].map((uni, index) => (
+          {[...universities, ...universities].map((uni, index) => (
             <div key={index} className="university-logo-card">
-              <FaGraduationCap className="uni-icon" />
-              <span>{uni.title}</span>
+              {uni.logo ? (
+                <Image
+                  src={uni.logo}
+                  alt={uni.name}
+                  width={28}
+                  height={28}
+                  style={{ objectFit: "contain" }}
+                  unoptimized
+                />
+              ) : (
+                <FaGraduationCap className="uni-icon" />
+              )}
+              <span>{uni.name}</span>
             </div>
           ))}
         </div>
