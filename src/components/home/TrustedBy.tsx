@@ -47,7 +47,7 @@ export default function TrustedBy() {
                 alt="University logo"
                 width={80}
                 height={56}
-                style={{ objectFit: "contain", maxHeight: "56px", width: "auto", filter: "brightness(0) invert(1)" }}
+                style={{ objectFit: "contain", maxHeight: "56px", width: "auto" }}
                 unoptimized
               />
             </div>

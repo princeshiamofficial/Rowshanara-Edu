@@ -889,12 +889,21 @@ button {
   justify-content: center;
   flex-shrink: 0;
   opacity: 0.65;
-  transition: opacity 0.25s ease;
+  transition: opacity 0.3s ease;
   user-select: none;
+}
+
+.university-logo-card img {
+  filter: brightness(0) invert(1);
+  transition: filter 0.3s ease;
 }
 
 .university-logo-card:hover {
   opacity: 1;
+}
+
+.university-logo-card:hover img {
+  filter: none;
 }
 
 @keyframes scrollMarquee {
