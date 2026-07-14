@@ -40,7 +40,8 @@ export default function TrustedBy() {
       </div>
       <div className="marquee-container">
         <div className="marquee-track">
-          {[...universities, ...universities, ...universities, ...universities].map((uni, index) => (
+          {[...universities, ...universities, ...universities, ...universities,
+            ...universities, ...universities, ...universities, ...universities].map((uni, index) => (
             <div key={index} className="university-logo-card">
               <Image
                 src={uni.logo}
