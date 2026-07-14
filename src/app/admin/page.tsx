@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 export default function AdminLoginPage() {
@@ -89,9 +90,11 @@ export default function AdminLoginPage() {
         }}
       >
         <Link href="/" style={{ textDecoration: 'none' }}>
-          <img
+          <Image
             src="/logo.png"
             alt="Rowshanara Edu"
+            width={120}
+            height={42}
             style={{
               height: '42px',
               width: 'auto',

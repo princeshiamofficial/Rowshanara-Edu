@@ -2,7 +2,6 @@ import mysql from 'mysql2/promise';
 
 // Define a type for the global object to hold our pool in development
 declare global {
-  // eslint-disable-next-line no-var
   var dbPool: mysql.Pool | undefined;
 }
 
@@ -41,7 +40,7 @@ export default pool;
 /**
  * Helper to run query with typed results
  */
-export async function query<T = any>(sql: string, params?: any[]): Promise<T> {
+export async function query<T = unknown>(sql: string, params?: unknown[]): Promise<T> {
   const [results] = await pool.execute(sql, params);
   return results as T;
 }

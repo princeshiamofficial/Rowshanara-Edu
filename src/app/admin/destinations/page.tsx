@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import {
   Plus,
   Trash2,
@@ -12,13 +13,27 @@ import {
 import AdminSidebar from '@/components/admin/AdminSidebar';
 import { toast } from 'sonner';
 
+interface Destination {
+  id: number;
+  code: string;
+  name: string;
+  region: string;
+  cost: string;
+  work: string;
+  pr: string;
+  gradient: string;
+  bullets: string[];
+  cities: string;
+  visaInfo: string;
+}
+
 export default function AdminDestinationsPage() {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState('Settings');
   const [activeSubTab, setActiveSubTab] = useState('Destinations');
 
   // Dynamic destinations state
-  const [dbDestinations, setDbDestinations] = useState<any[]>([]);
+  const [dbDestinations, setDbDestinations] = useState<Destination[]>([]);
   const [isDestModalOpen, setIsDestModalOpen] = useState(false);
   const [editingId, setEditingId] = useState<number | null>(null);
   const [newDest, setNewDest] = useState({
@@ -91,12 +106,13 @@ export default function AdminDestinationsPage() {
       } else {
         toast.error(data.message || 'Failed to save destination');
       }
-    } catch (err: any) {
-      toast.error(err.message || 'An error occurred');
+    } catch (err: unknown) {
+      const error = err as Error;
+      toast.error(error.message || 'An error occurred');
     }
   };
 
-  const handleEditClick = (dest: any) => {
+  const handleEditClick = (dest: Destination) => {
     setEditingId(dest.id);
     setNewDest({
       code: dest.code,
@@ -147,8 +163,9 @@ export default function AdminDestinationsPage() {
       } else {
         toast.error(data.message || 'Failed to delete');
       }
-    } catch (err: any) {
-      toast.error(err.message || 'An error occurred');
+    } catch (err: unknown) {
+      const error = err as Error;
+      toast.error(error.message || 'An error occurred');
     }
   };
 
@@ -242,10 +259,13 @@ export default function AdminDestinationsPage() {
                     <tr key={dest.id} style={{ borderBottom: '1px solid #f1f5f9' }}>
                       <td style={{ padding: '1rem 0.5rem', fontWeight: 600, color: '#0f172a' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                          <img 
+                          <Image 
                             src={`https://flagcdn.com/w40/${dest.code.toLowerCase()}.png`} 
                             alt={dest.name} 
-                            style={{ height: '18px', borderRadius: '2px' }} 
+                            width={24}
+                            height={18}
+                            style={{ borderRadius: '2px', objectFit: 'contain' }} 
+                            unoptimized
                           />
                           <span>{dest.name}</span>
                         </div>

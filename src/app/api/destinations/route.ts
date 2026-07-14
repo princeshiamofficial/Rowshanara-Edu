@@ -151,10 +151,24 @@ async function ensureTableExists() {
   `);
 }
 
+interface DestinationRow {
+  id: number;
+  code: string;
+  name: string;
+  region: string;
+  cost: string;
+  work: string;
+  pr: string;
+  gradient: string;
+  bullets: string;
+  cities: string;
+  visa_info: string;
+}
+
 export async function GET() {
   try {
     await ensureTableExists();
-    let rows = await query('SELECT * FROM destinations ORDER BY id ASC');
+    let rows = await query<DestinationRow[]>('SELECT * FROM destinations ORDER BY id ASC');
     
     // Seed default destinations if the table is empty
     if (rows.length === 0) {
@@ -165,19 +179,20 @@ export async function GET() {
           [dest.code, dest.name, dest.region, dest.cost, dest.work, dest.pr, dest.gradient, dest.bullets, dest.cities, dest.visaInfo]
         );
       }
-      rows = await query('SELECT * FROM destinations ORDER BY id ASC');
+      rows = await query<DestinationRow[]>('SELECT * FROM destinations ORDER BY id ASC');
     }
 
     // Convert bullets back to JS Array
-    const destinations = rows.map((r: any) => ({
+    const destinations = rows.map((r) => ({
       ...r,
       visaInfo: r.visa_info,
       bullets: typeof r.bullets === 'string' ? JSON.parse(r.bullets) : r.bullets
     }));
 
     return NextResponse.json({ status: 'success', data: destinations });
-  } catch (error: any) {
-    return NextResponse.json({ status: 'error', message: error.message }, { status: 500 });
+  } catch (error: unknown) {
+    const err = error as Error;
+    return NextResponse.json({ status: 'error', message: err.message }, { status: 500 });
   }
 }
 
@@ -194,15 +209,16 @@ export async function POST(request: Request) {
     const bulletsStr = Array.isArray(bullets) ? JSON.stringify(bullets) : JSON.stringify([bullets]);
     const finalGradient = gradient || 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)';
 
-    const result = await query(
+    const result = await query<{ insertId: number }>(
       `INSERT INTO destinations (code, name, region, cost, work, pr, gradient, bullets, cities, visa_info) 
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [code, name, region, cost, work, pr, finalGradient, bulletsStr, cities, visaInfo]
     );
 
     return NextResponse.json({ status: 'success', data: { id: result.insertId, code, name } });
-  } catch (error: any) {
-    return NextResponse.json({ status: 'error', message: error.message }, { status: 500 });
+  } catch (error: unknown) {
+    const err = error as Error;
+    return NextResponse.json({ status: 'error', message: err.message }, { status: 500 });
   }
 }
 
@@ -218,8 +234,9 @@ export async function DELETE(request: Request) {
 
     await query('DELETE FROM destinations WHERE id = ?', [id]);
     return NextResponse.json({ status: 'success', message: 'Destination deleted successfully' });
-  } catch (error: any) {
-    return NextResponse.json({ status: 'error', message: error.message }, { status: 500 });
+  } catch (error: unknown) {
+    const err = error as Error;
+    return NextResponse.json({ status: 'error', message: err.message }, { status: 500 });
   }
 }
 
@@ -244,7 +261,8 @@ export async function PUT(request: Request) {
     );
 
     return NextResponse.json({ status: 'success', message: 'Destination updated successfully' });
-  } catch (error: any) {
-    return NextResponse.json({ status: 'error', message: error.message }, { status: 500 });
+  } catch (error: unknown) {
+    const err = error as Error;
+    return NextResponse.json({ status: 'error', message: err.message }, { status: 500 });
   }
 }

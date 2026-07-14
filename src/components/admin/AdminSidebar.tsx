@@ -1,19 +1,10 @@
 "use client";
 
 import React, { useState } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import {
-  BarChart3,
-  Activity,
-  CheckSquare,
-  PieChart,
-  Grid,
   Settings,
-  FileText,
-  Search,
-  MessageSquare,
-  ChevronsUpDown,
   ChevronDown,
   ChevronUp,
   PanelLeftClose,
@@ -199,9 +190,11 @@ export default function AdminSidebar({
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', flex: 1, paddingLeft: '1.25rem' }}>
-              <img
+              <Image
                 src="/logo.png"
                 alt="Rowshanara Edu"
+                width={120}
+                height={44}
                 style={{
                   height: '44px',
                   width: 'auto',

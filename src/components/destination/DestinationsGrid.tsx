@@ -1,8 +1,22 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import { FaDollarSign, FaBriefcase, FaPassport, FaXmark } from "react-icons/fa6";
 import { motion, AnimatePresence } from "framer-motion";
+
+interface DestinationItem {
+  code: string;
+  name: string;
+  region: string;
+  cost: string;
+  work: string;
+  pr: string;
+  gradient: string;
+  bullets: string[];
+  cities: string;
+  visaInfo: string;
+}
 
 const destinationList = [
   {
@@ -136,7 +150,7 @@ const destinationList = [
 ];
 
 export default function DestinationsGrid() {
-  const [destinations, setDestinations] = useState<any[]>(destinationList);
+  const [destinations, setDestinations] = useState<DestinationItem[]>(destinationList);
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   useEffect(() => {
@@ -159,11 +173,11 @@ export default function DestinationsGrid() {
           (dest) => dest.name.toLowerCase() === countryParam.toLowerCase() || dest.code.toLowerCase() === countryParam.toLowerCase()
         );
         if (idx !== -1) {
-          setExpandedIndex(idx);
           setTimeout(() => {
+            setExpandedIndex(idx);
             const el = document.getElementById(`dest-card-${idx}`);
             if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
-          }, 200);
+          }, 100);
         }
       }
     }
@@ -236,15 +250,18 @@ export default function DestinationsGrid() {
                 <div>
                   {/* Header */}
                   <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.5rem" }}>
-                    <img 
-                      src={`https://flagcdn.com/w40/${dest.code.toLowerCase()}.png`} 
-                      alt={`${dest.name} flag`} 
-                      style={{ 
-                        height: "18px", 
-                        borderRadius: "3px",
-                        boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)"
-                      }} 
-                    />
+                     <Image 
+                       src={`https://flagcdn.com/w40/${dest.code.toLowerCase()}.png`} 
+                       alt={`${dest.name} flag`} 
+                       width={24}
+                       height={18}
+                       style={{ 
+                         borderRadius: "3px",
+                         boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
+                         objectFit: "contain"
+                       }} 
+                       unoptimized
+                     />
                     <h3 style={{
                       fontSize: "1.35rem",
                       fontWeight: 800,
@@ -388,15 +405,18 @@ export default function DestinationsGrid() {
             >
               <div>
                 <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.5rem" }}>
-                  <img 
-                    src={`https://flagcdn.com/w80/${dest.code.toLowerCase()}.png`} 
-                    alt={`${dest.name} flag`} 
-                    style={{ 
-                      height: "24px", 
-                      borderRadius: "4px",
-                      boxShadow: "0 3px 6px rgba(0, 0, 0, 0.15)" 
-                    }} 
-                  />
+                   <Image 
+                     src={`https://flagcdn.com/w80/${dest.code.toLowerCase()}.png`} 
+                     alt={`${dest.name} flag`} 
+                     width={32}
+                     height={24}
+                     style={{ 
+                       borderRadius: "4px",
+                       boxShadow: "0 3px 6px rgba(0, 0, 0, 0.15)",
+                       objectFit: "contain"
+                     }} 
+                     unoptimized
+                   />
                   <h3 style={{
                     fontSize: "clamp(1.35rem, 5.2vw, 1.85rem)",
                     fontWeight: 800,

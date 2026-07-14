@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import { useRouter } from 'next/navigation';
 import {
@@ -11,13 +11,9 @@ import {
   Search,
   Bell,
   Plus,
-  CheckCircle2,
-  Trash2,
-  Globe,
-  X
+  CheckCircle2
 } from 'lucide-react';
 import AdminSidebar from '@/components/admin/AdminSidebar';
-import { toast } from 'sonner';
 
 export default function AdminDashboardPage() {
   const router = useRouter();
