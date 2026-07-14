@@ -66,12 +66,12 @@ export const AnimatedTestimonials = ({
   };
 
   return (
-    <div className="mx-auto max-w-sm px-4 py-8 font-sans antialiased md:max-w-4xl md:px-8 lg:px-12">
-      <div className="relative grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-16">
+    <div className="mx-auto w-full max-w-5xl px-4 py-8 font-sans antialiased md:px-8 lg:px-12">
+      <div className="relative grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-12">
 
         {/* Image Column */}
-        <div>
-          <div className="relative mx-auto h-[320px] w-[320px] md:h-[360px] md:w-[360px]">
+        <div className="flex items-center justify-center overflow-visible">
+          <div className="relative w-full max-w-[360px] aspect-square">
             <AnimatePresence>
               {testimonials.map((testimonial, index) => (
                 <motion.div
@@ -83,7 +83,7 @@ export const AnimatedTestimonials = ({
                     z: isActive(index) ? 0 : -100,
                     rotate: isActive(index) ? 0 : getRotateY(index),
                     zIndex: isActive(index) ? 40 : testimonials.length + 2 - index,
-                    y: isActive(index) ? [0, -80, 0] : 0,
+                    y: isActive(index) ? [0, -20, 0] : 0,
                   }}
                   exit={{ opacity: 0, scale: 0.9, z: 100, rotate: getRotateY(index) }}
                   transition={{ duration: 0.4, ease: "easeInOut" }}
