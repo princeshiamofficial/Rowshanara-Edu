@@ -53,6 +53,7 @@ interface ServiceRow {
   image: string;
   description: string;
   highlights: string;
+  sort_order: number;
 }
 
 async function ensureTableExists() {
@@ -64,29 +65,38 @@ async function ensureTableExists() {
       image VARCHAR(255) NOT NULL,
       description TEXT NOT NULL,
       highlights TEXT NOT NULL,
+      sort_order INT NOT NULL DEFAULT 0,
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
   `);
+  // Add sort_order column if it doesn't exist (for existing tables)
+  try {
+    await query(`ALTER TABLE services ADD COLUMN sort_order INT NOT NULL DEFAULT 0`);
+  } catch {
+    // Column already exists, ignore
+  }
 }
 
 export async function GET() {
   try {
     await ensureTableExists();
-    let rows = await query<ServiceRow[]>('SELECT * FROM services ORDER BY id ASC');
+    let rows = await query<ServiceRow[]>('SELECT * FROM services ORDER BY sort_order ASC, id ASC');
 
     if (rows.length === 0) {
-      for (const s of defaultServices) {
+      for (let i = 0; i < defaultServices.length; i++) {
+        const s = defaultServices[i];
         await query(
-          `INSERT INTO services (title, icon, image, description, highlights) 
-           VALUES (?, ?, ?, ?, ?)`,
-          [s.title, s.icon, s.image, s.description, s.highlights]
+          `INSERT INTO services (title, icon, image, description, highlights, sort_order) 
+           VALUES (?, ?, ?, ?, ?, ?)`,
+          [s.title, s.icon, s.image, s.description, s.highlights, i]
         );
       }
-      rows = await query<ServiceRow[]>('SELECT * FROM services ORDER BY id ASC');
+      rows = await query<ServiceRow[]>('SELECT * FROM services ORDER BY sort_order ASC, id ASC');
     }
 
     const services = rows.map((r) => ({
       ...r,
+      sortOrder: r.sort_order,
       highlights: typeof r.highlights === 'string' ? JSON.parse(r.highlights) : r.highlights
     }));
 
@@ -162,6 +172,27 @@ export async function PUT(request: Request) {
     );
 
     return NextResponse.json({ status: 'success', message: 'Service updated successfully' });
+  } catch (error: unknown) {
+    const err = error as Error;
+    return NextResponse.json({ status: 'error', message: err.message }, { status: 500 });
+  }
+}
+
+export async function PATCH(request: Request) {
+  try {
+    await ensureTableExists();
+    const body = await request.json();
+    const { order } = body; // array of { id, sortOrder }
+
+    if (!Array.isArray(order)) {
+      return NextResponse.json({ status: 'error', message: 'Invalid order payload' }, { status: 400 });
+    }
+
+    for (const item of order) {
+      await query('UPDATE services SET sort_order = ? WHERE id = ?', [item.sortOrder, item.id]);
+    }
+
+    return NextResponse.json({ status: 'success', message: 'Order saved successfully' });
   } catch (error: unknown) {
     const err = error as Error;
     return NextResponse.json({ status: 'error', message: err.message }, { status: 500 });

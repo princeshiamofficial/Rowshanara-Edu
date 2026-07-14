@@ -8,7 +8,8 @@ import {
   Trash2,
   Edit2,
   FileText,
-  X
+  X,
+  GripVertical
 } from 'lucide-react';
 import AdminSidebar from '@/components/admin/AdminSidebar';
 import { toast } from 'sonner';
@@ -30,6 +31,7 @@ export default function AdminServicesPage() {
   const [dbServices, setDbServices] = useState<Service[]>([]);
   const [isServiceModalOpen, setIsServiceModalOpen] = useState(false);
   const [editingId, setEditingId] = useState<number | null>(null);
+  const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [newService, setNewService] = useState({
     title: '',
@@ -246,6 +248,48 @@ export default function AdminServicesPage() {
     router.push('/admin');
   };
 
+  const handleDragStart = (e: React.DragEvent, index: number) => {
+    setDraggedIndex(index);
+    e.dataTransfer.effectAllowed = 'move';
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+  };
+
+  const handleDropRow = async (e: React.DragEvent, targetIndex: number) => {
+    e.preventDefault();
+    if (draggedIndex === null || draggedIndex === targetIndex) return;
+
+    const updated = [...dbServices];
+    const [dragged] = updated.splice(draggedIndex, 1);
+    updated.splice(targetIndex, 0, dragged);
+    setDbServices(updated);
+    setDraggedIndex(null);
+
+    const loadingId = toast.loading('Saving new order...');
+    try {
+      const order = updated.map((s, idx) => ({ id: s.id, sortOrder: idx }));
+      const res = await fetch('/api/services', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ order })
+      });
+      const data = await res.json();
+      toast.dismiss(loadingId);
+      if (data.status === 'success') {
+        toast.success('Order updated successfully!');
+      } else {
+        toast.error(data.message || 'Failed to save order');
+        fetchServices(); // revert on error
+      }
+    } catch {
+      toast.dismiss(loadingId);
+      toast.error('Failed to save order');
+      fetchServices();
+    }
+  };
+
   return (
     <div
       style={{
@@ -305,6 +349,7 @@ export default function AdminServicesPage() {
             <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.875rem' }}>
               <thead>
                 <tr style={{ borderBottom: '2px solid #f1f5f9', color: '#64748b', fontWeight: 700 }}>
+                  <th style={{ padding: '1rem 0.5rem', width: '36px' }}></th>
                   <th style={{ padding: '1rem 0.5rem' }}>Service Title</th>
                   <th style={{ padding: '1rem 0.5rem' }}>Image Path</th>
                   <th style={{ padding: '1rem 0.5rem' }}>Description Summary</th>
@@ -314,14 +359,29 @@ export default function AdminServicesPage() {
               <tbody>
                 {dbServices.length === 0 ? (
                   <tr>
-                    <td colSpan={4} style={{ textAlign: 'center', padding: '3rem 1rem', color: '#94a3b8' }}>
+                    <td colSpan={5} style={{ textAlign: 'center', padding: '3rem 1rem', color: '#94a3b8' }}>
                       <FileText size={40} style={{ margin: '0 auto 1rem auto', opacity: 0.5 }} />
                       <div>No services loaded or database is offline.</div>
                     </td>
                   </tr>
                 ) : (
-                  dbServices.map((srv) => (
-                    <tr key={srv.id} style={{ borderBottom: '1px solid #f1f5f9' }}>
+                  dbServices.map((srv, index) => (
+                    <tr
+                      key={srv.id}
+                      draggable
+                      onDragStart={(e) => handleDragStart(e, index)}
+                      onDragOver={handleDragOver}
+                      onDrop={(e) => handleDropRow(e, index)}
+                      style={{
+                        borderBottom: '1px solid #f1f5f9',
+                        backgroundColor: draggedIndex === index ? '#f8fafc' : '#ffffff',
+                        transition: 'background-color 0.15s',
+                        cursor: 'grab'
+                      }}
+                    >
+                      <td style={{ padding: '0.75rem 0.5rem', color: '#cbd5e1', width: '36px', verticalAlign: 'middle' }}>
+                        <GripVertical size={16} />
+                      </td>
                       <td style={{ padding: '1rem 0.5rem', fontWeight: 600, color: '#0f172a' }}>{srv.title}</td>
                       <td style={{ padding: '1rem 0.5rem' }}>
                         <div style={{ position: 'relative', width: '55px', height: '38px', borderRadius: '6px', overflow: 'hidden', border: '1px solid #e2e8f0' }}>
