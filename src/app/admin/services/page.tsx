@@ -233,17 +233,14 @@ export default function AdminServicesPage() {
                       <td style={{ padding: '1rem 0.5rem', fontWeight: 600, color: '#0f172a' }}>{srv.title}</td>
                       <td style={{ padding: '1rem 0.5rem', color: '#64748b' }}>{srv.icon}</td>
                       <td style={{ padding: '1rem 0.5rem' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                          <div style={{ position: 'relative', width: '50px', height: '35px', borderRadius: '6px', overflow: 'hidden', border: '1px solid #e2e8f0', flexShrink: 0 }}>
-                            <Image
-                              src={srv.image}
-                              alt={srv.title}
-                              fill
-                              style={{ objectFit: 'cover' }}
-                              unoptimized
-                            />
-                          </div>
-                          <span style={{ color: '#64748b', fontSize: '0.8rem', fontFamily: 'monospace' }}>{srv.image}</span>
+                        <div style={{ position: 'relative', width: '55px', height: '38px', borderRadius: '6px', overflow: 'hidden', border: '1px solid #e2e8f0' }}>
+                          <Image
+                            src={srv.image}
+                            alt={srv.title}
+                            fill
+                            style={{ objectFit: 'cover' }}
+                            unoptimized
+                          />
                         </div>
                       </td>
                       <td style={{ padding: '1rem 0.5rem', color: '#475569', maxWidth: '300px', textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>{srv.description}</td>
