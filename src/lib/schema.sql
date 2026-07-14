@@ -25,3 +25,26 @@ VALUES
 ('NZ', 'New Zealand', 'Oceania', '$14,000 - $30,000/year', '20 hours/week', 'Yes', 'linear-gradient(135deg, #14b8a6 0%, #0d9488 100%)', '["All universities ranked in the top 3% globally", "Stunning natural landscapes and safe environment", "Excellent post-study work visa options"]', 'Auckland, Wellington, Christchurch', 'Fee paying student visa required, processing 3-4 weeks')
 ON DUPLICATE KEY UPDATE 
 name=VALUES(name), region=VALUES(region), cost=VALUES(cost), work=VALUES(work), pr=VALUES(pr), gradient=VALUES(gradient), bullets=VALUES(bullets), cities=VALUES(cities), visa_info=VALUES(visa_info);
+
+-- Table structure for study services
+CREATE TABLE IF NOT EXISTS services (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(255) NOT NULL UNIQUE,
+  icon VARCHAR(100) NOT NULL DEFAULT 'FaBookOpen',
+  image VARCHAR(255) NOT NULL,
+  description TEXT NOT NULL,
+  highlights TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Seed values for study services
+INSERT INTO services (title, icon, image, description, highlights)
+VALUES 
+('University Admission Counselling', 'FaBookOpen', '/images/services/counselling.png', 'Expert guidance to help you select the perfect university based on your academic profile and career goals.', '["Profile Assessment", "University Shortlisting", "Application Strategy", "Interview Prep"]'),
+('Student Visa Processing', 'FaFileLines', '/images/services/visa.png', 'Complete support throughout the visa application process with expert documentation guidance.', '["Document Preparation", "Application Filing", "Interview Training", "Status Tracking"]'),
+('Scholarship & Financial Aid Guidance', 'FaBriefcase', '/images/services/scholarship.png', 'Maximize your financial aid opportunities and secure scholarships to reduce your study costs.', '["Scholarship Search", "Application Assistance", "Financial Planning", "Loan Guidance"]'),
+('IELTS/SAT/GRE Test Prep Referral', 'FaUsers', '/images/services/test_prep.png', 'Connect with top test preparation centers to achieve your target scores.', '["Center Referrals", "Study Materials", "Mock Tests", "Score Improvement"]'),
+('Pre-Departure Orientation', 'FaPlane', '/images/services/pre_departure.png', 'Comprehensive briefing to prepare you for your new life abroad.', '["Cultural Orientation", "Accommodation Guide", "Travel Planning", "Health Insurance"]'),
+('Post-Arrival Student Support', 'FaLocationDot', '/images/services/post_arrival.png', 'Continuous support after you arrive at your destination to ensure smooth transition.', '["Arrival Assistance", "Local Orientation", "Ongoing Mentoring", "Emergency Support"]')
+ON DUPLICATE KEY UPDATE 
+icon=VALUES(icon), image=VALUES(image), description=VALUES(description), highlights=VALUES(highlights);

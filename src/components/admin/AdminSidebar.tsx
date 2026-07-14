@@ -31,6 +31,7 @@ const NAV_ROUTES: Record<string, string> = {
   Consultations: '/admin/consultations',
   Universities:  '/admin/universities',
   Destinations:  '/admin/destinations',
+  Services:      '/admin/services',
 };
 
 export default function AdminSidebar({ 
