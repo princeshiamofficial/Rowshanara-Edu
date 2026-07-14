@@ -125,7 +125,7 @@ export const AnimatedTestimonials = ({
         </div>
 
         {/* Text Column */}
-        <div className="flex flex-col justify-between py-4 items-center text-center">
+        <div className="flex flex-col justify-center gap-6 py-4 items-center text-center">
           <motion.div
             key={active}
             initial={{ y: 20, opacity: 0 }}
