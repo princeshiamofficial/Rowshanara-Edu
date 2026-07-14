@@ -22,6 +22,11 @@ export const AnimatedTestimonials = ({
   autoplay?: boolean;
 }) => {
   const [active, setActive] = useState(0);
+  const [imgErrors, setImgErrors] = useState<Record<number, boolean>>({});
+
+  const handleImgError = (index: number) => {
+    setImgErrors((prev) => ({ ...prev, [index]: true }));
+  };
 
   const handleNext = useCallback(() => {
     if (testimonials.length === 0) return;
@@ -50,6 +55,17 @@ export const AnimatedTestimonials = ({
 
   const getRotateY = (index: number) => {
     return ((index * 17) % 21) - 10;
+  };
+
+  const hasValidImage = (testimonial: Testimonial, index: number) => {
+    return (
+      !imgErrors[index] &&
+      testimonial.src &&
+      testimonial.src !== "" &&
+      !testimonial.src.startsWith("/fatima") &&
+      !testimonial.src.startsWith("/karim") &&
+      !testimonial.src.startsWith("/aisha")
+    );
   };
 
   return (
@@ -93,15 +109,18 @@ export const AnimatedTestimonials = ({
                       {testimonial.name}
                     </p>
                   </div>
-                  {/* Actual image on top */}
-                  <Image
-                    src={testimonial.src}
-                    alt={testimonial.name}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 360px"
-                    draggable={false}
-                    className="rounded-3xl object-cover object-top"
-                  />
+                  {/* Actual image — only shown when valid */}
+                  {hasValidImage(testimonial, index) && (
+                    <Image
+                      src={testimonial.src}
+                      alt={testimonial.name}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 360px"
+                      draggable={false}
+                      className="rounded-3xl object-cover object-top"
+                      onError={() => handleImgError(index)}
+                    />
+                  )}
                 </motion.div>
               ))}
             </AnimatePresence>
