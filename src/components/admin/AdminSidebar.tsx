@@ -20,7 +20,9 @@ import {
   ImageIcon,
   HelpCircle,
   Building2,
-  MessageSquare
+  MessageSquare,
+  Phone,
+  Target
 } from 'lucide-react';
 
 interface AdminSidebarProps {
@@ -46,6 +48,9 @@ const NAV_ROUTES: Record<string, string> = {
   'FAQ':         '/admin/faq',
   'Testimonials': '/admin/testimonials',
   'Our Team':    '/admin/team',
+  'Contact Details': '/admin/contact-details',
+  'Contact Messages': '/admin/contact-messages',
+  'Mission & Vision': '/admin/mission-vision',
 };
 
 export default function AdminSidebar({ 
@@ -102,6 +107,9 @@ export default function AdminSidebar({
     { name: 'FAQ', icon: <HelpCircle size={20} />, badge: null, hasSubMenu: false },
     { name: 'Testimonials', icon: <MessageSquare size={20} />, badge: null, hasSubMenu: false },
     { name: 'Our Team', icon: <Users size={20} />, badge: null, hasSubMenu: false },
+    { name: 'Contact Details', icon: <Phone size={20} />, badge: null, hasSubMenu: false },
+    { name: 'Contact Messages', icon: <MessageSquare size={20} />, badge: null, hasSubMenu: false },
+    { name: 'Mission & Vision', icon: <Target size={20} />, badge: null, hasSubMenu: false },
   ];
 
   return (

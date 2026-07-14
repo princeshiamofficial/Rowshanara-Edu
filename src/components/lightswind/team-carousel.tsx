@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useCallback, useEffect } from 'react';
+import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence, TargetAndTransition} from 'framer-motion';
 import { cn } from '@/lib/utils'; // Assuming this utility correctly merges class names
@@ -120,17 +121,18 @@ export const TeamCarousel: React.FC<TeamCarouselProps> = ({
     [currentIndex, totalMembers, members, onMemberChange]
   );
 
-  const wrapIndex = (index: number) => {
-    return (index + totalMembers) % totalMembers;
-  };
-
   const calculatePosition = (index: number) => {
-    const activeIndex = currentIndex;
-    const diff = wrapIndex(index - activeIndex);
+    if (totalMembers === 0) return 'hidden';
+
+    let diff = index - currentIndex;
+    const half = totalMembers / 2;
+
+    if (diff > half) diff -= totalMembers;
+    if (diff < -half) diff += totalMembers;
 
     if (diff === 0) return 'center';
-    if (diff <= visibleCards) return `right-${diff}`;
-    if (diff >= totalMembers - visibleCards) return `left-${totalMembers - diff}`;
+    if (diff > 0 && diff <= visibleCards) return `right-${diff}`;
+    if (diff < 0 && Math.abs(diff) <= visibleCards) return `left-${Math.abs(diff)}`;
     return 'hidden';
   };
 
@@ -398,10 +400,13 @@ export const TeamCarousel: React.FC<TeamCarouselProps> = ({
                     onCardClick?.(member, index);
                   }}
                 >
-                  <img
+                  <Image
                     src={member.image}
                     alt={member.name}
+                    fill
+                    sizes={`${cardWidth}px`}
                     className="w-full h-full object-cover"
+                    unoptimized
                   />
 
                   {/* Overlay Info */}

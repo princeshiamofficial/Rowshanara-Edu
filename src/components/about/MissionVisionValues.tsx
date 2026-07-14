@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import { useContentSection } from "@/lib/useContentSection";
+import Image from "next/image";
+import { type SiteContentItem, useContentSection } from "@/lib/useContentSection";
 
 const fallbackItems = [
   { itemKey: "mission", title: "Mission", body: "To empower Bangladeshi students with world-class education opportunities and guidance for their international academic journey.", imageUrl: "/images/about/mission.png" },
@@ -16,7 +17,20 @@ const backgrounds = [
 ];
 
 export default function MissionVisionValues() {
-  const items = useContentSection("mission_vision_values", fallbackItems as any);
+  const items = useContentSection("mission_vision_values", fallbackItems.map((item, index): SiteContentItem => ({
+    id: index,
+    section: "mission_vision_values",
+    itemKey: item.itemKey,
+    title: item.title,
+    subtitle: "",
+    body: item.body,
+    value: "",
+    imageUrl: item.imageUrl,
+    linkUrl: "",
+    metadata: {},
+    sortOrder: index + 1,
+    isActive: true,
+  })));
 
   return (
     <section className="container" style={{ marginTop: "5rem", marginBottom: "1.75rem" }}>
@@ -41,10 +55,13 @@ export default function MissionVisionValues() {
             border: "1px solid rgba(255, 78, 80, 0.15)",
             boxShadow: "0 10px 25px rgba(255, 78, 80, 0.2)"
           }}>
-            <img 
+            <Image
               src={item.imageUrl || "/images/about/mission.png"} 
               alt={`${item.title} Illustration`} 
-              style={{ width: "100%", height: "100%", objectFit: "cover" }} 
+              fill
+              sizes="72px"
+              style={{ objectFit: "cover" }}
+              unoptimized
             />
           </div>
           <h3 style={{

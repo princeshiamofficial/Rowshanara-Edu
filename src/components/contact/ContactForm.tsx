@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { FaPaperPlane, FaCheck } from "react-icons/fa6";
 
 export default function ContactForm() {
@@ -13,22 +14,43 @@ export default function ContactForm() {
     message: ""
   });
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        country: "",
-        services: [],
-        message: ""
+    setIsSubmitting(true);
+
+    try {
+      const res = await fetch("/api/contact-messages", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
       });
-    }, 4000);
+      const data = await res.json();
+
+      if (data.status !== "success") {
+        throw new Error(data.message || "Failed to send message");
+      }
+
+      setSubmitted(true);
+      setTimeout(() => {
+        setSubmitted(false);
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          country: "",
+          services: [],
+          message: ""
+        });
+      }, 4000);
+    } catch (error: unknown) {
+      const err = error as Error;
+      alert(err.message || "Failed to send message. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleServiceChange = (service: string) => {
@@ -195,10 +217,13 @@ export default function ContactForm() {
               >
                 <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
                   {selectedCountry && (
-                    <img 
+                    <Image
                       src={`https://flagcdn.com/w40/${selectedCountry.code}.png`} 
                       alt="" 
-                      style={{ height: "16px", borderRadius: "3px", boxShadow: "0 1px 3px rgba(0,0,0,0.15)" }}
+                      width={24}
+                      height={16}
+                      style={{ height: "16px", width: "auto", borderRadius: "3px", boxShadow: "0 1px 3px rgba(0,0,0,0.15)" }}
+                      unoptimized
                     />
                   )}
                   <span style={{ color: formData.country ? "var(--text)" : "#9ca3af" }}>
@@ -284,10 +309,13 @@ export default function ContactForm() {
                           }}
                         >
                           <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
-                            <img 
+                            <Image
                               src={`https://flagcdn.com/w40/${country.code}.png`} 
                               alt="" 
-                              style={{ height: "16px", borderRadius: "3px", boxShadow: "0 1px 3px rgba(0,0,0,0.15)" }}
+                              width={24}
+                              height={16}
+                              style={{ height: "16px", width: "auto", borderRadius: "3px", boxShadow: "0 1px 3px rgba(0,0,0,0.15)" }}
+                              unoptimized
                             />
                             <span>{country.name}</span>
                           </div>
@@ -371,7 +399,7 @@ export default function ContactForm() {
           </div>
 
           {/* Submit Button */}
-          <button type="submit" style={{
+          <button type="submit" disabled={isSubmitting} style={{
             background: "linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%)",
             color: "white",
             padding: "0.95rem",
@@ -379,7 +407,8 @@ export default function ContactForm() {
             border: "none",
             fontWeight: 700,
             fontSize: "1rem",
-            cursor: "pointer",
+            cursor: isSubmitting ? "not-allowed" : "pointer",
+            opacity: isSubmitting ? 0.75 : 1,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -396,7 +425,7 @@ export default function ContactForm() {
             e.currentTarget.style.transform = "translateY(0)";
             e.currentTarget.style.boxShadow = "0 8px 20px rgba(224, 145, 0, 0.18)";
           }}>
-            <FaPaperPlane /> Send Message
+            <FaPaperPlane /> {isSubmitting ? "Sending..." : "Send Message"}
           </button>
         </form>
       )}
