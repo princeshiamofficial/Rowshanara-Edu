@@ -135,14 +135,26 @@ const destinationList = [
 ];
 
 export default function DestinationsGrid() {
+  const [destinations, setDestinations] = useState<any[]>(destinationList);
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    fetch('/api/destinations')
+      .then(res => res.json())
+      .then(res => {
+        if (res.status === 'success' && Array.isArray(res.data) && res.data.length > 0) {
+          setDestinations(res.data);
+        }
+      })
+      .catch(err => console.error('Failed to load dynamic destinations:', err));
+  }, []);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search);
       const countryParam = params.get("country");
       if (countryParam) {
-        const idx = destinationList.findIndex(
+        const idx = destinations.findIndex(
           (dest) => dest.name.toLowerCase() === countryParam.toLowerCase() || dest.code.toLowerCase() === countryParam.toLowerCase()
         );
         if (idx !== -1) {
@@ -154,7 +166,7 @@ export default function DestinationsGrid() {
         }
       }
     }
-  }, []);
+  }, [destinations]);
 
   return (
     <section className="container" style={{ marginTop: "2rem", marginBottom: "3rem" }}>
@@ -163,7 +175,7 @@ export default function DestinationsGrid() {
         gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))",
         gap: "2rem"
       }}>
-        {destinationList.map((dest, index) => {
+        {destinations.map((dest, index) => {
           const isExpanded = expandedIndex === index;
           if (isExpanded) {
             return (

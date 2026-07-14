@@ -29,6 +29,8 @@ interface AdminSidebarProps {
   activeTab: string;
   setActiveTab: (tab: string) => void;
   onLogout: () => void;
+  activeSubTab?: string;
+  setActiveSubTab?: (subTab: string) => void;
 }
 
 // Route map: sidebar item name → URL path
@@ -39,7 +41,13 @@ const NAV_ROUTES: Record<string, string> = {
   Universities:  '/admin/universities',
 };
 
-export default function AdminSidebar({ activeTab, setActiveTab, onLogout }: AdminSidebarProps) {
+export default function AdminSidebar({ 
+  activeTab, 
+  setActiveTab, 
+  onLogout,
+  activeSubTab: propActiveSubTab,
+  setActiveSubTab: propSetActiveSubTab
+}: AdminSidebarProps) {
   const router = useRouter();
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
@@ -51,7 +59,9 @@ export default function AdminSidebar({ activeTab, setActiveTab, onLogout }: Admi
   });
 
   // Track active sub-menu item. Billing is active by default.
-  const [activeSubTab, setActiveSubTab] = useState('Billing');
+  const [localActiveSubTab, setLocalActiveSubTab] = useState('Billing');
+  const activeSubTab = propActiveSubTab !== undefined ? propActiveSubTab : localActiveSubTab;
+  const setActiveSubTab = propSetActiveSubTab !== undefined ? propSetActiveSubTab : setLocalActiveSubTab;
 
   const toggleMenu = (menuName: string) => {
     setOpenMenus(prev => ({ ...prev, [menuName]: !prev[menuName] }));
