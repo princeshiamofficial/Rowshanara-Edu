@@ -232,7 +232,20 @@ export default function AdminServicesPage() {
                     <tr key={srv.id} style={{ borderBottom: '1px solid #f1f5f9' }}>
                       <td style={{ padding: '1rem 0.5rem', fontWeight: 600, color: '#0f172a' }}>{srv.title}</td>
                       <td style={{ padding: '1rem 0.5rem', color: '#64748b' }}>{srv.icon}</td>
-                      <td style={{ padding: '1rem 0.5rem', color: '#64748b' }}>{srv.image}</td>
+                      <td style={{ padding: '1rem 0.5rem' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                          <div style={{ position: 'relative', width: '50px', height: '35px', borderRadius: '6px', overflow: 'hidden', border: '1px solid #e2e8f0', flexShrink: 0 }}>
+                            <Image
+                              src={srv.image}
+                              alt={srv.title}
+                              fill
+                              style={{ objectFit: 'cover' }}
+                              unoptimized
+                            />
+                          </div>
+                          <span style={{ color: '#64748b', fontSize: '0.8rem', fontFamily: 'monospace' }}>{srv.image}</span>
+                        </div>
+                      </td>
                       <td style={{ padding: '1rem 0.5rem', color: '#475569', maxWidth: '300px', textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>{srv.description}</td>
                       <td style={{ padding: '1rem 0.5rem', textAlign: 'center' }}>
                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
@@ -339,14 +352,27 @@ export default function AdminServicesPage() {
 
                 <div>
                   <label style={{ display: 'block', fontSize: '0.775rem', fontWeight: 600, color: '#475569', marginBottom: '0.4rem' }}>Header Image Path</label>
-                  <input
-                    required
-                    type="text"
-                    placeholder="e.g. /images/services/counselling.png"
-                    value={newService.image}
-                    onChange={e => setNewService({ ...newService, image: e.target.value })}
-                    style={{ width: '100%', padding: '0.6rem 0.8rem', border: '1px solid #cbd5e1', borderRadius: '8px', outline: 'none' }}
-                  />
+                  <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+                    <input
+                      required
+                      type="text"
+                      placeholder="e.g. /images/services/counselling.png"
+                      value={newService.image}
+                      onChange={e => setNewService({ ...newService, image: e.target.value })}
+                      style={{ flexGrow: 1, padding: '0.6rem 0.8rem', border: '1px solid #cbd5e1', borderRadius: '8px', outline: 'none' }}
+                    />
+                    {newService.image && (
+                      <div style={{ position: 'relative', width: '60px', height: '40px', borderRadius: '6px', overflow: 'hidden', border: '1px solid #e2e8f0', flexShrink: 0 }}>
+                        <Image
+                          src={newService.image}
+                          alt="Preview"
+                          fill
+                          style={{ objectFit: 'cover' }}
+                          unoptimized
+                        />
+                      </div>
+                    )}
+                  </div>
                 </div>
 
                 <div>
