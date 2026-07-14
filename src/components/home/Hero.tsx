@@ -3,7 +3,16 @@
 import React, { useState, useEffect, useRef } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 
-const slides = [
+interface HeroSlide {
+  id?: number;
+  title: string;
+  image: string;
+  buttonText: string;
+  link: string;
+  gradient: string;
+}
+
+const defaultSlides: HeroSlide[] = [
   {
     title: "Study in Australia",
     image: "/sydney_opera_house.png",
@@ -28,9 +37,37 @@ const slides = [
 ];
 
 export default function Hero() {
+  const [slides, setSlides] = useState<HeroSlide[]>(defaultSlides);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    fetch("/api/hero")
+      .then((response) => response.json())
+      .then((result) => {
+        if (
+          isMounted &&
+          result.status === "success" &&
+          Array.isArray(result.data) &&
+          result.data.length > 0
+        ) {
+          setSlides(result.data);
+          setActiveIndex(0);
+        }
+      })
+      .catch(() => {
+        if (isMounted) {
+          setSlides(defaultSlides);
+        }
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const startTimer = () => {
     stopTimer();

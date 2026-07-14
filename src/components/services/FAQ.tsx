@@ -1,47 +1,33 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaMagnifyingGlass, FaChevronDown } from 'react-icons/fa6';
 
-const faqs = [
-  {
-    q: "What is the typical timeline for the entire process?",
-    a: "The entire process from initial consultation to visa approval typically takes between 3 to 6 months, depending on the country, course intake, and university processing times. We recommend starting your application at least 6-8 months before your desired intake date."
-  },
-  {
-    q: "How much does your counselling service cost?",
-    a: "Our initial profile assessment and university admission counselling services are completely free. For specialized test preparations, NAATI CCL classes, and document processing assistance, minor administration fees may apply depending on the program selected."
-  },
-  {
-    q: "Do you guarantee university admission?",
-    a: "While we do not guarantee admission, we maintain a 98% admission success rate. Our counselors carefully evaluate your academic profile and match you with universities where you meet all entry requirements, significantly maximizing your acceptance probability."
-  },
-  {
-    q: "Can you help with part-time work opportunities?",
-    a: "Yes, during our pre-departure and post-arrival orientations, we guide you on student work rights, local employment regulations, CV writing matching international standards, and top platforms to secure part-time jobs in your study destination."
-  },
-  {
-    q: "What if my visa application is rejected?",
-    a: "In the rare event of a visa refusal, our compliance team reviews the rejection letter, addresses the specific concerns raised by immigration officers, updates your financial and SOP documentation, and assists you in filing a strong re-application or appeal."
-  },
-  {
-    q: "Do you offer support for postgraduate studies?",
-    a: "Absolutely! We offer comprehensive advisory services for Masters, MBA, and PhD programs, including research proposal guidance, supervisor communication support, statement of purpose (SOP) reviews, and postgraduate scholarship opportunities."
-  },
-  {
-    q: "How do I stay in touch after I depart?",
-    a: "We offer dedicated post-arrival student support, and our team remains reachable via our WhatsApp support hotline. We also help connect you with our student alumni network in your destination city for peer mentoring."
-  },
-  {
-    q: "Can I change my university after admission?",
-    a: "Yes, university changes are possible but subject to strict visa regulations and institution release policy compliance. Our team will guide you through the official credit transfers, release request filings, and visa status safety checks."
-  }
+interface FaqItem { id?: number; q: string; a: string; }
+
+const staticFaqs: FaqItem[] = [
+  { q: "What is the typical timeline for the entire process?", a: "The entire process from initial consultation to visa approval typically takes between 3 to 6 months, depending on the country, course intake, and university processing times. We recommend starting your application at least 6-8 months before your desired intake date." },
+  { q: "How much does your counselling service cost?", a: "Our initial profile assessment and university admission counselling services are completely free. For specialized test preparations, NAATI CCL classes, and document processing assistance, minor administration fees may apply depending on the program selected." },
+  { q: "Do you guarantee university admission?", a: "While we do not guarantee admission, we maintain a 98% admission success rate. Our counselors carefully evaluate your academic profile and match you with universities where you meet all entry requirements, significantly maximizing your acceptance probability." },
+  { q: "Can you help with part-time work opportunities?", a: "Yes, during our pre-departure and post-arrival orientations, we guide you on student work rights, local employment regulations, CV writing matching international standards, and top platforms to secure part-time jobs in your study destination." },
+  { q: "What if my visa application is rejected?", a: "In the rare event of a visa refusal, our compliance team reviews the rejection letter, addresses the specific concerns raised by immigration officers, updates your financial and SOP documentation, and assists you in filing a strong re-application or appeal." },
+  { q: "Do you offer support for postgraduate studies?", a: "Absolutely! We offer comprehensive advisory services for Masters, MBA, and PhD programs, including research proposal guidance, supervisor communication support, statement of purpose (SOP) reviews, and postgraduate scholarship opportunities." },
+  { q: "How do I stay in touch after I depart?", a: "We offer dedicated post-arrival student support, and our team remains reachable via our WhatsApp support hotline. We also help connect you with our student alumni network in your destination city for peer mentoring." },
+  { q: "Can I change my university after admission?", a: "Yes, university changes are possible but subject to strict visa regulations and institution release policy compliance. Our team will guide you through the official credit transfers, release request filings, and visa status safety checks." },
 ];
 
 export default function FAQ() {
+  const [faqs, setFaqs] = useState<FaqItem[]>(staticFaqs);
   const [searchQuery, setSearchQuery] = useState("");
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
+
+  useEffect(() => {
+    fetch('/api/faq')
+      .then(r => r.json())
+      .then(res => { if (res.status === 'success' && Array.isArray(res.data) && res.data.length > 0) setFaqs(res.data); })
+      .catch(() => { /* keep static fallback */ });
+  }, []);
 
   const filteredFaqs = faqs.filter(faq =>
     faq.q.toLowerCase().includes(searchQuery.toLowerCase()) ||
