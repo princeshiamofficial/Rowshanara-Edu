@@ -87,7 +87,7 @@ const Footer = () => {
           </div>
 
           {/* Vertical Gold Line Accent (Above Logo) */}
-          <div style={{ 
+          <div className="footer-accent-line-above" style={{ 
             position: 'absolute', 
             left: '3rem', 
             top: '-4rem', 
@@ -99,7 +99,7 @@ const Footer = () => {
           }}></div>
 
           {/* Vertical Gold Line Accent (Below Logo) */}
-          <div style={{ 
+          <div className="footer-accent-line-below" style={{ 
             position: 'absolute', 
             left: '3rem', 
             top: '80px', 
@@ -112,7 +112,7 @@ const Footer = () => {
 
           <div className="footer-content-wrapper" style={{ position: 'relative', zIndex: 2 }}> {/* Higher z-index for content */}
             {/* Far Right Full Vertical Line */}
-            <div style={{ 
+            <div className="footer-right-border-line" style={{ 
               position: 'absolute', 
               right: 0, 
               top: '-4.0rem', 
@@ -123,8 +123,7 @@ const Footer = () => {
             }}></div>
 
             {/* Top Divider (Line 1 - Matched with Line 2) */}
-            {/* Top Divider (Line 1 - Matched with Line 2) */}
-            <div style={{ 
+            <div className="footer-top-divider-line" style={{ 
               borderTop: '1px solid rgba(255, 255, 255, 0.8)', 
               position: 'relative', 
               top: '-4.0rem', // Adjusted up by another 2px
@@ -140,15 +139,15 @@ const Footer = () => {
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src="/logo.png" alt="Logo" style={{ height: '75px', filter: 'brightness(0) invert(1)' }} />
                 </div>
-                <div style={{ fontSize: '0.9375rem', fontWeight: 500, color: '#fff' }}>
+                <div className="footer-address-text" style={{ fontSize: '0.9375rem', fontWeight: 500, color: '#fff' }}>
                   <span>+880 1511-710730</span>
                   <span className="footer-pipe" style={{ margin: '0 0.5rem' }}>|</span>
-                  <span>60, Dilkusha, Motijheel C/A, Dhaka-1000, Bangladesh</span>
+                  <span className="footer-address-span">60, Dilkusha, Motijheel C/A, Dhaka-1000, Bangladesh</span>
                 </div>
               </div>
               
               {/* Quick Links */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', minWidth: '350px' }}>
+              <div className="footer-links-column" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                 <h4 style={{ color: brandColor, fontSize: '1.125rem', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase', margin: 0 }}>Quick Links</h4>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem 2rem' }}>
                   <a href="/about" style={{ color: '#fff', textDecoration: 'none', fontSize: '0.9375rem', opacity: 0.85, transition: 'opacity 0.2s', display: 'block' }}>About Us</a>
@@ -174,7 +173,7 @@ const Footer = () => {
             </div>
 
             {/* Sub-footer Divider Line */}
-            <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.8)', marginBottom: '1.25rem', marginLeft: '-1.5rem', width: 'calc(100% + 1.5rem)' }}></div>
+            <div className="footer-sub-divider" style={{ borderTop: '1px solid rgba(255, 255, 255, 0.8)', marginBottom: '1.25rem', marginLeft: '-1.5rem', width: 'calc(100% + 1.5rem)' }}></div>
 
             {/* Bottom Metadata & Legal Links */}
             <div>
@@ -200,13 +199,13 @@ const Footer = () => {
               </div>
               
               {/* Partner Logos moved here */}
-              <div style={{ display: 'flex', width: '100%', position: 'relative', marginTop: '-1.25rem', paddingTop: '1.25rem', paddingBottom: '1.25rem' }}>
+              <div className="footer-partners-row">
                 {/* Center Vertical Line */}
-                <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '50%', borderRight: '1px solid rgba(255, 255, 255, 0.8)', pointerEvents: 'none' }}></div>
+                <div className="footer-vertical-line" style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '50%', borderRight: '1px solid rgba(255, 255, 255, 0.8)', pointerEvents: 'none' }}></div>
                 
                 {/* Left Box: Accreditation */}
-                <div style={{ width: '50%', paddingRight: '2rem', position: 'relative', zIndex: 1 }}>
-                  <h4 style={{ 
+                <div className="footer-partners-col left" style={{ position: 'relative', zIndex: 1 }}>
+                  <h4 className="footer-partners-header" style={{ 
                     position: 'absolute', 
                     top: '-1.25rem', 
                     left: 0, 
@@ -231,8 +230,8 @@ const Footer = () => {
                 </div>
 
                 {/* Right Box: Membership */}
-                <div style={{ width: '50%', paddingLeft: '2rem', position: 'relative', zIndex: 1 }}>
-                  <h4 style={{ 
+                <div className="footer-partners-col right" style={{ position: 'relative', zIndex: 1 }}>
+                  <h4 className="footer-partners-header" style={{ 
                     position: 'absolute', 
                     top: '-1.25rem', 
                     left: '2rem', 
@@ -257,10 +256,10 @@ const Footer = () => {
               </div>
 
               {/* Added bottom divider */}
-              <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.8)', marginBottom: '1.25rem', marginLeft: '-1.5rem', width: 'calc(100% + 1.5rem)' }}></div>
+              <div className="footer-sub-divider" style={{ borderTop: '1px solid rgba(255, 255, 255, 0.8)', marginBottom: '1.25rem', marginLeft: '-1.5rem', width: 'calc(100% + 1.5rem)' }}></div>
 
               {/* Copyright and Privacy Policy */}
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.8125rem', fontWeight: 400, color: '#fff', opacity: 0.8 }}>
+              <div className="footer-bottom-bar" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.8125rem', fontWeight: 400, color: '#fff', opacity: 0.8 }}>
                 <span>&copy; {new Date().getFullYear()} Rowshanara Edu. All Rights Reserved.</span>
                 <a href="/privacy-policy" style={{ textDecoration: 'none', color: '#fff' }}>Privacy Policy</a>
               </div>
