@@ -222,3 +222,29 @@ export async function DELETE(request: Request) {
     return NextResponse.json({ status: 'error', message: error.message }, { status: 500 });
   }
 }
+
+export async function PUT(request: Request) {
+  try {
+    await ensureTableExists();
+    const body = await request.json();
+    const { id, code, name, region, cost, work, pr, gradient, bullets, cities, visaInfo } = body;
+
+    if (!id || !code || !name || !region || !cost || !work || !pr || !bullets || !cities || !visaInfo) {
+      return NextResponse.json({ status: 'error', message: 'Missing required fields' }, { status: 400 });
+    }
+
+    const bulletsStr = Array.isArray(bullets) ? JSON.stringify(bullets) : JSON.stringify([bullets]);
+    const finalGradient = gradient || 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)';
+
+    await query(
+      `UPDATE destinations 
+       SET code = ?, name = ?, region = ?, cost = ?, work = ?, pr = ?, gradient = ?, bullets = ?, cities = ?, visa_info = ? 
+       WHERE id = ?`,
+      [code, name, region, cost, work, pr, finalGradient, bulletsStr, cities, visaInfo, id]
+    );
+
+    return NextResponse.json({ status: 'success', message: 'Destination updated successfully' });
+  } catch (error: any) {
+    return NextResponse.json({ status: 'error', message: error.message }, { status: 500 });
+  }
+}

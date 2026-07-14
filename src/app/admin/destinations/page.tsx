@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import {
   Plus,
   Trash2,
+  Edit2,
   Globe,
   X
 } from 'lucide-react';
@@ -19,6 +20,7 @@ export default function AdminDestinationsPage() {
   // Dynamic destinations state
   const [dbDestinations, setDbDestinations] = useState<any[]>([]);
   const [isDestModalOpen, setIsDestModalOpen] = useState(false);
+  const [editingId, setEditingId] = useState<number | null>(null);
   const [newDest, setNewDest] = useState({
     code: '',
     name: '',
@@ -54,17 +56,22 @@ export default function AdminDestinationsPage() {
     try {
       const payload = {
         ...newDest,
+        id: editingId,
         bullets: [newDest.bullet1, newDest.bullet2, newDest.bullet3].filter(Boolean)
       };
 
-      const res = await fetch('/api/destinations', {
-        method: 'POST',
+      const url = '/api/destinations';
+      const method = editingId ? 'PUT' : 'POST';
+
+      const res = await fetch(url, {
+        method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       });
       const data = await res.json();
       if (data.status === 'success') {
         setIsDestModalOpen(false);
+        setEditingId(null);
         setNewDest({
           code: '',
           name: '',
@@ -79,14 +86,52 @@ export default function AdminDestinationsPage() {
           cities: '',
           visaInfo: ''
         });
-        toast.success('Destination added successfully!');
+        toast.success(editingId ? 'Destination updated successfully!' : 'Destination added successfully!');
         fetchDestinations();
       } else {
-        toast.error(data.message || 'Failed to add destination');
+        toast.error(data.message || 'Failed to save destination');
       }
     } catch (err: any) {
       toast.error(err.message || 'An error occurred');
     }
+  };
+
+  const handleEditClick = (dest: any) => {
+    setEditingId(dest.id);
+    setNewDest({
+      code: dest.code,
+      name: dest.name,
+      region: dest.region,
+      cost: dest.cost,
+      work: dest.work,
+      pr: dest.pr,
+      gradient: dest.gradient || 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
+      bullet1: Array.isArray(dest.bullets) ? (dest.bullets[0] || '') : '',
+      bullet2: Array.isArray(dest.bullets) ? (dest.bullets[1] || '') : '',
+      bullet3: Array.isArray(dest.bullets) ? (dest.bullets[2] || '') : '',
+      cities: dest.cities,
+      visaInfo: dest.visaInfo
+    });
+    setIsDestModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsDestModalOpen(false);
+    setEditingId(null);
+    setNewDest({
+      code: '',
+      name: '',
+      region: '',
+      cost: '',
+      work: '',
+      pr: '',
+      gradient: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
+      bullet1: '',
+      bullet2: '',
+      bullet3: '',
+      cities: '',
+      visaInfo: ''
+    });
   };
 
   const handleDeleteDestination = async (id: number) => {
@@ -211,22 +256,40 @@ export default function AdminDestinationsPage() {
                       <td style={{ padding: '1rem 0.5rem', color: '#475569' }}>{dest.work}</td>
                       <td style={{ padding: '1rem 0.5rem', color: '#475569' }}>{dest.pr}</td>
                       <td style={{ padding: '1rem 0.5rem', textAlign: 'center' }}>
-                        <button
-                          onClick={() => handleDeleteDestination(dest.id)}
-                          style={{
-                            background: 'transparent',
-                            border: 'none',
-                            color: '#ef4444',
-                            cursor: 'pointer',
-                            padding: '0.25rem',
-                            borderRadius: '4px',
-                            transition: 'background-color 0.2s',
-                          }}
-                          onMouseEnter={e => e.currentTarget.style.backgroundColor = '#fef2f2'}
-                          onMouseLeave={e => e.currentTarget.style.backgroundColor = 'transparent'}
-                        >
-                          <Trash2 size={16} />
-                        </button>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
+                          <button
+                            onClick={() => handleEditClick(dest)}
+                            style={{
+                              background: 'transparent',
+                              border: 'none',
+                              color: '#3b82f6',
+                              cursor: 'pointer',
+                              padding: '0.25rem',
+                              borderRadius: '4px',
+                              transition: 'background-color 0.2s',
+                            }}
+                            onMouseEnter={e => e.currentTarget.style.backgroundColor = '#eff6ff'}
+                            onMouseLeave={e => e.currentTarget.style.backgroundColor = 'transparent'}
+                          >
+                            <Edit2 size={16} />
+                          </button>
+                          <button
+                            onClick={() => handleDeleteDestination(dest.id)}
+                            style={{
+                              background: 'transparent',
+                              border: 'none',
+                              color: '#ef4444',
+                              cursor: 'pointer',
+                              padding: '0.25rem',
+                              borderRadius: '4px',
+                              transition: 'background-color 0.2s',
+                            }}
+                            onMouseEnter={e => e.currentTarget.style.backgroundColor = '#fef2f2'}
+                            onMouseLeave={e => e.currentTarget.style.backgroundColor = 'transparent'}
+                          >
+                            <Trash2 size={16} />
+                          </button>
+                        </div>
                       </td>
                     </tr>
                   ))
@@ -261,8 +324,10 @@ export default function AdminDestinationsPage() {
               border: '1px solid #e2e8f0'
             }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1.5rem', borderBottom: '1px solid #f1f5f9' }}>
-                <h2 style={{ fontSize: '1.2rem', fontWeight: 700, margin: 0 }}>Add New Study Destination</h2>
-                <button onClick={() => setIsDestModalOpen(false)} style={{ background: 'transparent', border: 'none', cursor: 'pointer', color: '#64748b' }}>
+                <h2 style={{ fontSize: '1.2rem', fontWeight: 700, margin: 0 }}>
+                  {editingId ? 'Edit Study Destination' : 'Add New Study Destination'}
+                </h2>
+                <button onClick={handleCloseModal} style={{ background: 'transparent', border: 'none', cursor: 'pointer', color: '#64748b' }}>
                   <X size={20} />
                 </button>
               </div>
@@ -401,7 +466,7 @@ export default function AdminDestinationsPage() {
                 <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '1rem', marginTop: '1rem', borderTop: '1px solid #f1f5f9', paddingTop: '1.25rem' }}>
                   <button
                     type="button"
-                    onClick={() => setIsDestModalOpen(false)}
+                    onClick={handleCloseModal}
                     style={{
                       backgroundColor: '#f1f5f9',
                       color: '#475569',
