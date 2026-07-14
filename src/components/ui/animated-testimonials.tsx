@@ -61,10 +61,7 @@ export const AnimatedTestimonials = ({
     return (
       !imgErrors[index] &&
       testimonial.src &&
-      testimonial.src !== "" &&
-      !testimonial.src.startsWith("/fatima") &&
-      !testimonial.src.startsWith("/karim") &&
-      !testimonial.src.startsWith("/aisha")
+      testimonial.src !== ""
     );
   };
 

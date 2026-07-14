@@ -50,7 +50,7 @@ export default function Testimonials() {
     quote: item.body,
     name: item.title,
     designation: item.subtitle,
-    src: item.imageUrl || "/fatima.png",
+    src: item.imageUrl && item.imageUrl !== "" ? item.imageUrl : "",
     rating: typeof item.metadata?.rating === "number" ? item.metadata.rating : 5,
   }));
 
