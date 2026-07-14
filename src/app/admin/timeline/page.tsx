@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import AdminSidebar from "@/components/admin/AdminSidebar";
 import { Plus, Pencil, Trash2, X, FileText, Clock } from "lucide-react";
-import toast, { Toaster } from "react-hot-toast";
+import { toast, Toaster } from "sonner";
 
 interface TimelineStep {
   id?: number;

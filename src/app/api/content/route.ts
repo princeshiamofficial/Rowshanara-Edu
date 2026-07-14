@@ -44,7 +44,7 @@ async function seedDefaults() {
     await query(
       `INSERT INTO site_content
         (section, item_key, title, subtitle, body, value, image_url, link_url, metadata, sort_order, is_active)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, CAST(? AS JSON), ?, ?)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
        ON DUPLICATE KEY UPDATE section = section`,
       [
         item.section,
@@ -133,7 +133,7 @@ export async function POST(request: Request) {
     const result = await query<{ insertId: number }>(
       `INSERT INTO site_content
         (section, item_key, title, subtitle, body, value, image_url, link_url, metadata, sort_order, is_active)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, CAST(? AS JSON), ?, ?)`,
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         section,
         itemKey,
@@ -168,7 +168,7 @@ export async function PUT(request: Request) {
 
     await query(
       `UPDATE site_content
-       SET section = ?, item_key = ?, title = ?, subtitle = ?, body = ?, value = ?, image_url = ?, link_url = ?, metadata = CAST(? AS JSON), sort_order = ?, is_active = ?
+       SET section = ?, item_key = ?, title = ?, subtitle = ?, body = ?, value = ?, image_url = ?, link_url = ?, metadata = ?, sort_order = ?, is_active = ?
        WHERE id = ?`,
       [
         section,
