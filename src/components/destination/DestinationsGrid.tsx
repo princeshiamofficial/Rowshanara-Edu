@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { FaDollarSign, FaBriefcase, FaPassport, FaXmark } from "react-icons/fa6";
+import { motion, AnimatePresence } from "framer-motion";
 
 const destinationList = [
   {
@@ -175,26 +176,34 @@ export default function DestinationsGrid() {
         gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))",
         gap: "2rem"
       }}>
+        <AnimatePresence mode="popLayout">
         {destinations.map((dest, index) => {
           const isExpanded = expandedIndex === index;
           if (isExpanded) {
             return (
-              <div key={index} id={`dest-card-${index}`} style={{
-                background: "#f0f7ff",
-                color: "#1e293b",
-                padding: "2.25rem 2rem",
-                borderRadius: "24px",
-                boxShadow: "0 15px 35px rgba(0, 0, 0, 0.05)",
-                transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-                minHeight: "440px",
-                border: "1px solid #d0e5ff",
-                cursor: "default",
-                position: "relative",
-                textAlign: "left"
-              }}>
+              <motion.div
+                key={`expanded-${dest.code}`}
+                id={`dest-card-${index}`}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.3 }}
+                style={{
+                  background: "#f0f7ff",
+                  color: "#1e293b",
+                  padding: "2.25rem 2rem",
+                  borderRadius: "24px",
+                  boxShadow: "0 15px 35px rgba(0, 0, 0, 0.05)",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  minHeight: "440px",
+                  border: "1px solid #d0e5ff",
+                  cursor: "default",
+                  position: "relative",
+                  textAlign: "left"
+                }}
+              >
                 {/* Close button at top right */}
                 <button 
                   onClick={() => setExpandedIndex(null)}
@@ -351,32 +360,32 @@ export default function DestinationsGrid() {
                 >
                   Explore Universities →
                 </button>
-              </div>
+              </motion.div>
             );
           }
 
           return (
-            <div key={index} id={`dest-card-${index}`} style={{
-              background: dest.gradient,
-              color: "#ffffff",
-              padding: "2.25rem 2rem",
-              borderRadius: "24px",
-              boxShadow: "0 15px 35px rgba(0, 0, 0, 0.08)",
-              transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              minHeight: "330px",
-              cursor: "default"
-            }}
-            onMouseEnter={e => {
-              e.currentTarget.style.transform = "translateY(-6px)";
-              e.currentTarget.style.boxShadow = "0 25px 45px rgba(0, 0, 0, 0.15)";
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.transform = "translateY(0)";
-              e.currentTarget.style.boxShadow = "0 15px 35px rgba(0, 0, 0, 0.08)";
-            }}>
+            <motion.div
+              key={`collapsed-${dest.code}`}
+              id={`dest-card-${index}`}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.5, delay: index * 0.06, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ y: -8 }}
+              style={{
+                background: dest.gradient,
+                color: "#ffffff",
+                padding: "2.25rem 2rem",
+                borderRadius: "24px",
+                boxShadow: "0 15px 35px rgba(0, 0, 0, 0.08)",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                minHeight: "330px",
+                cursor: "default"
+              }}
+            >
               <div>
                 <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.5rem" }}>
                   <img 
@@ -457,9 +466,10 @@ export default function DestinationsGrid() {
               >
                 Explore Destination →
               </button>
-            </div>
+            </motion.div>
           );
         })}
+        </AnimatePresence>
       </div>
     </section>
   );
