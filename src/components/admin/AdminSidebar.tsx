@@ -39,6 +39,7 @@ const NAV_ROUTES: Record<string, string> = {
   Applications:  '/admin/applications',
   Consultations: '/admin/consultations',
   Universities:  '/admin/universities',
+  Destinations:  '/admin/destinations',
 };
 
 export default function AdminSidebar({ 
@@ -408,7 +409,11 @@ export default function AdminSidebar({
                       return (
                         <button
                           key={subLink}
-                          onClick={() => setActiveSubTab(subLink)}
+                          onClick={() => {
+                            setActiveSubTab(subLink);
+                            const route = NAV_ROUTES[subLink];
+                            if (route) router.push(route);
+                          }}
                           style={{
                             display: 'flex',
                             alignItems: 'center',
