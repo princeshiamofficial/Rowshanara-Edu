@@ -224,7 +224,6 @@ export default function AdminServicesPage() {
               <thead>
                 <tr style={{ borderBottom: '2px solid #f1f5f9', color: '#64748b', fontWeight: 700 }}>
                   <th style={{ padding: '1rem 0.5rem' }}>Service Title</th>
-                  <th style={{ padding: '1rem 0.5rem' }}>Icon Class</th>
                   <th style={{ padding: '1rem 0.5rem' }}>Image Path</th>
                   <th style={{ padding: '1rem 0.5rem' }}>Description Summary</th>
                   <th style={{ padding: '1rem 0.5rem', textAlign: 'center' }}>Actions</th>
@@ -233,7 +232,7 @@ export default function AdminServicesPage() {
               <tbody>
                 {dbServices.length === 0 ? (
                   <tr>
-                    <td colSpan={5} style={{ textAlign: 'center', padding: '3rem 1rem', color: '#94a3b8' }}>
+                    <td colSpan={4} style={{ textAlign: 'center', padding: '3rem 1rem', color: '#94a3b8' }}>
                       <FileText size={40} style={{ margin: '0 auto 1rem auto', opacity: 0.5 }} />
                       <div>No services loaded or database is offline.</div>
                     </td>
@@ -242,7 +241,6 @@ export default function AdminServicesPage() {
                   dbServices.map((srv) => (
                     <tr key={srv.id} style={{ borderBottom: '1px solid #f1f5f9' }}>
                       <td style={{ padding: '1rem 0.5rem', fontWeight: 600, color: '#0f172a' }}>{srv.title}</td>
-                      <td style={{ padding: '1rem 0.5rem', color: '#64748b' }}>{srv.icon}</td>
                       <td style={{ padding: '1rem 0.5rem' }}>
                         <div style={{ position: 'relative', width: '55px', height: '38px', borderRadius: '6px', overflow: 'hidden', border: '1px solid #e2e8f0' }}>
                           <Image
@@ -333,29 +331,16 @@ export default function AdminServicesPage() {
               </div>
 
               <form onSubmit={handleAddService} style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                  <div>
-                    <label style={{ display: 'block', fontSize: '0.775rem', fontWeight: 600, color: '#475569', marginBottom: '0.4rem' }}>Service Title</label>
-                    <input
-                      required
-                      type="text"
-                      placeholder="e.g. Accommodation Search"
-                      value={newService.title}
-                      onChange={e => setNewService({ ...newService, title: e.target.value })}
-                      style={{ width: '100%', padding: '0.6rem 0.8rem', border: '1px solid #cbd5e1', borderRadius: '8px', outline: 'none' }}
-                    />
-                  </div>
-                  <div>
-                    <label style={{ display: 'block', fontSize: '0.775rem', fontWeight: 600, color: '#475569', marginBottom: '0.4rem' }}>Icon Class (Lucide / Fa)</label>
-                    <input
-                      required
-                      type="text"
-                      placeholder="e.g. FaBriefcase"
-                      value={newService.icon}
-                      onChange={e => setNewService({ ...newService, icon: e.target.value })}
-                      style={{ width: '100%', padding: '0.6rem 0.8rem', border: '1px solid #cbd5e1', borderRadius: '8px', outline: 'none' }}
-                    />
-                  </div>
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.775rem', fontWeight: 600, color: '#475569', marginBottom: '0.4rem' }}>Service Title</label>
+                  <input
+                    required
+                    type="text"
+                    placeholder="e.g. Accommodation Search"
+                    value={newService.title}
+                    onChange={e => setNewService({ ...newService, title: e.target.value })}
+                    style={{ width: '100%', padding: '0.6rem 0.8rem', border: '1px solid #cbd5e1', borderRadius: '8px', outline: 'none' }}
+                  />
                 </div>
 
                 <div>
