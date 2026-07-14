@@ -36,9 +36,7 @@ export default function AdminServicesPage() {
     icon: 'FaBookOpen',
     image: '',
     description: '',
-    highlight1: '',
-    highlight2: '',
-    highlight3: ''
+    highlights: ['']
   });
 
   const fetchServices = () => {
@@ -56,13 +54,38 @@ export default function AdminServicesPage() {
     fetchServices();
   }, []);
 
+  const handleAddHighlightField = () => {
+    setNewService(prev => ({
+      ...prev,
+      highlights: [...prev.highlights, '']
+    }));
+  };
+
+  const handleHighlightChange = (index: number, value: string) => {
+    const updated = [...newService.highlights];
+    updated[index] = value;
+    setNewService(prev => ({
+      ...prev,
+      highlights: updated
+    }));
+  };
+
+  const handleRemoveHighlightField = (index: number) => {
+    if (newService.highlights.length <= 1) return;
+    const updated = newService.highlights.filter((_, idx) => idx !== index);
+    setNewService(prev => ({
+      ...prev,
+      highlights: updated
+    }));
+  };
+
   const handleAddService = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       const payload = {
         ...newService,
         id: editingId,
-        highlights: [newService.highlight1, newService.highlight2, newService.highlight3].filter(Boolean)
+        highlights: newService.highlights.filter(Boolean)
       };
 
       const url = '/api/services';
@@ -82,9 +105,7 @@ export default function AdminServicesPage() {
           icon: 'FaBookOpen',
           image: '',
           description: '',
-          highlight1: '',
-          highlight2: '',
-          highlight3: ''
+          highlights: ['']
         });
         toast.success(editingId ? 'Service updated successfully!' : 'Service added successfully!');
         fetchServices();
@@ -104,9 +125,7 @@ export default function AdminServicesPage() {
       icon: srv.icon || 'FaBookOpen',
       image: srv.image,
       description: srv.description,
-      highlight1: Array.isArray(srv.highlights) ? (srv.highlights[0] || '') : '',
-      highlight2: Array.isArray(srv.highlights) ? (srv.highlights[1] || '') : '',
-      highlight3: Array.isArray(srv.highlights) ? (srv.highlights[2] || '') : ''
+      highlights: Array.isArray(srv.highlights) && srv.highlights.length > 0 ? [...srv.highlights] : ['']
     });
     setIsServiceModalOpen(true);
   };
@@ -119,9 +138,7 @@ export default function AdminServicesPage() {
       icon: 'FaBookOpen',
       image: '',
       description: '',
-      highlight1: '',
-      highlight2: '',
-      highlight3: ''
+      highlights: ['']
     });
   };
 
@@ -385,32 +402,56 @@ export default function AdminServicesPage() {
                 </div>
 
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.775rem', fontWeight: 600, color: '#475569', marginBottom: '0.4rem' }}>Key Highlights (Enter 3)</label>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>
+                    <label style={{ fontSize: '0.775rem', fontWeight: 600, color: '#475569' }}>Key Highlights / Bullet Points</label>
+                    <button
+                      type="button"
+                      onClick={handleAddHighlightField}
+                      style={{
+                        background: 'transparent',
+                        border: 'none',
+                        color: '#E09100',
+                        fontSize: '0.75rem',
+                        fontWeight: 700,
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.2rem'
+                      }}
+                    >
+                      <Plus size={12} />
+                      <span>Add New</span>
+                    </button>
+                  </div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                    <input
-                      required
-                      type="text"
-                      placeholder="Highlight 1"
-                      value={newService.highlight1}
-                      onChange={e => setNewService({ ...newService, highlight1: e.target.value })}
-                      style={{ width: '100%', padding: '0.6rem 0.8rem', border: '1px solid #cbd5e1', borderRadius: '8px', outline: 'none' }}
-                    />
-                    <input
-                      required
-                      type="text"
-                      placeholder="Highlight 2"
-                      value={newService.highlight2}
-                      onChange={e => setNewService({ ...newService, highlight2: e.target.value })}
-                      style={{ width: '100%', padding: '0.6rem 0.8rem', border: '1px solid #cbd5e1', borderRadius: '8px', outline: 'none' }}
-                    />
-                    <input
-                      required
-                      type="text"
-                      placeholder="Highlight 3"
-                      value={newService.highlight3}
-                      onChange={e => setNewService({ ...newService, highlight3: e.target.value })}
-                      style={{ width: '100%', padding: '0.6rem 0.8rem', border: '1px solid #cbd5e1', borderRadius: '8px', outline: 'none' }}
-                    />
+                    {newService.highlights.map((highlight, index) => (
+                      <div key={index} style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                        <input
+                          required
+                          type="text"
+                          placeholder={`Highlight ${index + 1}`}
+                          value={highlight}
+                          onChange={e => handleHighlightChange(index, e.target.value)}
+                          style={{ flexGrow: 1, padding: '0.6rem 0.8rem', border: '1px solid #cbd5e1', borderRadius: '8px', outline: 'none' }}
+                        />
+                        {newService.highlights.length > 1 && (
+                          <button
+                            type="button"
+                            onClick={() => handleRemoveHighlightField(index)}
+                            style={{
+                              background: 'transparent',
+                              border: 'none',
+                              color: '#ef4444',
+                              cursor: 'pointer',
+                              padding: '0.25rem',
+                              borderRadius: '4px',
+                            }}
+                          >
+                            <X size={16} />
+                          </button>
+                        )}
+                      </div>
+                    ))}
                   </div>
                 </div>
 
