@@ -69,14 +69,10 @@ export default function Destinations() {
             className="destination-card"
             style={{ background: dest.gradient }}
           >
-            <Image 
+            <img 
               src={dest.image} 
               alt={dest.name} 
-              width={200}
-              height={150}
               className="destination-image" 
-              style={{ objectFit: "cover" }}
-              unoptimized
             />
             <div className="destination-content">
               <h3 className="destination-name">{dest.name}</h3>
