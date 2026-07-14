@@ -44,9 +44,7 @@ export default function AdminDestinationsPage() {
     work: '',
     pr: '',
     gradient: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
-    bullet1: '',
-    bullet2: '',
-    bullet3: '',
+    bullets: [''],
     cities: '',
     visaInfo: ''
   });
@@ -66,13 +64,38 @@ export default function AdminDestinationsPage() {
     fetchDestinations();
   }, []);
 
+  const handleAddHighlightField = () => {
+    setNewDest(prev => ({
+      ...prev,
+      bullets: [...prev.bullets, '']
+    }));
+  };
+
+  const handleHighlightChange = (index: number, value: string) => {
+    const updated = [...newDest.bullets];
+    updated[index] = value;
+    setNewDest(prev => ({
+      ...prev,
+      bullets: updated
+    }));
+  };
+
+  const handleRemoveHighlightField = (index: number) => {
+    if (newDest.bullets.length <= 1) return;
+    const updated = newDest.bullets.filter((_, idx) => idx !== index);
+    setNewDest(prev => ({
+      ...prev,
+      bullets: updated
+    }));
+  };
+
   const handleAddDestination = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       const payload = {
         ...newDest,
         id: editingId,
-        bullets: [newDest.bullet1, newDest.bullet2, newDest.bullet3].filter(Boolean)
+        bullets: newDest.bullets.filter(Boolean)
       };
 
       const url = '/api/destinations';
@@ -95,9 +118,7 @@ export default function AdminDestinationsPage() {
           work: '',
           pr: '',
           gradient: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
-          bullet1: '',
-          bullet2: '',
-          bullet3: '',
+          bullets: [''],
           cities: '',
           visaInfo: ''
         });
@@ -122,9 +143,7 @@ export default function AdminDestinationsPage() {
       work: dest.work,
       pr: dest.pr,
       gradient: dest.gradient || 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
-      bullet1: Array.isArray(dest.bullets) ? (dest.bullets[0] || '') : '',
-      bullet2: Array.isArray(dest.bullets) ? (dest.bullets[1] || '') : '',
-      bullet3: Array.isArray(dest.bullets) ? (dest.bullets[2] || '') : '',
+      bullets: Array.isArray(dest.bullets) && dest.bullets.length > 0 ? [...dest.bullets] : [''],
       cities: dest.cities,
       visaInfo: dest.visaInfo
     });
@@ -142,9 +161,7 @@ export default function AdminDestinationsPage() {
       work: '',
       pr: '',
       gradient: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
-      bullet1: '',
-      bullet2: '',
-      bullet3: '',
+      bullets: [''],
       cities: '',
       visaInfo: ''
     });
@@ -454,32 +471,56 @@ export default function AdminDestinationsPage() {
                 </div>
 
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.775rem', fontWeight: 600, color: '#475569', marginBottom: '0.4rem' }}>Key Highlights / Bullet Points (Enter 3)</label>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>
+                    <label style={{ fontSize: '0.775rem', fontWeight: 600, color: '#475569' }}>Key Highlights / Bullet Points</label>
+                    <button
+                      type="button"
+                      onClick={handleAddHighlightField}
+                      style={{
+                        background: 'transparent',
+                        border: 'none',
+                        color: '#E09100',
+                        fontSize: '0.75rem',
+                        fontWeight: 700,
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.2rem'
+                      }}
+                    >
+                      <Plus size={12} />
+                      <span>Add New</span>
+                    </button>
+                  </div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                    <input
-                      required
-                      type="text"
-                      placeholder="Highlight 1 (e.g. High tech innovations)"
-                      value={newDest.bullet1}
-                      onChange={e => setNewDest({ ...newDest, bullet1: e.target.value })}
-                      style={{ width: '100%', padding: '0.6rem 0.8rem', border: '1px solid #cbd5e1', borderRadius: '8px', outline: 'none' }}
-                    />
-                    <input
-                      required
-                      type="text"
-                      placeholder="Highlight 2 (e.g. Rich traditional culture)"
-                      value={newDest.bullet2}
-                      onChange={e => setNewDest({ ...newDest, bullet2: e.target.value })}
-                      style={{ width: '100%', padding: '0.6rem 0.8rem', border: '1px solid #cbd5e1', borderRadius: '8px', outline: 'none' }}
-                    />
-                    <input
-                      required
-                      type="text"
-                      placeholder="Highlight 3 (e.g. Safe and clean living environment)"
-                      value={newDest.bullet3}
-                      onChange={e => setNewDest({ ...newDest, bullet3: e.target.value })}
-                      style={{ width: '100%', padding: '0.6rem 0.8rem', border: '1px solid #cbd5e1', borderRadius: '8px', outline: 'none' }}
-                    />
+                    {newDest.bullets.map((bullet, index) => (
+                      <div key={index} style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                        <input
+                          required
+                          type="text"
+                          placeholder={`Highlight ${index + 1}`}
+                          value={bullet}
+                          onChange={e => handleHighlightChange(index, e.target.value)}
+                          style={{ flexGrow: 1, padding: '0.6rem 0.8rem', border: '1px solid #cbd5e1', borderRadius: '8px', outline: 'none' }}
+                        />
+                        {newDest.bullets.length > 1 && (
+                          <button
+                            type="button"
+                            onClick={() => handleRemoveHighlightField(index)}
+                            style={{
+                              background: 'transparent',
+                              border: 'none',
+                              color: '#ef4444',
+                              cursor: 'pointer',
+                              padding: '0.25rem',
+                              borderRadius: '4px',
+                            }}
+                          >
+                            <X size={16} />
+                          </button>
+                        )}
+                      </div>
+                    ))}
                   </div>
                 </div>
 
