@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import AdminSidebar from "@/components/admin/AdminSidebar";
-import { Plus, Pencil, Trash2, X, FileText, Clock } from "lucide-react";
+import { Plus, Pencil, Trash2, X, FileText, Clock, ArrowUp, ArrowDown } from "lucide-react";
 import { toast, Toaster } from "sonner";
 
 interface TimelineStep {
@@ -140,6 +140,55 @@ export default function AdminTimelinePage() {
     }
   };
 
+  const handleReorder = async (currentIndex: number, direction: 'up' | 'down') => {
+    const targetIndex = direction === 'up' ? currentIndex - 1 : currentIndex + 1;
+    if (targetIndex < 0 || targetIndex >= steps.length) return;
+
+    const currentStep = steps[currentIndex];
+    const targetStep = steps[targetIndex];
+
+    if (!currentStep.id || !targetStep.id) return;
+
+    const currentSort = currentStep.sortOrder;
+    const targetSort = targetStep.sortOrder;
+
+    try {
+      const updateStep = async (step: TimelineStep, newSort: number) => {
+        const payload = {
+          id: step.id,
+          section: step.section,
+          itemKey: step.itemKey,
+          title: step.title,
+          body: step.body,
+          value: String(newSort),
+          sortOrder: newSort,
+          isActive: step.isActive
+        };
+        const res = await fetch('/api/content', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        return res.json();
+      };
+
+      const [res1, res2] = await Promise.all([
+        updateStep(currentStep, targetSort),
+        updateStep(targetStep, currentSort)
+      ]);
+
+      if (res1.status === 'success' && res2.status === 'success') {
+        toast.success('Order updated successfully!');
+        fetchSteps();
+      } else {
+        toast.error('Failed to update order');
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error('Failed to update order');
+    }
+  };
+
   const handleLogout = () => {
     router.push('/admin');
   };
@@ -227,13 +276,43 @@ export default function AdminTimelinePage() {
                     </td>
                   </tr>
                 ) : (
-                  steps.map((step) => (
+                  steps.map((step, index) => (
                     <tr key={step.id} style={{ borderBottom: '1px solid #f1f5f9' }}>
                       <td style={{ padding: '1rem 0.5rem', fontWeight: 700, color: '#E09100' }}>#{step.sortOrder}</td>
                       <td style={{ padding: '1rem 0.5rem', fontWeight: 600, color: '#0f172a' }}>{step.title}</td>
                       <td style={{ padding: '1rem 0.5rem', color: '#475569' }}>{step.body}</td>
                       <td style={{ padding: '1rem 0.5rem', textAlign: 'center' }}>
                         <div style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem' }}>
+                          <button
+                            onClick={() => handleReorder(index, 'up')}
+                            disabled={index === 0}
+                            style={{ 
+                              padding: '0.4rem', 
+                              border: '1px solid #e2e8f0', 
+                              borderRadius: '6px', 
+                              background: 'transparent', 
+                              cursor: index === 0 ? 'not-allowed' : 'pointer', 
+                              color: index === 0 ? '#cbd5e1' : '#475569' 
+                            }}
+                            title="Move Up"
+                          >
+                            <ArrowUp size={14} />
+                          </button>
+                          <button
+                            onClick={() => handleReorder(index, 'down')}
+                            disabled={index === steps.length - 1}
+                            style={{ 
+                              padding: '0.4rem', 
+                              border: '1px solid #e2e8f0', 
+                              borderRadius: '6px', 
+                              background: 'transparent', 
+                              cursor: index === steps.length - 1 ? 'not-allowed' : 'pointer', 
+                              color: index === steps.length - 1 ? '#cbd5e1' : '#475569' 
+                            }}
+                            title="Move Down"
+                          >
+                            <ArrowDown size={14} />
+                          </button>
                           <button
                             onClick={() => handleEditClick(step)}
                             style={{ padding: '0.4rem', border: '1px solid #e2e8f0', borderRadius: '6px', background: 'transparent', cursor: 'pointer', color: '#475569' }}
