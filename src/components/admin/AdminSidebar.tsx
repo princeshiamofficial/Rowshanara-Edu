@@ -15,7 +15,8 @@ import {
   LayoutDashboard,
   GraduationCap,
   Globe,
-  FileText
+  FileText,
+  Clock
 } from 'lucide-react';
 
 interface AdminSidebarProps {
@@ -34,6 +35,7 @@ const NAV_ROUTES: Record<string, string> = {
   Universities:  '/admin/universities',
   Destinations:  '/admin/destinations',
   Services:      '/admin/services',
+  'Process Timeline': '/admin/timeline',
 };
 
 export default function AdminSidebar({ 
@@ -83,6 +85,7 @@ export default function AdminSidebar({
     { name: 'Universities', icon: <School size={20} />, badge: null, hasSubMenu: false },
     { name: 'Destinations', icon: <Globe size={20} />, badge: null, hasSubMenu: false },
     { name: 'Services', icon: <FileText size={20} />, badge: null, hasSubMenu: false },
+    { name: 'Process Timeline', icon: <Clock size={20} />, badge: null, hasSubMenu: false },
   ];
 
   return (
