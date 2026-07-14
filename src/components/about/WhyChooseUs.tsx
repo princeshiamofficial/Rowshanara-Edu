@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { 
   FaGraduationCap, 
@@ -7,6 +9,7 @@ import {
   FaHandHoldingDollar, 
   FaHeadphones 
 } from "react-icons/fa6";
+import { useContentSection } from "@/lib/useContentSection";
 
 const whyChooseUsList = [
   {
@@ -41,7 +44,23 @@ const whyChooseUsList = [
   }
 ];
 
+const iconMap: Record<string, React.ReactNode> = {
+  graduation: <FaGraduationCap className="choose-us-icon" />,
+  award: <FaAward className="choose-us-icon" />,
+  user: <FaUserCheck className="choose-us-icon" />,
+  globe: <FaGlobe className="choose-us-icon" />,
+  money: <FaHandHoldingDollar className="choose-us-icon" />,
+  support: <FaHeadphones className="choose-us-icon" />,
+};
+
 export default function WhyChooseUs() {
+  const items = useContentSection("why_choose_us", whyChooseUsList.map((item, index) => ({
+    itemKey: String(index),
+    title: item.title,
+    body: item.desc,
+    metadata: { icon: ["graduation", "award", "user", "globe", "money", "support"][index] },
+  })) as any);
+
   return (
     <section className="container" style={{ marginTop: "3.5rem", marginBottom: "0.75rem" }}>
       <h2 style={{
@@ -56,11 +75,13 @@ export default function WhyChooseUs() {
       </h2>
 
       <div className="choose-us-grid">
-        {whyChooseUsList.map((item, index) => (
+        {items.map((item, index) => {
+          const iconName = typeof item.metadata?.icon === "string" ? item.metadata.icon : "graduation";
+          return (
           <div key={index} className="choose-us-card">
             {/* Icon Container */}
             <div className="choose-us-icon-wrapper">
-              {item.icon}
+              {iconMap[iconName] || iconMap.graduation}
             </div>
 
             {/* Text Container */}
@@ -69,11 +90,11 @@ export default function WhyChooseUs() {
                 {item.title}
               </h3>
               <p className="choose-us-card-desc">
-                {item.desc}
+                {item.body}
               </p>
             </div>
           </div>
-        ))}
+        )})}
       </div>
     </section>
   );

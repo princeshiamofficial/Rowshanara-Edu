@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useContentSection } from "@/lib/useContentSection";
 
 const timelineSteps = [
   {
@@ -36,6 +37,13 @@ const timelineSteps = [
 ];
 
 export default function Timeline() {
+  const steps = useContentSection("service_process", timelineSteps.map((step) => ({
+    itemKey: String(step.number),
+    title: step.title,
+    body: step.desc,
+    value: String(step.number),
+  })) as any);
+
   return (
     <section className="container" style={{ marginTop: "1.8rem", marginBottom: "4rem" }}>
       <h2 style={{
@@ -70,8 +78,8 @@ export default function Timeline() {
 
         {/* Timeline Steps */}
         <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
-          {timelineSteps.map((step) => (
-            <div key={step.number} style={{
+          {steps.map((step, index) => (
+            <div key={step.itemKey || index} style={{
               position: "relative",
               display: "flex",
               alignItems: "center"
@@ -97,7 +105,7 @@ export default function Timeline() {
                 flexShrink: 0,
                 fontFamily: "'Baloo 2', cursive"
               }}>
-                {step.number}
+                {step.value || index + 1}
               </div>
 
               {/* Card Container */}
@@ -132,7 +140,7 @@ export default function Timeline() {
                   fontFamily: "'Comic Neue', cursive",
                   lineHeight: 1.5
                 }}>
-                  {step.desc}
+                  {step.body}
                 </p>
               </div>
             </div>

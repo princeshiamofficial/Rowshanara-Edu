@@ -2,8 +2,28 @@
 
 import React from "react";
 import { FaLocationDot, FaPhone, FaEnvelope, FaClock, FaWhatsapp } from "react-icons/fa6";
+import { useContentSection } from "@/lib/useContentSection";
+
+const fallbackItems = [
+  { itemKey: "address", title: "Office Address", body: "Dhaka Office:\nHouse 45, Road 12, Gulshan-2\nDhaka 1212, Bangladesh", metadata: { icon: "location" } },
+  { itemKey: "phones", title: "Phone Numbers", body: "Bangladesh: +880 2 9884-5678\nUK: +44 20 7946-0958\nCanada: +1 647-361-8880", metadata: { icon: "phone" } },
+  { itemKey: "email", title: "Email Address", body: "info@rowshanaraedu.com\nsupport@rowshanaraedu.com\nadmissions@rowshanaraedu.com", metadata: { icon: "email" } },
+  { itemKey: "hours", title: "Office Hours", body: "Monday - Friday: 9:00 AM - 6:00 PM\nSaturday: 10:00 AM - 4:00 PM\nSunday: Closed", metadata: { icon: "clock" } },
+  { itemKey: "whatsapp", title: "Chat on WhatsApp", value: "+8801511710730", linkUrl: "https://wa.me/8801511710730", metadata: { icon: "whatsapp" } },
+];
+
+const icons: Record<string, React.ReactNode> = {
+  location: <FaLocationDot />,
+  phone: <FaPhone />,
+  email: <FaEnvelope />,
+  clock: <FaClock />,
+};
 
 export default function OfficeDetails() {
+  const items = useContentSection("contact_information", fallbackItems as any);
+  const whatsapp = items.find((item) => item.itemKey === "whatsapp");
+  const detailItems = items.filter((item) => item.itemKey !== "whatsapp");
+
   return (
     <div className="contact-card" style={{
       background: "white",
@@ -28,8 +48,10 @@ export default function OfficeDetails() {
         </h2>
 
         <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
-          {/* Item 1: Address */}
-          <div style={{ display: "flex", gap: "1.25rem", alignItems: "flex-start" }}>
+          {detailItems.map((item) => {
+            const iconName = typeof item.metadata?.icon === "string" ? item.metadata.icon : "location";
+            return (
+          <div key={item.itemKey} style={{ display: "flex", gap: "1.25rem", alignItems: "flex-start" }}>
             <div style={{
               width: "44px",
               height: "44px",
@@ -42,102 +64,23 @@ export default function OfficeDetails() {
               fontSize: "1.2rem",
               flexShrink: 0
             }}>
-              <FaLocationDot />
+              {icons[iconName] || icons.location}
             </div>
             <div>
-              <h4 style={{ margin: "0 0 0.4rem 0", fontSize: "1.1rem", fontWeight: 800, color: "var(--text)", fontFamily: "'Baloo 2', cursive" }}>Office Address</h4>
+              <h4 style={{ margin: "0 0 0.4rem 0", fontSize: "1.1rem", fontWeight: 800, color: "var(--text)", fontFamily: "'Baloo 2', cursive" }}>{item.title}</h4>
               <div style={{ fontSize: "0.95rem", color: "var(--text)", opacity: 0.8, lineHeight: 1.6, fontFamily: "'Comic Neue', cursive" }}>
-                <strong>Dhaka Office:</strong><br />
-                House 45, Road 12, Gulshan-2<br />
-                Dhaka 1212, Bangladesh
+                {item.body.split("\n").map((line, index) => <React.Fragment key={index}>{index === 0 && item.itemKey === "address" ? <strong>{line}</strong> : line}<br /></React.Fragment>)}
               </div>
             </div>
           </div>
-
-          {/* Item 2: Phone */}
-          <div style={{ display: "flex", gap: "1.25rem", alignItems: "flex-start" }}>
-            <div style={{
-              width: "44px",
-              height: "44px",
-              borderRadius: "12px",
-              background: "rgba(224, 145, 0, 0.08)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "var(--primary)",
-              fontSize: "1.2rem",
-              flexShrink: 0
-            }}>
-              <FaPhone />
-            </div>
-            <div>
-              <h4 style={{ margin: "0 0 0.4rem 0", fontSize: "1.1rem", fontWeight: 800, color: "var(--text)", fontFamily: "'Baloo 2', cursive" }}>Phone Numbers</h4>
-              <div style={{ fontSize: "0.95rem", color: "var(--text)", opacity: 0.8, lineHeight: 1.6, fontFamily: "'Comic Neue', cursive" }}>
-                Bangladesh: +880 2 9884-5678<br />
-                UK: +44 20 7946-0958<br />
-                Canada: +1 647-361-8880
-              </div>
-            </div>
-          </div>
-
-          {/* Item 3: Email */}
-          <div style={{ display: "flex", gap: "1.25rem", alignItems: "flex-start" }}>
-            <div style={{
-              width: "44px",
-              height: "44px",
-              borderRadius: "12px",
-              background: "rgba(224, 145, 0, 0.08)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "var(--primary)",
-              fontSize: "1.2rem",
-              flexShrink: 0
-            }}>
-              <FaEnvelope />
-            </div>
-            <div>
-              <h4 style={{ margin: "0 0 0.4rem 0", fontSize: "1.1rem", fontWeight: 800, color: "var(--text)", fontFamily: "'Baloo 2', cursive" }}>Email Address</h4>
-              <div style={{ fontSize: "0.95rem", color: "var(--text)", opacity: 0.8, lineHeight: 1.6, fontFamily: "'Comic Neue', cursive" }}>
-                info@rowshanaraedu.com<br />
-                support@rowshanaraedu.com<br />
-                admissions@rowshanaraedu.com
-              </div>
-            </div>
-          </div>
-
-          {/* Item 4: Hours */}
-          <div style={{ display: "flex", gap: "1.25rem", alignItems: "flex-start" }}>
-            <div style={{
-              width: "44px",
-              height: "44px",
-              borderRadius: "12px",
-              background: "rgba(224, 145, 0, 0.08)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "var(--primary)",
-              fontSize: "1.2rem",
-              flexShrink: 0
-            }}>
-              <FaClock />
-            </div>
-            <div>
-              <h4 style={{ margin: "0 0 0.4rem 0", fontSize: "1.1rem", fontWeight: 800, color: "var(--text)", fontFamily: "'Baloo 2', cursive" }}>Office Hours</h4>
-              <div style={{ fontSize: "0.95rem", color: "var(--text)", opacity: 0.8, lineHeight: 1.6, fontFamily: "'Comic Neue', cursive" }}>
-                Monday - Friday: 9:00 AM - 6:00 PM<br />
-                Saturday: 10:00 AM - 4:00 PM<br />
-                Sunday: Closed
-              </div>
-            </div>
-          </div>
+          )})}
         </div>
       </div>
 
       {/* Item 5: WhatsApp Button */}
       <div style={{ marginTop: "2rem" }}>
         <a
-          href="https://wa.me/8801511710730"
+          href={whatsapp?.linkUrl || "https://wa.me/8801511710730"}
           target="_blank"
           rel="noopener noreferrer"
           style={{
@@ -168,7 +111,7 @@ export default function OfficeDetails() {
           }}
         >
           <FaWhatsapp style={{ fontSize: "1.3rem" }} />
-          Chat on WhatsApp
+          {whatsapp?.title || "Chat on WhatsApp"}
         </a>
       </div>
     </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useContentSection } from "@/lib/useContentSection";
 
 const milestones = [
   { year: "2009", title: "Company Founded", desc: "Started with a vision to help Bangladeshi students study abroad" },
@@ -13,6 +14,12 @@ const milestones = [
 
 export default function Journey() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const journeyItems = useContentSection("journey", milestones.map((item, index) => ({
+    itemKey: String(index),
+    title: item.title,
+    body: item.desc,
+    value: item.year,
+  })) as any);
 
   return (
     <section className="container" style={{ marginTop: "1.5rem", marginBottom: "2.5rem" }}>
@@ -33,7 +40,7 @@ export default function Journey() {
         margin: "0 auto",
         padding: "0 1rem"
       }}>
-        {milestones.map((ms, index) => {
+        {journeyItems.map((ms, index) => {
           const isHovered = hoveredIndex === index;
           return (
             <div key={index} 
@@ -59,7 +66,7 @@ export default function Journey() {
                 paddingTop: "6px",
                 transition: "color 0.25s ease"
               }}>
-                {ms.year}
+                {ms.value}
               </div>
 
               {/* Dot column */}
@@ -142,7 +149,7 @@ export default function Journey() {
                     fontFamily: "'Comic Neue', cursive",
                     lineHeight: "1.5"
                   }}>
-                    {ms.desc}
+                    {ms.body}
                   </p>
                 </div>
               </div>

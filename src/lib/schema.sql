@@ -48,3 +48,68 @@ VALUES
 ('Post-Arrival Student Support', 'FaLocationDot', '/images/services/post_arrival.png', 'Continuous support after you arrive at your destination to ensure smooth transition.', '["Arrival Assistance", "Local Orientation", "Ongoing Mentoring", "Emergency Support"]')
 ON DUPLICATE KEY UPDATE 
 icon=VALUES(icon), image=VALUES(image), description=VALUES(description), highlights=VALUES(highlights);
+
+-- Generic editable content for public site sections
+CREATE TABLE IF NOT EXISTS site_content (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  section VARCHAR(100) NOT NULL,
+  item_key VARCHAR(100) NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  subtitle VARCHAR(255) NULL,
+  body TEXT NULL,
+  value VARCHAR(255) NULL,
+  image_url TEXT NULL,
+  link_url TEXT NULL,
+  metadata JSON NULL,
+  sort_order INT NOT NULL DEFAULT 0,
+  is_active TINYINT(1) NOT NULL DEFAULT 1,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  UNIQUE KEY unique_section_item (section, item_key)
+);
+
+-- Partner universities used on the public Universities page and admin list
+CREATE TABLE IF NOT EXISTS universities (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL UNIQUE,
+  country VARCHAR(100) NOT NULL,
+  location VARCHAR(255) NOT NULL,
+  courses INT NOT NULL DEFAULT 0,
+  tuition_min INT NOT NULL DEFAULT 0,
+  tuition_max INT NOT NULL DEFAULT 0,
+  acceptance_rate VARCHAR(50) NOT NULL DEFAULT '',
+  rank_order INT NOT NULL DEFAULT 0,
+  subject_areas TEXT NOT NULL,
+  is_official_partner TINYINT(1) NOT NULL DEFAULT 0,
+  image TEXT NOT NULL,
+  description TEXT NOT NULL,
+  established INT NOT NULL DEFAULT 0,
+  popular_programs TEXT NOT NULL,
+  requirements TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Consultation sessions shown in the admin Consultations table
+CREATE TABLE IF NOT EXISTS consultations (
+  session_id VARCHAR(20) PRIMARY KEY,
+  student_name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  phone VARCHAR(100) NOT NULL,
+  nationality VARCHAR(100) NOT NULL,
+  target_country VARCHAR(100) NOT NULL,
+  target_level VARCHAR(100) NOT NULL,
+  consultant VARCHAR(255) NOT NULL,
+  consultant_avatar VARCHAR(10) NOT NULL,
+  mode ENUM('Video Call', 'Phone Call', 'In-Person') NOT NULL,
+  session_date DATE NOT NULL,
+  session_time VARCHAR(20) NOT NULL,
+  duration VARCHAR(50) NOT NULL,
+  status ENUM('Scheduled', 'Completed', 'Cancelled', 'Pending') NOT NULL DEFAULT 'Pending',
+  topic VARCHAR(255) NOT NULL,
+  notes TEXT NOT NULL,
+  follow_up TINYINT(1) NOT NULL DEFAULT 0,
+  avatar VARCHAR(10) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   Search,
@@ -111,6 +111,17 @@ export default function ConsultationsPage() {
   const [statusDropdown, setStatusDropdown] = useState<string | null>(null);
   const [consultations, setConsultations] = useState<Consultation[]>(ALL_CONSULTATIONS);
 
+  useEffect(() => {
+    fetch('/api/consultations')
+      .then(res => res.json())
+      .then(res => {
+        if (res.status === 'success' && Array.isArray(res.data) && res.data.length > 0) {
+          setConsultations(res.data);
+        }
+      })
+      .catch(err => console.error('Failed to load consultations from MySQL:', err));
+  }, []);
+
   // ── Derived ──
   const counts = useMemo(() => ({
     All:       consultations.length,
@@ -134,10 +145,30 @@ export default function ConsultationsPage() {
   const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
   const paginated  = filtered.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
 
-  const updateStatus = (id: string, newStatus: ConsultStatus) => {
+  const updateStatus = async (id: string, newStatus: ConsultStatus) => {
     setConsultations(prev => prev.map(c => c.id === id ? { ...c, status: newStatus } : c));
     if (selectedItem?.id === id) setSelectedItem(prev => prev ? { ...prev, status: newStatus } : null);
     setStatusDropdown(null);
+
+    try {
+      const res = await fetch('/api/consultations', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, status: newStatus }),
+      });
+      const data = await res.json();
+      if (data.status !== 'success') {
+        throw new Error(data.message || 'Failed to update consultation status');
+      }
+    } catch (err) {
+      console.error(err);
+      fetch('/api/consultations')
+        .then(res => res.json())
+        .then(res => {
+          if (res.status === 'success' && Array.isArray(res.data)) setConsultations(res.data);
+        })
+        .catch(loadErr => console.error('Failed to reload consultations:', loadErr));
+    }
   };
 
   return (

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { useContentSection } from "@/lib/useContentSection";
 
 const bgSlides = [
   "/sydney_opera_house.png",
@@ -10,6 +11,17 @@ const bgSlides = [
 
 export default function BrandOverview() {
   const [currentBgIndex, setCurrentBgIndex] = useState(0);
+  const [content] = useContentSection("about_overview", [{
+    itemKey: "main",
+    title: "About Rowshanara Edu",
+    body: "Founded in 2009, we've been helping Bangladeshi students achieve their dreams of studying abroad. With 15+ years of experience and 5000+ successful placements, we're the trusted partner for your international education journey.",
+    subtitle: "Transforming Lives Through Global Education",
+    metadata: {
+      highlights: ["50+ Partner Universities", "20+ Countries Covered", "98% Visa Success Rate"],
+      quote: "Our commitment is to provide world-class guidance and support to every student we work with.",
+    },
+  }] as any);
+  const highlights = Array.isArray(content?.metadata?.highlights) ? content.metadata.highlights as string[] : [];
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -39,7 +51,7 @@ export default function BrandOverview() {
             fontFamily: "'Baloo 2', cursive",
             lineHeight: 1.15
           }}>
-            About Rowshanara Edu
+            {content?.title || "About Rowshanara Edu"}
           </h2>
           <p style={{
             fontSize: "0.95rem",
@@ -48,14 +60,10 @@ export default function BrandOverview() {
             marginBottom: "1.25rem",
             fontFamily: "'Comic Neue', cursive"
           }}>
-            Founded in 2009, we've been helping Bangladeshi students achieve their dreams of studying abroad. With 15+ years of experience and 5000+ successful placements, we're the trusted partner for your international education journey.
+            {content?.body}
           </p>
           <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-            {[
-              "50+ Partner Universities",
-              "20+ Countries Covered",
-              "98% Visa Success Rate"
-            ].map((item, index) => (
+            {highlights.map((item, index) => (
               <div key={index} style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
                 <span style={{ color: "var(--primary)", fontSize: "1.2rem", fontWeight: "bold" }}>✓</span>
                 <span style={{ fontSize: "1rem", fontWeight: 700, color: "white" }}>{item}</span>
@@ -112,7 +120,7 @@ export default function BrandOverview() {
                 fontFamily: "'Baloo 2', cursive",
                 lineHeight: 1.4
               }}>
-                "Transforming Lives Through Global Education"
+                &quot;{content?.subtitle || "Transforming Lives Through Global Education"}&quot;
               </h3>
               <p style={{
                 fontSize: "0.95rem",
@@ -123,7 +131,7 @@ export default function BrandOverview() {
                 fontFamily: "'Comic Neue', cursive",
                 maxWidth: "280px"
               }}>
-                Our commitment is to provide world-class guidance and support to every student we work with.
+                {typeof content?.metadata?.quote === "string" ? content.metadata.quote : "Our commitment is to provide world-class guidance and support to every student we work with."}
               </p>
             </div>
           </div>

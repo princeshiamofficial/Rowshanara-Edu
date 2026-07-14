@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   Search,
@@ -115,6 +115,45 @@ export default function UniversitiesPage() {
   const [currentPage, setCurrentPage]     = useState(1);
   const [selectedUni, setSelectedUni]     = useState<University | null>(null);
   const [universities, setUniversities]   = useState<University[]>(ALL_UNIVERSITIES);
+
+  useEffect(() => {
+    fetch('/api/universities')
+      .then(res => res.json())
+      .then(res => {
+        if (res.status === 'success' && Array.isArray(res.data) && res.data.length > 0) {
+          setUniversities(res.data.map((uni: any) => ({
+            id: String(uni.id),
+            name: uni.name,
+            country: uni.country === 'UK' ? 'United Kingdom' : uni.country,
+            city: uni.location?.split(',')[0] || uni.location || '',
+            ranking: uni.rank || 0,
+            type: 'Research',
+            partnerSince: '2024',
+            status: uni.isOfficialPartner ? 'Active' : 'Pending',
+            courses: uni.courses || 0,
+            students: 0,
+            acceptanceRate: Number(String(uni.acceptanceRate || '').replace(/[^0-9]/g, '')) || 0,
+            tuitionRange: `$${Number(uni.tuitionMin || 0).toLocaleString()}-$${Number(uni.tuitionMax || 0).toLocaleString()}/yr`,
+            intakes: ['September'],
+            contactName: '',
+            contactEmail: '',
+            contactPhone: '',
+            description: uni.description || '',
+            tags: uni.isOfficialPartner ? ['Official Partner'] : [],
+            logo: String(uni.name || 'UN').split(' ').map((word: string) => word[0]).join('').slice(0, 2).toUpperCase(),
+            logoColor: '#1a1a2e',
+            website: '',
+            specializations: uni.popularPrograms || [],
+            subjectAreas: uni.subjectAreas || [],
+            popularPrograms: uni.popularPrograms || [],
+            requirements: uni.requirements || [],
+            established: uni.established || 0,
+            isOfficialPartner: Boolean(uni.isOfficialPartner),
+          })));
+        }
+      })
+      .catch(err => console.error('Failed to load universities from MySQL:', err));
+  }, []);
 
   const counts = useMemo(() => ({
     All:      universities.length,

@@ -1,18 +1,14 @@
+"use client";
+
 import React from "react";
 import { FaGraduationCap } from "react-icons/fa6";
+import { useContentSection } from "@/lib/useContentSection";
 
-const universities = [
-  "University of Sydney",
-  "University of Toronto",
-  "Oxford University",
-  "University of Melbourne",
-  "Harvard University",
-  "University of British Columbia",
-  "Cambridge University",
-  "Stanford University"
-];
+const universities = ["University of Sydney", "University of Toronto", "Oxford University", "University of Melbourne", "Harvard University"];
 
 export default function TrustedBy() {
+  const items = useContentSection("trusted_universities", universities.map((title, index) => ({ title, itemKey: String(index) })) as any);
+
   return (
     <section className="trusted-by-section">
       <div className="trusted-by-badge">
@@ -21,10 +17,10 @@ export default function TrustedBy() {
       </div>
       <div className="marquee-container">
         <div className="marquee-track">
-          {[...universities, ...universities].map((uni, index) => (
+          {[...items, ...items].map((uni, index) => (
             <div key={index} className="university-logo-card">
               <FaGraduationCap className="uni-icon" />
-              <span>{uni}</span>
+              <span>{uni.title}</span>
             </div>
           ))}
         </div>

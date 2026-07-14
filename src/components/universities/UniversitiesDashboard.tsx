@@ -234,6 +234,7 @@ interface UniversitiesDashboardProps {
 }
 
 export default function UniversitiesDashboard({ searchQuery }: UniversitiesDashboardProps) {
+  const [dbUniversities, setDbUniversities] = useState<University[]>(universities);
   const [selectedCountries, setSelectedCountries] = useState<string[]>(["All"]);
   const [selectedRankings, setSelectedRankings] = useState<string[]>(["All"]);
   const [selectedSubjects, setSelectedSubjects] = useState<string[]>(["All"]);
@@ -250,6 +251,17 @@ export default function UniversitiesDashboard({ searchQuery }: UniversitiesDashb
   const [formErrors, setFormErrors] = useState<{ name?: string; email?: string }>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    fetch("/api/universities")
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === "success" && Array.isArray(res.data) && res.data.length > 0) {
+          setDbUniversities(res.data);
+        }
+      })
+      .catch((err) => console.error("Failed to load dynamic universities:", err));
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -317,7 +329,7 @@ export default function UniversitiesDashboard({ searchQuery }: UniversitiesDashb
   };
 
   const filteredUniversities = useMemo(() => {
-    return universities.filter((uni) => {
+    return dbUniversities.filter((uni) => {
       // 1. Search Query Match
       const matchSearch =
         searchQuery === "" ||
@@ -351,7 +363,7 @@ export default function UniversitiesDashboard({ searchQuery }: UniversitiesDashb
 
       return matchSearch && matchCountry && matchRanking && matchSubject;
     });
-  }, [searchQuery, selectedCountries, selectedRankings, selectedSubjects]);
+  }, [dbUniversities, searchQuery, selectedCountries, selectedRankings, selectedSubjects]);
 
   const CheckboxItem = ({
     label,

@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { FaFacebook, FaLinkedin, FaXTwitter } from "react-icons/fa6";
+import { useContentSection } from "@/lib/useContentSection";
 
 const teamMembers = [
   { name: "Dr. Md. Karim Hassan", role: "Founder & CEO", focus: "Education Strategy", image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=400&h=300&fit=crop" },
@@ -46,6 +47,13 @@ function SocialButton({ icon, link }: SocialButtonProps) {
 
 export default function Team() {
   const [hoveredCardIndex, setHoveredCardIndex] = useState<number | null>(null);
+  const members = useContentSection("team", teamMembers.map((member, index) => ({
+    itemKey: String(index),
+    title: member.name,
+    subtitle: member.role,
+    body: member.focus,
+    imageUrl: member.image,
+  })) as any);
 
   return (
     <section className="container" style={{ marginTop: "4rem", marginBottom: "2.5rem" }}>
@@ -65,7 +73,7 @@ export default function Team() {
         gridTemplateColumns: "repeat(4, 1fr)",
         gap: "3.5rem 2rem"
       }}>
-        {teamMembers.map((member, index) => (
+        {members.map((member, index) => (
           <div key={index}
             onMouseEnter={() => setHoveredCardIndex(index)}
             onMouseLeave={() => setHoveredCardIndex(null)}
@@ -125,8 +133,8 @@ export default function Team() {
               transition: "all 0.3s ease"
             }}>
               <Image
-                src={member.image}
-                alt={member.name}
+                src={member.imageUrl}
+                alt={member.title}
                 width={96}
                 height={96}
                 style={{
@@ -155,7 +163,7 @@ export default function Team() {
                 margin: "0 0 0.35rem 0",
                 fontFamily: "'Baloo 2', cursive"
               }}>
-                {member.name}
+                {member.title}
               </h3>
               
               {/* Role Pill Badge */}
@@ -171,7 +179,7 @@ export default function Team() {
                 display: "inline-block",
                 marginBottom: "0.5rem"
               }}>
-                {member.role}
+                {member.subtitle}
               </div>
 
               {/* Focus Specialization */}
@@ -182,7 +190,7 @@ export default function Team() {
                 fontFamily: "'Comic Neue', cursive",
                 fontWeight: 700
               }}>
-                {member.focus}
+                {member.body}
               </p>
 
               {/* Social Icons at the bottom */}

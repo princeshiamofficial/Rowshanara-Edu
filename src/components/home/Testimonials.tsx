@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { FaStar } from "react-icons/fa6";
+import { useContentSection } from "@/lib/useContentSection";
 
 const testimonials = [
   {
@@ -31,6 +32,14 @@ const testimonials = [
 ];
 
 export default function Testimonials() {
+  const stories = useContentSection("success_stories", testimonials.map((item, index) => ({
+    itemKey: String(index),
+    title: item.name,
+    subtitle: item.university,
+    body: item.text,
+    imageUrl: item.image,
+    metadata: { country: item.country },
+  })) as any);
   const [activeIndex, setActiveIndex] = useState(0);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
@@ -39,10 +48,10 @@ export default function Testimonials() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % testimonials.length);
+      setActiveIndex((prev) => (prev + 1) % stories.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, [activeIndex]);
+  }, [activeIndex, stories.length]);
 
   const onTouchStart = (e: React.TouchEvent) => {
     setTouchEnd(null);
@@ -59,9 +68,9 @@ export default function Testimonials() {
     const isLeftSwipe = distance > minSwipeDistance;
     const isRightSwipe = distance < -minSwipeDistance;
     if (isLeftSwipe) {
-      setActiveIndex((prev) => (prev + 1) % testimonials.length);
+      setActiveIndex((prev) => (prev + 1) % stories.length);
     } else if (isRightSwipe) {
-      setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+      setActiveIndex((prev) => (prev - 1 + stories.length) % stories.length);
     }
   };
 
@@ -71,11 +80,11 @@ export default function Testimonials() {
 
       {/* Desktop view */}
       <div className="testimonials-grid">
-        {testimonials.map((item, index) => (
+        {stories.map((item, index) => (
           <div key={index} className="testimonial-card">
             <div className="testimonial-header">
               <div className="testimonial-user-info">
-                <h3 className="testimonial-name">{item.name}</h3>
+                <h3 className="testimonial-name">{item.title}</h3>
               </div>
             </div>
             <div className="testimonial-stars">
@@ -83,9 +92,9 @@ export default function Testimonials() {
                 <FaStar key={i} className="star-icon" />
               ))}
             </div>
-            <p className="testimonial-text">{item.text}</p>
-            <p className="testimonial-university">{item.university}</p>
-            <img src={item.image} alt={item.name} className="testimonial-student-image" />
+            <p className="testimonial-text">{item.body}</p>
+            <p className="testimonial-university">{item.subtitle}</p>
+            <img src={item.imageUrl} alt={item.title} className="testimonial-student-image" />
           </div>
         ))}
       </div>
@@ -98,7 +107,7 @@ export default function Testimonials() {
           onTouchMove={onTouchMove}
           onTouchEnd={onTouchEnd}
         >
-          {testimonials.map((item, index) => {
+          {stories.map((item, index) => {
             const isActive = index === activeIndex;
             return (
               <div 
@@ -108,7 +117,7 @@ export default function Testimonials() {
                 <div className="testimonial-card">
                   <div className="testimonial-header">
                     <div className="testimonial-user-info">
-                      <h3 className="testimonial-name">{item.name}</h3>
+                        <h3 className="testimonial-name">{item.title}</h3>
                     </div>
                   </div>
                   <div className="testimonial-stars">
@@ -116,9 +125,9 @@ export default function Testimonials() {
                       <FaStar key={i} className="star-icon" />
                     ))}
                   </div>
-                  <p className="testimonial-text">{item.text}</p>
-                  <p className="testimonial-university">{item.university}</p>
-                  <img src={item.image} alt={item.name} className="testimonial-student-image" />
+                  <p className="testimonial-text">{item.body}</p>
+                  <p className="testimonial-university">{item.subtitle}</p>
+                  <img src={item.imageUrl} alt={item.title} className="testimonial-student-image" />
                 </div>
               </div>
             );
