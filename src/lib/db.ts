@@ -38,6 +38,6 @@ if (process.env.NODE_ENV === 'production') {
 export default pool;
 
 export async function query<T = unknown>(sql: string, params?: unknown[]): Promise<T> {
-  const [results] = await pool.execute(sql, params as any[]);
+  const [results] = await pool.execute(sql, params as (string | number | boolean | Date | null)[]);
   return results as T;
 }
