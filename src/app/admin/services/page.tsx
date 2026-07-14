@@ -374,46 +374,73 @@ export default function AdminServicesPage() {
 
                  <div>
                   <label style={{ display: 'block', fontSize: '0.775rem', fontWeight: 600, color: '#475569', marginBottom: '0.4rem' }}>Header Image</label>
-                  <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                    <div style={{ flexGrow: 1, position: 'relative' }}>
-                      <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleFileUpload}
-                        style={{ display: 'none' }}
-                        id="service-image-upload"
-                      />
-                      <label
-                        htmlFor="service-image-upload"
-                        style={{
-                          display: 'block',
-                          width: '100%',
-                          padding: '0.6rem 0.8rem',
-                          border: '1px dashed #cbd5e1',
-                          borderRadius: '8px',
-                          backgroundColor: '#f8fafc',
-                          textAlign: 'center',
-                          cursor: 'pointer',
-                          fontSize: '0.875rem',
-                          color: '#475569',
-                          fontWeight: 500,
-                          transition: 'all 0.2s',
-                        }}
-                      >
-                        {isUploading ? 'Uploading...' : newService.image ? 'Change Image' : 'Choose Image File'}
-                      </label>
-                    </div>
-                    {newService.image && (
-                      <div style={{ position: 'relative', width: '60px', height: '40px', borderRadius: '6px', overflow: 'hidden', border: '1px solid #e2e8f0', flexShrink: 0 }}>
-                        <Image
-                          src={newService.image}
-                          alt="Preview"
-                          fill
-                          style={{ objectFit: 'cover' }}
-                          unoptimized
-                        />
-                      </div>
-                    )}
+                  <div style={{ position: 'relative', width: '100%' }}>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleFileUpload}
+                      style={{ display: 'none' }}
+                      id="service-image-upload"
+                    />
+                    <label
+                      htmlFor="service-image-upload"
+                      style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        width: '100%',
+                        height: newService.image ? '160px' : '90px',
+                        border: '1px dashed #cbd5e1',
+                        borderRadius: '12px',
+                        backgroundColor: '#f8fafc',
+                        cursor: 'pointer',
+                        overflow: 'hidden',
+                        position: 'relative',
+                        transition: 'all 0.2s',
+                      }}
+                      onMouseEnter={e => {
+                        e.currentTarget.style.borderColor = '#E09100';
+                      }}
+                      onMouseLeave={e => {
+                        e.currentTarget.style.borderColor = '#cbd5e1';
+                      }}
+                    >
+                      {newService.image ? (
+                        <>
+                          <Image
+                            src={newService.image}
+                            alt="Upload Preview"
+                            fill
+                            style={{ objectFit: 'cover' }}
+                            unoptimized
+                          />
+                          <div 
+                            style={{
+                              position: 'absolute',
+                              inset: 0,
+                              backgroundColor: 'rgba(15, 23, 42, 0.5)',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              color: '#ffffff',
+                              fontWeight: 600,
+                              fontSize: '0.875rem',
+                              opacity: 0,
+                              transition: 'opacity 0.2s',
+                            }}
+                            onMouseEnter={e => e.currentTarget.style.opacity = '1'}
+                            onMouseLeave={e => e.currentTarget.style.opacity = '0'}
+                          >
+                            Change Image
+                          </div>
+                        </>
+                      ) : (
+                        <div style={{ color: '#475569', fontSize: '0.875rem', fontWeight: 500 }}>
+                          {isUploading ? 'Uploading...' : 'Choose Image File'}
+                        </div>
+                      )}
+                    </label>
                   </div>
                 </div>
 
