@@ -39,10 +39,9 @@ export default function AdminServicesPage() {
     highlights: ['']
   });
 
-  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
+  const [isDragActive, setIsDragActive] = useState(false);
 
+  const uploadFile = async (file: File) => {
     setIsUploading(true);
     const formData = new FormData();
     formData.append('file', file);
@@ -66,6 +65,60 @@ export default function AdminServicesPage() {
       setIsUploading(false);
     }
   };
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      await uploadFile(file);
+    }
+  };
+
+  const handleDrag = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.type === "dragenter" || e.type === "dragover") {
+      setIsDragActive(true);
+    } else if (e.type === "dragleave") {
+      setIsDragActive(false);
+    }
+  };
+
+  const handleDrop = async (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragActive(false);
+
+    const file = e.dataTransfer.files?.[0];
+    if (file && file.type.startsWith('image/')) {
+      await uploadFile(file);
+    } else {
+      toast.error('Please drop an image file.');
+    }
+  };
+
+  // Paste handler
+  useEffect(() => {
+    const handlePaste = async (e: ClipboardEvent) => {
+      if (!isServiceModalOpen) return;
+      const items = e.clipboardData?.items;
+      if (!items) return;
+
+      for (let i = 0; i < items.length; i++) {
+        if (items[i].type.indexOf('image') !== -1) {
+          const file = items[i].getAsFile();
+          if (file) {
+            await uploadFile(file);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('paste', handlePaste);
+    return () => {
+      window.removeEventListener('paste', handlePaste);
+    };
+  }, [isServiceModalOpen]);
 
   const fetchServices = () => {
     fetch('/api/services')
@@ -384,6 +437,10 @@ export default function AdminServicesPage() {
                     />
                     <label
                       htmlFor="service-image-upload"
+                      onDragEnter={handleDrag}
+                      onDragOver={handleDrag}
+                      onDragLeave={handleDrag}
+                      onDrop={handleDrop}
                       style={{
                         display: 'flex',
                         flexDirection: 'column',
@@ -391,9 +448,9 @@ export default function AdminServicesPage() {
                         justifyContent: 'center',
                         width: '100%',
                         height: newService.image ? '160px' : '90px',
-                        border: '1px dashed #cbd5e1',
+                        border: isDragActive ? '2px dashed #E09100' : '1px dashed #cbd5e1',
                         borderRadius: '12px',
-                        backgroundColor: '#f8fafc',
+                        backgroundColor: isDragActive ? '#fffcf5' : '#f8fafc',
                         cursor: 'pointer',
                         overflow: 'hidden',
                         position: 'relative',
@@ -403,7 +460,7 @@ export default function AdminServicesPage() {
                         e.currentTarget.style.borderColor = '#E09100';
                       }}
                       onMouseLeave={e => {
-                        e.currentTarget.style.borderColor = '#cbd5e1';
+                        e.currentTarget.style.borderColor = isDragActive ? '#E09100' : '#cbd5e1';
                       }}
                     >
                       {newService.image ? (
