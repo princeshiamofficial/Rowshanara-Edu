@@ -30,6 +30,7 @@ export default function AdminServicesPage() {
   const [dbServices, setDbServices] = useState<Service[]>([]);
   const [isServiceModalOpen, setIsServiceModalOpen] = useState(false);
   const [editingId, setEditingId] = useState<number | null>(null);
+  const [isUploading, setIsUploading] = useState(false);
   const [newService, setNewService] = useState({
     title: '',
     icon: 'FaBookOpen',
@@ -37,6 +38,34 @@ export default function AdminServicesPage() {
     description: '',
     highlights: ['']
   });
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setIsUploading(true);
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      const res = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData
+      });
+      const result = await res.json();
+      if (result.status === 'success') {
+        setNewService(prev => ({ ...prev, image: result.data.url }));
+        toast.success('Image uploaded successfully!');
+      } else {
+        toast.error(result.message || 'Upload failed');
+      }
+    } catch (err: unknown) {
+      const error = err as Error;
+      toast.error(error.message || 'An error occurred during upload');
+    } finally {
+      setIsUploading(false);
+    }
+  };
 
   const fetchServices = () => {
     fetch('/api/services')
@@ -343,17 +372,37 @@ export default function AdminServicesPage() {
                   />
                 </div>
 
-                <div>
-                  <label style={{ display: 'block', fontSize: '0.775rem', fontWeight: 600, color: '#475569', marginBottom: '0.4rem' }}>Header Image Path</label>
+                 <div>
+                  <label style={{ display: 'block', fontSize: '0.775rem', fontWeight: 600, color: '#475569', marginBottom: '0.4rem' }}>Header Image</label>
                   <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                    <input
-                      required
-                      type="text"
-                      placeholder="e.g. /images/services/counselling.png"
-                      value={newService.image}
-                      onChange={e => setNewService({ ...newService, image: e.target.value })}
-                      style={{ flexGrow: 1, padding: '0.6rem 0.8rem', border: '1px solid #cbd5e1', borderRadius: '8px', outline: 'none' }}
-                    />
+                    <div style={{ flexGrow: 1, position: 'relative' }}>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleFileUpload}
+                        style={{ display: 'none' }}
+                        id="service-image-upload"
+                      />
+                      <label
+                        htmlFor="service-image-upload"
+                        style={{
+                          display: 'block',
+                          width: '100%',
+                          padding: '0.6rem 0.8rem',
+                          border: '1px dashed #cbd5e1',
+                          borderRadius: '8px',
+                          backgroundColor: '#f8fafc',
+                          textAlign: 'center',
+                          cursor: 'pointer',
+                          fontSize: '0.875rem',
+                          color: '#475569',
+                          fontWeight: 500,
+                          transition: 'all 0.2s',
+                        }}
+                      >
+                        {isUploading ? 'Uploading...' : newService.image ? 'Change Image' : 'Choose Image File'}
+                      </label>
+                    </div>
                     {newService.image && (
                       <div style={{ position: 'relative', width: '60px', height: '40px', borderRadius: '6px', overflow: 'hidden', border: '1px solid #e2e8f0', flexShrink: 0 }}>
                         <Image
