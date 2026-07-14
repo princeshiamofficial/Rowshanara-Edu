@@ -125,21 +125,22 @@ export const AnimatedTestimonials = ({
         </div>
 
         {/* Text Column */}
-        <div className="flex flex-col justify-between py-4">
+        <div className="flex flex-col justify-between py-4 items-center text-center">
           <motion.div
             key={active}
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -20, opacity: 0 }}
             transition={{ duration: 0.2, ease: "easeInOut" }}
+            className="flex flex-col items-center text-center w-full"
           >
             <h3 className="text-2xl font-bold text-black dark:text-white">
               {testimonials[active].name}
             </h3>
-            <p className="text-sm text-gray-500 dark:text-neutral-500">
+            <p className="text-sm text-gray-500 dark:text-neutral-500 mt-1">
               {testimonials[active].designation}
             </p>
-            <div className="mt-4 flex items-center gap-1 text-amber-500">
+            <div className="mt-4 flex items-center justify-center gap-1 text-amber-500">
               {Array.from({ length: 5 }).map((_, index) => (
                 <Star
                   key={index}
@@ -149,7 +150,7 @@ export const AnimatedTestimonials = ({
                 />
               ))}
             </div>
-            <motion.p className="mt-6 text-lg text-gray-500 dark:text-neutral-300">
+            <motion.p className="mt-6 text-lg text-gray-500 dark:text-neutral-300 text-center">
               {testimonials[active].quote.split(" ").map((word, index) => (
                 <motion.span
                   key={index}
@@ -165,7 +166,7 @@ export const AnimatedTestimonials = ({
           </motion.div>
 
           {/* Nav Arrows */}
-          <div className="flex gap-4 pt-8">
+          <div className="flex gap-4 pt-8 justify-center">
             <button
               aria-label="Previous testimonial"
               onClick={handlePrev}
