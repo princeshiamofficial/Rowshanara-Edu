@@ -4,14 +4,13 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import {
-  Plus, Trash2, Edit2, X, GripVertical, Image as ImageIcon, Type, Eye, EyeOff
+  Plus, Trash2, Edit2, X, GripVertical, Image as ImageIcon, Eye, EyeOff
 } from 'lucide-react';
 import AdminSidebar from '@/components/admin/AdminSidebar';
 import { toast } from 'sonner';
 
 interface PartnerUniversity {
   id: number;
-  name: string;
   logo: string;
   sortOrder: number;
   isActive: boolean;
@@ -28,7 +27,6 @@ export default function AdminPartnerUniversitiesPage() {
   const [isDragActive, setIsDragActive] = useState(false);
 
   const [form, setForm] = useState({
-    name: '',
     logo: '',
     isActive: true,
   });
@@ -101,7 +99,7 @@ export default function AdminPartnerUniversitiesPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.name || !form.logo) { toast.error('Name and logo are required'); return; }
+    if (!form.logo) { toast.error('Logo is required'); return; }
     try {
       const method = editingId ? 'PUT' : 'POST';
       const res = await fetch('/api/partner-universities', {
@@ -125,7 +123,7 @@ export default function AdminPartnerUniversitiesPage() {
 
   const handleEdit = (uni: PartnerUniversity) => {
     setEditingId(uni.id);
-    setForm({ name: uni.name, logo: uni.logo, isActive: uni.isActive });
+    setForm({ logo: uni.logo, isActive: uni.isActive });
     setIsModalOpen(true);
   };
 
@@ -142,7 +140,7 @@ export default function AdminPartnerUniversitiesPage() {
       const res = await fetch('/api/partner-universities', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: uni.id, name: uni.name, logo: uni.logo, isActive: !uni.isActive })
+        body: JSON.stringify({ id: uni.id, logo: uni.logo, isActive: !uni.isActive })
       });
       const data = await res.json();
       if (data.status === 'success') {
@@ -156,7 +154,7 @@ export default function AdminPartnerUniversitiesPage() {
 
   const resetForm = () => {
     setEditingId(null);
-    setForm({ name: '', logo: '', isActive: true });
+    setForm({ logo: '', isActive: true });
   };
 
   const handleDragStart = (e: React.DragEvent, index: number) => {
@@ -185,12 +183,6 @@ export default function AdminPartnerUniversitiesPage() {
     } catch { toast.dismiss(loadingId); toast.error('Failed to save order'); fetchUniversities(); }
   };
 
-  const inputStyle: React.CSSProperties = {
-    width: '100%', padding: '0.6rem 0.8rem', border: '1px solid #cbd5e1',
-    borderRadius: '8px', outline: 'none', fontSize: '0.875rem',
-    fontFamily: 'var(--font-sans), sans-serif', boxSizing: 'border-box'
-  };
-
   return (
     <div style={{ display: 'flex', minHeight: '100vh', width: '100vw', backgroundColor: '#f8fafc', fontFamily: 'var(--font-sans), system-ui, sans-serif', color: '#0f172a' }}>
       <AdminSidebar activeTab={activeTab} setActiveTab={setActiveTab} onLogout={() => router.push('/admin')} />
@@ -205,7 +197,7 @@ export default function AdminPartnerUniversitiesPage() {
             onClick={() => { resetForm(); setIsModalOpen(true); }}
             style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', backgroundColor: '#E09100', color: '#ffffff', padding: '0.6rem 1.2rem', borderRadius: '10px', fontSize: '0.875rem', fontWeight: 600, cursor: 'pointer', border: 'none', boxShadow: '0 2px 8px rgba(224, 145, 0, 0.25)' }}
           >
-            <Plus size={16} /><span>Add University</span>
+            <Plus size={16} /><span>Add Logo</span>
           </button>
         </header>
 
@@ -216,7 +208,6 @@ export default function AdminPartnerUniversitiesPage() {
                 <tr style={{ borderBottom: '2px solid #f1f5f9', color: '#64748b', fontWeight: 700 }}>
                   <th style={{ padding: '1rem 0.5rem', width: '36px' }}></th>
                   <th style={{ padding: '1rem 0.5rem', width: '80px' }}>Logo</th>
-                  <th style={{ padding: '1rem 0.5rem' }}>University Name</th>
                   <th style={{ padding: '1rem 0.5rem', textAlign: 'center', width: '80px' }}>Status</th>
                   <th style={{ padding: '1rem 0.5rem', textAlign: 'center', width: '120px' }}>Actions</th>
                 </tr>
@@ -224,9 +215,9 @@ export default function AdminPartnerUniversitiesPage() {
               <tbody>
                 {universities.length === 0 ? (
                   <tr>
-                    <td colSpan={5} style={{ textAlign: 'center', padding: '3rem 1rem', color: '#94a3b8' }}>
+                    <td colSpan={4} style={{ textAlign: 'center', padding: '3rem 1rem', color: '#94a3b8' }}>
                       <ImageIcon size={40} style={{ margin: '0 auto 1rem auto', opacity: 0.4 }} />
-                      <div>No partner universities found.</div>
+                      <div>No partner university logos found.</div>
                     </td>
                   </tr>
                 ) : universities.map((uni, index) => (
@@ -241,10 +232,9 @@ export default function AdminPartnerUniversitiesPage() {
                     <td style={{ padding: '0.75rem 0.5rem', color: '#cbd5e1', verticalAlign: 'middle' }}><GripVertical size={16} /></td>
                     <td style={{ padding: '0.75rem 0.5rem' }}>
                       <div style={{ position: 'relative', width: '60px', height: '60px', borderRadius: '8px', overflow: 'hidden', border: '1px solid #e2e8f0', backgroundColor: '#f1f5f9', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <Image src={uni.logo} alt={uni.name} fill style={{ objectFit: 'contain', padding: '4px' }} unoptimized />
+                        <Image src={uni.logo} alt="University logo" fill style={{ objectFit: 'contain', padding: '4px' }} unoptimized />
                       </div>
                     </td>
-                    <td style={{ padding: '1rem 0.5rem', fontWeight: 600, color: '#0f172a' }}>{uni.name}</td>
                     <td style={{ padding: '1rem 0.5rem', textAlign: 'center' }}>
                       <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', fontSize: '0.75rem', fontWeight: 600, padding: '0.25rem 0.6rem', borderRadius: '9999px', backgroundColor: uni.isActive ? '#dcfce7' : '#f1f5f9', color: uni.isActive ? '#166534' : '#64748b' }}>
                         {uni.isActive ? <Eye size={12} /> : <EyeOff size={12} />}
@@ -270,21 +260,13 @@ export default function AdminPartnerUniversitiesPage() {
 
       {isModalOpen && (
         <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(15,23,42,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 200, padding: '1rem' }}>
-          <div style={{ backgroundColor: '#ffffff', borderRadius: '16px', width: '100%', maxWidth: '520px', boxShadow: '0 20px 60px rgba(0,0,0,0.2)' }}>
+          <div style={{ backgroundColor: '#ffffff', borderRadius: '16px', width: '100%', maxWidth: '480px', boxShadow: '0 20px 60px rgba(0,0,0,0.2)' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1.25rem 1.5rem', borderBottom: '1px solid #f1f5f9' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <Type size={18} color="#E09100" />
-                <span style={{ fontWeight: 700, fontSize: '1rem', color: '#0f172a' }}>{editingId ? 'Edit University' : 'Add New University'}</span>
-              </div>
+              <span style={{ fontWeight: 700, fontSize: '1rem', color: '#0f172a' }}>{editingId ? 'Edit Logo' : 'Add New Logo'}</span>
               <button onClick={() => { setIsModalOpen(false); resetForm(); }} style={{ background: 'transparent', border: 'none', cursor: 'pointer', color: '#94a3b8', padding: '0.25rem', borderRadius: '4px' }}><X size={18} /></button>
             </div>
 
             <form onSubmit={handleSubmit} style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-              <div>
-                <label style={{ display: 'block', fontSize: '0.775rem', fontWeight: 600, color: '#475569', marginBottom: '0.4rem' }}>University Name</label>
-                <input required type="text" placeholder="e.g. Harvard University" value={form.name} onChange={e => setForm(prev => ({ ...prev, name: e.target.value }))} style={inputStyle} />
-              </div>
-
               <div>
                 <label style={{ display: 'block', fontSize: '0.775rem', fontWeight: 600, color: '#475569', marginBottom: '0.4rem' }}>University Logo</label>
                 <div
@@ -315,7 +297,7 @@ export default function AdminPartnerUniversitiesPage() {
               <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.75rem', marginTop: '0.25rem' }}>
                 <button type="button" onClick={() => { setIsModalOpen(false); resetForm(); }} style={{ padding: '0.6rem 1.2rem', borderRadius: '8px', border: '1px solid #cbd5e1', backgroundColor: '#ffffff', color: '#475569', fontSize: '0.875rem', fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
                 <button type="submit" style={{ padding: '0.6rem 1.4rem', borderRadius: '8px', border: 'none', backgroundColor: '#E09100', color: '#ffffff', fontSize: '0.875rem', fontWeight: 700, cursor: 'pointer' }}>
-                  {editingId ? 'Update University' : 'Add University'}
+                  {editingId ? 'Update' : 'Add Logo'}
                 </button>
               </div>
             </form>

@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import {
-  Settings,
   ChevronDown,
   ChevronUp,
   PanelLeftClose,
@@ -17,6 +16,7 @@ import {
   Globe,
   FileText,
   Clock,
+  Milestone,
   ImageIcon,
   HelpCircle,
   Building2,
@@ -40,6 +40,7 @@ const NAV_ROUTES: Record<string, string> = {
   Destinations:  '/admin/destinations',
   Services:      '/admin/services',
   'Process Timeline': '/admin/timeline',
+  'Our Journey': '/admin/journey',
   'Hero Slides': '/admin/hero',
   'Partner Universities': '/admin/partner-universities',
   'FAQ':         '/admin/faq',
@@ -94,6 +95,7 @@ export default function AdminSidebar({
     { name: 'Destinations', icon: <Globe size={20} />, badge: null, hasSubMenu: false },
     { name: 'Services', icon: <FileText size={20} />, badge: null, hasSubMenu: false },
     { name: 'Process Timeline', icon: <Clock size={20} />, badge: null, hasSubMenu: false },
+    { name: 'Our Journey', icon: <Milestone size={20} />, badge: null, hasSubMenu: false },
     { name: 'Hero Slides', icon: <ImageIcon size={20} />, badge: null, hasSubMenu: false },
     { name: 'Partner Universities', icon: <Building2 size={20} />, badge: null, hasSubMenu: false },
     { name: 'FAQ', icon: <HelpCircle size={20} />, badge: null, hasSubMenu: false },

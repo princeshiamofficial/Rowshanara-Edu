@@ -1,12 +1,16 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 
 interface DestinationItem {
   id: number;
   code: string;
   name: string;
+  image: string;
+  color: string;
+  isPopular: boolean;
   region: string;
   cost: string;
   work: string;
@@ -17,7 +21,14 @@ interface DestinationItem {
   visaInfo: string;
 }
 
-const LANDMARK_MAP: Record<string, string> = {
+interface PopularDestination {
+  name: string;
+  code: string;
+  gradient: string;
+  image: string;
+}
+
+const FALLBACK_IMAGE_MAP: Record<string, string> = {
   GB: "/uk_hero.png",
   CA: "/canada_hero.png",
   AU: "/sydney_opera_house.png",
@@ -28,7 +39,7 @@ const LANDMARK_MAP: Record<string, string> = {
   NZ: "/images/services/pre_departure.png"
 };
 
-const staticDestinations = [
+const staticDestinations: PopularDestination[] = [
   { name: "United Kingdom", code: "GB", gradient: "linear-gradient(135deg, #5fa8ff 0%, #3e84ff 100%)", image: "/uk_hero.png" },
   { name: "Canada", code: "CA", gradient: "linear-gradient(135deg, #ff6b6b 0%, #ee4444 100%)", image: "/canada_hero.png" },
   { name: "Australia", code: "AU", gradient: "linear-gradient(135deg, #ffc107 0%, #ff9800 100%)", image: "/sydney_opera_house.png" },
@@ -38,20 +49,24 @@ const staticDestinations = [
 ];
 
 export default function Destinations() {
-  const [destinations, setDestinations] = useState<any[]>(staticDestinations);
+  const [destinations, setDestinations] = useState<PopularDestination[]>(staticDestinations);
 
   useEffect(() => {
     fetch('/api/destinations')
       .then(res => res.json())
       .then(res => {
         if (res.status === 'success' && Array.isArray(res.data) && res.data.length > 0) {
-          const mapped = res.data.map((d: DestinationItem) => ({
-            name: d.name,
-            code: d.code,
-            gradient: d.gradient,
-            image: LANDMARK_MAP[d.code.toUpperCase()] || "/images/services/counselling.png"
-          }));
-          setDestinations(mapped);
+          const mapped = res.data
+            .filter((d: DestinationItem) => d.isPopular)
+            .map((d: DestinationItem) => ({
+              name: d.name,
+              code: d.code,
+              gradient: d.gradient || `linear-gradient(135deg, ${d.color || "#3b82f6"} 0%, ${d.color || "#3b82f6"} 100%)`,
+              image: d.image || FALLBACK_IMAGE_MAP[d.code.toUpperCase()] || "/images/services/counselling.png"
+            }));
+          if (mapped.length > 0) {
+            setDestinations(mapped);
+          }
         }
       })
       .catch(err => console.error(err));
@@ -68,10 +83,13 @@ export default function Destinations() {
             className="destination-card"
             style={{ background: dest.gradient }}
           >
-            <img 
+            <Image
               src={dest.image} 
               alt={dest.name} 
               className="destination-image" 
+              width={360}
+              height={220}
+              unoptimized
             />
             <div className="destination-content">
               <h3 className="destination-name">{dest.name}</h3>

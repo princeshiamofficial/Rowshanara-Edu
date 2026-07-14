@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { useContentSection } from "@/lib/useContentSection";
+import { type SiteContentItem, useContentSection } from "@/lib/useContentSection";
 
 const milestones = [
   { year: "2009", title: "Company Founded", desc: "Started with a vision to help Bangladeshi students study abroad" },
@@ -14,12 +14,20 @@ const milestones = [
 
 export default function Journey() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const journeyItems = useContentSection("journey", milestones.map((item, index) => ({
+  const journeyItems = useContentSection("journey", milestones.map((item, index): SiteContentItem => ({
+    id: index,
+    section: "journey",
     itemKey: String(index),
     title: item.title,
+    subtitle: "",
     body: item.desc,
     value: item.year,
-  })) as any);
+    imageUrl: "",
+    linkUrl: "",
+    metadata: {},
+    sortOrder: index + 1,
+    isActive: true,
+  })));
 
   return (
     <section className="container" style={{ marginTop: "1.5rem", marginBottom: "2.5rem" }}>
@@ -50,7 +58,7 @@ export default function Journey() {
                 display: "flex",
                 alignItems: "stretch",
                 position: "relative",
-                marginBottom: index === milestones.length - 1 ? 0 : "2rem"
+                marginBottom: index === journeyItems.length - 1 ? 0 : "2rem"
               }}
             >
               {/* Year column */}
@@ -105,7 +113,7 @@ export default function Journey() {
                 </div>
 
                 {/* Line connecting to the next dot */}
-                {index !== milestones.length - 1 && (
+                {index !== journeyItems.length - 1 && (
                   <div style={{
                     position: "absolute",
                     top: "28px",

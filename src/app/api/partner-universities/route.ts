@@ -3,25 +3,23 @@ import { query } from '@/lib/db';
 
 interface PartnerUniversityRow {
   id: number;
-  name: string;
   logo: string;
   sort_order: number;
   is_active: number;
 }
 
-const defaultUniversities = [
-  { name: 'Harvard University', logo: '/universities/harvard.png', sort_order: 0 },
-  { name: 'University of Sydney', logo: '/universities/sydney.png', sort_order: 1 },
-  { name: 'University of Toronto', logo: '/universities/toronto.png', sort_order: 2 },
-  { name: 'Oxford University', logo: '/universities/oxford.png', sort_order: 3 },
-  { name: 'University of Melbourne', logo: '/universities/melbourne.png', sort_order: 4 },
+const defaultLogos = [
+  { logo: '/universities/harvard.png', sort_order: 0 },
+  { logo: '/universities/sydney.png', sort_order: 1 },
+  { logo: '/universities/toronto.png', sort_order: 2 },
+  { logo: '/universities/oxford.png', sort_order: 3 },
+  { logo: '/universities/melbourne.png', sort_order: 4 },
 ];
 
 async function ensureTable() {
   await query(`
     CREATE TABLE IF NOT EXISTS partner_universities (
       id INT AUTO_INCREMENT PRIMARY KEY,
-      name VARCHAR(255) NOT NULL,
       logo VARCHAR(512) NOT NULL,
       sort_order INT NOT NULL DEFAULT 0,
       is_active TINYINT(1) NOT NULL DEFAULT 1,
@@ -35,17 +33,16 @@ export async function GET() {
     await ensureTable();
     let rows = await query<PartnerUniversityRow[]>('SELECT * FROM partner_universities ORDER BY sort_order ASC, id ASC');
     if (rows.length === 0) {
-      for (const u of defaultUniversities) {
+      for (const u of defaultLogos) {
         await query(
-          'INSERT INTO partner_universities (name, logo, sort_order) VALUES (?, ?, ?)',
-          [u.name, u.logo, u.sort_order]
+          'INSERT INTO partner_universities (logo, sort_order) VALUES (?, ?)',
+          [u.logo, u.sort_order]
         );
       }
       rows = await query<PartnerUniversityRow[]>('SELECT * FROM partner_universities ORDER BY sort_order ASC, id ASC');
     }
     const universities = rows.map(r => ({
       id: r.id,
-      name: r.name,
       logo: r.logo,
       sortOrder: r.sort_order,
       isActive: Boolean(r.is_active),
@@ -61,15 +58,15 @@ export async function POST(request: Request) {
   try {
     await ensureTable();
     const body = await request.json();
-    const { name, logo } = body;
-    if (!name || !logo) {
-      return NextResponse.json({ status: 'error', message: 'Name and logo are required' }, { status: 400 });
+    const { logo } = body;
+    if (!logo) {
+      return NextResponse.json({ status: 'error', message: 'Logo is required' }, { status: 400 });
     }
     const maxOrder = await query<{ m: number }[]>('SELECT COALESCE(MAX(sort_order), -1) as m FROM partner_universities');
     const nextOrder = (maxOrder[0]?.m ?? -1) + 1;
     const result = await query<{ insertId: number }>(
-      'INSERT INTO partner_universities (name, logo, sort_order) VALUES (?, ?, ?)',
-      [name, logo, nextOrder]
+      'INSERT INTO partner_universities (logo, sort_order) VALUES (?, ?)',
+      [logo, nextOrder]
     );
     return NextResponse.json({ status: 'success', data: { id: result.insertId } });
   } catch (error: unknown) {
@@ -82,13 +79,13 @@ export async function PUT(request: Request) {
   try {
     await ensureTable();
     const body = await request.json();
-    const { id, name, logo, isActive } = body;
-    if (!id || !name || !logo) {
+    const { id, logo, isActive } = body;
+    if (!id || !logo) {
       return NextResponse.json({ status: 'error', message: 'Missing required fields' }, { status: 400 });
     }
     await query(
-      'UPDATE partner_universities SET name = ?, logo = ?, is_active = ? WHERE id = ?',
-      [name, logo, isActive ? 1 : 0, id]
+      'UPDATE partner_universities SET logo = ?, is_active = ? WHERE id = ?',
+      [logo, isActive ? 1 : 0, id]
     );
     return NextResponse.json({ status: 'success', message: 'University updated' });
   } catch (error: unknown) {
