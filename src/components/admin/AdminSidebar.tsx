@@ -45,6 +45,7 @@ const NAV_ROUTES: Record<string, string> = {
   'Partner Universities': '/admin/partner-universities',
   'FAQ':         '/admin/faq',
   'Testimonials': '/admin/testimonials',
+  'Our Team':    '/admin/team',
 };
 
 export default function AdminSidebar({ 
@@ -100,6 +101,7 @@ export default function AdminSidebar({
     { name: 'Partner Universities', icon: <Building2 size={20} />, badge: null, hasSubMenu: false },
     { name: 'FAQ', icon: <HelpCircle size={20} />, badge: null, hasSubMenu: false },
     { name: 'Testimonials', icon: <MessageSquare size={20} />, badge: null, hasSubMenu: false },
+    { name: 'Our Team', icon: <Users size={20} />, badge: null, hasSubMenu: false },
   ];
 
   return (
