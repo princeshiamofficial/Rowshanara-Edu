@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 
 interface HeroSlide {
@@ -40,7 +40,6 @@ export default function Hero() {
   const [slides, setSlides] = useState<HeroSlide[]>(defaultSlides);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     let isMounted = true;
@@ -69,24 +68,6 @@ export default function Hero() {
     };
   }, []);
 
-  const startTimer = () => {
-    stopTimer();
-    timerRef.current = setInterval(() => {
-      handleNext();
-    }, 5000);
-  };
-
-  const stopTimer = () => {
-    if (timerRef.current) {
-      clearInterval(timerRef.current);
-    }
-  };
-
-  useEffect(() => {
-    startTimer();
-    return () => stopTimer();
-  }, [activeIndex]);
-
   const handleSlideChange = (newIndex: number) => {
     if (newIndex === activeIndex || isTransitioning) return;
     setIsTransitioning(true);
@@ -106,6 +87,20 @@ export default function Hero() {
     handleSlideChange(prevIndex);
   };
 
+  useEffect(() => {
+    if (slides.length < 2) return;
+
+    const timer = setInterval(() => {
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setActiveIndex((currentIndex) => (currentIndex + 1) % slides.length);
+        setIsTransitioning(false);
+      }, 150);
+    }, 5000);
+
+    return () => clearInterval(timer);
+  }, [slides.length]);
+
   return (
     <div className="hero-section-wrapper">
       <div className="hero-card">
@@ -116,7 +111,9 @@ export default function Hero() {
             style={{
               position: "absolute",
               inset: 0,
-              background: `url(${slide.image}) no-repeat center center`,
+              backgroundImage: `url(${slide.image})`,
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "center center",
               backgroundSize: "cover",
               opacity: activeIndex === index ? 1 : 0,
               transition: "opacity 0.8s ease-in-out",
@@ -134,7 +131,7 @@ export default function Hero() {
               opacity: activeIndex === index ? 1 : 0,
               transition: "opacity 0.8s ease-in-out",
               zIndex: 1,
-              background: slide.gradient
+              background: slide.gradient || "linear-gradient(90deg, rgba(224, 145, 0, 0.85) 0%, rgba(224, 145, 0, 0.6) 24%, rgba(224, 145, 0, 0.2) 48%, rgba(224, 145, 0, 0) 66.6%)"
             }}
           />
         ))}
