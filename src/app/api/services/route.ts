@@ -3,45 +3,45 @@ import { query } from '@/lib/db';
 
 const defaultServices = [
   {
-    title: "University Admission Counselling",
+    title: "Free Student Counselling",
     icon: "FaBookOpen",
     image: "/images/services/counselling.png",
-    description: "Expert guidance to help you select the perfect university based on your academic profile and career goals.",
-    highlights: JSON.stringify(["Profile Assessment", "University Shortlisting", "Application Strategy", "Interview Prep"])
+    description: "Expert guidance to help you select the perfect university and course based on your academic profile and career goals.",
+    highlights: JSON.stringify(["Profile Assessment", "Course Selection", "University Shortlisting", "Career Mapping"])
   },
   {
-    title: "Student Visa Processing",
+    title: "University Application Service",
     icon: "FaFileLines",
-    image: "/images/services/visa.png",
-    description: "Complete support throughout the visa application process with expert documentation guidance.",
-    highlights: JSON.stringify(["Document Preparation", "Application Filing", "Interview Training", "Status Tracking"])
+    image: "/images/services/test_prep.png",
+    description: "Complete support throughout the university application process, facilitating admission to over 500 partner institutions.",
+    highlights: JSON.stringify(["Application Strategy", "Document Review", "SOP Guidance", "Interview Prep"])
   },
   {
-    title: "Scholarship & Financial Aid Guidance",
+    title: "Visa Support Service",
+    icon: "FaPlane",
+    image: "/images/services/visa.png",
+    description: "Specialized support and guidance throughout the student visa application and documentation process.",
+    highlights: JSON.stringify(["Visa Requirements Guide", "Documentation Assistance", "Interview Training", "Application Submission"])
+  },
+  {
+    title: "Scholarship Assistance",
     icon: "FaBriefcase",
     image: "/images/services/scholarship.png",
-    description: "Maximize your financial aid opportunities and secure scholarships to reduce your study costs.",
-    highlights: JSON.stringify(["Scholarship Search", "Application Assistance", "Financial Planning", "Loan Guidance"])
-  },
-  {
-    title: "IELTS/SAT/GRE Test Prep Referral",
-    icon: "FaUsers",
-    image: "/images/services/test_prep.png",
-    description: "Connect with top test preparation centers to achieve your target scores.",
-    highlights: JSON.stringify(["Center Referrals", "Study Materials", "Mock Tests", "Score Improvement"])
+    description: "Maximize your financial aid and scholarship opportunities to reduce tuition and overall study costs.",
+    highlights: JSON.stringify(["Scholarship Matching", "Application Support", "Essay Editing", "Financial Guidance"])
   },
   {
     title: "Pre-Departure Orientation",
-    icon: "FaPlane",
+    icon: "FaUsers",
     image: "/images/services/pre_departure.png",
-    description: "Comprehensive briefing to prepare you for your new life abroad.",
+    description: "Comprehensive briefing sessions to prepare you for your international travel, accommodation, and transition.",
     highlights: JSON.stringify(["Cultural Orientation", "Accommodation Guide", "Travel Planning", "Health Insurance"])
   },
   {
     title: "Post-Arrival Student Support",
     icon: "FaLocationDot",
     image: "/images/services/post_arrival.png",
-    description: "Continuous support after you arrive at your destination to ensure smooth transition.",
+    description: "Ongoing mentoring and assistance to ensure a smooth transition and settle comfortably in your destination.",
     highlights: JSON.stringify(["Arrival Assistance", "Local Orientation", "Ongoing Mentoring", "Emergency Support"])
   }
 ];
