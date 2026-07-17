@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "seo": "node scripts/seo-bot.js"
+    "seo": "node scripts/seo-bot.js",
+    "seo-agent": "node scripts/seo-agent.js"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",
