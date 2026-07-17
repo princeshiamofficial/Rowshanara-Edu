@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     creator: "@rowshanaraedu",
   },
   verification: {
-    google: "google-site-verification-code", // Placeholder for GSC verification
+    google: "rYa6Gb4EojEAbFSgPHUuJGSS0tW6em3W33zhHMFMw2s", // Placeholder for GSC verification
     yandex: "yandex-verification-code",
     yahoo: "yahoo-verification-code",
     other: {
