@@ -56,37 +56,82 @@ function getRoutes(dir, routes = []) {
   return routes;
 }
 
-// 2. Track Search Rankings on Google
+// 2. Track Search Rankings on Google / Bing / DuckDuckGo
 async function trackGoogleRanking(keyword) {
   try {
     const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(keyword)}&num=30`;
-    const response = await fetch(searchUrl, {
+    let response = await fetch(searchUrl, {
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
       }
     });
 
-    if (!response.ok) return 'Blocked (CAPTCHA)';
+    let html = '';
+    let isGoogleBlocked = false;
+
+    if (response.ok) {
+      html = await response.text();
+      if (html.includes('detected unusual traffic') || html.includes('/sorry/index') || html.includes('captcha')) {
+        isGoogleBlocked = true;
+      }
+    } else {
+      isGoogleBlocked = true;
+    }
+
+    // Google block fallback: Try DuckDuckGo HTML Search
+    if (isGoogleBlocked) {
+      const ddgUrl = `https://html.duckduckgo.com/html/?q=${encodeURIComponent(keyword)}`;
+      const ddgResponse = await fetch(ddgUrl, {
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+        }
+      });
+
+      if (ddgResponse.ok) {
+        const ddgHtml = await ddgResponse.text();
+        if (ddgHtml.includes('rowshanaraedu.com')) {
+          // Estimate position by parsing ddg search results count before ours
+          const parts = ddgHtml.split('rowshanaraedu.com');
+          const segment = parts[0];
+          const rank = (segment.match(/class="result__snippet"/g) || []).length + 1;
+          return `DuckDuckGo Position: #${rank} (Google Blocked)`;
+        }
+        return 'Not found in DDG Top 30 (Google Blocked)';
+      }
+
+      // Try Bing Search if DDG also fails
+      const bingUrl = `https://www.bing.com/search?q=${encodeURIComponent(keyword)}`;
+      const bingResponse = await fetch(bingUrl, {
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+        }
+      });
+
+      if (bingResponse.ok) {
+        const bingHtml = await bingResponse.text();
+        if (bingHtml.includes('rowshanaraedu.com')) {
+          return `Bing Position: Top 10 (Google Blocked)`;
+        }
+        return 'Not found in Bing Top 10 (Google Blocked)';
+      }
+
+      return 'Blocked (CAPTCHA/Access Denied)';
+    }
     
-    const html = await response.text();
-    // Search for references to rowshanaraedu.com in search results
+    // Process normal Google Search result
     const matches = html.match(/rowshanaraedu\.com/g) || [];
-    
     if (matches.length > 0) {
-      // Find approximate ranking card position in results
       const parts = html.split('rowshanaraedu.com');
       let estimatedRank = 1;
-      
-      // Simple algorithm estimating ranking based on search result page split structures
       for (let i = 0; i < parts.length - 1; i++) {
         const segment = parts[i];
         const searchResultIndicators = (segment.match(/href="https:\/\//g) || []).length;
         estimatedRank = Math.max(1, searchResultIndicators);
       }
-      return `Page 1 (Est. Position: #${estimatedRank})`;
+      return `Google Position: #${estimatedRank}`;
     }
     
-    return 'Not found in Top 30';
+    return 'Not found in Google Top 30';
   } catch (err) {
     return 'Error querying ranking';
   }
