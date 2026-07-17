@@ -63,5 +63,5 @@ export const contentDefaults: ContentItem[] = [
   { section: "contact_information", itemKey: "email", title: "Email Address", body: "info@rowshanaraedu.com", metadata: { icon: "email" }, sortOrder: 3 },
   { section: "contact_information", itemKey: "hours", title: "Office Hours", body: "Saturday - Wednesday: 10:00 AM - 7:00 PM\nThursday: 10:00 AM - 6:00 PM\nFriday: Closed\nSunday: 10:00 AM - 7:00 PM", metadata: { icon: "clock" }, sortOrder: 4 },
   { section: "contact_information", itemKey: "whatsapp", title: "Chat on WhatsApp", value: "+8801511710730", linkUrl: "https://wa.me/8801511710730", metadata: { icon: "whatsapp" }, sortOrder: 5 },
-  { section: "location", itemKey: "map", title: "Our Location", linkUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3653.1574144561273!2d90.4401676855508!3d23.706072035573392!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b74097c9ee29%3A0x4ed71eb5b2894d99!2sColor%20Hut!5e0!3m2!1sen!2sbd!4v1779648925770!5m2!1sen!2sbd", sortOrder: 1 },
+  { section: "location", itemKey: "map", title: "Our Location", linkUrl: "https://maps.google.com/maps?q=Rowshanara%20Edu,%20MNSN%20Tower,%2060%20Dilkusha,%20Dhaka%201000,%20Bangladesh&t=&z=15&ie=UTF8&iwloc=B&output=embed", sortOrder: 1 },
 ];
