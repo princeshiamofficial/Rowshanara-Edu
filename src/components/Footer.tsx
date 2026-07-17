@@ -142,7 +142,7 @@ const Footer = () => {
                 <div className="footer-address-text" style={{ fontSize: '0.9375rem', fontWeight: 500, color: '#fff' }}>
                   <span>+880 1511-710730</span>
                   <span className="footer-pipe" style={{ margin: '0 0.5rem' }}>|</span>
-                  <span className="footer-address-span">60, Dilkusha, Motijheel C/A, Dhaka-1000, Bangladesh</span>
+                  <span className="footer-address-span">House 45, Road 12, Gulshan-2, Dhaka 1212, Bangladesh</span>
                 </div>
               </div>
               
