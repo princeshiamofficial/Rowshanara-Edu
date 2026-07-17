@@ -81,6 +81,12 @@ export async function POST(request: Request) {
       [name, email, phone, country || null, servicesJson, message]
     );
 
+    await query(
+      `INSERT INTO notifications (type, title, message, link)
+       VALUES (?, ?, ?, ?)`,
+      ["message", "New Contact Message", `${name} sent a new message`, "/admin/dashboard/messages"]
+    );
+
     return NextResponse.json({ status: "success", data: { id: result.insertId } });
   } catch (error: unknown) {
     const err = error as Error;

@@ -244,3 +244,21 @@ export async function PUT(request: Request) {
     return NextResponse.json({ status: "error", message: err.message }, { status: 500 });
   }
 }
+
+export async function DELETE(request: Request) {
+  try {
+    await ensureTableExists();
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get("id");
+
+    if (!id) {
+      return NextResponse.json({ status: "error", message: "Missing university ID" }, { status: 400 });
+    }
+
+    await query("DELETE FROM universities WHERE id = ?", [id]);
+    return NextResponse.json({ status: "success", message: "University deleted successfully" });
+  } catch (error: unknown) {
+    const err = error as Error;
+    return NextResponse.json({ status: "error", message: err.message }, { status: 500 });
+  }
+}

@@ -1,7 +1,43 @@
-@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Comic+Neue:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Comic+Neue:wght@300;400;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "shadcn/tailwind.css";
+
+@theme {
+  --color-background: #fffcf5;
+  --color-foreground: #4a3700;
+  --color-primary: #E09100;
+  --color-primary-hover: #c78100;
+  --color-secondary: #E09100;
+
+  --color-border: #e2e8f0;
+  --color-input: #cbd5e1;
+  --color-ring: #E09100;
+
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #f8fafc;
+
+  --color-muted: #f1f3f5;
+  --color-muted-foreground: #64748b;
+
+  --color-accent: #f1f3f5;
+  --color-accent-foreground: #0f172a;
+
+  --color-popover: #ffffff;
+  --color-popover-foreground: #0f172a;
+
+  --color-card: #ffffff;
+  --color-card-foreground: #0f172a;
+
+  /* Sidebar styling maps (direct hex colors matching erpapp) */
+  --color-sidebar: #1C294A;
+  --color-sidebar-foreground: #ffffff;
+  --color-sidebar-primary: #FF8E3C;
+  --color-sidebar-primary-foreground: #ffffff;
+  --color-sidebar-accent: #FC6B03;
+  --color-sidebar-accent-foreground: #ffffff;
+  --color-sidebar-border: #23335C;
+  --color-sidebar-ring: #ff760f;
+}
 
 @custom-variant dark (&:is(.dark *));
 
@@ -24,11 +60,58 @@
   --text: #4a3700;
   --top-bar-bg: #E09100;
   --nav-text: #4a3700;
-  --muted: #94A3B8;
-  --border: #E2E8F0;
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --accent: 210 40% 96.1%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --ring: 215 20.2% 65.1%;
   --radius: 12px;
   --radius-xl: 24px;
   --shadow-clay: 0 8px 16px rgba(224, 145, 0, 0.1), inset 0 -4px 8px rgba(224, 145, 0, 0.05);
+
+  /* Sidebar specific variables */
+  --sidebar-background: 220 45% 20%;
+  --sidebar-foreground: 0 0% 100%;
+  --sidebar-primary: 25 95% 60%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 25 95% 50%;
+  --sidebar-accent-foreground: 0 0% 100%;
+  --sidebar-border: 220 45% 25%;
+  --sidebar-ring: 25 95% 53%;
+}
+
+.dark {
+  --card: 222 47% 15%;
+  --card-foreground: 210 40% 98%;
+  --popover: 222 47% 11%;
+  --popover-foreground: 210 40% 98%;
+  --muted: 217 33% 17%;
+  --muted-foreground: 215 20% 65%;
+  --accent: 25 95% 60%;
+  --accent-foreground: 222 47% 11%;
+  --destructive: 0 63% 31%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 217 33% 17%;
+  --input: 217 33% 17%;
+  --ring: 25 95% 60%;
+
+  /* Sidebar specific variables for dark mode */
+  --sidebar-background: 220 45% 15%;
+  --sidebar-foreground: 0 0% 100%;
+  --sidebar-primary: 25 95% 65%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 25 95% 55%;
+  --sidebar-accent-foreground: 0 0% 100%;
+  --sidebar-border: 220 45% 20%;
+  --sidebar-ring: 25 95% 65%;
 }
 
 * {
@@ -2088,6 +2171,192 @@ button {
   position: static;
 }
 
+/* ==========================================
+   WHY ROWSHANARA HOME SECTION
+   ========================================== */
+.why-rowshanara-section {
+  width: 95%;
+  max-width: 1280px;
+  margin: 0 auto 1.5rem auto;
+  border-radius: 28px;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(14, 165, 233, 0.92) 0%, rgba(16, 185, 129, 0.88) 100%),
+    #0f766e;
+  color: #ffffff;
+  box-shadow: 0 18px 45px rgba(15, 118, 110, 0.16);
+}
+
+.why-rowshanara-container {
+  padding: 4.5rem 3rem;
+}
+
+.why-rowshanara-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.why-rowshanara-eyebrow {
+  display: inline-flex;
+  margin-bottom: 0.65rem;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.76);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.why-rowshanara-title {
+  max-width: 720px;
+  color: #ffffff;
+  font-size: clamp(2.2rem, 4.6vw, 4rem);
+  font-weight: 800;
+  line-height: 1.02;
+  margin: 0;
+}
+
+.why-rowshanara-subtitle {
+  max-width: 650px;
+  margin-top: 1rem;
+  color: rgba(255, 255, 255, 0.84);
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+.why-rowshanara-link {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.8rem 1.4rem;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #0f172a;
+  font-weight: 800;
+  font-size: 0.95rem;
+  box-shadow: 0 12px 25px rgba(15, 23, 42, 0.12);
+}
+
+.why-rowshanara-link:hover {
+  transform: translateY(-2px);
+  background: #fffbeb;
+}
+
+.why-rowshanara-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  overflow: hidden;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.why-rowshanara-card {
+  min-height: 210px;
+  padding: 2rem;
+  background: rgba(15, 118, 110, 0.22);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.why-rowshanara-card:hover {
+  background: rgba(15, 118, 110, 0.34);
+}
+
+.why-rowshanara-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--primary);
+  font-size: 1.25rem;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+}
+
+.why-rowshanara-card h3 {
+  margin-top: 1.25rem;
+  color: #ffffff;
+  font-size: 1.18rem;
+  font-weight: 800;
+}
+
+.why-rowshanara-card p {
+  margin-top: 0.55rem;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.96rem;
+  line-height: 1.55;
+}
+
+body.client-page-layout .why-rowshanara-section {
+  width: 100% !important;
+  max-width: 100% !important;
+  border-radius: 0 !important;
+  border-left: none !important;
+  border-right: none !important;
+  margin: 0 !important;
+}
+
+@media (max-width: 991px) {
+  .why-rowshanara-container {
+    padding: 3.5rem 2rem;
+  }
+
+  .why-rowshanara-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .why-rowshanara-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .why-rowshanara-section {
+    width: 96%;
+    border-radius: 16px;
+  }
+
+  .why-rowshanara-container {
+    padding: 2.5rem 1rem;
+  }
+
+  .why-rowshanara-header {
+    gap: 1.35rem;
+    margin-bottom: 2rem;
+  }
+
+  .why-rowshanara-title {
+    font-size: clamp(1.75rem, 9vw, 2.35rem);
+  }
+
+  .why-rowshanara-subtitle {
+    font-size: 0.96rem;
+  }
+
+  .why-rowshanara-link {
+    width: 100%;
+  }
+
+  .why-rowshanara-grid {
+    grid-template-columns: 1fr;
+    border-radius: 18px;
+  }
+
+  .why-rowshanara-card {
+    min-height: auto;
+    padding: 1.5rem;
+  }
+}
+
 @media (min-width: 992px) {
   .filter-sidebar {
     position: sticky !important;
@@ -2605,3 +2874,136 @@ body.client-page-layout .destinations-section {
   opacity: 1 !important;
 }
 
+
+/* ==========================================
+   PREMIUM MODERN ADMIN PANEL SYSTEM (ROWSHANARA EDU BRANDING)
+   ========================================== */
+.admin-app-shell {
+  min-height: 100vh;
+  display: flex;
+  background: #f8fafc; /* Sleek modern Slate background */
+  color: #0f172a;      /* Slate-900 typography */
+  font-family: 'Plus Jakarta Sans', Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.admin-app-shell h1,
+.admin-app-shell h2,
+.admin-app-shell h3,
+.admin-app-shell button,
+.admin-app-shell input,
+.admin-app-shell select,
+.admin-app-shell textarea {
+  font-family: inherit;
+}
+
+/* Typography Custom Accent Rules - MODERN MULTI-FONT DESIGN SYSTEM */
+.admin-topbar h1,
+.admin-card-header h2,
+.admin-hero-panel h2,
+.admin-stat-card strong,
+.admin-donut strong {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.admin-eyebrow,
+.admin-sidebar-card span,
+.admin-stat-card span,
+.admin-empty-state p,
+.admin-mini-records small,
+.admin-sidebar-card strong {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* Dark mode overrides for system */
+.dark .admin-app-shell {
+  background: #090d16; /* Clean deep dark space */
+  color: #f8fafc;      /* Light gray typography */
+}
+
+/* Sidebar Styles */
+.admin-sidebar {
+  position: fixed;
+  inset: 0 auto 0 0;
+  z-index: 80;
+  width: 292px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  background: #ffffff;
+  border-right: 1px solid #e2e8f0;
+  box-shadow: 1px 0 10px rgba(0, 0, 0, 0.01);
+  transition: width 0.2s ease, transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.dark .admin-sidebar {
+  background: #0f172a;
+  border-right: 1px solid #1e293b;
+  box-shadow: 1px 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.admin-sidebar.is-collapsed {
+  width: 88px;
+}
+
+.admin-sidebar-spacer {
+  width: 292px;
+  flex: 0 0 292px;
+  transition: width 0.2s ease, flex-basis 0.25s ease;
+}
+
+.admin-sidebar-spacer.is-collapsed {
+  width: 88px;
+  flex-basis: 88px;
+}
+
+.admin-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 58px;
+}
+
+.admin-brand-logo {
+  min-width: 0;
+  flex: 1;
+  height: 54px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.dark .admin-brand-logo {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+.admin-brand-logo img {
+  width: 132px;
+  height: auto;
+  object-fit: contain;
+}
+
+.admin-brand-mark {
+  display: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #E09100, #c78100);
+  color: #ffffff;
+  font-weight: 800;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  box-shadow: 0 4px 10px rgba(224, 145, 0, 0.15);
+}

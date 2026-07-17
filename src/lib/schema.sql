@@ -1,3 +1,13 @@
+-- Table structure for admin users
+CREATE TABLE IF NOT EXISTS admins (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  name VARCHAR(255) NOT NULL DEFAULT '',
+  password VARCHAR(255) NOT NULL,
+  is_active TINYINT(1) NOT NULL DEFAULT 1,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 -- Table structure for study destinations
 CREATE TABLE IF NOT EXISTS destinations (
   id INT AUTO_INCREMENT PRIMARY KEY,
@@ -116,3 +126,107 @@ CREATE TABLE IF NOT EXISTS consultations (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+
+-- ============================================
+-- ROLE-BASED ACCESS CONTROL (RBAC) TABLES
+-- ============================================
+
+-- Roles table
+CREATE TABLE IF NOT EXISTS roles (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL UNIQUE,
+  slug VARCHAR(100) NOT NULL UNIQUE,
+  description TEXT,
+  is_default TINYINT(1) NOT NULL DEFAULT 0,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Permissions table
+CREATE TABLE IF NOT EXISTS permissions (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  module VARCHAR(100) NOT NULL,
+  action VARCHAR(50) NOT NULL,
+  UNIQUE KEY unique_module_action (module, action)
+);
+
+-- Role-Permission mapping
+CREATE TABLE IF NOT EXISTS role_permissions (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  role_id INT NOT NULL,
+  permission_id INT NOT NULL,
+  FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE CASCADE,
+  FOREIGN KEY (permission_id) REFERENCES permissions(id) ON DELETE CASCADE,
+  UNIQUE KEY unique_role_perm (role_id, permission_id)
+);
+
+-- Admin-Role mapping
+CREATE TABLE IF NOT EXISTS admin_roles (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  admin_id INT NOT NULL,
+  role_id INT NOT NULL,
+  FOREIGN KEY (admin_id) REFERENCES admins(id) ON DELETE CASCADE,
+  FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE CASCADE,
+  UNIQUE KEY unique_admin_role (admin_id, role_id)
+);
+
+-- Seed default roles
+INSERT INTO roles (name, slug, description, is_default) VALUES
+('Super Admin', 'super-admin', 'Full system access including user management and settings', 0),
+('Admin', 'admin', 'Content and CRM management, cannot manage users', 0),
+('Editor', 'editor', 'Content management only, no delete permissions', 0),
+('Counselor', 'counselor', 'Student inquiries and consultation management', 0),
+('Viewer', 'viewer', 'Read-only access to all modules', 1)
+ON DUPLICATE KEY UPDATE name=VALUES(name), description=VALUES(description);
+
+-- Seed permissions (13 modules x actions)
+INSERT INTO permissions (module, action) VALUES
+('dashboard', 'view'),
+('home_page', 'view'), ('home_page', 'add'), ('home_page', 'edit'), ('home_page', 'delete'),
+('services', 'view'), ('services', 'add'), ('services', 'edit'), ('services', 'delete'),
+('destinations', 'view'), ('destinations', 'add'), ('destinations', 'edit'), ('destinations', 'delete'),
+('universities', 'view'), ('universities', 'add'), ('universities', 'edit'), ('universities', 'delete'),
+('about_us', 'view'), ('about_us', 'add'), ('about_us', 'edit'), ('about_us', 'delete'),
+('testimonials', 'view'), ('testimonials', 'add'), ('testimonials', 'edit'), ('testimonials', 'delete'),
+('faq', 'view'), ('faq', 'add'), ('faq', 'edit'), ('faq', 'delete'),
+('team', 'view'), ('team', 'add'), ('team', 'edit'), ('team', 'delete'),
+('contact_messages', 'view'), ('contact_messages', 'edit'), ('contact_messages', 'delete'),
+('consultations', 'view'), ('consultations', 'edit'),
+('admin_users', 'view'), ('admin_users', 'add'), ('admin_users', 'edit'), ('admin_users', 'delete'),
+('settings', 'view'), ('settings', 'edit')
+ON DUPLICATE KEY UPDATE module=VALUES(module);
+
+-- Assign Super Admin permissions (ALL)
+INSERT INTO role_permissions (role_id, permission_id)
+SELECT r.id, p.id FROM roles r, permissions p WHERE r.slug = 'super-admin'
+ON DUPLICATE KEY UPDATE role_id=VALUES(role_id);
+
+-- Assign Admin permissions (no admin_users, no settings-delete)
+INSERT INTO role_permissions (role_id, permission_id)
+SELECT r.id, p.id FROM roles r, permissions p
+WHERE r.slug = 'admin'
+AND NOT (p.module = 'admin_users')
+AND NOT (p.module = 'settings' AND p.action = 'delete')
+ON DUPLICATE KEY UPDATE role_id=VALUES(role_id);
+
+-- Assign Editor permissions (content only, no delete)
+INSERT INTO role_permissions (role_id, permission_id)
+SELECT r.id, p.id FROM roles r, permissions p
+WHERE r.slug = 'editor'
+AND p.module IN ('dashboard', 'home_page', 'services', 'destinations', 'universities', 'about_us', 'testimonials', 'faq', 'team', 'contact_messages')
+AND p.action != 'delete'
+ON DUPLICATE KEY UPDATE role_id=VALUES(role_id);
+
+-- Assign Counselor permissions (CRM only)
+INSERT INTO role_permissions (role_id, permission_id)
+SELECT r.id, p.id FROM roles r, permissions p
+WHERE r.slug = 'counselor'
+AND p.module IN ('dashboard', 'universities', 'contact_messages', 'consultations')
+AND p.action IN ('view', 'edit')
+ON DUPLICATE KEY UPDATE role_id=VALUES(role_id);
+
+-- Assign Viewer permissions (view only, default)
+INSERT INTO role_permissions (role_id, permission_id)
+SELECT r.id, p.id FROM roles r, permissions p
+WHERE r.slug = 'viewer'
+AND p.action = 'view'
+ON DUPLICATE KEY UPDATE role_id=VALUES(role_id);

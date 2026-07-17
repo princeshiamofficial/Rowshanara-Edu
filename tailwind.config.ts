@@ -18,6 +18,39 @@ const config: Config = {
         secondary: {
           DEFAULT: "var(--secondary)",
         },
+        card: {
+          DEFAULT: "#ffffff",
+          foreground: "#0f172a",
+        },
+        popover: {
+          DEFAULT: "#ffffff",
+          foreground: "#0f172a",
+        },
+        muted: {
+          DEFAULT: "#f1f3f5",
+          foreground: "#64748b",
+        },
+        accent: {
+          DEFAULT: "#f1f3f5",
+          foreground: "#0f172a",
+        },
+        destructive: {
+          DEFAULT: "#ef4444",
+          foreground: "#f8fafc",
+        },
+        border: "#e2e8f0",
+        input: "#cbd5e1",
+        ring: "#E09100",
+        sidebar: {
+          DEFAULT: "#1C294A",
+          foreground: "#ffffff",
+          primary: "#FF8E3C",
+          "primary-foreground": "#ffffff",
+          accent: "#FC6B03",
+          "accent-foreground": "#ffffff",
+          border: "#23335C",
+          ring: "#ff760f",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

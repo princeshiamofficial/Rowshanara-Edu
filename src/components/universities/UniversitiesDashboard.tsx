@@ -239,6 +239,7 @@ export default function UniversitiesDashboard({ searchQuery }: UniversitiesDashb
   const [selectedRankings, setSelectedRankings] = useState<string[]>(["All"]);
   const [selectedSubjects, setSelectedSubjects] = useState<string[]>(["All"]);
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const [activeUniversity, setActiveUniversity] = useState<University | null>(null);
   const [activeTab, setActiveTab] = useState<"overview" | "programs" | "inquiry">("overview");
@@ -246,6 +247,7 @@ export default function UniversitiesDashboard({ searchQuery }: UniversitiesDashb
   // Form states for the modal inquiry
   const [formName, setFormName] = useState("");
   const [formEmail, setFormEmail] = useState("");
+  const [formPhone, setFormPhone] = useState("");
   const [formDegree, setFormDegree] = useState("Undergraduate");
   const [formMessage, setFormMessage] = useState("");
   const [formErrors, setFormErrors] = useState<{ name?: string; email?: string }>({});
@@ -253,14 +255,16 @@ export default function UniversitiesDashboard({ searchQuery }: UniversitiesDashb
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     fetch("/api/universities")
       .then((res) => res.json())
       .then((res) => {
-        if (res.status === "success" && Array.isArray(res.data) && res.data.length > 0) {
+        if (res.status === "success" && Array.isArray(res.data)) {
           setDbUniversities(res.data);
         }
       })
-      .catch((err) => console.error("Failed to load dynamic universities:", err));
+      .catch((err) => console.error("Failed to load dynamic universities:", err))
+      .finally(() => setIsLoading(false));
   }, []);
 
   useEffect(() => {
@@ -580,8 +584,23 @@ export default function UniversitiesDashboard({ searchQuery }: UniversitiesDashb
           gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
           gap: "1.5rem"
         }}>
-          {filteredUniversities.map((uni, index) => (
-            <div
+          {isLoading ? (
+            Array.from({ length: 6 }).map((_, idx) => (
+              <div key={idx} style={{ background: "white", borderRadius: "24px", height: "380px", border: "1px solid rgba(10, 28, 58, 0.05)", padding: "1.5rem", display: "flex", flexDirection: "column", gap: "1rem" }}>
+                <div style={{ width: "100%", height: "200px", backgroundColor: "#e2e8f0", borderRadius: "16px", animation: "pulse 1.5s infinite" }}></div>
+                <div style={{ width: "80%", height: "20px", backgroundColor: "#e2e8f0", borderRadius: "6px", animation: "pulse 1.5s infinite" }}></div>
+                <div style={{ width: "60%", height: "16px", backgroundColor: "#e2e8f0", borderRadius: "6px", animation: "pulse 1.5s infinite" }}></div>
+                <div style={{ width: "40%", height: "14px", backgroundColor: "#e2e8f0", borderRadius: "6px", animation: "pulse 1.5s infinite" }}></div>
+              </div>
+            ))
+          ) : filteredUniversities.length === 0 ? (
+            <div style={{ gridColumn: "1/-1", textAlign: "center", padding: "4rem 1rem", color: "#94a3b8" }}>
+              <div style={{ fontSize: "2rem", marginBottom: "0.5rem" }}>🎓</div>
+              <div>No universities found matching your filter options.</div>
+            </div>
+          ) : (
+            filteredUniversities.map((uni, index) => (
+              <div
               key={index}
               style={{
                 background: "white",
@@ -831,7 +850,7 @@ export default function UniversitiesDashboard({ searchQuery }: UniversitiesDashb
                 </div>
               </div>
             </div>
-          ))}
+          )))}
         </div>
 
         {/* Empty state */}
@@ -1409,11 +1428,28 @@ export default function UniversitiesDashboard({ searchQuery }: UniversitiesDashb
                         setFormErrors({});
                         setIsSubmitting(true);
 
-                        // Simulate API Submitting
-                        setTimeout(() => {
-                          setIsSubmitting(false);
-                          setIsSubmitted(true);
-                        }, 1000);
+                        fetch("/api/consultations", {
+                          method: "POST",
+                          headers: { "Content-Type": "application/json" },
+                          body: JSON.stringify({
+                            studentName: formName,
+                            email: formEmail,
+                            phone: formPhone,
+                            targetCountry: activeUniversity.country,
+                            targetLevel: formDegree,
+                            topic: `Inquiry: ${activeUniversity.name}`,
+                            notes: formMessage,
+                            avatar: formName?.[0]?.toUpperCase() || "?",
+                          }),
+                        })
+                          .then((r) => r.json())
+                          .then(() => {
+                            setIsSubmitted(true);
+                          })
+                          .catch(() => {
+                            setFormErrors({ email: "Failed to submit. Please try again." });
+                            setIsSubmitting(false);
+                          });
                       }}
                       style={{ display: "flex", flexDirection: "column", gap: "1.1rem" }}
                     >
@@ -1424,74 +1460,95 @@ export default function UniversitiesDashboard({ searchQuery }: UniversitiesDashb
                         Fill out the details below to receive specialized admissions support and scholarship advice for free.
                       </p>
 
-                      <div className="inquiry-form-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
-                        {/* Name Field */}
-                        <div style={{ display: "flex", flexDirection: "column", gap: "0.4rem" }}>
-                          <label style={{ fontSize: "0.8rem", fontWeight: 700, color: "#475569" }}>Full Name *</label>
-                          <input
-                            type="text"
-                            value={formName}
-                            onChange={(e) => setFormName(e.target.value)}
-                            disabled={isSubmitting}
-                            placeholder="John Doe"
-                            style={{
-                              padding: "0.7rem 0.9rem",
-                              borderRadius: "10px",
-                              border: formErrors.name ? "1px solid #ef4444" : "1.5px solid #cbd5e1",
-                              fontSize: "0.9rem",
-                              outline: "none"
-                            }}
-                          />
-                          {formErrors.name && (
-                            <span style={{ fontSize: "0.75rem", color: "#ef4444", fontWeight: 600 }}>{formErrors.name}</span>
-                          )}
+                        <div className="inquiry-form-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
+                          {/* Name Field */}
+                          <div style={{ display: "flex", flexDirection: "column", gap: "0.4rem" }}>
+                            <label style={{ fontSize: "0.8rem", fontWeight: 700, color: "#475569" }}>Full Name *</label>
+                            <input
+                              type="text"
+                              value={formName}
+                              onChange={(e) => setFormName(e.target.value)}
+                              disabled={isSubmitting}
+                              placeholder="John Doe"
+                              style={{
+                                padding: "0.7rem 0.9rem",
+                                borderRadius: "10px",
+                                border: formErrors.name ? "1px solid #ef4444" : "1.5px solid #cbd5e1",
+                                fontSize: "0.9rem",
+                                outline: "none"
+                              }}
+                            />
+                            {formErrors.name && (
+                              <span style={{ fontSize: "0.75rem", color: "#ef4444", fontWeight: 600 }}>{formErrors.name}</span>
+                            )}
+                          </div>
+
+                          {/* Email Field */}
+                          <div style={{ display: "flex", flexDirection: "column", gap: "0.4rem" }}>
+                            <label style={{ fontSize: "0.8rem", fontWeight: 700, color: "#475569" }}>Email Address *</label>
+                            <input
+                              type="email"
+                              value={formEmail}
+                              onChange={(e) => setFormEmail(e.target.value)}
+                              disabled={isSubmitting}
+                              placeholder="john@example.com"
+                              style={{
+                                padding: "0.7rem 0.9rem",
+                                borderRadius: "10px",
+                                border: formErrors.email ? "1px solid #ef4444" : "1.5px solid #cbd5e1",
+                                fontSize: "0.9rem",
+                                outline: "none"
+                              }}
+                            />
+                            {formErrors.email && (
+                              <span style={{ fontSize: "0.75rem", color: "#ef4444", fontWeight: 600 }}>{formErrors.email}</span>
+                            )}
+                          </div>
                         </div>
 
-                        {/* Email Field */}
-                        <div style={{ display: "flex", flexDirection: "column", gap: "0.4rem" }}>
-                          <label style={{ fontSize: "0.8rem", fontWeight: 700, color: "#475569" }}>Email Address *</label>
-                          <input
-                            type="email"
-                            value={formEmail}
-                            onChange={(e) => setFormEmail(e.target.value)}
-                            disabled={isSubmitting}
-                            placeholder="john@example.com"
-                            style={{
-                              padding: "0.7rem 0.9rem",
-                              borderRadius: "10px",
-                              border: formErrors.email ? "1px solid #ef4444" : "1.5px solid #cbd5e1",
-                              fontSize: "0.9rem",
-                              outline: "none"
-                            }}
-                          />
-                          {formErrors.email && (
-                            <span style={{ fontSize: "0.75rem", color: "#ef4444", fontWeight: 600 }}>{formErrors.email}</span>
-                          )}
-                        </div>
-                      </div>
+                        <div className="inquiry-form-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
+                          {/* Phone Field */}
+                          <div style={{ display: "flex", flexDirection: "column", gap: "0.4rem" }}>
+                            <label style={{ fontSize: "0.8rem", fontWeight: 700, color: "#475569" }}>Phone Number</label>
+                            <input
+                              type="tel"
+                              value={formPhone}
+                              onChange={(e) => setFormPhone(e.target.value)}
+                              disabled={isSubmitting}
+                              placeholder="+880 1XXX XXXXXX"
+                              style={{
+                                padding: "0.7rem 0.9rem",
+                                borderRadius: "10px",
+                                border: "1.5px solid #cbd5e1",
+                                fontSize: "0.9rem",
+                                outline: "none"
+                              }}
+                            />
+                          </div>
 
-                      {/* Degree Program Selector */}
-                      <div style={{ display: "flex", flexDirection: "column", gap: "0.4rem" }}>
-                        <label style={{ fontSize: "0.8rem", fontWeight: 700, color: "#475569" }}>Intended Level of Study</label>
-                        <select
-                          value={formDegree}
-                          onChange={(e) => setFormDegree(e.target.value)}
-                          disabled={isSubmitting}
-                          style={{
-                            padding: "0.7rem 0.9rem",
-                            borderRadius: "10px",
-                            border: "1.5px solid #cbd5e1",
-                            fontSize: "0.9rem",
-                            outline: "none",
-                            background: "white"
-                          }}
-                        >
-                          <option value="Undergraduate">Undergraduate (Bachelor's)</option>
-                          <option value="Graduate">Graduate (Master's / MBA)</option>
-                          <option value="Doctoral">Doctoral (PhD)</option>
-                          <option value="Diploma">Diploma / Foundation Program</option>
-                        </select>
-                      </div>
+                          {/* Degree Program Selector */}
+                          <div style={{ display: "flex", flexDirection: "column", gap: "0.4rem" }}>
+                            <label style={{ fontSize: "0.8rem", fontWeight: 700, color: "#475569" }}>Intended Level of Study</label>
+                            <select
+                              value={formDegree}
+                              onChange={(e) => setFormDegree(e.target.value)}
+                              disabled={isSubmitting}
+                              style={{
+                                padding: "0.7rem 0.9rem",
+                                borderRadius: "10px",
+                                border: "1.5px solid #cbd5e1",
+                                fontSize: "0.9rem",
+                                outline: "none",
+                                background: "white"
+                              }}
+                            >
+                              <option value="Undergraduate">Undergraduate (Bachelor's)</option>
+                              <option value="Graduate">Graduate (Master's / MBA)</option>
+                              <option value="Doctoral">Doctoral (PhD)</option>
+                              <option value="Diploma">Diploma / Foundation Program</option>
+                            </select>
+                          </div>
+                        </div>
 
                       {/* Message Field */}
                       <div style={{ display: "flex", flexDirection: "column", gap: "0.4rem" }}>
