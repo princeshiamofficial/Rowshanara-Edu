@@ -5,10 +5,10 @@ import { FaLocationDot, FaPhone, FaEnvelope, FaClock, FaWhatsapp } from "react-i
 import { useContentSection } from "@/lib/useContentSection";
 
 const fallbackItems = [
-  { itemKey: "address", title: "Office Address", body: "Dhaka Office:\nHouse 45, Road 12, Gulshan-2\nDhaka 1212, Bangladesh", metadata: { icon: "location" } },
-  { itemKey: "phones", title: "Phone Numbers", body: "Bangladesh: +880 2 9884-5678\nUK: +44 20 7946-0958\nCanada: +1 647-361-8880", metadata: { icon: "phone" } },
-  { itemKey: "email", title: "Email Address", body: "info@rowshanaraedu.com\nsupport@rowshanaraedu.com\nadmissions@rowshanaraedu.com", metadata: { icon: "email" } },
-  { itemKey: "hours", title: "Office Hours", body: "Monday - Friday: 9:00 AM - 6:00 PM\nSaturday: 10:00 AM - 4:00 PM\nSunday: Closed", metadata: { icon: "clock" } },
+  { itemKey: "address", title: "Office Address", body: "Dhaka Office:\nMNSN Tower, 60 Dilkusha\nDhaka 1000, Bangladesh", metadata: { icon: "location" } },
+  { itemKey: "phones", title: "Phone Numbers", body: "Bangladesh: +880 1511-710730", metadata: { icon: "phone" } },
+  { itemKey: "email", title: "Email Address", body: "info@rowshanaraedu.com", metadata: { icon: "email" } },
+  { itemKey: "hours", title: "Office Hours", body: "Saturday - Wednesday: 10:00 AM - 7:00 PM\nThursday: 10:00 AM - 6:00 PM\nFriday: Closed\nSunday: 10:00 AM - 7:00 PM", metadata: { icon: "clock" } },
   { itemKey: "whatsapp", title: "Chat on WhatsApp", value: "+8801511710730", linkUrl: "https://wa.me/8801511710730", metadata: { icon: "whatsapp" } },
 ];
 
