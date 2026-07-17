@@ -18,7 +18,7 @@ export default function SocialBar() {
         </span>
         <div style={{ display: "flex", gap: "0.75rem" }}>
           {/* Facebook */}
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" style={{
+          <a href="https://www.facebook.com/rowshanaraedu" target="_blank" rel="noopener noreferrer" style={{
             width: "36px",
             height: "36px",
             borderRadius: "50%",
@@ -42,7 +42,7 @@ export default function SocialBar() {
           </a>
 
           {/* Twitter-X */}
-          <a href="https://x.com" target="_blank" rel="noopener noreferrer" style={{
+          <a href="#" style={{
             width: "36px",
             height: "36px",
             borderRadius: "50%",
@@ -66,7 +66,7 @@ export default function SocialBar() {
           </a>
 
           {/* LinkedIn */}
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" style={{
+          <a href="https://www.linkedin.com/company/rowshanaraedu" target="_blank" rel="noopener noreferrer" style={{
             width: "36px",
             height: "36px",
             borderRadius: "50%",
@@ -90,7 +90,7 @@ export default function SocialBar() {
           </a>
 
           {/* YouTube */}
-          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" style={{
+          <a href="https://www.youtube.com/@rowshanaraedu" target="_blank" rel="noopener noreferrer" style={{
             width: "36px",
             height: "36px",
             borderRadius: "50%",
@@ -114,7 +114,7 @@ export default function SocialBar() {
           </a>
 
           {/* WeChat */}
-          <a href="#" target="_blank" rel="noopener noreferrer" style={{
+          <a href="#" style={{
             width: "36px",
             height: "36px",
             borderRadius: "50%",

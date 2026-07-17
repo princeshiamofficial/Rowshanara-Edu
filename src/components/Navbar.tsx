@@ -62,13 +62,13 @@ const Navbar = () => {
           <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
             <div style={{ display: 'flex', gap: '0.75rem', color: 'white' }}>
               {[
-                { name: 'facebook', icon: <FaFacebookF /> },
-                { name: 'twitter-x', icon: <FaXTwitter /> },
-                { name: 'linkedin', icon: <FaLinkedinIn /> },
-                { name: 'youtube', icon: <FaYoutube /> },
-                { name: 'wechat', icon: <FaWeixin /> }
+                { name: 'facebook', icon: <FaFacebookF />, url: 'https://www.facebook.com/rowshanaraedu' },
+                { name: 'twitter-x', icon: <FaXTwitter />, url: '#' },
+                { name: 'linkedin', icon: <FaLinkedinIn />, url: 'https://www.linkedin.com/company/rowshanaraedu' },
+                { name: 'youtube', icon: <FaYoutube />, url: 'https://www.youtube.com/@rowshanaraedu' },
+                { name: 'wechat', icon: <FaWeixin />, url: '#' }
               ].map((item) => (
-                <a key={item.name} href="#" style={{ 
+                <a key={item.name} href={item.url} target={item.url !== '#' ? '_blank' : undefined} rel={item.url !== '#' ? 'noopener noreferrer' : undefined} style={{ 
                   width: '22px', 
                   height: '22px', 
                   background: 'white', 
