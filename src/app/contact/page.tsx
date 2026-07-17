@@ -14,9 +14,36 @@ export const metadata: Metadata = {
   },
 };
 
+const contactJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "@id": "https://rowshanaraedu.com/contact/#webpage",
+  "url": "https://rowshanaraedu.com/contact",
+  "name": "Contact Us | Rowshanara Edu",
+  "description": "Get in touch with Rowshanara Edu. Contact our support or visit our offices for professional counseling and guidance on international education.",
+  "mainEntity": {
+    "@type": "EducationalOrganization",
+    "name": "Rowshanara Edu",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "MNSN Tower, 60 Dilkusha",
+      "addressLocality": "Dhaka",
+      "postalCode": "1000",
+      "addressCountry": "BD"
+    },
+    "telephone": "+880 1511-710730",
+    "email": "info@rowshanaraedu.com"
+  }
+};
+
 export default function ContactPage() {
   return (
     <div className="hero-gradient contact-page-wrapper" style={{ minHeight: "100vh", paddingBottom: "1.5rem" }}>
+      <script
+        type="application/ld+json"
+        id="contact-jsonld"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactJsonLd) }}
+      />
       {/* Header Banner */}
       <HeaderBanner 
         title="Contact Us" 
