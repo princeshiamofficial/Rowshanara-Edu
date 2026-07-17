@@ -7,7 +7,7 @@ const milestones = [
   { year: "2009", title: "Company Founded", desc: "Started with a vision to help Bangladeshi students study abroad" },
   { year: "2012", title: "First 100 Students", desc: "Reached milestone of 100 successful placements" },
   { year: "2015", title: "International Expansion", desc: "Opened offices in UK and Canada" },
-  { year: "2018", title: "Partner Network", desc: "Established partnerships with 50+ universities" },
+  { year: "2018", title: "Partner Network", desc: "Established partnerships with 500+ universities" },
   { year: "2021", title: "5000+ Students", desc: "Celebrated 5000 successful student placements" },
   { year: "2024", title: "Industry Leader", desc: "Recognized as leading education consultancy in South Asia" }
 ];

@@ -6,7 +6,7 @@ import { useContentSection } from "@/lib/useContentSection";
 const fallbackStats = [
   { title: "Years of Experience", value: "15+" },
   { title: "Students Placed", value: "5000+" },
-  { title: "Partner Universities", value: "50+" },
+  { title: "Partner Universities", value: "500+" },
   { title: "Countries Covered", value: "20+" },
 ];
 

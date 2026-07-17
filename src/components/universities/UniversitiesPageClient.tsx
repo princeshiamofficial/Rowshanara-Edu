@@ -14,7 +14,7 @@ export default function UniversitiesPageClient() {
       {/* Header Banner */}
       <HeaderBanner 
         title="Partner Universities" 
-        subtitle="Explore our network of 50+ partner universities across 20+ countries"
+        subtitle="Explore our network of 500+ partner universities across 20+ countries"
         style={{ margin: "0 auto 3rem auto" }}
       >
         {/* Integrated Search Input */}

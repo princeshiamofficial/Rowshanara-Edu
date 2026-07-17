@@ -17,7 +17,7 @@ export default function BrandOverview() {
     body: "Founded in 2009, we've been helping Bangladeshi students achieve their dreams of studying abroad. With 15+ years of experience and 5000+ successful placements, we're the trusted partner for your international education journey.",
     subtitle: "Transforming Lives Through Global Education",
     metadata: {
-      highlights: ["50+ Partner Universities", "20+ Countries Covered", "98% Visa Success Rate"],
+      highlights: ["500+ Partner Universities", "20+ Countries Covered", "98% Visa Success Rate"],
       quote: "Our commitment is to provide world-class guidance and support to every student we work with.",
     },
   }] as any);

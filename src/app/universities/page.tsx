@@ -4,7 +4,7 @@ import UniversitiesPageClient from "@/components/universities/UniversitiesPageCl
 
 export const metadata: Metadata = {
   title: "Partner Universities | Rowshanara Edu",
-  description: "Explore our global network of 50+ partner universities across 20+ countries. Search for institutions, programs, and scholarship opportunities.",
+  description: "Explore our global network of 500+ partner universities across 20+ countries. Search for institutions, programs, and scholarship opportunities.",
   alternates: {
     canonical: "https://rowshanaraedu.com/universities",
   },

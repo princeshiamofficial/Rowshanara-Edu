@@ -29,7 +29,7 @@ const whyChooseUsList = [
   },
   {
     title: "Strong Network",
-    desc: "Partnerships with 50+ universities across 20+ countries.",
+    desc: "Partnerships with 500+ universities across 20+ countries.",
     icon: <FaGlobe className="choose-us-icon" />
   },
   {
