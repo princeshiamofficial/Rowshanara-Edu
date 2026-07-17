@@ -1,4 +1,5 @@
 import React from "react";
+import type { Metadata } from "next";
 import BrandOverview from "@/components/about/BrandOverview";
 import Journey from "@/components/about/Journey";
 import MissionVisionValues from "@/components/about/MissionVisionValues";
@@ -6,6 +7,14 @@ import Stats from "@/components/about/Stats";
 import Team from "@/components/about/Team";
 import WhyChooseUs from "@/components/about/WhyChooseUs";
 import CTA from "@/components/CTA";
+
+export const metadata: Metadata = {
+  title: "About Us | Rowshanara Edu",
+  description: "Learn more about Rowshanara Edu, our mission, vision, and how we empower students worldwide to pursue global education.",
+  alternates: {
+    canonical: "https://rowshanaraedu.com/about",
+  },
+};
 
 export default function AboutPage() {
   return (

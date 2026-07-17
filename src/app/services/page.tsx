@@ -1,9 +1,18 @@
 import React from "react";
+import type { Metadata } from "next";
 import ServicesGrid from "@/components/services/ServicesGrid";
 import Timeline from "@/components/services/Timeline";
 import FAQ from "@/components/services/FAQ";
 import CTA from "@/components/CTA";
 import HeaderBanner from "@/components/HeaderBanner";
+
+export const metadata: Metadata = {
+  title: "Our Services | Rowshanara Edu",
+  description: "Explore our comprehensive support services including university search, admission assistance, visa processing, and post-arrival counseling.",
+  alternates: {
+    canonical: "https://rowshanaraedu.com/services",
+  },
+};
 
 export default function ServicesPage() {
   return (

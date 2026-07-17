@@ -1,9 +1,18 @@
 import React from "react";
+import type { Metadata } from "next";
 import HeaderBanner from "@/components/HeaderBanner";
 import ContactForm from "@/components/contact/ContactForm";
 import OfficeDetails from "@/components/contact/OfficeDetails";
 import SocialBar from "@/components/contact/SocialBar";
 import MapLocation from "@/components/contact/MapLocation";
+
+export const metadata: Metadata = {
+  title: "Contact Us | Rowshanara Edu",
+  description: "Get in touch with Rowshanara Edu. Contact our support or visit our offices for professional counseling and guidance on international education.",
+  alternates: {
+    canonical: "https://rowshanaraedu.com/contact",
+  },
+};
 
 export default function ContactPage() {
   return (
