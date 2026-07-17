@@ -147,7 +147,7 @@ const Footer = () => {
               </div>
               
               {/* Quick Links */}
-              <div className="footer-links-column" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+              <div className="footer-links-column" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', marginRight: '5%' }}>
                 <h4 style={{ color: brandColor, fontSize: '1.125rem', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase', margin: 0 }}>Quick Links</h4>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem 2rem' }}>
                   <a href="/about" style={{ color: '#fff', textDecoration: 'none', fontSize: '0.9375rem', opacity: 0.85, transition: 'opacity 0.2s', display: 'block' }}>About Us</a>
