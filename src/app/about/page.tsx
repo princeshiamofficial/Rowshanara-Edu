@@ -9,8 +9,8 @@ import WhyChooseUs from "@/components/about/WhyChooseUs";
 import CTA from "@/components/CTA";
 
 export const metadata: Metadata = {
-  title: "About Us | Rowshanara Edu",
-  description: "Learn more about Rowshanara Edu, our mission, vision, and how we empower students worldwide to pursue global education.",
+  title: "About Us & Global Study Solutions | Rowshanara Edu",
+  description: "Learn more about Rowshanara Edu, our official mission, vision, and how we empower students worldwide to pursue global education opportunities.",
   alternates: {
     canonical: "https://rowshanaraedu.com/about",
   },

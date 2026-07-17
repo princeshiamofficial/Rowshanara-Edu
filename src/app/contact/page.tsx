@@ -7,7 +7,7 @@ import SocialBar from "@/components/contact/SocialBar";
 import MapLocation from "@/components/contact/MapLocation";
 
 export const metadata: Metadata = {
-  title: "Contact Us | Rowshanara Edu",
+  title: "Contact Us & Get Global Study Solutions | Rowshanara Edu",
   description: "Get in touch with Rowshanara Edu. Contact our support or visit our offices for professional counseling and guidance on international education.",
   alternates: {
     canonical: "https://rowshanaraedu.com/contact",

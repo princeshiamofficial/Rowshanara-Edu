@@ -7,7 +7,7 @@ import CTA from "@/components/CTA";
 import HeaderBanner from "@/components/HeaderBanner";
 
 export const metadata: Metadata = {
-  title: "Our Services | Rowshanara Edu",
+  title: "Our Global Study Abroad Services | Rowshanara Edu",
   description: "Explore our comprehensive support services including university search, admission assistance, visa processing, and post-arrival counseling.",
   alternates: {
     canonical: "https://rowshanaraedu.com/services",
